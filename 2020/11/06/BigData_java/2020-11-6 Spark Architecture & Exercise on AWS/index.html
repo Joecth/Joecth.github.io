@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="BigData_java/2020-11-6 Spark Architecture &amp; Exercise on AWS"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>BigData_java/2020-11-6 Spark Architecture &amp; Exercise on AWS | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spark-Architecture"><span class="toc-number">1.</span> <span class="toc-text">Spark Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What"><span class="toc-number">1.1.</span> <span class="toc-text">What</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-Hadoop-MR-計算框架存在什麼問題？"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">Q: Hadoop MR 計算框架存在什麼問題？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-出現的第一個原因-Spark處理大數據很快，實時性很高"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">Q: 出現的第一個原因: Spark處理大數據很快，實時性很高</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-第二個原因-幫助管理分布式機器和流程"><span class="toc-number">1.1.0.3.</span> <span class="toc-text">Q: 第二個原因: 幫助管理分布式機器和流程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-pipelin-in-Spark"><span class="toc-number">1.2.</span> <span class="toc-text">Data pipelin in Spark</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Basics-in-Spark"><span class="toc-number">1.3.</span> <span class="toc-text">Basics in Spark</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Exercise-Spark-on-AWS"><span class="toc-number">2.</span> <span class="toc-text">Exercise: Spark on AWS</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#EMR-elasitc-map-reduce"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">EMR - elasitc map reduce</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Spark-Cluster-on-AWS"><span class="toc-number">2.1.</span> <span class="toc-text">Create Spark Cluster on AWS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-SW"><span class="toc-number">2.1.1.</span> <span class="toc-text">1 SW</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-HW"><span class="toc-number">2.1.2.</span> <span class="toc-text">2 HW</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-General-Cluster-Setting"><span class="toc-number">2.1.3.</span> <span class="toc-text">3 General Cluster Setting</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#最後也是需要個認證的-xxx-pem"><span class="toc-number">2.1.3.0.1.</span> <span class="toc-text">最後也是需要個認證的 xxx.pem</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Security"><span class="toc-number">2.1.4.</span> <span class="toc-text">4 Security</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tools-for-AWS-Spark"><span class="toc-number">2.2.</span> <span class="toc-text">Tools for AWS Spark</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S3’s-Usage"><span class="toc-number">2.3.</span> <span class="toc-text">S3’s Usage</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Create-Bucket"><span class="toc-number">2.3.0.1.</span> <span class="toc-text">Create Bucket</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IAM"><span class="toc-number">2.3.0.2.</span> <span class="toc-text">IAM</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#My-Access-Key"><span class="toc-number">2.3.0.2.1.</span> <span class="toc-text">My Access Key</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Run-Spark-Application"><span class="toc-number">2.4.</span> <span class="toc-text">Run Spark Application</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-Step"><span class="toc-number">2.4.1.</span> <span class="toc-text">Add Step</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pending…"><span class="toc-number">2.4.2.</span> <span class="toc-text">Pending…</span></a></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">362</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">60</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">BigData_java/2020-11-6 Spark Architecture &amp; Exercise on AWS</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-11-06</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BigData-java/">BigData_java</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="Spark-Architecture"><a href="#Spark-Architecture" class="headerlink" title="Spark Architecture"></a>Spark Architecture</h1><h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><ul>
+<li>Data processing, <strong>distributed (多台圍毆)</strong> framework(工具包)</li>
+<li>framework vs computation model(單台)</li>
+<li>Batch processing (offline)全存去hdfs or hive, or Hive, VS. real-time</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a59ewfjj20o20icq4v.jpg" alt="image-20201107102121833" style="zoom: 33%;" />
+
+
+
+<ul>
+<li><p>LinkedIn – java</p>
+</li>
+<li><p>FB – php</p>
+</li>
+<li><p>Scala 特性方便 compiling &amp; runtime就是較快</p>
+</li>
+</ul>
+<h4 id="Q-Hadoop-MR-計算框架存在什麼問題？"><a href="#Q-Hadoop-MR-計算框架存在什麼問題？" class="headerlink" title="Q: Hadoop MR 計算框架存在什麼問題？"></a>Q: Hadoop MR 計算框架存在什麼問題？</h4><ul>
+<li><p>太多硬盤讀寫 –&gt; I/O 太多時間，每次data的讀寫。。。所以速度慢</p>
+<ul>
+<li>多開機器超浪費，才幾10個GB又要我多開。。</li>
+</ul>
+</li>
+<li><p>所以 Spark 出現了 –&gt; 省了很多錢</p>
+<ul>
+<li>好的computation engine 可省很多錢</li>
+<li>分布式內存</li>
+</ul>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkges06cu8j30qe09mdib.jpg" alt="image-20201107103936335" style="zoom: 33%;" />
+
+
+
+<h4 id="Q-出現的第一個原因-Spark處理大數據很快，實時性很高"><a href="#Q-出現的第一個原因-Spark處理大數據很快，實時性很高" class="headerlink" title="Q: 出現的第一個原因: Spark處理大數據很快，實時性很高"></a>Q: 出現的第一個原因: Spark處理大數據很快，實時性很高</h4><h4 id="Q-第二個原因-幫助管理分布式機器和流程"><a href="#Q-第二個原因-幫助管理分布式機器和流程" class="headerlink" title="Q: 第二個原因: 幫助管理分布式機器和流程"></a>Q: 第二個原因: 幫助管理分布式機器和流程</h4><h2 id="Data-pipelin-in-Spark"><a href="#Data-pipelin-in-Spark" class="headerlink" title="Data pipelin in Spark"></a>Data pipelin in Spark</h2><ol>
+<li>1 如讀了國家公園的data，讀入後，對於spark生成的不是 list of string,<br>而是 RDD, 就是個集合，包含源頭的所有數據。</li>
+<li>2 RDD會被partition了後的；分區的標準非常明確</li>
+<li>3 不可變的, immutable</li>
+</ol>
+<ul>
+<li>對於數據的操作行為的當時狀態的copy；非內存地址的延用，而是真實<br>數據的操作</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgg18ccvsj30sq0b2dme.jpg" alt="image-20201107112304043" style="zoom:50%;" />
+
+
+
+
+
+<h2 id="Basics-in-Spark"><a href="#Basics-in-Spark" class="headerlink" title="Basics in Spark"></a>Basics in Spark</h2><ul>
+<li>更快</li>
+<li>可realtime, 是map-reduce做不了的</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a5fbkucj20t40d80tk.jpg" alt="image-20201108210653409" style="zoom: 33%;" />
+
+
+
+<ul>
+<li>當新的RDD被生成，過程就是一條數據被讀進來，filter操作後，看這條data是不是contain California<ul>
+<li>Narrow - 未涉及別的RDD的變形<ul>
+<li>這row不會依賴別row</li>
+</ul>
+</li>
+<li>Wide - 可以對當前的data進行計算。如知道當前每個park, state分別有多少個park?  –&gt; GroupBy, ReduceBy, Union，跳躍於不同的RDD上的加和的動作。會對當前的record作紀錄<ul>
+<li>沒人能保證多條Record在同個RDD, except we use kayhash for partition, otherwise, across RDD</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a5i5o7yj212c084ab0.jpg" alt="image-20201108213059139" style="zoom: 33%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a5krkb9j212q0r4q64.jpg" alt="image-20201108215941456" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gki48xejm4j314y0cywl5.jpg" alt="image-20201108220623119" style="zoom:50%;" />
+
+
+
+
+
+<h1 id="Exercise-Spark-on-AWS"><a href="#Exercise-Spark-on-AWS" class="headerlink" title="Exercise: Spark on AWS"></a>Exercise: Spark on AWS</h1><h5 id="EMR-elasitc-map-reduce"><a href="#EMR-elasitc-map-reduce" class="headerlink" title="EMR - elasitc map reduce"></a>EMR - elasitc map reduce</h5><h2 id="Create-Spark-Cluster-on-AWS"><a href="#Create-Spark-Cluster-on-AWS" class="headerlink" title="Create Spark Cluster on AWS"></a>Create Spark Cluster on AWS</h2><h3 id="1-SW"><a href="#1-SW" class="headerlink" title="1 SW"></a>1 SW</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gknc61jr2qj30w50u0jyw.jpg" alt="image-20201113102815402" style="zoom:50%;" />
+
+
+
+<ul>
+<li>step 是和運行的code緊密相關的，可以code寫完後再設</li>
+</ul>
+<h3 id="2-HW"><a href="#2-HW" class="headerlink" title="2 HW"></a>2 HW</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a5pm9egj20mp0riwh4.jpg" alt="image-20210305163613883" style="zoom:50%;" />
+
+<p>​        Task 没有 data node在run，相當只是對core的輔助，沒什麼必要，對大理解沒improvement</p>
+<ul>
+<li><p>SPOT </p>
+<ul>
+<li>會去看現在的usage的情況，假設我半夜去開cluster，如果還是launch在US-eash，那時大家都在睡，我去開spot就可以很快；但如果是尖峰時，那現在available 的便宜機器就沒了，就會等待下一個available的機器來給我用；我很可能去等，但那台一直都沒得出現，cluster creation就會被浪費了; 反正我選c4large便宜點</li>
+</ul>
+</li>
+<li><p>core: Data node; num core ↑; concurrency ↑</p>
+<ul>
+<li>Data node的機器</li>
+</ul>
+</li>
+<li><p>task: 沒有 data node 的demo在run</p>
+</li>
+</ul>
+<h3 id="3-General-Cluster-Setting"><a href="#3-General-Cluster-Setting" class="headerlink" title="3 General Cluster Setting"></a>3 General Cluster Setting</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkndakrzqjj31d90u0wit.jpg" alt="image-20201113110702038" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gltgondf2sj30tc0eomyj.jpg" alt="image-20201219205815163" style="zoom:50%;" />
+
+
+
+<h5 id="最後也是需要個認證的-xxx-pem"><a href="#最後也是需要個認證的-xxx-pem" class="headerlink" title="最後也是需要個認證的 xxx.pem"></a>最後也是需要個認證的 xxx.pem</h5><h3 id="4-Security"><a href="#4-Security" class="headerlink" title="4 Security"></a>4 Security</h3><p>just next step</p>
+<h2 id="Tools-for-AWS-Spark"><a href="#Tools-for-AWS-Spark" class="headerlink" title="Tools for AWS Spark"></a>Tools for AWS Spark</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkndfn8bvgj30yn0u0k0l.jpg" alt="image-20201113111204862" style="zoom:50%;" />
+
+
+
+<ul>
+<li>Hadoop is the environvent base, for Spark and Hive, so not an Application</li>
+<li></li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a5vbe15j211v0u0wil.jpg" alt="image-20201120202325880" style="zoom:33%;" />
+
+
+
+
+
+<h2 id="S3’s-Usage"><a href="#S3’s-Usage" class="headerlink" title="S3’s Usage"></a>S3’s Usage</h2><h4 id="Create-Bucket"><a href="#Create-Bucket" class="headerlink" title="Create Bucket"></a>Create Bucket</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl6honxensj30u00vwq9e.jpg" alt="image-20201130000449672" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a5yk6p0j20u70u00vz.jpg" alt="image-20201120205035722" style="zoom: 50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkvxisc3p5j317c05sjz5.jpg" alt="image-20201120205135528" style="zoom:50%;" />
+
+
+
+<h4 id="IAM"><a href="#IAM" class="headerlink" title="IAM"></a>IAM</h4><h5 id="My-Access-Key"><a href="#My-Access-Key" class="headerlink" title="My Access Key"></a>My Access Key</h5><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkvxlbix3qj319g0u0dr1.jpg" alt="image-20201120205359035"></p>
+<h2 id="Run-Spark-Application"><a href="#Run-Spark-Application" class="headerlink" title="Run Spark Application"></a>Run Spark Application</h2><h3 id="Add-Step"><a href="#Add-Step" class="headerlink" title="Add Step"></a>Add Step</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a6bnr3oj211m0lo765.jpg" alt="image-20201126195711764" style="zoom:50%;" />
+
+<ul>
+<li>Cluster – 可以把Code deploy 到 data node 上 ，也就是slave node上面去執行</li>
+<li><strong>Client – 放在 Master上面去執行。當放到 Master時，它可以把任務分給其他的nodes!</strong></li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a638tshj219q0oin0g.jpg" alt="image-20201126200139523" style="zoom:50%;" />
+
+
+
+<h3 id="Pending…"><a href="#Pending…" class="headerlink" title="Pending…"></a>Pending…</h3><p>需要去蒐集資源，Spark需要在集群去找哪些機器可用，可設哪些參數呀？找到機器後就會進入Starting</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl2ttdcyb4j319o0fo785.jpg" alt="image-20201126200220489"></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2020/11/06/BigData_java/2020-11-6%20Spark%20Architecture%20&amp;%20Exercise%20on%20AWS/">http://yoursite.com/2020/11/06/BigData_java/2020-11-6%20Spark%20Architecture%20&amp;%20Exercise%20on%20AWS/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/11/13/BigData_java/2020-11-13%20Pokemon%20Go!%20in%20Spark/"><i class="fa fa-chevron-left">  </i><span>BigData_java/2020-11-13 Pokemon Go! in Spark</span></a></div><div class="next-post pull-right"><a href="/2020/11/01/BigData_java/2020-11-1%20Twitter%20on%20AWS/"><span>BigData_java/2020-11-1 Twitter on AWS</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

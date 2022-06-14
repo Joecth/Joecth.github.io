@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="DevOps-Clouds/3 ELB + ASG"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>DevOps-Clouds/3 ELB + ASG | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Idea"><span class="toc-number">1.</span> <span class="toc-text">Idea:</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ELB"><span class="toc-number"></span> <span class="toc-text">ELB</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Setting-Required"><span class="toc-number">0.0.1.</span> <span class="toc-text">Setting Required:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ELB-ASG-Network-Structure"><span class="toc-number">1.</span> <span class="toc-text">ELB + ASG Network Structure</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Launch-Template"><span class="toc-number">1.0.1.</span> <span class="toc-text">Launch Template</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#AMI"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">AMI</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#EC2-Config"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">EC2 Config</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scaling-Policy"><span class="toc-number">1.0.2.</span> <span class="toc-text">Scaling Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Dynamic-–-CW-CloudWatch"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">Dynamic – CW (CloudWatch)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Scheduled"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">Scheduled</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Predicted-–-CW"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">Predicted – CW</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ALB-EC2"><span class="toc-number"></span> <span class="toc-text">ALB + EC2</span></a></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">362</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">60</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">DevOps-Clouds/3 ELB + ASG</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-01-16</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/AWS-Hhigh-Traffic/">AWS-Hhigh-Traffic</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="Idea"><a href="#Idea" class="headerlink" title="Idea:"></a>Idea:</h2><p>Users ———–&gt; ALB ———–&gt; Target Group (EC2, ECS, Fargate)</p>
+<p>ref: <a href="https://ithelp.ithome.com.tw/articles/10276378" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10276378</a></p>
+<h1 id="ELB"><a href="#ELB" class="headerlink" title="ELB"></a>ELB</h1><p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gyh1tehx9oj313a0l80us.jpg" alt="image-20220117224124822"></p>
+<h4 id="Setting-Required"><a href="#Setting-Required" class="headerlink" title="Setting Required:"></a>Setting Required:</h4><ol>
+<li>Listener – HTTP protocol</li>
+<li>SG on ELB VPC</li>
+<li>TargetGroup’s protocol</li>
+<li>all my VPC’s EC2 , to register to TargetGroup, and the SG should make sure all requests able to get in the EC2s</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gyh1j6252aj311s0ky76l.jpg" alt="image-20220117223134440"></p>
+<ul>
+<li>After Target Group registers, the monitoring not yet started, since the one who does the monitoring task is ELB</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gyh1lg7ucdj31500lktc9.jpg" alt="image-20220117223346353"></p>
+<ul>
+<li>NLB - for high efficacy</li>
+<li>ALB - for web-application, able to process info in request info and setting</li>
+</ul>
+<h2 id="ELB-ASG-Network-Structure"><a href="#ELB-ASG-Network-Structure" class="headerlink" title="ELB + ASG Network Structure"></a>ELB + ASG Network Structure</h2><ul>
+<li>requets come in, through ELB’s DNS name</li>
+<li>ELB is followed by a TargetGroup, to which ASG is assigned<ul>
+<li>ELB listener monitors the protocol &amp; port </li>
+<li>ELB send commands to TargetGroup</li>
+</ul>
+</li>
+<li>ASG is set in a TargetGroup, which is placed in a ELB</li>
+<li>ASG dynamically adjusts according to the traffic <ul>
+<li>2 Main settings<ol>
+<li>Launch Template</li>
+<li>Scaling Policy</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Launch-Template"><a href="#Launch-Template" class="headerlink" title="Launch Template"></a>Launch Template</h4><p>(Security Group &amp; User data)</p>
+<ul>
+<li>helps modulize a project (frontend or backend)</li>
+</ul>
+<h5 id="AMI"><a href="#AMI" class="headerlink" title="AMI"></a>AMI</h5><p>image</p>
+<h5 id="EC2-Config"><a href="#EC2-Config" class="headerlink" title="EC2 Config"></a>EC2 Config</h5><p>第一次的啟動指令。第一次啟起來一台EC2 的時候，aws幫我們執行我們放到user_data中的所有指令</p>
+<h4 id="Scaling-Policy"><a href="#Scaling-Policy" class="headerlink" title="Scaling Policy"></a>Scaling Policy</h4><p>to increase or decrease EC2 amount</p>
+<h5 id="Dynamic-–-CW-CloudWatch"><a href="#Dynamic-–-CW-CloudWatch" class="headerlink" title="Dynamic – CW (CloudWatch)"></a>Dynamic – CW (CloudWatch)</h5><p>most useful</p>
+<h5 id="Scheduled"><a href="#Scheduled" class="headerlink" title="Scheduled"></a>Scheduled</h5><h5 id="Predicted-–-CW"><a href="#Predicted-–-CW" class="headerlink" title="Predicted – CW"></a>Predicted – CW</h5><p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gyhsjgjz8kj31cw0mwdjl.jpg" alt="image-20220118140601137"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gyhskc8d8fj316c0modic.jpg" alt="image-20220118140652694"></p>
+<ul>
+<li><p>Min/Max EC2 amount within a TargetGroup</p>
+<p>ASG decides the “desired” number, letting EC2 instances within a TargetGroup reaches “desired” capacity count<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gyhsnjjw58j31a20komyj.jpg" alt="image-20220118140957285"></p>
+</li>
+<li><p>ASG dynamically lower down “desired” capacity accroding to the traffic. “now” may also goes down 3 mins later.<br><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gyhsoft2svj311i0ju75j.jpg" alt="image-20220118141048736"></p>
+</li>
+</ul>
+<h1 id="ALB-EC2"><a href="#ALB-EC2" class="headerlink" title="ALB + EC2"></a>ALB + EC2</h1><p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gyib8rrqqqj310y01ujrk.jpg" alt="image-20220119005306019"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gyj79hnn9vj31aa0q6goc.jpg" alt="image-20220119192100040"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gyj7ajmwzzj316m0u0tc4.jpg" alt="image-20220119192200544"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gyj7arlqcjj31730u0djj.jpg" alt="image-20220119192213748"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gyj7b4orj8j31as0q0q5s.jpg" alt="image-20220119192234342"></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2022/01/16/DevOps-Clouds/3%20ELB%20+%20ASG/">http://yoursite.com/2022/01/16/DevOps-Clouds/3%20ELB%20+%20ASG/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2022/01/16/DevOps-Clouds/2_CloudWatch/"><i class="fa fa-chevron-left">  </i><span>DevOps-Clouds/2_CloudWatch</span></a></div><div class="next-post pull-right"><a href="/2021/01/08/BigData_java/2021-1-8%20Watermark%20in%20Structure-streaming%20&amp;%20Kafka%20as%20output%20sink/"><span>BigData_java/2021-1-8 Watermark in Structure-streaming &amp; Kafka as output sink</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

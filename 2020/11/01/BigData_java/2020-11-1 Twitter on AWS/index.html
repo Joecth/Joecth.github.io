@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="BigData_java/2020-11-1 Twitter on AWS"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>BigData_java/2020-11-1 Twitter on AWS | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Twitter-on-AWS"><span class="toc-number">1.</span> <span class="toc-text">Twitter on AWS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Home-Settings"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">Home Settings</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consumer"><span class="toc-number">1.1.</span> <span class="toc-text">Consumer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Issues-on-my-current-analysis"><span class="toc-number">1.2.</span> <span class="toc-text">Issues on my current analysis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Producer-Elegancys"><span class="toc-number">1.3.</span> <span class="toc-text">Producer Elegancys</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Twitter-Developers-amp-APIs"><span class="toc-number">2.</span> <span class="toc-text">Twitter Developers &amp; APIs</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-In-your-words"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">1 In your words</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-The-specifics"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">2 The specifics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4"><span class="toc-number">2.0.0.4.</span> <span class="toc-text">4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5"><span class="toc-number">2.0.0.5.</span> <span class="toc-text">5</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample"><span class="toc-number">2.0.1.</span> <span class="toc-text">Sample</span></a></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">362</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">60</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">BigData_java/2020-11-1 Twitter on AWS</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-11-01</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BigData-java/">BigData_java</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="Twitter-on-AWS"><a href="#Twitter-on-AWS" class="headerlink" title="Twitter on AWS"></a>Twitter on AWS</h1><ul>
+<li><p>Kafka </p>
+</li>
+<li><p>Best: Consumer == Broker amount</p>
+</li>
+<li><p>Broker - 分布式存、topic, partition, offsets給consumer去讀msg的</p>
+</li>
+<li><p>consumer間獨立的</p>
+</li>
+</ul>
+<ul>
+<li>earlist – default是這個，就是說當前的consuer要是還沒有消費過任何一個topic，它是第一次去run, 我默認的是consumer從最早的開始讀起</li>
+<li>Group_id, 作LB的，這個topic有三個partition，告訴kfk我們有三個不同的consumer要來消費你，所以kfk會讓每個partition被一一對應；有多個不同的consumer的組織，如果我們都定義的是同個group_id，那</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a3j0zixj20wi0as3zg.jpg" alt="image-20201101212643942" style="zoom: 67%;" />
+
+<ul>
+<li><p>Twitter client幫做了很多事</p>
+</li>
+<li><p>hbc-core dependency in pom.xml, to know client APIs</p>
+<ul>
+<li>Twitter hbc client –&gt; 當前的 hbc repo</li>
+<li>功能型的dependency就知道「怎麼用」<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka0e9a4uaj30rg0gaaib.jpg" alt="image-20201101214836345" style="zoom:50%;" />
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a3nbjsqj20te0m8acd.jpg" alt="image-20201101214946756" style="zoom: 33%;" />
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a3qyfu8j20vk0iu3zp.jpg" alt="image-20201101215206525" style="zoom: 33%;" />
+
+<ul>
+<li><p>BlockingQ - 內存裡的buffer，邊寫邊抓；寫的時候不能寫太多</p>
+<ul>
+<li>Producer受不了</li>
+<li>亂碼呢？－－＞沒data來，要丟出exception嗎</li>
+<li>Throttle 限行它，等producer拿出寫去kfk</li>
+</ul>
+</li>
+<li><p>ACK all – data存在所有的 broker上</p>
+</li>
+<li><p>kfk 1.1 大的改變</p>
+<ul>
+<li><p>retries 由三個組成</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a3w3kfbj20sa06c0tb.jpg" alt="image-20201101224346503" style="zoom:50%;" />
+
+<p>120秒後就丟了它</p>
+</li>
+<li><p>Backoff</p>
+<ul>
+<li>你現在很忙，我不一直催你，我等個100ms, 回頭再去敲你，讓你error有恢復的時間</li>
+</ul>
+</li>
+<li><p>這些都是producer已經define好的參數</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka28kbi1ej30ue0ia112.jpg" alt="image-20201101225220312" style="zoom:50%;" />
+
+<ul>
+<li>當非 idempotent 會有問題</li>
+<li>so, enable.idempotence = true</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka2um85ntj30x80ck79l.jpg" alt="image-20201101231332090" style="zoom:50%;" />
+
+<ul>
+<li><p>linger、batch 就是做了個 Cache裡的概念</p>
+<ul>
+<li>當前的cache不可能無限等待，當我設計等待的時間，當我的數據超超超兇來，我受不了，所以我還會設一個batch_size</li>
+<li>不能等太久，也不能太大還不沖出去</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka2xrc4yuj30ra03k77q.jpg" alt="image-20201101231633429"></p>
+</li>
+<li><p>kfk存的是 compressed後的 data<br><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka2z2l5qwj315s07o79r.jpg" alt="image-20201101231749281"></p>
+</li>
+<li><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a44qtgyj21n00twdop.jpg" alt="image-20201101231825564" style="zoom:67%;" />
+
+<ul>
+<li>RT – ReTweet</li>
+</ul>
+</li>
+<li><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a48d8nzj21mg0kodkg.jpg" alt="image-20201101232022395" style="zoom:67%;" />
+</li>
+<li><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka328tq0oj316s0a80z7.jpg" alt="image-20201101232052099"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Home-Settings"><a href="#Home-Settings" class="headerlink" title="Home Settings"></a>Home Settings</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a4cystij21c80mqgqu.jpg" alt="image-20201105165148390" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a4elwupj21ms0u0gup.jpg" alt="image-20201105183429254" style="zoom:67%;" />
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkeiftxhk1j319m0u0e82.jpg" alt="image-20201105191508324"></p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a4k2n0xj211q0u0wjn.jpg" alt="image-20201105191524424" style="zoom:50%;" />
+
+
+
+<h2 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgcojtgy9j30zc0ru153.jpg" alt="image-20201107092704795" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgdbvo4njj317q0340y5.jpg" alt="image-20201107094930303" style="zoom:50%;" />
+
+<ul>
+<li>三次握手</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgdeh3easj314y02g40g.jpg" alt="image-20201107095200584" style="zoom:50%;" />
+
+
+
+<ul>
+<li>mvn clean; mvn compile; man exec:java </li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgdkl4fl7j31700aee2f.jpg" alt="image-20201107095752042" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgdm4ak2lj317g046n10.jpg" alt="image-20201107095921677" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a4xka01j216u0nak0p.jpg" alt="image-20201107100122141" style="zoom:50%;" />
+
+
+
+<h2 id="Issues-on-my-current-analysis"><a href="#Issues-on-my-current-analysis" class="headerlink" title="Issues on my current analysis"></a>Issues on my current analysis</h2><p>未五句話全用權重，只用了最長的</p>
+<h2 id="Producer-Elegancys"><a href="#Producer-Elegancys" class="headerlink" title="Producer Elegancys"></a>Producer Elegancys</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgdvdmjlmj30us0pwk1d.jpg" alt="image-20201107100814465" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a50t6e1j215q03wt9m.jpg" alt="image-20201107100847304" style="zoom:50%;" />
+
+<ul>
+<li>存著</li>
+<li>可能還有人沒寫出，所以要shundown hook，先flush(), 再去 close()了</li>
+</ul>
+<h1 id="Twitter-Developers-amp-APIs"><a href="#Twitter-Developers-amp-APIs" class="headerlink" title="Twitter Developers &amp; APIs"></a>Twitter Developers &amp; APIs</h1><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkeapu2012j310z0u0tfs.jpg" alt="image-20201105144800175" style="zoom:50%;" />
+
+<h4 id="1-In-your-words"><a href="#1-In-your-words" class="headerlink" title="1 In your words"></a>1 In your words</h4><p>In English, please describe how you plan to use Twitter data and/or APIs. The more detailed the response, the easier it is to review and approve.</p>
+<h4 id="2-The-specifics"><a href="#2-The-specifics" class="headerlink" title="2 The specifics"></a>2 The specifics</h4><p>Please answer each of the following with as much detail and accuracy as possible. Failure to do so could result in delays to your access to the Twitter developer platform or rejected applications.</p>
+<hr>
+<p>Are you planning to analyze Twitter data?</p>
+<p>Yes</p>
+<p><strong>Please describe how you will analyze Twitter data including any analysis of Tweets or Twitter users.</strong></p>
+<h4 id="3"><a href="#3" class="headerlink" title="3"></a>3</h4><p>Will your app use Tweet, Retweet, like, follow, or Direct Message functionality?</p>
+<p>Yes</p>
+<p><strong>Please describe your planned use of these features.</strong></p>
+<h4 id="4"><a href="#4" class="headerlink" title="4"></a>4</h4><p>Do you plan to display Tweets or aggregate data about Twitter content outside of Twitter?</p>
+<p>No</p>
+<hr>
+<h4 id="5"><a href="#5" class="headerlink" title="5"></a>5</h4><p>Will your product, service or analysis make Twitter content or derived information available to a government entity?</p>
+<p>No</p>
+<p>In general, schools, colleges, and universities <strong>do not</strong> fall under this category.</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkebd5r9hxj30om0dyjsj.jpg" alt="image-20201105151024914" style="zoom: 33%;" />
+
+
+
+<h3 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkec3hn4czj30uz0u04a8.jpg" alt="image-20201105153542746" style="zoom:50%;" />
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkec5pulxaj31170u0796.jpg" alt="image-20201105153752201"></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2020/11/01/BigData_java/2020-11-1%20Twitter%20on%20AWS/">http://yoursite.com/2020/11/01/BigData_java/2020-11-1%20Twitter%20on%20AWS/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/11/06/BigData_java/2020-11-6%20Spark%20Architecture%20&amp;%20Exercise%20on%20AWS/"><i class="fa fa-chevron-left">  </i><span>BigData_java/2020-11-6 Spark Architecture &amp; Exercise on AWS</span></a></div><div class="next-post pull-right"><a href="/2020/10/24/BigData_java/2020-10-24%20BigData%20side-projects%20in%20Java/"><span>BigData_java/2020-10-24 BigData side-projects in Java</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="BigData_java/2021-1-8 Watermark in Structure-streaming &amp; Kafka as output sink"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>BigData_java/2021-1-8 Watermark in Structure-streaming &amp; Kafka as output sink | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#缺條腿方案"><span class="toc-number">1.</span> <span class="toc-text">缺條腿方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#完整的流！"><span class="toc-number">2.</span> <span class="toc-text">完整的流！</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Structure-streaming’s-output-sink"><span class="toc-number"></span> <span class="toc-text">Structure-streaming’s output sink</span></a></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">362</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">60</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">BigData_java/2021-1-8 Watermark in Structure-streaming &amp; Kafka as output sink</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-01-08</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BigData-java/">BigData_java</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h4 id="缺條腿方案"><a href="#缺條腿方案" class="headerlink" title="缺條腿方案"></a>缺條腿方案</h4><p>只有動態的接收者，沒有動態的處理者</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1gom2jms4yvj21440aqwih.jpg" alt="image-20210316213105971" style="zoom:67%;" />
+
+
+
+<h4 id="完整的流！"><a href="#完整的流！" class="headerlink" title="完整的流！"></a>完整的流！</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1gom2j1rh7lj21540aqgpc.jpg" alt="image-20210316213032834" style="zoom:50%;" />
+
+<p>透過structure-streaming可以實時處理，還可以被下個kfk topic收集，可以透過kfk console看接受到了哪些新的data，或是下游連的另個收集方讀取著。</p>
+<ul>
+<li>input 就是一串data的組合</li>
+<li>Schema相對於kfk consumer會多一點<ul>
+<li>key</li>
+<li>Value</li>
+<li>topic 會標明這條msg是從哪個topic來的</li>
+<li>partition：當接收到data時，會有個recorded metadata, 之前有個callback去讀，知道當前的msg在哪個topic的哪個partition的哪個offset。<ul>
+<li>但這邊不用再去解析，這邊直接給</li>
+</ul>
+</li>
+<li>offset　↑</li>
+<li>timestamp: 到我kfk的時間；而eventtime還是得去msg的編碼裡面找</li>
+<li>timestampType: Integer；Epoch time, 是大多數情況，10位就是in secs; 13位就是mili-seconds</li>
+</ul>
+</li>
+<li>key是：<ul>
+<li>Default不設為None時就是round-robin</li>
+<li>就是往kfk發數據時，有兩個field, 一個就是key，可以按指定hashvalue 方式發去指定的kfk cluster上；key就是個record的key；只要是一樣的key，就是去到相同機器</li>
+</ul>
+</li>
+<li>value是: 就是真的內容<ul>
+<li>實際pull到的那些msg</li>
+<li>如整個 Json的tweet，就是整個msg！</li>
+<li>需要通過Spark datatype 進行解碼；序列化　（kfk的自帶API會自己帶，但現在得自己手動）<ul>
+<li><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gomw6v6anhj30ae00r0sz.jpg" alt="image-20210317143646216" style="zoom: 67%;" /></li>
+<li>轉化類型當中，做了反序列化操作</li>
+<li>要是直接讀進來print的row，會有topic, partition, 但key, value都是二進制encoding</li>
+</ul>
+</li>
+<li>解碼也不夠，因為是個json obj，個人的id, retweet這類的<ul>
+<li>我還需要extract json，去轉成了json obj再操作</li>
+</ul>
+</li>
+<li>每次對應的obj可能是多行row… 不如直接用spark方法直接parse, 可進行結構化定義<ul>
+<li><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gomwdvlo67j30kw062wh3.jpg" alt="image-20210317144332554" style="zoom:50%;" /></li>
+<li>可以對增量操作而不是每條額外的操作</li>
+<li>我的input已經是個純結構化的了，json就是結構了，我不需要再把一整行再轉化出來，我只需要去extract當中需要的三個column，剩下的就可以在讀取並轉化的過程中扔了！讓整個obj也變得非常輕便</li>
+<li>要是json是好幾層，也完全是可以的；structure type就得要多define幾層</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>相同點 (kfk consumer VS structure-streaming consumer)<ul>
+<li>之前的consumer app會有auto offset reset &lt;&gt; startingOffset (會去拉最早的data而不是把最早的給忽略了)</li>
+<li>Topic &lt;&gt; subscribe; 我想要subscribe的　是哪個topic</li>
+<li>Bootstrap.servers &lt;&gt; kafka.bootstrap.server</li>
+<li>consumer.poll &lt;&gt; maxOffsetPerTrigger 就是每次的micro-batch我要拉幾條，通過這樣的設定，就可以明顯設這次的拉出幾條</li>
+</ul>
+</li>
+<li>不同點<ul>
+<li>ss不支持group_id；我要是自己控制group_id還要知道哪幾台機器在pull什麼data，還要控制consumer app的個數 &lt;= partition 個數，不然就浪費；所以ss就自己內部管理；SS會根據job數去管理、平衡。<ul>
+<li>官網doc上會說我也是可以硬 overwrite group_id <ul>
+<li>１但大家都很不推薦自己define group_id</li>
+<li>２因為沒有如kfk那套所對應的key的serializer &amp; deserializer, SS用的是自己的一套</li>
+<li>３SS會忽略kfk的auto commit，這類的async當時用kfk consumer時那套得自己處理；它有自己的commit log，SS會在executor, driver紀錄自己處理到了哪個kfk partition的第幾個offset。所以SS就直接忽略kfk的auto commit。省掉了auto commit和我們要實現那auto commit的難處</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Structure-streaming’s-output-sink"><a href="#Structure-streaming’s-output-sink" class="headerlink" title="Structure-streaming’s output sink"></a>Structure-streaming’s output sink</h2><p>TODO: 要把kfk API consumer改成structure-streaming consumer</p>
+<ul>
+<li>之前在 kfk裡的，而ss包了的：<ul>
+<li>processID:<ul>
+<li>Itempotency</li>
+<li>only commit once, if jbo failure, 要確認要做的不在 processID裡</li>
+</ul>
+</li>
+<li>ctrl + C時<ul>
+<li>該處理一堆在consumer cache裡的，elegantly 善後</li>
+</ul>
+</li>
+<li>管理 commit<ul>
+<li>ss 處理完才commit</li>
+<li>由於 spark 本質就是只處理commit 完的 msg, 所以仍是依賴spark自己的 offset, 決定當有 Ctrl + C時怎麼commit msg，而不是當被強迫退出了，還是去commit已pull下來的msg</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>poll也被ss的getStreamingData取代了</li>
+<li>curID也是for idempotency的</li>
+</ul>
+<ul>
+<li><p>producer打印出來，到json online parser看下，才知道data什麼樣，我在ss裡define才不會define錯</p>
+</li>
+<li><p>Nested field:</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38ab3ff1pj20fd03z3yk.jpg" alt="image-20210318163250985" style="zoom: 67%;" />
+</li>
+<li><p>input 有個增量，是個已被CAST過的value, input有個col裡面是 json obj：</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38ab5sch7j20mn04w751.jpg" alt="image-20210318163832389" style="zoom:67%;" />
+</li>
+<li><p>as data　要是沒有的話↓</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1goo5dat8ugj30gl02ct9i.jpg" alt="image-20210318163953648"></p>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38ab8myhwj20pi01kjrp.jpg" alt="image-20210318175941292" style="zoom:67%;" />
+
+
+
+<ul>
+<li>run producer</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1goo7zussqmj30q202uwgd.jpg" alt="image-20210318181047094"></p>
+<ul>
+<li>Flatten into data frame, 所以就不需要 StringIntoJsonObj這個function<ul>
+<li>就得到了 transformedTweet, 而且會發現也不需要 ExtractObjIntoDataframe了！</li>
+<li>刪除沒有ID的Tweet, 並把當前的Tweet簡單地clean up!</li>
+</ul>
+</li>
+<li>withColumn: lit<ul>
+<li>填一col, 如當前的cur time stamp<ul>
+<li><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38abbxe0kj20wi07w0tg.jpg" alt="image-20210328235740991" style="zoom:50%;" /></li>
+</ul>
+</li>
+<li>repalce<ul>
+<li><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gp02fx9333j315q0380t7.jpg" alt="image-20210329000527131" style="zoom:50%;" />
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Nested Schema    <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38abctu5ej20na0863yu.jpg" alt="image-20210329001059779" style="zoom:67%;" /></li>
+</ul>
+<p>Hank</p>
+<ol>
+<li>mySQL –&gt; aqoformat(?!) –&gt; HDFS</li>
+<li>mySQL –&gt; Enterprise Warehouse (Hive)</li>
+<li>Platform engineer; Infra Engineer</li>
+</ol>
+<ul>
+<li>DS: query 已經生成的Data, which is generated by platform eng. or Infra eng.，</li>
+<li>生成後存在HDFS/DB裡；Stat 建模</li>
+</ul>
+<p>說是Best Practice(?!)</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2021/01/08/BigData_java/2021-1-8%20Watermark%20in%20Structure-streaming%20&amp;%20Kafka%20as%20output%20sink/">http://yoursite.com/2021/01/08/BigData_java/2021-1-8%20Watermark%20in%20Structure-streaming%20&amp;%20Kafka%20as%20output%20sink/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2022/01/16/DevOps-Clouds/3%20ELB%20+%20ASG/"><i class="fa fa-chevron-left">  </i><span>DevOps-Clouds/3 ELB + ASG</span></a></div><div class="next-post pull-right"><a href="/2021/01/03/BigData_java/2021-1-3%20Structured%20Streaming%20Continue/"><span>BigData_java/2021-1-3 Structured Streaming Continue</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="AB_Test/Bayesian_ML/Sec4 - Traditional AB Testing"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>AB_Test/Bayesian_ML/Sec4 - Traditional AB Testing | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Confidence-Interval"><span class="toc-number">1.</span> <span class="toc-text">Confidence Interval</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sum-of-RV-is-also-RV-CLT"><span class="toc-number">1.1.</span> <span class="toc-text">Sum of RV is also RV, CLT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CI-meaning"><span class="toc-number">1.2.</span> <span class="toc-text">CI - meaning</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CI-Limits"><span class="toc-number">1.2.1.</span> <span class="toc-text">CI Limits</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CDF"><span class="toc-number">1.3.</span> <span class="toc-text">CDF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PPF-–-inverse-of-CDF"><span class="toc-number">1.4.</span> <span class="toc-text">PPF – inverse of CDF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Final-CI"><span class="toc-number">1.5.</span> <span class="toc-text">Final CI</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#We-don’t-know-actual-σ"><span class="toc-number">1.5.1.</span> <span class="toc-text">!! We don’t know actual σ</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Non-approx-version-VS-Our-approximation"><span class="toc-number">1.6.</span> <span class="toc-text">Non-approx. version VS. Our approximation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bernoulli-CI"><span class="toc-number">1.7.</span> <span class="toc-text">Bernoulli CI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sum"><span class="toc-number">1.8.</span> <span class="toc-text">Sum</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#↑-Bayesian-is-more-elegant-but-later"><span class="toc-number">1.8.1.</span> <span class="toc-text">↑ Bayesian is more elegant, but later!</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AB-Testing"><span class="toc-number">2.</span> <span class="toc-text">AB Testing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Setup-fr-Conversion-Rate-–-to-know-WHETHER-DIFF"><span class="toc-number">2.1.</span> <span class="toc-text">Setup fr Conversion Rate – to know WHETHER DIFF ?!</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Quntify-w-Statistical-significance-testing"><span class="toc-number">2.1.0.1.</span> <span class="toc-text">Quntify w&#x2F; Statistical significance testing!</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Statistically-Significant-“α”"><span class="toc-number">2.1.0.2.</span> <span class="toc-text">Statistically Significant! @ “α”</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Drawback-have-to-choose-α-ourselves"><span class="toc-number">2.1.0.2.1.</span> <span class="toc-text">Drawback: have to choose α ourselves</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Hypotheses-–-有３種"><span class="toc-number">2.1.0.3.</span> <span class="toc-text">Hypotheses – 有３種</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#★-Focus-2-sided-test"><span class="toc-number">2.1.0.4.</span> <span class="toc-text">★ Focus 2-sided test!</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recipe-“Alg-”-to-detect-2-groups-different"><span class="toc-number">2.2.</span> <span class="toc-text">Recipe - “Alg.” to detect 2 groups different</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#test-statistic"><span class="toc-number">2.2.1.</span> <span class="toc-text">test statistic</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Unbiased-Estimates-w-N-1"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">Unbiased Estimates w&#x2F; N-1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.2.1.2.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#if-Un-equal-length"><span class="toc-number">2.2.1.3.</span> <span class="toc-text">if Un-equal length</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#t-distribution-–-Fatter-tails"><span class="toc-number">2.2.2.</span> <span class="toc-text">t-distribution – Fatter tails</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#t’s-pdf"><span class="toc-number">2.2.2.0.1.</span> <span class="toc-text">t’s pdf</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Test-Statistic-–-t-changes-w-conditions"><span class="toc-number">2.2.3.</span> <span class="toc-text">Test Statistic – t changes w&#x2F; conditions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#t-Distribution-amp-Statistically-Significant"><span class="toc-number">2.2.4.</span> <span class="toc-text">t-Distribution &amp; Statistically Significant !</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P-Values"><span class="toc-number">2.3.</span> <span class="toc-text">P-Values</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition"><span class="toc-number">2.3.1.</span> <span class="toc-text">Definition:</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Reject-when-p-value-is-small-V-S-CANNOT-Reject"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">Reject when p-value is small! V.S. CANNOT Reject</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#t-↑-P↓-–-gt-Difference↑"><span class="toc-number">2.3.1.2.</span> <span class="toc-text">t ↑ P↓ –&gt; Difference↑</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#雙尾和"><span class="toc-number">2.3.2.</span> <span class="toc-text">雙尾和</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#單尾不需要和"><span class="toc-number">2.3.3.</span> <span class="toc-text">單尾不需要和</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#更有力"><span class="toc-number">2.3.3.1.</span> <span class="toc-text">更有力</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-1"><span class="toc-number">2.4.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Test-Characteristics-Assumptions-and-Modifications"><span class="toc-number">2.5.</span> <span class="toc-text">Test Characteristics, Assumptions, and Modifications</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#兩著就是不同時的特性"><span class="toc-number">2.5.1.</span> <span class="toc-text">兩著就是不同時的特性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#N大時，t大-兩者就是不同"><span class="toc-number">2.5.1.1.</span> <span class="toc-text">N大時，t大, 兩者就是不同</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Sp大，交集多，不容易能說不同，就是怎樣都還是有像相同"><span class="toc-number">2.5.1.2.</span> <span class="toc-text">Sp大，交集多，不容易能說不同，就是怎樣都還是有像相同</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#瘦時很好說不同"><span class="toc-number">2.5.1.2.1.</span> <span class="toc-text">瘦時很好說不同</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Small-N也是有力的"><span class="toc-number">2.5.2.</span> <span class="toc-text">Small N也是有力的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S-pool-Issue"><span class="toc-number">2.5.3.</span> <span class="toc-text">S-pool Issue</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#之前假設了兩個群的-sd-是一樣的。。。"><span class="toc-number">2.5.3.1.</span> <span class="toc-text">之前假設了兩個群的 sd 是一樣的。。。</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Find-t-–-gt-df-–-gt-p"><span class="toc-number">2.5.3.1.1.</span> <span class="toc-text">Find t –&gt; df –&gt; p</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#之前還假設了-Gaussian。。-–-可用-Non-Param-test"><span class="toc-number">2.5.3.2.</span> <span class="toc-text">之前還假設了 Gaussian。。 – 可用 Non-Param test</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#假設多-Power大"><span class="toc-number">2.5.3.2.1.</span> <span class="toc-text">假設多, Power大 (?!)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-sided-vs-2-sided"><span class="toc-number">2.5.4.</span> <span class="toc-text">1-sided vs. 2-sided</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#身高時一尾easier"><span class="toc-number">2.5.4.0.1.</span> <span class="toc-text">身高時一尾easier</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#p↓-extreme-value-–-gt-Reject-H0"><span class="toc-number">2.5.5.</span> <span class="toc-text">p↓ (extreme value) –&gt; Reject H0</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#t-test-in-code"><span class="toc-number">2.6.</span> <span class="toc-text">t-test in code</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#t-test-exercise"><span class="toc-number">2.6.1.</span> <span class="toc-text">t-test exercise</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Should-check-for-“Bonferroni-Correction”"><span class="toc-number">2.6.1.0.1.</span> <span class="toc-text">Should check, for “Bonferroni Correction”</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Does-one-is-better-than-the-other-by-stat-significance"><span class="toc-number">2.6.2.</span> <span class="toc-text">Does one is better than the other by stat. significance?</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#TODO-t-test-w-same-or-diff-variance-or-try-both-then-compare"><span class="toc-number">2.6.2.0.1.</span> <span class="toc-text">TODO: t-test w&#x2F; same or diff variance? or try both then compare?</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Key-points"><span class="toc-number">2.6.2.1.</span> <span class="toc-text">Key points</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Try-ex-ttest-py"><span class="toc-number">2.6.2.1.1.</span> <span class="toc-text">Try ex_ttest.py</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-01-vs-0-001"><span class="toc-number">2.7.</span> <span class="toc-text">0.01 vs 0.001</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Why-care"><span class="toc-number">2.7.1.</span> <span class="toc-text">Why care?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IMPORTANCES-N-std-amp-diff"><span class="toc-number">2.7.2.</span> <span class="toc-text">IMPORTANCES: N, std, &amp; diff</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chi-Square-Test-Statistic-on-CTR"><span class="toc-number">2.8.</span> <span class="toc-text">Chi-Square Test Statistic on CTR</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Contingency-Table"><span class="toc-number">2.8.0.0.1.</span> <span class="toc-text">Contingency Table</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Q-To-know-if-the-diff-in-CTR-btw-Ad-A-amp-Ad-B-is-“statistically-significant”"><span class="toc-number">2.8.1.</span> <span class="toc-text">Q: To know if the diff in CTR btw Ad-A &amp; Ad-B is “statistically significant” ?</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Chi-2-test-statistic"><span class="toc-number">2.8.1.1.</span> <span class="toc-text">Chi-2 test statistic</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Chi-Square-is-not-self-explanatory"><span class="toc-number">2.8.1.1.1.</span> <span class="toc-text">Chi-Square is not self-explanatory</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#-2"><span class="toc-number">2.8.1.2.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Chi2-↑-–-gt-P-Value-↓-–-gt-Diff-↑-Reject-H0"><span class="toc-number">2.8.2.</span> <span class="toc-text">Chi2 ↑ –&gt; P Value ↓ –&gt; Diff ↑ (Reject H0)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Contingency-Table-in-Scipy"><span class="toc-number">2.8.3.</span> <span class="toc-text">Contingency Table in Scipy</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#-3"><span class="toc-number">2.8.3.0.1.</span> <span class="toc-text"></span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Chi2-distribution"><span class="toc-number">2.8.4.</span> <span class="toc-text">Chi2 distribution</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Fisher’s-exact-test"><span class="toc-number">2.8.4.0.1.</span> <span class="toc-text">Fisher’s exact test</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CTR-AB-Test-in-Code-w-Data-Generator"><span class="toc-number">2.9.</span> <span class="toc-text">CTR AB Test in Code (w&#x2F; Data Generator!)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#P-Value-might-be-problematic"><span class="toc-number">2.9.0.1.</span> <span class="toc-text">P-Value might be problematic!</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chi2-Exercise"><span class="toc-number">2.10.</span> <span class="toc-text">Chi2 Exercise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bonferroni-Correction"><span class="toc-number">2.11.</span> <span class="toc-text">Bonferroni Correction</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#１"><span class="toc-number">2.11.1.</span> <span class="toc-text">１</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#２"><span class="toc-number">2.11.2.</span> <span class="toc-text">２</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#３Post-Hoc-Testing"><span class="toc-number">2.11.3.</span> <span class="toc-text">３Post Hoc Testing</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Power"><span class="toc-number">2.12.</span> <span class="toc-text">Power</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AB-Testing-Pitfalls"><span class="toc-number">2.13.</span> <span class="toc-text">AB Testing Pitfalls</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#def-of-P-Values"><span class="toc-number">2.13.0.1.</span> <span class="toc-text">def of P-Values</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary"><span class="toc-number"></span> <span class="toc-text">Summary</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#t-Summary"><span class="toc-number">0.0.1.</span> <span class="toc-text">t Summary</span></a></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">362</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">60</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">AB_Test/Bayesian_ML/Sec4 - Traditional AB Testing</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-13</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/BayesianML/">BayesianML</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="Confidence-Interval"><a href="#Confidence-Interval" class="headerlink" title="Confidence Interval"></a>Confidence Interval</h2><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx390jkcxj30tu03owfq.jpg" alt="image-20201021173502064" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd0d4rpjnj30wc0dw41j.jpg" alt="image-20201104120414000" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd0fgroxej30n80dmjtm.jpg" alt="image-20201104120629244" style="zoom:50%;" />
+
+<h3 id="Sum-of-RV-is-also-RV-CLT"><a href="#Sum-of-RV-is-also-RV-CLT" class="headerlink" title="Sum of RV is also RV, CLT"></a>Sum of RV is also RV, CLT</h3><p>★ 特別是針對 expectation的！</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2euyzgej30x40fsjw0.jpg" alt="image-20201103162931919" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2gn14mcj30tc0h644k.jpg" alt="image-20201103163114888" style="zoom:67%;" />
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3818ltxvwj20sc0cc0t8.jpg" alt="image-20201104145718737" style="zoom:50%;" />
+
+
+
+<h3 id="CI-meaning"><a href="#CI-meaning" class="headerlink" title="CI - meaning"></a>CI - meaning</h3><ul>
+<li>I want to know the range of values that are likely to contain the true value of param I’m lookng for.</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd5lrs4e5j30tm0geq9h.jpg" alt="image-20201104150531747" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2hccb2aj30r60hgwjm.jpg" alt="image-20201103163155114" style="zoom:50%;" />
+
+
+
+<h4 id="CI-Limits"><a href="#CI-Limits" class="headerlink" title="CI Limits"></a>CI Limits</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2hr9x68j30x00gqn2j.jpg" alt="image-20201103163219208" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd5ic3630j30wg0g2q8l.jpg" alt="image-20201104150214583" style="zoom:50%;" />
+
+
+
+<h3 id="CDF"><a href="#CDF" class="headerlink" title="CDF"></a>CDF</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd5io9f1rj30sw0d077q.jpg" alt="image-20201104150233686" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd5jckgs7j30s20dytc3.jpg" alt="image-20201104150312389" style="zoom:50%;" />
+
+
+
+
+
+<h3 id="PPF-–-inverse-of-CDF"><a href="#PPF-–-inverse-of-CDF" class="headerlink" title="PPF – inverse of CDF"></a>PPF – inverse of CDF</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2j50lfzj30v40h8aea.jpg" alt="image-20201103163338579" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd5kj32cjj30tw0880v3.jpg" alt="image-20201104150420994" style="zoom:50%;" />
+
+
+
+<h3 id="Final-CI"><a href="#Final-CI" class="headerlink" title="Final CI"></a>Final CI</h3><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2krh4xcj30y20i0q8a.jpg" alt="image-20201103163512531"></p>
+<h4 id="We-don’t-know-actual-σ"><a href="#We-don’t-know-actual-σ" class="headerlink" title="!! We don’t know actual σ"></a>!! We don’t know actual σ</h4><ul>
+<li>Solution: use <strong>sqrt of the maximum likelihood estimate of the  valirance</strong> </li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2ju3va1j30xq0n8q7s.jpg" alt="image-20201103163419169" style="zoom:50%;" />
+
+
+
+<h3 id="Non-approx-version-VS-Our-approximation"><a href="#Non-approx-version-VS-Our-approximation" class="headerlink" title="Non-approx. version VS. Our approximation"></a>Non-approx. version VS. Our approximation</h3><ol>
+<li>use t! but too far away</li>
+<li>Gaussian also OK, as it good in Bernoulli! –&gt; in this case!</li>
+<li>for Bernoulli, we can use the exactly same approximation!</li>
+</ol>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2lsbonnj30wa0g8dlz.jpg" alt="image-20201103163611643" style="zoom:50%;" />
+
+<h3 id="Bernoulli-CI"><a href="#Bernoulli-CI" class="headerlink" title="Bernoulli CI"></a>Bernoulli CI</h3><ul>
+<li>use Bernoulli’s param to substitute into!</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2m5fi5uj30xo0fe0y0.jpg" alt="image-20201103163632710" style="zoom:50%;" />
+
+
+
+<h3 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2mioo9wj30x00gcq9t.jpg" alt="image-20201103163653542" style="zoom:50%;" />
+
+<h4 id="↑-Bayesian-is-more-elegant-but-later"><a href="#↑-Bayesian-is-more-elegant-but-later" class="headerlink" title="↑ Bayesian is more elegant, but later!"></a>↑ Bayesian is more elegant, but later!</h4><h2 id="AB-Testing"><a href="#AB-Testing" class="headerlink" title="AB Testing"></a>AB Testing</h2><h3 id="Setup-fr-Conversion-Rate-–-to-know-WHETHER-DIFF"><a href="#Setup-fr-Conversion-Rate-–-to-know-WHETHER-DIFF" class="headerlink" title="Setup fr Conversion Rate – to know WHETHER DIFF ?!"></a>Setup fr Conversion Rate – to know WHETHER DIFF ?!</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2ontp7sj30x40fik2d.jpg" alt="image-20201103163857378" style="zoom:50%;" />
+
+
+
+<h5 id="Quntify-w-Statistical-significance-testing"><a href="#Quntify-w-Statistical-significance-testing" class="headerlink" title="Quntify w/ Statistical significance testing!"></a>Quntify w/ Statistical significance testing!</h5><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkczzul4b2j30v80bmaft.jpg" alt="image-20201104115127660" style="zoom:50%;" />
+
+
+
+<h5 id="Statistically-Significant-“α”"><a href="#Statistically-Significant-“α”" class="headerlink" title="Statistically Significant! @ “α”"></a>Statistically Significant! @ “α”</h5><h6 id="Drawback-have-to-choose-α-ourselves"><a href="#Drawback-have-to-choose-α-ourselves" class="headerlink" title="Drawback: have to choose α ourselves"></a>Drawback: have to choose α ourselves</h6><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjwyvowthyj30tw0f443o.jpg" alt="image-20201021150350153" style="zoom:50%;" />
+
+
+
+<h5 id="Hypotheses-–-有３種"><a href="#Hypotheses-–-有３種" class="headerlink" title="Hypotheses – 有３種"></a>Hypotheses – 有３種</h5><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381954g32j20vu0g8wg1.jpg" alt="image-20201021150437924" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjwz0gasqoj30qw0cggqm.jpg" alt="image-20201021150824783" style="zoom:50%;" />
+
+
+
+<h5 id="★-Focus-2-sided-test"><a href="#★-Focus-2-sided-test" class="headerlink" title="★ Focus 2-sided test!"></a>★ Focus 2-sided test!</h5><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjwz16tu87j30ry0400ur.jpg" alt="image-20201021150907155" style="zoom:50%;" />
+
+
+
+
+
+<h3 id="Recipe-“Alg-”-to-detect-2-groups-different"><a href="#Recipe-“Alg-”-to-detect-2-groups-different" class="headerlink" title="Recipe - “Alg.” to detect 2 groups different"></a>Recipe - “Alg.” to detect 2 groups different</h3><h4 id="test-statistic"><a href="#test-statistic" class="headerlink" title="test statistic"></a>test statistic</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjwz2p6pwbj30ss0800yg.jpg" alt="image-20201021151034270" style="zoom:50%;" />
+
+
+
+<h5 id="Unbiased-Estimates-w-N-1"><a href="#Unbiased-Estimates-w-N-1" class="headerlink" title="Unbiased Estimates w/ N-1"></a>Unbiased Estimates w/ N-1</h5><h5 id=""><a href="#" class="headerlink" title=""></a><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjwz98g5m6j30w80gg441.jpg" alt="image-20201021151651242"></h5><h5 id="if-Un-equal-length"><a href="#if-Un-equal-length" class="headerlink" title="if Un-equal length"></a>if Un-equal length</h5><ul>
+<li>should use a different <strong>Pool Std</strong> and test statistics</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3819aouqwj20tg06s75e.jpg" alt="image-20201021151729667" style="zoom:50%;" />
+
+
+
+
+
+<h4 id="t-distribution-–-Fatter-tails"><a href="#t-distribution-–-Fatter-tails" class="headerlink" title="t-distribution – Fatter tails"></a>t-distribution – Fatter tails</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3819c090uj20vs0iggn0.jpg" alt="image-20201021153100112" style="zoom:50%;" />
+
+
+
+<h6 id="t’s-pdf"><a href="#t’s-pdf" class="headerlink" title="t’s pdf"></a>t’s pdf</h6><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjwzoc9lbcj30v60bq79s.jpg" alt="image-20201021153122530"></p>
+<ul>
+<li><strong>Greek letter: ν –&gt; ( new ) : degrees of freedom</strong><ul>
+<li>it contols how wide or skinny the PDF is</li>
+</ul>
+</li>
+<li>t-distribution can also have a <strong>mean and scale</strong> parameter, but again we won’t be using those here!</li>
+</ul>
+<h4 id="Test-Statistic-–-t-changes-w-conditions"><a href="#Test-Statistic-–-t-changes-w-conditions" class="headerlink" title="Test Statistic – t changes w/ conditions"></a>Test Statistic – t changes w/ conditions</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx0gewu0rj30wy0ck452.jpg" alt="image-20201021155820879" style="zoom:50%;" />
+
+
+
+<h4 id="t-Distribution-amp-Statistically-Significant"><a href="#t-Distribution-amp-Statistically-Significant" class="headerlink" title="t-Distribution &amp; Statistically Significant !"></a>t-Distribution &amp; Statistically Significant !</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx0j6fpp4j30x40ggdnl.jpg" alt="image-20201021160100750" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx0kszdisj30w207078e.jpg" alt="image-20201021160234547" style="zoom:50%;" />
+
+
+
+<h3 id="P-Values"><a href="#P-Values" class="headerlink" title="P-Values"></a>P-Values</h3><p><strong>the probability of detecting a difference</strong> even when the 2 groups are the same</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx0oikuw8j30w60aqjz7.jpg" alt="image-20201021160608180" style="zoom:50%;" />
+
+
+
+<h4 id="Definition"><a href="#Definition" class="headerlink" title="Definition:"></a>Definition:</h4><p><em>The prob of obtaining a result equal to or ‘more extreme’ than what we actually observed, when the null hypothesis is true</em></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx0p3y1fqj30w80fcaik.jpg" alt="image-20201021160642311" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3819jq27kj20w4092t9z.jpg" alt="image-20201021160957827" style="zoom:50%;" />
+
+<ul>
+<li>t: our test statistic</li>
+</ul>
+<h5 id="Reject-when-p-value-is-small-V-S-CANNOT-Reject"><a href="#Reject-when-p-value-is-small-V-S-CANNOT-Reject" class="headerlink" title="Reject when p-value is small! V.S. CANNOT Reject"></a>Reject when p-value is small! V.S. CANNOT Reject</h5><ul>
+<li>CANNOT Reject != “H0 is true”</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx0ur3ea5j30w80b0gsl.jpg" alt="image-20201021161208051"></p>
+<h5 id="t-↑-P↓-–-gt-Difference↑"><a href="#t-↑-P↓-–-gt-Difference↑" class="headerlink" title="t ↑ P↓ –&gt; Difference↑"></a>t ↑ P↓ –&gt; Difference↑</h5><p>ref: <a href="https://medium.com/@chih.sheng.huang821/%E7%B5%B1%E8%A8%88%E5%AD%B8-%E5%A4%A7%E5%AE%B6%E9%83%BD%E5%96%9C%E6%AD%A1%E5%95%8F%E7%9A%84%E7%B3%BB%E5%88%97-p%E5%80%BC%E6%98%AF%E4%BB%80%E9%BA%BC-2c03dbe8fddf" target="_blank" rel="noopener">https://medium.com/@chih.sheng.huang821/%E7%B5%B1%E8%A8%88%E5%AD%B8-%E5%A4%A7%E5%AE%B6%E9%83%BD%E5%96%9C%E6%AD%A1%E5%95%8F%E7%9A%84%E7%B3%BB%E5%88%97-p%E5%80%BC%E6%98%AF%E4%BB%80%E9%BA%BC-2c03dbe8fddf</a></p>
+<p>t很大，p就很小，&lt; 0.05，就代表接受了吧，接受 H0</p>
+<h4 id="雙尾和"><a href="#雙尾和" class="headerlink" title="雙尾和"></a>雙尾和</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx2si9q7fj30xg0hydog.jpg" alt="image-20201021171910329" style="zoom:50%;" />
+
+
+
+<h4 id="單尾不需要和"><a href="#單尾不需要和" class="headerlink" title="單尾不需要和"></a>單尾不需要和</h4><h5 id="更有力"><a href="#更有力" class="headerlink" title="更有力"></a>更有力</h5><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx2t0yycnj30vw0bkwnz.jpg" alt="image-20201021171940301" style="zoom:50%;" />
+
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="Test-Characteristics-Assumptions-and-Modifications"><a href="#Test-Characteristics-Assumptions-and-Modifications" class="headerlink" title="Test Characteristics, Assumptions, and Modifications"></a>Test Characteristics, Assumptions, and Modifications</h3><h4 id="兩著就是不同時的特性"><a href="#兩著就是不同時的特性" class="headerlink" title="兩著就是不同時的特性"></a>兩著就是不同時的特性</h4><h5 id="N大時，t大-兩者就是不同"><a href="#N大時，t大-兩者就是不同" class="headerlink" title="N大時，t大, 兩者就是不同"></a>N大時，t大, 兩者就是不同</h5><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3819qpt4ij20w40bmq41.jpg" alt="image-20201021172151896" style="zoom:50%;" />
+
+
+
+<h5 id="Sp大，交集多，不容易能說不同，就是怎樣都還是有像相同"><a href="#Sp大，交集多，不容易能說不同，就是怎樣都還是有像相同" class="headerlink" title="Sp大，交集多，不容易能說不同，就是怎樣都還是有像相同"></a>Sp大，交集多，不容易能說不同，就是怎樣都還是有像相同</h5><h6 id="瘦時很好說不同"><a href="#瘦時很好說不同" class="headerlink" title="瘦時很好說不同"></a>瘦時很好說不同</h6><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx2yvb58lj30wq0gedk8.jpg" alt="image-20201021172516783" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx35tglhkj30wa06i0wq.jpg" alt="image-20201021173158134" style="zoom:50%;" />
+
+
+
+<h4 id="Small-N也是有力的"><a href="#Small-N也是有力的" class="headerlink" title="Small N也是有力的"></a>Small N也是有力的</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx3b5ccpoj30xq0nadrl.jpg" alt="image-20201021173705468" style="zoom:50%;" />
+
+
+
+<h4 id="S-pool-Issue"><a href="#S-pool-Issue" class="headerlink" title="S-pool Issue"></a>S-pool Issue</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx3d8x0xmj30uu0gcjwm.jpg" alt="image-20201021173906854" style="zoom:50%;" />
+
+
+
+<h5 id="之前假設了兩個群的-sd-是一樣的。。。"><a href="#之前假設了兩個群的-sd-是一樣的。。。" class="headerlink" title="之前假設了兩個群的 sd 是一樣的。。。"></a>之前假設了兩個群的 sd 是一樣的。。。</h5><h6 id="Find-t-–-gt-df-–-gt-p"><a href="#Find-t-–-gt-df-–-gt-p" class="headerlink" title="Find t –&gt; df –&gt; p"></a>Find t –&gt; df –&gt; p</h6><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx3f3vxv6j30x80gsqaj.jpg" alt="image-20201021174053806" style="zoom:50%;" />
+
+
+
+<h5 id="之前還假設了-Gaussian。。-–-可用-Non-Param-test"><a href="#之前還假設了-Gaussian。。-–-可用-Non-Param-test" class="headerlink" title="之前還假設了 Gaussian。。 – 可用 Non-Param test"></a>之前還假設了 Gaussian。。 – 可用 Non-Param test</h5><h6 id="假設多-Power大"><a href="#假設多-Power大" class="headerlink" title="假設多, Power大 (?!)"></a>假設多, Power大 (?!)</h6><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx3qxt8ymj30uo0gsds7.jpg" alt="image-20201021175215927" style="zoom:50%;" />
+
+
+
+<h4 id="1-sided-vs-2-sided"><a href="#1-sided-vs-2-sided" class="headerlink" title="1-sided vs. 2-sided"></a>1-sided vs. 2-sided</h4><h6 id="身高時一尾easier"><a href="#身高時一尾easier" class="headerlink" title="身高時一尾easier"></a>身高時一尾easier</h6><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx3tn16ejj30wk0f6wq6.jpg" alt="image-20201021175451838" style="zoom:50%;" />
+
+
+
+<h4 id="p↓-extreme-value-–-gt-Reject-H0"><a href="#p↓-extreme-value-–-gt-Reject-H0" class="headerlink" title="p↓ (extreme value) –&gt; Reject H0"></a>p↓ (extreme value) –&gt; Reject H0</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx3vsr8gfj30vk0a8q81.jpg" alt="image-20201021175656571" style="zoom:50%;" />
+
+
+
+
+
+<h3 id="t-test-in-code"><a href="#t-test-in-code" class="headerlink" title="t-test in code"></a>t-test in code</h3><ul>
+<li>var_a : np does the maximum likelihood estimate of variance</li>
+<li>s : pool standard deviation</li>
+<li>t : t statistic</li>
+<li>df : degree of freedom</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc3hpmfx8j30l00dc45w.jpg" alt="image-20201103170651818" style="zoom: 50%;" />
+
+
+
+<h4 id="t-test-exercise"><a href="#t-test-exercise" class="headerlink" title="t-test exercise"></a>t-test exercise</h4><ul>
+<li>Does one advertisement have a better click through rate than another as determined by statistical significance?</li>
+<li><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx54d5ht6j30wg0k248y.jpg" alt="image-20201021183945851"></li>
+</ul>
+<h6 id="Should-check-for-“Bonferroni-Correction”"><a href="#Should-check-for-“Bonferroni-Correction”" class="headerlink" title="Should check, for “Bonferroni Correction”"></a>Should check, for “Bonferroni Correction”</h6><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx53skq4qj30xg0h8dku.jpg" alt="image-20201021183912717" style="zoom:50%;" />
+
+
+
+<h4 id="Does-one-is-better-than-the-other-by-stat-significance"><a href="#Does-one-is-better-than-the-other-by-stat-significance" class="headerlink" title="Does one is better than the other by stat. significance?"></a>Does one is better than the other by stat. significance?</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjx554z8skj30xi06smz1.jpg" alt="image-20201021184031122" style="zoom:50%;" />
+
+<h6 id="TODO-t-test-w-same-or-diff-variance-or-try-both-then-compare"><a href="#TODO-t-test-w-same-or-diff-variance-or-try-both-then-compare" class="headerlink" title="TODO: t-test w/ same or diff variance? or try both then compare?"></a>TODO: t-test w/ same or diff variance? or try both then compare?</h6><h5 id="Key-points"><a href="#Key-points" class="headerlink" title="Key points"></a>Key points</h5><ul>
+<li><p>this data represents clicked for news on various advertisements but need not be th case.</p>
+<ul>
+<li>or headlines</li>
+<li>diff landing pages/ website designs/ logo</li>
+<li>key points structure of data</li>
+<li>compter sees are the numbers</li>
+<li>doing comparisons at the same time</li>
+</ul>
+</li>
+<li><p>how do i collect data? </p>
+<ul>
+<li>only i can answer<ul>
+<li>write a script to get my data off Hadoop; mapreduct spark ; web php&amp;mysql</li>
+<li>3rd party software, then download as csv</li>
+</ul>
+</li>
+<li>ml side vs de side, the part we get the data will not be considered ML. That wouel just be regular programming or even maybe it’s just navigating web then download csv.</li>
+</ul>
+</li>
+<li><p>so, to understand the format is just ok.</p>
+</li>
+<li><p>all data is the same</p>
+</li>
+</ul>
+<h6 id="Try-ex-ttest-py"><a href="#Try-ex-ttest-py" class="headerlink" title="Try ex_ttest.py"></a>Try ex_ttest.py</h6><h3 id="0-01-vs-0-001"><a href="#0-01-vs-0-001" class="headerlink" title="0.01 vs 0.001"></a>0.01 vs 0.001</h3><h4 id="Why-care"><a href="#Why-care" class="headerlink" title="Why care?"></a>Why care?</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd993i0y0j30pc09igqm.jpg" alt="image-20201104171143908" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd99pu1djj30qw08w43t.jpg" alt="image-20201104171220565" style="zoom:50%;" />
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd9aatgv4j30sm07on1y.jpg" alt="image-20201104171254363"></p>
+<h4 id="IMPORTANCES-N-std-amp-diff"><a href="#IMPORTANCES-N-std-amp-diff" class="headerlink" title="IMPORTANCES: N, std, &amp; diff"></a>IMPORTANCES: N, std, &amp; diff</h4><h3 id="Chi-Square-Test-Statistic-on-CTR"><a href="#Chi-Square-Test-Statistic-on-CTR" class="headerlink" title="Chi-Square Test Statistic on CTR"></a>Chi-Square Test Statistic on CTR</h3><h6 id="Contingency-Table"><a href="#Contingency-Table" class="headerlink" title="Contingency Table"></a>Contingency Table</h6><h4 id="Q-To-know-if-the-diff-in-CTR-btw-Ad-A-amp-Ad-B-is-“statistically-significant”"><a href="#Q-To-know-if-the-diff-in-CTR-btw-Ad-A-amp-Ad-B-is-“statistically-significant”" class="headerlink" title="Q: To know if the diff in CTR btw Ad-A &amp; Ad-B is “statistically significant” ?"></a>Q: To know if the diff in CTR btw Ad-A &amp; Ad-B is “statistically significant” ?</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd9bfvctnj30te0doq8z.jpg" alt="image-20201104171400040" style="zoom:50%;" />
+
+
+
+<h5 id="Chi-2-test-statistic"><a href="#Chi-2-test-statistic" class="headerlink" title="Chi-2 test statistic"></a>Chi-2 test statistic</h5><ul>
+<li>非負數！</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381bul4tpj20ts0f8403.jpg" alt="image-20201104171423476" style="zoom:50%;" />
+
+
+
+<h6 id="Chi-Square-is-not-self-explanatory"><a href="#Chi-Square-is-not-self-explanatory" class="headerlink" title="Chi-Square is not self-explanatory"></a>Chi-Square is not self-explanatory</h6><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd9cj19dvj30sq0bsn1a.jpg" alt="image-20201104171502878" style="zoom:50%;" />
+
+
+
+
+
+<h5 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkd9czuj7oj30t60fejwy.jpg" alt="image-20201104171529649" style="zoom:50%;" /></h5><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381a9eghcj20vy0g8q4c.jpg" alt="image-20201021230553830" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381ac6jnzj20uc09egmi.jpg" alt="image-20201104172535695" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjxctwr4xpj30wg0g0jy9.jpg" alt="image-20201021230630656" style="zoom:50%;" />
+
+
+
+<h4 id="Chi2-↑-–-gt-P-Value-↓-–-gt-Diff-↑-Reject-H0"><a href="#Chi2-↑-–-gt-P-Value-↓-–-gt-Diff-↑-Reject-H0" class="headerlink" title="Chi2 ↑ –&gt; P Value ↓ –&gt; Diff ↑ (Reject H0)"></a>Chi2 ↑ –&gt; P Value ↓ –&gt; Diff ↑ (Reject H0)</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjxcvo1p9kj30xa0ge7d2.jpg" alt="image-20201021230812035" style="zoom:50%;" />
+
+
+
+<h4 id="Contingency-Table-in-Scipy"><a href="#Contingency-Table-in-Scipy" class="headerlink" title="Contingency Table in Scipy"></a>Contingency Table in Scipy</h4><h6 id="-3"><a href="#-3" class="headerlink" title=""></a></h6><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjxcw6n0njj30re08qju5.jpg" alt="image-20201021230841374" style="zoom:50%;" />
+
+
+
+<h4 id="Chi2-distribution"><a href="#Chi2-distribution" class="headerlink" title="Chi2 distribution"></a>Chi2 distribution</h4><p>Yates Correction</p>
+<h6 id="Fisher’s-exact-test"><a href="#Fisher’s-exact-test" class="headerlink" title="Fisher’s exact test"></a>Fisher’s exact test</h6><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjxcwno3mpj30u40eaahq.jpg" alt="image-20201021230909261" style="zoom:50%;" />
+
+
+
+<h3 id="CTR-AB-Test-in-Code-w-Data-Generator"><a href="#CTR-AB-Test-in-Code-w-Data-Generator" class="headerlink" title="CTR AB Test in Code (w/ Data Generator!)"></a>CTR AB Test in Code (w/ Data Generator!)</h3><ul>
+<li><p>How doest that P-value change as we collect each sample?</p>
+</li>
+<li><p>Also, interested in “what the drawbacks of using this type of stat test might be?”</p>
+<p>==&gt; Later in Bayesian AB</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> chi2, chi2_contingency</span><br><span class="line"></span><br><span class="line"><span class="comment"># contingency table</span></span><br><span class="line"><span class="comment">#        click       no click</span></span><br><span class="line"><span class="comment">#------------------------------</span></span><br><span class="line"><span class="comment"># ad A |   a            b</span></span><br><span class="line"><span class="comment"># ad B |   c            d</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># chi^2 = (ad - bc)^2 (a + b + c + d) / [ (a + b)(c + d)(a + c)(b + d)]</span></span><br><span class="line"><span class="comment"># degrees of freedom = (#cols - 1) x (#rows - 1) = (2 - 1)(2 - 1) = 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># short example</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># T = np.array([[36, 14], [30, 25]])</span></span><br><span class="line"><span class="comment"># c2 = np.linalg.det(T)**2 * T.sum() / ( T[0].sum()*T[1].sum()*T[:,0].sum()*T[:,1].sum() )</span></span><br><span class="line"><span class="comment"># p_value = 1 - chi2.cdf(x=c2, df=1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># equivalent:</span></span><br><span class="line"><span class="comment"># (36-31.429)**2/31.429+(14-18.571)**2/18.571 + (30-34.571)**2/34.571 + (25-20.429)**2/20.429</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataGenerator</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, p1, p2)</span>:</span></span><br><span class="line">    self.p1 = p1	<span class="comment"># the probability of click for Group1</span></span><br><span class="line">    self.p2 = p2	<span class="comment"># the probability of click for Group2</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">next</span><span class="params">(self)</span>:</span></span><br><span class="line">    click1 = <span class="number">1</span> <span class="keyword">if</span> (np.random.random() &lt; self.p1) <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">    click2 = <span class="number">1</span> <span class="keyword">if</span> (np.random.random() &lt; self.p2) <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> click1, click2	<span class="comment"># 保證了模擬的 A&amp;B一樣多；雖然 chi2's contengency table 沒要求 A&amp;B 要一樣多</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_p_value</span><span class="params">(T)</span>:</span>	<span class="comment"># Take in contengency table</span></span><br><span class="line">  <span class="comment"># same as scipy.stats.chi2_contingency(T, correction=False)</span></span><br><span class="line">  det = T[<span class="number">0</span>,<span class="number">0</span>]*T[<span class="number">1</span>,<span class="number">1</span>] - T[<span class="number">0</span>,<span class="number">1</span>]*T[<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line">  c2 = float(det) / T[<span class="number">0</span>].sum() * det / T[<span class="number">1</span>].sum() * T.sum() / T[:,<span class="number">0</span>].sum() / T[:,<span class="number">1</span>].sum()</span><br><span class="line">  p = <span class="number">1</span> - chi2.cdf(x=c2, df=<span class="number">1</span>)</span><br><span class="line">  <span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_experiment</span><span class="params">(p1, p2, N)</span>:</span></span><br><span class="line">  data = DataGenerator(p1, p2)</span><br><span class="line">  p_values = np.empty(N)</span><br><span class="line">  T = np.zeros((<span class="number">2</span>, <span class="number">2</span>)).astype(np.float32)</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</span><br><span class="line">    c1, c2 = data.next()</span><br><span class="line">    T[<span class="number">0</span>,c1] += <span class="number">1</span></span><br><span class="line">    T[<span class="number">1</span>,c2] += <span class="number">1</span></span><br><span class="line">    <span class="comment"># ignore the first 10 values	==&gt; Why?!! ==&gt; to prevent ValueError (divided by 0)</span></span><br><span class="line">    <span class="keyword">if</span> i &lt; <span class="number">10</span>:</span><br><span class="line">      p_values[i] = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      p_values[i] = get_p_value(T)</span><br><span class="line">  plt.plot(p_values)</span><br><span class="line">  plt.plot(np.ones(N)*<span class="number">0.05</span>)	<span class="comment"># assume using alpha of 5%</span></span><br><span class="line">  plt.show()</span><br><span class="line"></span><br><span class="line">run_experiment(<span class="number">0.1</span>, <span class="number">0.11</span>, <span class="number">20000</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>P-Value should be <strong>below</strong> significant threshold</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381akovilj20vq0nijtc.jpg" alt="image-20201106152905452" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfhj4h25oj30pu0jkwhe.jpg" alt="image-20201106152918164" style="zoom:50%;" />
+
+
+
+<h5 id="P-Value-might-be-problematic"><a href="#P-Value-might-be-problematic" class="headerlink" title="P-Value might be problematic!"></a>P-Value might be problematic!</h5><h3 id="Chi2-Exercise"><a href="#Chi2-Exercise" class="headerlink" title="Chi2 Exercise"></a>Chi2 Exercise</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381anw1o0j20ws0hkq3s.jpg" alt="image-20201106154058146" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfhvt0usdj30wu082whf.jpg" alt="image-20201106154129575" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfhw2uya4j30nq0eatbx.jpg" alt="image-20201106154145441" style="zoom:50%;" />
+
+
+
+
+
+
+
+<h3 id="Bonferroni-Correction"><a href="#Bonferroni-Correction" class="headerlink" title="Bonferroni Correction"></a>Bonferroni Correction</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkffzqak32j30mm064dhs.jpg" alt="image-20201106143601121" style="zoom: 33%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381aso5i1j20x00eyacd.jpg" alt="image-20201106143745713" style="zoom:50%;" />
+
+<ul>
+<li>實驗做多了會significant, 同個實驗做兩次ＸＤ。。。</li>
+</ul>
+<h4 id="１"><a href="#１" class="headerlink" title="１"></a>１</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381avt9t4j20lk08q3z1.jpg" alt="image-20201106144009651" style="zoom: 50%;" />
+
+<h4 id="２"><a href="#２" class="headerlink" title="２"></a>２</h4><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfg4cjhgoj30p40au42l.jpg" alt="image-20201106144030549"></p>
+<h4 id="３Post-Hoc-Testing"><a href="#３Post-Hoc-Testing" class="headerlink" title="３Post Hoc Testing"></a>３Post Hoc Testing</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfg4u7ctuj30rw098grw.jpg" alt="image-20201106144059138" style="zoom:50%;" />
+
+<ul>
+<li>More elegant in Bayesian AB Testing…</li>
+</ul>
+<h3 id="Power"><a href="#Power" class="headerlink" title="Power"></a>Power</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfg66ggcmj30l609sae1.jpg" alt="image-20201106144216367" style="zoom:50%;" />
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfg6s312cj30uk0gu45q.jpg" alt="image-20201106144250249"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfg87ll4oj30uo0c4wjb.jpg" alt="image-20201106144412954" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfg9fy07pj30vk0bsahj.jpg" alt="image-20201106144524721" style="zoom:50%;" />
+
+
+
+<h3 id="AB-Testing-Pitfalls"><a href="#AB-Testing-Pitfalls" class="headerlink" title="AB Testing Pitfalls"></a>AB Testing Pitfalls</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfgbn89ukj30vw0ei12y.jpg" alt="image-20201106144731638" style="zoom:50%;" />
+
+
+
+<h5 id="def-of-P-Values"><a href="#def-of-P-Values" class="headerlink" title="def of P-Values"></a>def of P-Values</h5><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfgdmbkylj30vw0a6wk0.jpg" alt="image-20201106144925031" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381b49j2uj20w60eyq4q.jpg" alt="image-20201106145338937" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfgiytq9lj30rc0g47ai.jpg" alt="image-20201106145433831" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfgjjgqcdj30wq0fmgxd.jpg" alt="image-20201106145505902" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfgka3wn0j30vy09kgqc.jpg" alt="image-20201106145549425" style="zoom:50%;" />
+
+
+
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkfgl9p4t7j30ui0a8jyk.jpg" alt="image-20201106145645951" style="zoom:50%;" />
+
+
+
+<h4 id="t-Summary"><a href="#t-Summary" class="headerlink" title="t Summary"></a>t Summary</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjxe1yiwqfj30um0e8tij.jpg" alt="image-20201021234850706" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjxe3u0a7cj30u60dsgwj.jpg" alt="image-20201021235039422" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjxe4h9kkaj30va0d8wob.jpg" alt="image-20201021235115920" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjxeb4tqz0j30mw09sadg.jpg" alt="image-20201021235739720" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381bdnczgj20uw0fotb6.jpg" alt="image-20201021235849357" style="zoom:50%;" />
+
+<ul>
+<li>FP - type I error</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2018/10/13/AB_Test/Bayesian_ML/Sec4%20-%20Traditional%20AB%20Testing/">http://yoursite.com/2018/10/13/AB_Test/Bayesian_ML/Sec4%20-%20Traditional%20AB%20Testing/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/10/19/Math/2018-10-19-Chi-Square/"><i class="fa fa-chevron-left">  </i><span>Math/2018-10-19-Chi-Square</span></a></div><div class="next-post pull-right"><a href="/2018/07/20/Deeplearning.ai/2018-07-20-Deeplearning.ai_Course4-ObjectDetection&amp;StyleTransfer/"><span>Deeplearning.ai/2018-07-20-Deeplearning.ai_Course4-ObjectDetection&amp;StyleTransfer</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
