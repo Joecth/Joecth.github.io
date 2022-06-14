@@ -76,7 +76,7 @@ date: 2019-07-03
 
 
 
-![image-20200703205331747](/Users/joe/Library/Application Support/typora-user-images/image-20200703205331747.png)
+![image-20200703205331747](https://tva1.sinaimg.cn/large/e6c9d24egy1h382efnpfij20lc0gwjsp.jpg)
 
 
 
@@ -180,7 +180,7 @@ date: 2019-07-03
 
 - 類似題: 座標型動規，有座標的info在
 - similar to Triangle
-  <img src="/Users/joe/Library/Application Support/typora-user-images/image-20200712201733032.png" alt="image-20200712201733032" style="zoom:33%;" />
+  <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h382ejyexij20uo0bujsn.jpg" alt="image-20200712201733032" style="zoom:33%;" />
 
 - 
 
@@ -233,7 +233,7 @@ date: 2019-07-03
 
 ![image-20200712212103748](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggoi7241kbj30z80ky4c5.jpg)
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200712212200733.png" alt="image-20200712212200733" style="zoom: 33%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h382eo5gkpj214w0g4acx.jpg" alt="image-20200712212200733" style="zoom: 33%;" />
 
 - 能滾嗎？
   - 模2可滚，初始化不能放一开始了，得一邊dp一邊初始
@@ -245,7 +245,7 @@ date: 2019-07-03
 - 如果可以往前跳又可以往後跳，就沒有方向性了，就不能動規了
 - 不會往前飛，就是不能循環依賴 ==> Topological Sort 檢測圖裡有沒有循環依賴的關係
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200712213048000.png" alt="image-20200712213048000" style="zoom:33%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h382erxt9ij20to0ewabh.jpg" alt="image-20200712213048000" style="zoom:33%;" />
 
 - 座標型，1D座標動規，用傳送門還有dice跳
 

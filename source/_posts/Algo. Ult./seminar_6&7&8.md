@@ -58,7 +58,7 @@ date: 2019-06-16
 
     - 相遇時得到了答案
 
-      <img src="/Users/joe/Library/Application Support/typora-user-images/image-20200616100657736.png" alt="image-20200616100657736" style="zoom: 25%;" />
+      <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389vfseitj20cs0ccq30.jpg" alt="image-20200616100657736" style="zoom: 25%;" />
 
     - <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gftwmqhbxvj30um0gc0vy.jpg" alt="image-20200616100800150" style="zoom:25%;" />
 
@@ -144,7 +144,7 @@ how to fix?
 
 - ### DP
 
-  <img src="/Users/joe/Library/Application Support/typora-user-images/image-20200616113300330.png" alt="image-20200616113300330" style="zoom:67%;" />
+  <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389vr4tjij20ho0padh8.jpg" alt="image-20200616113300330" style="zoom:67%;" />
 
 
 
@@ -248,7 +248,7 @@ Space: O(N), 10^5
 
 ## START
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200618093143030.png" alt="image-20200618093143030" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389vv7a10j20ys0ksjty.jpg" alt="image-20200618093143030" style="zoom:67%;" />
 
 ### 分治
 
@@ -264,7 +264,7 @@ Space: O(N), 10^5
 
 ### 94.Binary Tree Maximum Path SumFollow
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200618094817945.png" alt="image-20200618094817945" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389xpqy1vj20i40ccaba.jpg" alt="image-20200618094817945" style="zoom:67%;" />
 
 
 
@@ -278,7 +278,7 @@ Space: O(N), 10^5
 
 - 强行分治不行，未考虑相邻的房子无法打劫的问题
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200618101046235.png" alt="image-20200618101046235" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389vyk6ehj20go0a8my7.jpg" alt="image-20200618101046235" style="zoom:67%;" />
 
 ![image-20200618101136307](https://tva1.sinaimg.cn/large/007S8ZIlgy1gfw7z6khqqj30l00f6k2e.jpg)
 
@@ -298,7 +298,7 @@ Space: O(N), 10^5
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfw85whozwj30l40emaic.jpg" alt="image-20200618101806841" style="zoom:80%;" />
 
-![image-20200618102718964](/Users/joe/Library/Application Support/typora-user-images/image-20200618102718964.png)
+![image-20200618102718964](https://tva1.sinaimg.cn/large/e6c9d24egy1h389wdcrdgj205a042dfo.jpg)
 
 
 
@@ -318,7 +318,7 @@ Space: O(N), 10^5
   - 1.right = 2
   - 4.right = 5
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200618104542919.png" alt="image-20200618104542919" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389wh73o2j20gc0iu75b.jpg" alt="image-20200618104542919" style="zoom:67%;" />
 
 - 通過考慮怎麼合上，思考要傳什麼進去
 
@@ -330,9 +330,9 @@ Space: O(N), 10^5
 - Lazy Delete: 晚點再刪, 同 **859.Max Stack**
 - 設計的意味，設計data base了
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200618110201357.png" alt="image-20200618110201357" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389wkkgsqj20tq0fswfv.jpg" alt="image-20200618110201357" style="zoom:67%;" />
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200618110244262.png" alt="image-20200618110244262" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389wnca0sj20dk0oadhe.jpg" alt="image-20200618110244262" style="zoom:67%;" />
 
 
 
@@ -342,15 +342,15 @@ Space: O(N), 10^5
 - [ ] B. O(logN)
 - [x] **C. O(h)** 未必要平衡，所以比B合適 
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200618110810029.png" alt="image-20200618110810029" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389wqyoswj204e05y3yd.jpg" alt="image-20200618110810029" style="zoom:50%;" />
 
 - 
 
 ![image-20200618111311048](https://tva1.sinaimg.cn/large/007S8ZIlgy1gfw9r6qw21j30qg0bin0j.jpg)
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200618111652378.png" alt="image-20200618111652378" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389ww65suj20f80cmgm0.jpg" alt="image-20200618111652378" style="zoom:67%;" />
 
-![image-20200618111735472](/Users/joe/Library/Application Support/typora-user-images/image-20200618111735472.png)
+![image-20200618111735472](https://tva1.sinaimg.cn/large/e6c9d24egy1h389wzx39rj20hg0moq4a.jpg)
 
 
 
@@ -364,7 +364,7 @@ Space: O(N), 10^5
 
 #### 方法一 O(NlogN)
 
-- <img src="/Users/joe/Library/Application Support/typora-user-images/image-20200618112325499.png" alt="image-20200618112325499" style="zoom:67%;" />
+- <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389x43l4ij20yy08umyd.jpg" alt="image-20200618112325499" style="zoom:67%;" />
 
   <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfwa3qor9xj30oo0eytbq.jpg" alt="image-20200618112515315" style="zoom:67%;" />
 
@@ -458,7 +458,7 @@ O(N + 26*K) # V+E
 
   f(x): = g(x) + h(x)
 
-- <img src="/Users/joe/Library/Application Support/typora-user-images/image-20200627115533364.png" alt="image-20200627115533364" style="zoom:67%;" />
+- <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389xu0fo4j20qo0s876f.jpg" alt="image-20200627115533364" style="zoom:67%;" />
 
 - 定義起發式函數一般是固有招，定義得好，走得快
 
@@ -472,7 +472,7 @@ O(N + 26*K) # V+E
     - return 最短距離 (g)
   - for next_state in self.find_next_states:
     - 加入heap = (f(new_te))
-- <img src="/Users/joe/Library/Application Support/typora-user-images/image-20200627121024702.png" alt="image-20200627121024702" style="zoom:67%;" />
+- <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389xlivmfj20hk0dedgi.jpg" alt="image-20200627121024702" style="zoom:67%;" />
 
 ![image-20200627124522973](https://tva1.sinaimg.cn/large/007S8ZIlgy1gg6qzyi8blj30ri0eater.jpg)
 

@@ -67,7 +67,7 @@ f_i_j -- A的前i個、B的前j個
 
 
 
-#### Coding!
+#### Coding! w/ 路徑
 
 ```python
         return self.my_1004(A, B)
