@@ -144,7 +144,7 @@ class Solution:
 
 1. 二分：對每個房屋的位置在加熱器數組中用二分，找到最后一个比你小的加热器一個半徑　nlogn
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200609105609685.png" alt="image-20200609105609685" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389upjud9j20og0ik0uh.jpg" alt="image-20200609105609685" style="zoom:67%;" />
 
 
 
@@ -158,7 +158,7 @@ class Solution:
 
 ![image-20200609111124815](https://tva1.sinaimg.cn/large/007S8ZIlgy1gflv4llibmj30pe0b2ju2.jpg)
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200609111225705.png" alt="image-20200609111225705" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389uthm90j20ti0ugwgy.jpg" alt="image-20200609111225705" style="zoom:67%;" />
 
 ![image-20200609111539663](https://tva1.sinaimg.cn/large/007S8ZIlgy1gflv922yz9j30q60oqaiw.jpg)
 
@@ -180,7 +180,7 @@ class Solution:
 
 
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200609113733945.png" alt="image-20200609113733945" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389uxyvzjj20p403s74g.jpg" alt="image-20200609113733945" style="zoom:67%;" />
 
 
 

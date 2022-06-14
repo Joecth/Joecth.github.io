@@ -28,7 +28,7 @@ date: 2019-06-24
 
 ### 107. Word Break
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200624094830531.png" alt="image-20200624094830531" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389y8h7a0j20jy0o40ui.jpg" alt="image-20200624094830531" style="zoom:67%;" />
 
 
 
@@ -46,11 +46,11 @@ date: 2019-06-24
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg357xm6stj30u00di0vm.jpg" alt="image-20200624095514358" style="zoom:67%;" />
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200624101830924.png" alt="image-20200624101830924" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389zaoj4fj20q00tiacz.jpg" alt="image-20200624101830924" style="zoom:67%;" />
 
 
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200624102212142.png" alt="image-20200624102212142" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389yid9p8j20po0qstbg.jpg" alt="image-20200624102212142" style="zoom:67%;" />
 
 ## 
 
@@ -63,9 +63,9 @@ date: 2019-06-24
 
 ### 274. Make binary tree average
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200624104138269.png" alt="image-20200624104138269" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389yo1n0kj20e60fu0td.jpg" alt="image-20200624104138269" style="zoom:67%;" />
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200624104943995.png" alt="image-20200624104943995" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389z390uvj20cq05w74e.jpg" alt="image-20200624104943995" style="zoom:67%;" />
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg36u9jmd4j30um0dw432.jpg" alt="image-20200624105118707" style="zoom:67%;" />
 
@@ -88,9 +88,9 @@ date: 2019-06-24
 
 ##### Super Hard
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200624113724685.png" alt="image-20200624113724685" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389z71iz9j20le08qaam.jpg" alt="image-20200624113724685" style="zoom:50%;" />
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200624114245275.png" alt="image-20200624114245275" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389yslhs6j20y60qkadq.jpg" alt="image-20200624114245275" style="zoom:67%;" />
 
 
 

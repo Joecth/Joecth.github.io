@@ -26,3 +26,15 @@ date: 2019-07-31
             ffoutputs += "[1:v]scale=if(gt({0}/iw\, {1}/ih)\, -1\, {0})" \
                                    ":if(gt({0}/iw\, {1}/ih)\, {1}\, -1)[video];".format(dest_w, dest_h)
 ```
+
+
+
+
+
+
+
+### Twice Speed
+
+```shell
+> ffmpeg -i input.mkv -an -filter:v "setpts=0.5*PTS" output.mkv
+```

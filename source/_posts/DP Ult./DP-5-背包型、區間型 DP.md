@@ -201,9 +201,13 @@ easy
 
 <img src="/Users/joe/Library/Application Support/typora-user-images/image-20201010235905861.png" alt="image-20201010235905861" style="zoom: 67%;" />
 
+##### 路徑打印
+
+<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmsznnqac3j30u00vxaht.jpg" alt="image-20201204181747643" style="zoom:50%;" />
 
 
-#### 記憶化蒐搜
+
+#### 記憶化搜索
 
 - 動態規劃編程的另一個選擇，不算是一種新的算法，就只是一種「寫法」
 - 之前的dp 一般叫作**遞推 --  Recurrence**, 從簡單開始，逐漸變複雜 -- **自下而上**，總之，遞推本身就是從最簡單的情況，推到最複雜的情況。跟求問題的順序是反過來的，我要的就是f(100)，你給我從0開始推；
@@ -245,7 +249,8 @@ easy
 
 
 
-- 有兩個數字和 --> 都不用記，只要記「差」
+- 有兩個數字和 --> 都不用記，只要記「差」，可以只存我們兩人的差就好啦
+- 
 - 哪句話看出「區間型」? 如何判斷出?
   - ==> 每次只能取第一個數或最後一個數!
   - 如果是任取，就不會是區間
@@ -339,7 +344,7 @@ easy
 #### 消去型題 -- 千萬不要順著題目做!! 
 
 - 因为去掉東西，還得保存序列中，誰跟誰相鄰，千萬動規是不能紀錄狀態的；一定要「倒著想」
-
+- 除非 dfs 硬上，但很慢
 - 在這些氣球被弄破前，a2也是像一堵牆，它的左右邊也都是獨立的 --> 可被各個擊破
 - 矩陣相乘也是一樣的思想!
 
@@ -363,11 +368,23 @@ easy
 
 - 因為邊邊一定有兩個不能扎破的
 
+★ **观察最后被扎破的气球! 分为左右两个区间**
+
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20201017214503994.png" alt="image-20201017214503994" style="zoom:50%;" />
+
+- 這個表示扎破 1 ~ k-1 號氣球，所獲得的金幣數!
+
+★ ★ 要枚舉
+
+
+
 
 
 #### 2 轉移方程
 
 - 要枚舉 k = 「中間那個氣球」，i和j不能扎破，枚舉中間所有的k
+
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20201204183727871.png" alt="image-20201204183727871" style="zoom:50%;" />
 
 
 
@@ -378,6 +395,9 @@ easy
 i ~ j, 長度是 j - i + 1
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjloxse48gj30so0bkq69.jpg" alt="image-20201011205837377" style="zoom: 33%;" />
+
+- 有了狀態轉移方程這個後，還要去枚舉「到底最後一個扎破的氣球，是 i+1 到 j-1中的哪一個?」，所以呢就要枚舉這個k
+  - i_k就是左區間；k_j就是右區間；當輪到 a_k被扎破時，他的左邊一定是 a_i，右邊一定是a_j，然後就把三個人乘一起來
 
 
 
@@ -397,7 +417,18 @@ i ~ j, 長度是 j - i + 1
   int[][] f = new int[n][n];
   ```
 
-  
+
+
+
+### 1694 Monster Hunter
+
+
+
+
+
+### Leetcode 375 Guess Number Higher or Lower II
+
+
 
 ## 總結
 

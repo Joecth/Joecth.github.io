@@ -86,7 +86,7 @@ class Solution:
 
    As Merge 2 sorted array, 雙指針讓兩條的值相等時再相乘
 
-   <img src="/Users/joe/Library/Application Support/typora-user-images/image-20200602100301997.png" alt="image-20200602100301997" style="zoom:67%;" />
+   <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389txzrjaj212u0dyta5.jpg" alt="image-20200602100301997" style="zoom:67%;" />
 
    
 
@@ -417,7 +417,7 @@ class Solution:
 - 根據原數組獲得差分數組 ==> 求前綴和
 - 什麼是差分數組？
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200604112647832.png" alt="image-20200604112647832" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389u16dguj20i20iqab9.jpg" alt="image-20200604112647832" style="zoom:67%;" />
 
 
 
@@ -425,7 +425,7 @@ class Solution:
 
 1. BF 雙指針
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200604113217218.png" alt="image-20200604113217218" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h389ua1evpj208y036q2v.jpg" alt="image-20200604113217218" style="zoom:67%;" />
 
 2. 大暴力 2^N 空間
 
@@ -670,7 +670,7 @@ class Solution:
 
 ![image-20200611002631135](https://tva1.sinaimg.cn/large/007S8ZIlgy1gfnnqe58rzj30qg0cg77y.jpg)
 
-![image-20200611002923263](/Users/joe/Library/Application Support/typora-user-images/image-20200611002923263.png)
+![image-20200611002923263](https://tva1.sinaimg.cn/large/e6c9d24egy1h389u5ddsrj20l00dymy4.jpg)
 
 ![image-20200611003241851](https://tva1.sinaimg.cn/large/007S8ZIlgy1gfnnwnq0x7j30ue0eg79y.jpg)
 

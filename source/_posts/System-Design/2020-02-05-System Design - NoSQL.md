@@ -17,10 +17,15 @@ Not Only SQL
 
 #### 4種型式的存儲方式
 
-1. kv
-2. document store
-3. wide column store
-4. graph database
+1. kv	- Redis, Memcached
+
+2. document store - **MongoDB**
+
+3. wide column store - **Cassandra**, Bigtable, **DynamoDB**
+
+4. graph database - Neo4j
+
+   
 
 #### Normalize -- JOIN　在SQL ORM用的，往往一個機器
 
@@ -34,11 +39,11 @@ RDBMS避免冗餘
 
 在nosql 裡大量用的 ，nosql往往為了多機器作分布
 
-數據中心要同步數據怎麼辦？跨data-center Denormalize就兩邊都寫
+數據中心要同步數據怎麼辦？跨`data-center Denormalize`就兩邊都寫
 
 寫時要保證***各國的數據中心都寫進去了***，
 
-要知道是 read-heavy or write-heavy 大多是讀的多，
+要知道是 `read-heavy` or `write-heavy` 大多是讀的多，
 
 如youtube讀的人遠大於寫的人
 
@@ -48,7 +53,7 @@ RDBMS避免冗餘
 
 
 
-- 要做join的話是在**applicatin layer也是middle layer?!**的　＝＝＞　<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200206221633536.png" alt="image-20200206221633536" style="zoom: 25%;" />
+- 要做join的話是在**applicatin layer也是middle layer?!**的　＝＝＞　<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38ag80odjj20dg0ey3yj.jpg" alt="image-20200206221633536" style="zoom: 25%;" />
 
 - 不支持ACID - *ACID* (*atomicity, consistency, isolation, durability*) is a set of properties of database transactions intended to guarantee validity ，那麼多機器不能保證事務
 
@@ -78,11 +83,11 @@ RDBMS避免冗餘
 
 DBMS裡在　為保證transation可靠，所以要有ACID,事務中只能有一個會成功
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200206222645993.png" alt="image-20200206222645993" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38agfne6oj212a0iqjs9.jpg" alt="image-20200206222645993" style="zoom:50%;" />
 
 
 
-# NoSQL Cont.
+# CAP, General for both SQL & NoSQL
 
 - **CAP Theorem**
 
@@ -102,6 +107,10 @@ DBMS裡在　為保證transation可靠，所以要有ACID,事務中只能有一�
 
 
 
+# NoSQL Cont.
+
+
+
 #### SQL 
 
 ORM object relational mapping, mysql oracle都是可以被java裡搞定起來
@@ -110,17 +119,15 @@ DDL 時就是schema都是差不多的　－　Data Definition Language，DDL
 
 #### NoSQL就有分流派了 主要就是四大流派
 
-Key-Value資料庫、記憶體資料庫、圖學資料庫和文件資料庫.
+Key-Value資料庫、Wide Col、圖學資料庫和Document.
 
 #### Source(s) and further reading: key-value store
 
 - [Key-value database](https://en.wikipedia.org/wiki/Key-value_database)
 
-  如cassandra
-
 - [Disadvantages of key-value stores](http://stackoverflow.com/questions/4056093/what-are-the-disadvantages-of-using-a-key-value-table-over-nullable-columns-or)
 
-- [Redis architecture](http://qnimate.com/overview-of-redis-architecture/)　比較是緩存服務
+- [Redis architecture](http://qnimate.com/overview-of-redis-architecture/)　比較是緩存服務; 2.2 後有支援 transaction, lock for `Booking System`
 
 - [Memcached architecture](https://www.adayinthelifeof.nl/2011/02/06/memcache-internals/)　比較是緩存服務
 
@@ -134,7 +141,7 @@ Key-Value資料庫、記憶體資料庫、圖學資料庫和文件資料庫.
 
 ##### Schemaless
 
-如JSON就是kv, 就是schemaless
+如JSON就是kv, 就是`schemaless`
 
 > Abstraction: key-value store with documents stored as values
 
@@ -145,9 +152,14 @@ Based on the underlying impleme
 ##### Source(s) and further reading: document store
 
 - [Document-oriented database](https://en.wikipedia.org/wiki/Document-oriented_database)
+
 - [MongoDB architecture](https://www.mongodb.com/mongodb-architecture)
+
 - [CouchDB architecture](https://blog.couchdb.org/2016/08/01/couchdb-2-0-architecture/)
+
 - [Elasticsearch architecture](https://www.elastic.co/blog/found-elasticsearch-from-the-bottom-up)
+
+  
 
 #### Wide column store
 
@@ -183,15 +195,15 @@ Graphs databases offer high performance for data models with complex relationshi
 
 ## SQL vs NoSQL 何時用?
 
-如mysql vs cassandra (mongoDB) 之間的區別之類的？
+如`mysql` vs `cassandra (mongoDB)` 之間的區別之類的？
 
 Reasons for **SQL**:
 
 - Structured data
 - Strict schema
 - **Relational data**
-- Need for complex **joins** 如用戶跟group
-- Transactions　事務
+- Need for complex **joins** 如`用戶`跟`group`
+- `Transactions`　事務
 - Clear patterns for scaling
 - More established: developers, community, code, tools, etc
 - Lookups by ***index*** are very fast
@@ -204,15 +216,23 @@ Reasons for **NoSQL**:
 - No need for complex joins
 - ***Store many TB (or PB) of data***　
 - ***Very data intensive workload*** 
-- Very high throughput for IOPS (Input/Output Operations Per Second
+- `Very high throughput for IOPS (Input/Output Operations Per Second`
 
-Sample data well-suited for NoSQL:
+
+
+##### Sample data well-suited for NoSQL:
 
 - Rapid ingest of clickstream and ***log data*** **之前說的頻繁寫的!!**
+
 - Leaderboard or scoring data ***就 eventually consistency 就好的***
-- Temporary data, such as a shopping cart  有cache就可以搞定
+
+- Temporary data, such as a `shopping cart`  有cache就可以搞定
+
 - Frequently accessed ('hot') tables
+
 - Metadata/lookup tables
+
+  
 
 ##### Source(s) and further reading: SQL or NoSQL
 
@@ -221,19 +241,19 @@ Sample data well-suited for NoSQL:
 
 
 
-![image-20200206225707917](/Users/joe/Library/Application Support/typora-user-images/image-20200206225707917.png)
+![image-20200206225707917](https://tva1.sinaimg.cn/large/e6c9d24egy1h38afqt977j210u0iitam.jpg)
 
 ####  
 
-![image-20200206225824207](/Users/joe/Library/Application Support/typora-user-images/image-20200206225824207.png)
+![image-20200206225824207](https://tva1.sinaimg.cn/large/e6c9d24egy1h38aftxl8tj210u0fqabr.jpg)
 
 ![image-20200206225934479](https://tva1.sinaimg.cn/large/0082zybpgy1gbn4crkjxdj311005wdge.jpg)
 
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200206230007842.png" alt="image-20200206230007842" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38afy3hw8j211808mt9h.jpg" alt="image-20200206230007842" style="zoom:50%;" />
 
 量不大時　SQL 就夠了；如ACID、data不會變的或結構的
 
-量大時才會用 NoSQL 學校一般用不到那麼大流量啊 量大時一般沒結構，的確NoSQL也是比較靈活
+量大時才會用 NoSQL 學校一般用不到那麼大流量啊 量大時一般沒結構，的確`NoSQL`也是比較靈活
 
 雲上一般要多個機器，硬體也都比較便宜
 
