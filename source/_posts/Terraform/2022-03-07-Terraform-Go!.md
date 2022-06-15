@@ -484,8 +484,8 @@ total 32
 # joe @ J-M1-Pro-16 in ~/Codes_MO/terraform-course/first-steps on git:master x [18:17:52]
 $ cat instance.tf
 provider "aws" {
-  access_key = "AKIA2MM5Y2SRYHHTGNLD"
-  secret_key = "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"
+  access_key = "AKIA---"
+  secret_key = "S*wh---"
   region     = "us-east-1"
 }
 
