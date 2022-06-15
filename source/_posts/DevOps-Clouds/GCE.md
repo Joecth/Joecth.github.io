@@ -1,5 +1,6 @@
 ---
-categories: AWS-high-traffic
+layout: post
+categories: AWS-Hhigh-Traffic
 date: 2022-05-31
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: AlgoUlt.
+categories: Markdown
 tag: []
 date: 2019-05-23
 ---
