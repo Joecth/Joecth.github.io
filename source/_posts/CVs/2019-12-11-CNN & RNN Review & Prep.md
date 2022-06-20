@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: AI
+categories: CV
 tag: [] 
 date: 2019-12-11
 ---
