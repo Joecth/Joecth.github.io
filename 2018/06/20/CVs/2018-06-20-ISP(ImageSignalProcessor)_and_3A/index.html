@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="CVs/2018-06-20-ISP(ImageSignalProcessor)_and_3A"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>CVs/2018-06-20-ISP(ImageSignalProcessor)_and_3A | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ISP-Architecture-Image-Signal-Processor"><span class="toc-number">1.</span> <span class="toc-text">ISP Architecture (Image Signal Processor)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">1.0.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Notes"><span class="toc-number">1.0.2.</span> <span class="toc-text">Notes:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3A-in-Camera"><span class="toc-number">2.</span> <span class="toc-text">3A in Camera</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Auto-focus"><span class="toc-number">2.0.1.</span> <span class="toc-text">Auto focus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Auto-White-Balance"><span class="toc-number">2.0.2.</span> <span class="toc-text">Auto White-Balance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Auto-Exposure"><span class="toc-number">2.0.3.</span> <span class="toc-text">Auto Exposure</span></a></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">364</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">61</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">CVs/2018-06-20-ISP(ImageSignalProcessor)_and_3A</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-06-20</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/CV/">CV</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p> Camera! Let’s go!</p>
+<h1 id="ISP-Architecture-Image-Signal-Processor"><a href="#ISP-Architecture-Image-Signal-Processor" class="headerlink" title="ISP Architecture (Image Signal Processor)"></a>ISP Architecture (Image Signal Processor)</h1><p>Importance features of Camera principle</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a>Notes:</h3><p>isp晶片 會有個sensor 會裝個 len，會有rgb的pixels e.g.1920 1080 的方格，每一個都是一個r、g、b</p>
+<p>接收不同光的是不同的像素格，在光進來後再做處理，進isp，isp再去處理，變成了後制成圖片</p>
+<p>廣角、distortion重，</p>
+<p>影像邊邊是彎彎的，魚眼鏡頭180度(水平最大的視角)，通常會有鏡頭到120、130就算很廣了</p>
+<p>這種鏡頭的邊邊的distortion就很重</p>
+<p>Isp就是可以校正這種畸變</p>
+<p>針對鏡頭就算同型號畸變還是會有差</p>
+<p>生產時會校正</p>
+<p>同組參用在同型號的鏡頭</p>
+<p>Isp的好壞會影響校出來的結果 </p>
+<p>校出來的是另一個</p>
+<p>sensor的光會進isp (pipeline)，</p>
+<p>​    isp做distortion、還有像lens shading 邊邊入光量比較小就比較暗，邊邊的gain就要拉高一點，gain拉高，noise就會也一起高了</p>
+<p>​    isp也要做noise reduction，noice太大，鏡頭光圈小入光就小，得用sensor 的gain拉大，這樣noise也大，就得靠isp去降噪</p>
+<p>​    先mosaiac 還原，各個有各自的功能</p>
+<p>​    3a只是其中的功能 aito white</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3es8d1qs4j20ug0j6abd.jpg" alt="img"></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3es9u7fkhj20ny0cyt9u.jpg" alt="img"></p>
+<p>ref: <a href="https://zhuanlan.zhihu.com/p/98820927" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/98820927</a></p>
+<h1 id="3A-in-Camera"><a href="#3A-in-Camera" class="headerlink" title="3A in Camera"></a>3A in Camera</h1><h3 id="Auto-focus"><a href="#Auto-focus" class="headerlink" title="Auto focus"></a>Auto focus</h3><p>​    isp 會吐個focus value看銳俐度 —&gt; isp有硬體可以偵測影像的銳俐度，在算pixel的微分</p>
+<p>​    </p>
+<p>​    會拿到focus value，會去動鏡頭，即對焦，再得到下一個focus value</p>
+<p>​    很快推到最高點，鏡頭有個焦距，它原理就是看不同鏡頭對焦，</p>
+<p>​    有個壓電效應在做的</p>
+<p>​    <strong>壓電效應 (Piezoelectricity)</strong>，電流愈大，壓力就愈大，裡面有液體，壓力大，鏡頭就被會壓然後被推</p>
+<p>​    就是電流去控焦距</p>
+<p>​    input 就是focus value，output就是我要送多大的電流，也要判斷場景是不是有變</p>
+<p>​    拿手機去對焦也會發現自動對焦會對錯或是不對，是代表演算法沒有很精準</p>
+<h3 id="Auto-White-Balance"><a href="#Auto-White-Balance" class="headerlink" title="Auto White-Balance"></a>Auto White-Balance</h3><p>白平衡難! 色彩學!</p>
+<p>​    假設室內是黃光，我們台灣喜歡白光，黃光的室內的話就會把畫面變白，他會希望你看到的畫面是白的</p>
+<p>​    人眼就是有自動白平衡的功能</p>
+<p>​    假設我們看一個apple，有人打藍光，我還是知道apple是紅色，我人眼還是可以分得出原色，不會被黃光給影響到覺得是黃apple</p>
+<p>​    當他偵測到r比較多，r的gain就得要小一點，b的gain就得要大一點，讓畫面沒有那麼紅!</p>
+<p>​    光源 or 原色造成? 不知道</p>
+<p>​    偶有過白! </p>
+<h3 id="Auto-Exposure"><a href="#Auto-Exposure" class="headerlink" title="Auto Exposure"></a>Auto Exposure</h3><p>​    光源不希望太亮或太暗</p>
+<p>​    eg 行車紀錄器，我要進出tunnel，光會突然變暗，使用者會希望亮度馬上可以調到看得到裡面的東西</p>
+<p>​    所以一sense到變暗，gain就要拉起來，過頭就會太亮，所以「怎麼拉」很重要</p>
+<p>​    不可以給感覺一下子太亮或太暗</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2018/06/20/CVs/2018-06-20-ISP(ImageSignalProcessor)_and_3A/">http://yoursite.com/2018/06/20/CVs/2018-06-20-ISP(ImageSignalProcessor)_and_3A/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2018/07/15/Deeplearning.ai/2018-07-15-Deeplearning.ai_Course4/"><i class="fa fa-chevron-left">  </i><span>Deeplearning.ai/2018-07-15-Deeplearning.ai_Course4</span></a></div><div class="next-post pull-right"><a href="/2018/06/15/Deeplearning.ai/2018-06-15-Deeplearning.ai_Course1/"><span>Deeplearning.ai/2018-06-15-Deeplearning.ai_Course1</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

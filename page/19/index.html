@@ -13,7 +13,243 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">362</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">60</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2019/12/22/Web/2019-12-19-Self-defined%20JSON%20serialization%20for%20json%20dump/">Web/2019-12-19-Self-defined JSON serialization for json dump</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Web/">Web</a></span><div class="content"><h2 id="date-2019-12-21"><a href="#date-2019-12-21" class="headerlink" title="date: 2019-12-21"></a>date: 2019-12-21</h2><h3 id="Self-defined-serializable-for-JSON-dump"><a href="#Self-defined-serializable-for-JSON-dump" class="headerlink" title="Self-defined serializable for JSON dump"></a>Self-defined serializable for JSON dump</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySerialization</span><span class="params">(json.JSONEncoder)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(self, obj)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> isinstance(obj, np.integer):</span><br><span class="line">            <span class="keyword">return</span> int(obj)</span><br><span class="line">        <span class="keyword">elif</span> isinstance(obj, np.floating):</span><br><span class="line">            <span class="keyword">return</span> float(obj)</span><br><span class="line">        <span class="keyword">elif</span> isinstance(obj, np.ndarray):</span><br><span class="line">            <span class="keyword">return</span> obj.tolist()</span><br><span class="line">        <span class="keyword">if</span> isinstance(obj, time):</span><br><span class="line">            <span class="keyword">return</span> obj.__str__()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> super(NpEncoder, self).default(obj)</span><br></pre></td></tr></table></figure>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">364</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">61</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2020/01/08/Design-Patterns/%E2%80%9C2019-01-08-Design%20Patterns%20-%20Observer%E2%80%9D/">Design-Patterns/“2019-01-08-Design Patterns - Observer”</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-08</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/DesignPattern/">DesignPattern</a></span><div class="content"><h3 id="Observer-Pattern"><a href="#Observer-Pattern" class="headerlink" title="Observer Pattern"></a>Observer Pattern</h3><p>Still for OCP – Open Close Principle, which means, open for extension, close for modification.</p>
+<p>Define 1vsMany, such that all observers receives notification when the observable getting update.</p>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200116114053868.png" alt="image-20200116114053868" style="zoom:67%;" />
+
+
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Vector obs = <span class="keyword">new</span> Vector();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addObserver</span><span class="params">(Observer obs)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.obs.add(obs);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delObserver</span><span class="params">(Observer obs)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.obs.remove(obs);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">notifyObserver</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(Observer o: obs)&#123;</span><br><span class="line">            o.update();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteSubject</span> <span class="keyword">extends</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"被观察者事件反生"</span>);</span><br><span class="line">        <span class="keyword">this</span>.notifyObserver();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteObserver1</span> <span class="keyword">implements</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"观察者1收到信息，并进行处理。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteObserver2</span> <span class="keyword">implements</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"观察者2收到信息，并进行处理。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Subject sub = <span class="keyword">new</span> ConcreteSubject();</span><br><span class="line">        sub.addObserver(<span class="keyword">new</span> ConcreteObserver1()); <span class="comment">//添加观察者1</span></span><br><span class="line">        sub.addObserver(<span class="keyword">new</span> ConcreteObserver2()); <span class="comment">//添加观察者2</span></span><br><span class="line">        sub.doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ref from: <a href="https://wiki.jikexueyuan.com/project/java-design-pattern/observer-pattern.html" target="_blank" rel="noopener">https://wiki.jikexueyuan.com/project/java-design-pattern/observer-pattern.html</a></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/01/08/System-Design/ACE/2021-01-08%201&amp;2%20Intro%20&amp;%20Components%20Review/">System-Design/ACE/2021-01-08 1&amp;2 Intro &amp; Components Review</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-08</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/SystemDesign/">SystemDesign</a></span><div class="content"><h2 id="System-Desing-vs-OOD"><a href="#System-Desing-vs-OOD" class="headerlink" title="System Desing vs OOD"></a>System Desing vs OOD</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>Points</th>
+<th>Format</th>
+<th>Problems</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>System Design</td>
+<td>Dataflow<br />Architecture<br />Scalability</td>
+<td>系统設計圖<br />DB設計<br />API設計</td>
+<td>Instagram</td>
+</tr>
+<tr>
+<td>OOD (不是個web service)</td>
+<td>Class Interface<br />Inheritance</td>
+<td>Code<br />Data Structure</td>
+<td>停車場</td>
+</tr>
+</tbody></table>
+<h6 id="Product-Design-System-Design-Scalability"><a href="#Product-Design-System-Design-Scalability" class="headerlink" title="Product Design = System Design - Scalability"></a>Product Design = System Design - Scalability</h6><h2 id="Misunderstandings"><a href="#Misunderstandings" class="headerlink" title="Misunderstandings"></a>Misunderstandings</h2><h3 id="1-Ignored-Non-functional-Req"><a href="#1-Ignored-Non-functional-Req" class="headerlink" title="1) Ignored Non-functional Req"></a>1) Ignored Non-functional Req</h3><h3 id="2-Ignored-some-data-stream"><a href="#2-Ignored-some-data-stream" class="headerlink" title="2) Ignored some data stream"></a>2) Ignored some data stream</h3><h4 id="e-g-corner-case"><a href="#e-g-corner-case" class="headerlink" title="e.g. corner case"></a>e.g. corner case</h4><ul>
+<li><p>e.g. Whatsapp裡的四條data streaming</p>
+</li>
+<li><p>e.g. celebrity 需要去區分不同的data streaming 作優化 &lt;= 普通人 vs 名人</p>
+</li>
+</ul>
+<h3 id="3-背書"><a href="#3-背書" class="headerlink" title="3) 背書"></a>3) 背書</h3><ul>
+<li>自己把info作長篇大論作背誦；–&gt; better to used in “deep-dive”</li>
+</ul>
+<h3 id="4-Trade-off"><a href="#4-Trade-off" class="headerlink" title="4) Trade-off"></a>4) Trade-off</h3><ul>
+<li><p>黑客版的網爬，我們可以做出五種不同的構件 &lt;= 權衡做好並作利弊</p>
+</li>
+<li><p>Ins’s Push(low latency) vs Pull(Normalization in SQL)</p>
+</li>
+</ul>
+<h3 id="5-過度依賴Tips-Guides"><a href="#5-過度依賴Tips-Guides" class="headerlink" title="5) 過度依賴Tips/Guides"></a>5) 過度依賴Tips/Guides</h3><ul>
+<li><p>自己得要想問題去問 –&gt;<br>一般人會follower多少人? 會有幾個人follower他?</p>
+</li>
+<li><p>多少人看每天？多久po文一次? –&gt; 去了解讀跟寫</p>
+</li>
+</ul>
+<h3 id="6-答題不分主次"><a href="#6-答題不分主次" class="headerlink" title="6) 答題不分主次"></a>6) 答題不分主次</h3><ul>
+<li>自己未把「abtraction」、「encapsulation」分清楚</li>
+<li>Level-wised details, to know how to deep-dive</li>
+<li>e.g. 網爬 –&gt; 網爬’s details</li>
+</ul>
+<h3 id="7-過度強調技術選型"><a href="#7-過度強調技術選型" class="headerlink" title="7) 過度強調技術選型"></a>7) 過度強調技術選型</h3><ul>
+<li><p>只知某種原理的細節 –&gt; 只知某種特定的Cache &lt;== 容易被深挖就尷了。。</p>
+</li>
+<li><p>不同種之間的廣度對比作優劣判斷</p>
+</li>
+<li><p>結論: 會把自己繞坑</p>
+</li>
+<li><p>e.g. SQL vs NoSQL</p>
+<ul>
+<li>NoSQL: Wide column! 别特定進去到 Cassandra</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-混亂的系統設計圖"><a href="#8-混亂的系統設計圖" class="headerlink" title="8) 混亂的系統設計圖"></a>8) 混亂的系統設計圖</h3><ul>
+<li>如果無法修復好的話，會很亂!</li>
+<li>要清晰，不然看的人會忘</li>
+</ul>
+<h3 id="9-答得過慢"><a href="#9-答得過慢" class="headerlink" title="9) 答得過慢"></a>9) 答得過慢</h3><ul>
+<li>時間不夠用，但別糾在末節<ul>
+<li>e.g. Non-fn req: 沒到10mins, 就 3mins</li>
+<li>e.g. resource estimation:別到誇張到 8 mins </li>
+</ul>
+</li>
+<li>節奏得要是穩步向前，所以時間得able to control</li>
+</ul>
+<h3 id="10-忽略流量模式"><a href="#10-忽略流量模式" class="headerlink" title="10) 忽略流量模式!"></a>10) 忽略流量模式!</h3><p>Ins - 大v</p>
+<p>Memcached: 只是kv store; </p>
+<p>Kafka 难被替代</p>
+<p>: </p>
+<h2 id="DB"><a href="#DB" class="headerlink" title="DB"></a>DB</h2><ul>
+<li>DB是存儲實時訪問數據的永久存儲 vs warehouse &lt;== 非實時訪問 (Hive QL 類似map reduce，apache的一個項目，幫大家去存大量的歷史data)，存在hard disk裡作長期存儲，一般在服務不會去訪問它</li>
+<li>SQL vs NoSQL<ul>
+<li>SQL : hd是很稀缺的，注重把data壓到很少，因為hd很貴。所以 JOIN<ul>
+<li>好懂 –&gt; 2D表格表示事務 –&gt; 符合大腦 vs NoSQL(有時有3D)</li>
+<li>好維護 –&gt; Consistency!!! 歷經實踐檢驗、慢慢掛 vs NoSQL cascaded 地全掛</li>
+<li>靈活 –&gt; 語言強大，一些事在DB層就可用 vs NoSQL都只能在應用層來做</li>
+<li>CONS:<ul>
+<li>鎖 -&gt; 慢</li>
+<li>不靈活，表難擴展、結構難改</li>
+<li>只有partition:單機分到不同地方，没有sharding:機器間的分配<ul>
+<li>Proxy SQL可以幫sql起到sharding，讓proxy去協調哪個機器存什麼</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="kafka-topics數量不能太大；但也是看它怎麼用，topics可以分partition就可以很大-10萬或Million這級別；每個partition都是有順序"><a href="#kafka-topics數量不能太大；但也是看它怎麼用，topics可以分partition就可以很大-10萬或Million這級別；每個partition都是有順序" class="headerlink" title="kafka topics數量不能太大；但也是看它怎麼用，topics可以分partition就可以很大 10萬或Million這級別；每個partition都是有順序"></a>kafka topics數量不能太大；但也是看它怎麼用，topics可以分partition就可以很大 10萬或Million這級別；每個partition都是有順序</h6><pre><code>- event in topic 看什麼是partition key --&gt; 分partition
+- E.G. img post : img `topics`; user_id as `partition`</code></pre><h6 id="Data-lake-可能可以是hive-offline-data就是相對於stream-溪流-而言、etl-raw-data可是個data-lake部分，比較是包含很多技術的總稱"><a href="#Data-lake-可能可以是hive-offline-data就是相對於stream-溪流-而言、etl-raw-data可是個data-lake部分，比較是包含很多技術的總稱" class="headerlink" title="Data lake(可能可以是hive): offline data就是相對於stream (溪流)而言、etl raw data可是個data lake部分，比較是包含很多技術的總稱"></a>Data lake(可能可以是hive): offline data就是相對於stream (溪流)而言、etl raw data可是個data lake部分，比較是包含很多技術的總稱</h6><h6 id="Data-warehouse不能立即返回，他用的是跟sql類似的言語；hive不含sql所有功能，傾向是map-reduce去處理，而不是都在ram裡處理掉，時間跑得長，不能立即返回結果；不是文件系統，HIVE是HDFS上包裏了一層，提供了一個固定的schema表格的型式去存data的機制，並提供了語言去處理如跟map-reduce結合處理"><a href="#Data-warehouse不能立即返回，他用的是跟sql類似的言語；hive不含sql所有功能，傾向是map-reduce去處理，而不是都在ram裡處理掉，時間跑得長，不能立即返回結果；不是文件系統，HIVE是HDFS上包裏了一層，提供了一個固定的schema表格的型式去存data的機制，並提供了語言去處理如跟map-reduce結合處理" class="headerlink" title="Data warehouse不能立即返回，他用的是跟sql類似的言語；hive不含sql所有功能，傾向是map-reduce去處理，而不是都在ram裡處理掉，時間跑得長，不能立即返回結果；不是文件系統，HIVE是HDFS上包裏了一層，提供了一個固定的schema表格的型式去存data的機制，並提供了語言去處理如跟map-reduce結合處理"></a>Data warehouse不能立即返回，他用的是跟sql類似的言語；hive不含sql所有功能，傾向是map-reduce去處理，而不是都在ram裡處理掉，時間跑得長，不能立即返回結果；不是文件系統，HIVE是HDFS上包裏了一層，提供了一個固定的schema表格的型式去存data的機制，並提供了語言去處理如跟map-reduce結合處理</h6><ul>
+<li><ul>
+<li>NoSQL<ul>
+<li>讀寫強! &lt;== lock用得少</li>
+<li>存儲機制靈活多樣 &lt;== 四種大樣，且支持靈活的 schema</li>
+<li>原生支持高併發 &lt;== 易橫向擴展<ul>
+<li>横(用多台機器)、縱(單一台)有特定含義的!</li>
+</ul>
+</li>
+<li>cons:</li>
+<li>較低的一致性</li>
+<li>性能理解不足，cassandra易一串failure，如其consistent hash ring易加減機器，但系統一旦有1/4機器出包，系統會連續愈來愈多掛掉，讓一個系統很快degrade… <ul>
+<li>當時多台就是為了想stable，缺乏在大量req下deploy 服務的經驗</li>
+</ul>
+</li>
+<li>不支持JOIN –&gt; 提倡 denormalization</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="怎選"><a href="#怎選" class="headerlink" title="怎選"></a>怎選</h3><h4 id="1-是否要ACID"><a href="#1-是否要ACID" class="headerlink" title="1) 是否要ACID?"></a>1) 是否要ACID?</h4><ul>
+<li>a:原子性 –&gt; 两個寫的要求，打包發生</li>
+<li>c:一致 &lt;==有一些沒一致是ok的  –&gt; data寫的時候是準確的，讀出來還是要同個data，沒有打包這個含義 </li>
+<li>i:不同data不互影響</li>
+<li>d:長期在db</li>
+</ul>
+<h4 id="2-是否需要JOIN"><a href="#2-是否需要JOIN" class="headerlink" title="2) 是否需要JOIN?"></a>2) 是否需要JOIN?</h4><ul>
+<li>E.g. 設計db去解決要不要JOIN的問題</li>
+</ul>
+<h4 id="3-是否要scalability"><a href="#3-是否要scalability" class="headerlink" title="3) 是否要scalability"></a>3) 是否要scalability</h4><ul>
+<li>Nosql 就是可以橫向擴展</li>
+</ul>
+<h4 id="4-data-model"><a href="#4-data-model" class="headerlink" title="4) data model?"></a>4) data model?</h4><ul>
+<li>如果是個friend graph 如fb上<ul>
+<li>想找到跟用戶A有在3個結點都找到 &lt;– neo4j graph DB 可原生解決它<ul>
+<li>SQL也可以寫三層、六層XD… 很累啊</li>
+</ul>
+</li>
+<li>如果kv就ok那就是簡單的memcache就ok</li>
+</ul>
+</li>
+</ul>
+<h6 id="mongo這兩年可以join，从一個table拿出field再去query另個table，不是面試中要關心的"><a href="#mongo這兩年可以join，从一個table拿出field再去query另個table，不是面試中要關心的" class="headerlink" title="mongo這兩年可以join，从一個table拿出field再去query另個table，不是面試中要關心的"></a>mongo這兩年可以join，从一個table拿出field再去query另個table，不是面試中要關心的</h6><h6 id="捨棄P-–-gt-無法多機了。。就只有CA了"><a href="#捨棄P-–-gt-無法多機了。。就只有CA了" class="headerlink" title="捨棄P –&gt; 無法多機了。。就只有CA了"></a>捨棄P –&gt; 無法多機了。。就只有CA了</h6><h6 id="sql即使有sharding也是讀寫比較不如nosql因為有鎖"><a href="#sql即使有sharding也是讀寫比較不如nosql因為有鎖" class="headerlink" title="sql即使有sharding也是讀寫比較不如nosql因為有鎖"></a>sql即使有sharding也是讀寫比較不如nosql因為有鎖</h6><h6 id="c的cae-DB的改寫並不會去通知到要改cache"><a href="#c的cae-DB的改寫並不會去通知到要改cache" class="headerlink" title="c的cae: DB的改寫並不會去通知到要改cache"></a>c的cae: DB的改寫並不會去通知到要改cache</h6><h6 id="availability-指的不是容災，而是可被有正確值丟出-lt-TODO-11-56"><a href="#availability-指的不是容災，而是可被有正確值丟出-lt-TODO-11-56" class="headerlink" title="availability: 指的不是容災，而是可被有正確值丟出 &lt;== TODO: 11:56"></a>availability: 指的不是容災，而是可被有正確值丟出 &lt;== TODO: 11:56</h6><h3 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h3><h6 id="mongodb-我們不覺得他會常當機無法訪問"><a href="#mongodb-我們不覺得他會常當機無法訪問" class="headerlink" title="mongodb 我們不覺得他會常當機無法訪問"></a>mongodb 我們不覺得他會常當機無法訪問</h6><h4 id="Document-Store"><a href="#Document-Store" class="headerlink" title="Document Store"></a>Document Store</h4><p>Relational VS MongoDB(靈活 json)</p>
+<h4 id="KV-Store"><a href="#KV-Store" class="headerlink" title="KV Store"></a>KV Store</h4><p>現今都是redis over memcached</p>
+<ul>
+<li>memcached: value只能是simple string，非常簡單的system，source code很短，10w行以下<ul>
+<li>比較簡單的in memory 的kv</li>
+</ul>
+</li>
+<li>redis: 可以是一堆特別的data structure、還有transaction、sharding、監控、lock的系統<ul>
+<li>還會用一些disk、可以persistency</li>
+</ul>
+</li>
+</ul>
+<h4 id="Wide-Column-Store"><a href="#Wide-Column-Store" class="headerlink" title="Wide-Column Store"></a>Wide-Column Store</h4><ul>
+<li>來自  Big-Table 論文，<ul>
+<li>一個cell可以對應一堆時間!</li>
+<li>column family(少的): column(多的)</li>
+<li>Sparse DB &lt;== 後話</li>
+</ul>
+</li>
+</ul>
+<h4 id="Graph-Store"><a href="#Graph-Store" class="headerlink" title="Graph Store"></a>Graph Store</h4><ul>
+<li>Neo4j 比較好query</li>
+</ul>
+<h6 id="SQL-amp-NoSQL界線正在變模糊"><a href="#SQL-amp-NoSQL界線正在變模糊" class="headerlink" title="SQL &amp; NoSQL界線正在變模糊"></a>SQL &amp; NoSQL界線正在變模糊</h6><h2 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h2><h4 id="熱點data"><a href="#熱點data" class="headerlink" title="熱點data"></a>熱點data</h4><ul>
+<li>LRU</li>
+</ul>
+<h4 id="Session-storage"><a href="#Session-storage" class="headerlink" title="Session storage"></a>Session storage</h4><ul>
+<li>instagram預加載分頁</li>
+</ul>
+<h4 id="低latency-reading"><a href="#低latency-reading" class="headerlink" title="低latency reading"></a>低latency reading</h4><ul>
+<li>whatsapp上線後快速讀到別人發來的</li>
+</ul>
+<h4 id="custermer-side’s-cache"><a href="#custermer-side’s-cache" class="headerlink" title="custermer side’s cache"></a>custermer side’s cache</h4><ul>
+<li>Autocomplete <code>客戶端預載</code>補全結果，本地解决，減少server壓力</li>
+</ul>
+<h3 id="讀"><a href="#讀" class="headerlink" title="讀"></a>讀</h3><h4 id="Cache-Aside-TODO-12-18"><a href="#Cache-Aside-TODO-12-18" class="headerlink" title="Cache-Aside TODO:12:18"></a>Cache-Aside TODO:12:18</h4><p>先讀cache(並不在主流程中，就算cache掛了，也會去db讀)，再讀db，</p>
+<p>cache當了不會讓整個當</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h4 id="Read-Through"><a href="#Read-Through" class="headerlink" title="Read-Through"></a>Read-Through</h4><h3 id="寫"><a href="#寫" class="headerlink" title="寫"></a>寫</h3><h4 id="Write-Through"><a href="#Write-Through" class="headerlink" title="Write-Through"></a>Write-Through</h4><p>寫時先寫到cache，cache再寫去db，兩個綁在一起叫完成</p>
+<h4 id="Write-Back"><a href="#Write-Back" class="headerlink" title="Write-Back"></a>Write-Back</h4><p>Cache你何時寫給db你的事，我寫給你我ok就好了!</p>
+<h4 id="Write-Around"><a href="#Write-Around" class="headerlink" title="Write-Around"></a>Write-Around</h4><p>我直接寫給DB，Cache在旁邊</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Write-Through</th>
+<th>Write-Around</th>
+<th>Write-Back</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Cache-Aside</strong></td>
+<td>N/A</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Read-Through</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h6 id="TODO-12-33"><a href="#TODO-12-33" class="headerlink" title="TODO: 12:33"></a>TODO: 12:33</h6><h4 id="Redis-永久化方案"><a href="#Redis-永久化方案" class="headerlink" title="Redis 永久化方案"></a>Redis 永久化方案</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>全稱</th>
+<th>優點</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RDB 記狀態<br />snapshot</td>
+<td>Redis DB Backup File</td>
+<td>file小，不影響讀寫速度，快速災後修復</td>
+</tr>
+<tr>
+<td>AOF 記過程<br />會降低讀寫效率</td>
+<td>Append-Only File</td>
+<td>最大程度降低data丟失，紀錄每次讀寫</td>
+</tr>
+</tbody></table>
+<h6 id="MySQL本來就在DB，不需要討論持久化"><a href="#MySQL本來就在DB，不需要討論持久化" class="headerlink" title="MySQL本來就在DB，不需要討論持久化"></a>MySQL本來就在DB，不需要討論持久化</h6><h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>E.g. Netflix 我覺得他肯定在某個地方會變超popular，諾蘭的新片會很熱門! 離永戶愈近愈好!</p>
+<p>降低consume file 的成本、提高讀大文件的效率、減慢latency</p>
+<h3 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h3><h6 id="TODO"><a href="#TODO" class="headerlink" title="TODO:!!!"></a>TODO:!!!</h6></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/12/22/Web/2019-12-19-Self-defined%20JSON%20serialization%20for%20json%20dump/">Web/2019-12-19-Self-defined JSON serialization for json dump</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Web/">Web</a></span><div class="content"><h2 id="date-2019-12-21"><a href="#date-2019-12-21" class="headerlink" title="date: 2019-12-21"></a>date: 2019-12-21</h2><h3 id="Self-defined-serializable-for-JSON-dump"><a href="#Self-defined-serializable-for-JSON-dump" class="headerlink" title="Self-defined serializable for JSON dump"></a>Self-defined serializable for JSON dump</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySerialization</span><span class="params">(json.JSONEncoder)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(self, obj)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> isinstance(obj, np.integer):</span><br><span class="line">            <span class="keyword">return</span> int(obj)</span><br><span class="line">        <span class="keyword">elif</span> isinstance(obj, np.floating):</span><br><span class="line">            <span class="keyword">return</span> float(obj)</span><br><span class="line">        <span class="keyword">elif</span> isinstance(obj, np.ndarray):</span><br><span class="line">            <span class="keyword">return</span> obj.tolist()</span><br><span class="line">        <span class="keyword">if</span> isinstance(obj, time):</span><br><span class="line">            <span class="keyword">return</span> obj.__str__()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> super(NpEncoder, self).default(obj)</span><br></pre></td></tr></table></figure>
 
 
 <p>Then, </p>
@@ -42,38 +278,6 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
 <h3 id="melody-w-default-sidebar"><a href="#melody-w-default-sidebar" class="headerlink" title="melody w/ default sidebar"></a>melody w/ default sidebar</h3><p>ref: <a href="https://pratnket.github.io/2019/02/22/Nexo-tutorial/#Hexo-%E9%9B%9C%E9%A0%85%E7%AD%86%E8%A8%98" target="_blank" rel="noopener">https://pratnket.github.io/2019/02/22/Nexo-tutorial/#Hexo-%E9%9B%9C%E9%A0%85%E7%AD%86%E8%A8%98</a></p>
 <h3 id="Version-Control-w-2-branches-for-Hexo"><a href="#Version-Control-w-2-branches-for-Hexo" class="headerlink" title="Version Control w/ 2 branches for Hexo"></a>Version Control w/ 2 branches for Hexo</h3><p>ref: <a href="https://www.zhihu.com/question/21193762" target="_blank" rel="noopener">https://www.zhihu.com/question/21193762</a></p>
 <h3 id="hexo-git-backup"><a href="#hexo-git-backup" class="headerlink" title="hexo-git-backup"></a>hexo-git-backup</h3><hr>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/12/12/NLP/2019-12-12-LSTM%20Brief.%20&amp;%20Hamming%20Loss/">NLP/2019-12-12-LSTM Brief. &amp; Hamming Loss</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/NLP-AI/">NLP, AI</a></span><div class="content"><h3 id="LSTM-Brief"><a href="#LSTM-Brief" class="headerlink" title="LSTM Brief."></a>LSTM Brief.</h3><p>LSTM是SimpleRNN的变体，它解决了梯度消失的问题。怎么解决的那？</p>
-<p>LSTM增加了一个可以相隔多个timesteps来传递信息的方法。想想有一个传送带在你处理sequences时一起运转。每个时间节点的信息都可以放到传送带上，或者从传送带上拿下来，当然你也可以更新传送带上的信息。这样就保存了很久之前的信息，防止了信息的丢失。我们把SimpleRNN中的矩阵记为<code>Wo Uo bo</code>，LSTM的结构图如下：</p>
-<p><img src="https://pic4.zhimg.com/80/v2-31da92629c2ddbb0a3971d18f1592b03_hd.jpg" alt="img"></p>
-<p>我们在SimpleRNN基础上，增加一条传送带（adding a carry track）用来传递信息。传送带上每个时刻的状态我们记为：<code>c t</code> c是carry的意思。</p>
-<p>显然，当前时刻的输出就应该收到三个信息的影响</p>
-<hr>
-<h3 id="Hamming-Distance"><a href="#Hamming-Distance" class="headerlink" title="Hamming Distance"></a>Hamming Distance</h3><p>在<a href="https://zh.wikipedia.org/wiki/信息论" target="_blank" rel="noopener">資訊理論</a>中，兩個等長<a href="https://zh.wikipedia.org/wiki/字符串" target="_blank" rel="noopener">字符串</a>之間的<strong>漢明距離</strong>（英語：Hamming distance）是兩個字符串對應位置的不同字符的個數。換句話說，它就是將一個字符串變換成另外一個字符串所需要<em>替換</em>的字符個數。</p>
-<p><strong><a href="https://zh.wikipedia.org/wiki/汉明重量" target="_blank" rel="noopener">漢明重量</a></strong>是字符串相對於同樣長度的零字符串的漢明距離，也就是說，它是字符串中非零的元素個數：對於<a href="https://zh.wikipedia.org/wiki/二进制" target="_blank" rel="noopener">二進位</a><a href="https://zh.wikipedia.org/wiki/字符串" target="_blank" rel="noopener">字符串</a>來說，就是1的個數，所以11101的漢明重量是4。</p>
-<p>例如：</p>
-<ul>
-<li><strong>1011101</strong>與<strong>1001001</strong>之間的漢明距離是2。</li>
-<li><strong>2143896</strong>與<strong>2233796</strong>之間的漢明距離是3。</li>
-<li>“<strong>toned</strong>“與”<strong>roses</strong>“之間的漢明距離是3。</li>
-</ul>
-<hr>
-<h3 id="Hamming-Loss"><a href="#Hamming-Loss" class="headerlink" title="Hamming Loss"></a>Hamming Loss</h3><p>Hamming Loss 是用来计算多标签分类(Multi-label classification)模型精度的。</p>
-<p>HammingLoss=1N∑i=1NXOR(Yi,j,Pi,j)LHammingLoss=1N∑i=1NXOR(Yi,j,Pi,j)L</p>
-<p>NN是样本的数量，LL是标签的个数，Yi,jYi,j是第ii个预测结果中第jj个分量的真实值，Pi,jPi,j是第ii个预测结果中第jj个分量的预测值，XORXOR是抑或，XOR(0,1)=XOR(1,0)=1XOR(0,1)=XOR(1,0)=1，XOR(0,0)=XOR(1,1)=0XOR(0,0)=XOR(1,1)=0。</p>
-<p>例子：三个样本</p>
-<p>Y1=(0,1,1,1,0),P1=(1,1,1,0,0)Y1=(0,1,1,1,0),P1=(1,1,1,0,0)</p>
-<p>Y2=(1,0,0,1,1),P2=(1,0,0,0,1)Y2=(1,0,0,1,1),P2=(1,0,0,0,1)</p>
-<p>Y3=(1,1,0,0,0),P3=(1,0,1,0,1)Y3=(1,1,0,0,0),P3=(1,0,1,0,1)<br>$$<br>HammingLoss=\frac{1}{3}×\frac{2+1+3}{5}=0.4<br>$$</p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/12/12/NLP/2019-12-12-NLP%20metric%20%3E%20Perplexity/">NLP/2019-12-12-NLP metric &gt; Perplexity</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/NLP-AI/">NLP, AI</a></span><div class="content"><p>from : <a href="https://blog.csdn.net/index20001/article/details/78884646" target="_blank" rel="noopener">https://blog.csdn.net/index20001/article/details/78884646</a></p>
-<h1 id="语言模型评价指标Perplexity"><a href="#语言模型评价指标Perplexity" class="headerlink" title="语言模型评价指标Perplexity"></a>语言模型评价指标Perplexity</h1><p>原创<a href="https://me.csdn.net/index20001" target="_blank" rel="noopener">Joy_Shen</a> 发布于2017-12-24 13:33:02 阅读数 26576 收藏</p>
-<p>展开</p>
-<p>语言模型（Language Model，LM），给出一句话的前k个词，希望它可以预测第k+1个词是什么，即给出一个第k+1个词可能出现的概率的分布p(xk+1|x1,x2,…,xk)。</p>
-<p>在报告里听到用PPL衡量语言模型收敛情况，于是从公式角度来理解一下该指标的意义。</p>
-<h2 id="Perplexity定义"><a href="#Perplexity定义" class="headerlink" title="Perplexity定义"></a>Perplexity定义</h2><p>PPL是用在自然语言处理领域（NLP）中，衡量语言模型好坏的指标。它主要是根据每个词来估计一句话出现的概率，并用句子长度作normalize，公式为</p>
-<p><img src="https://img-blog.csdn.net/20171224134258243" alt="img"></p>
-<p>S代表sentence，N是句子长度，p(wi)是第i个词的概率。第一个词就是 p(w1|w0)，而w0是START，表示句子的起始，是个占位符。</p>
-<p>这个式子可以这样理解，PPL越小，p(wi)则越大，一句我们期望的sentence出现的概率就越高。</p>
-<p>还有人说，Perplexity可以认为是average branch factor（平均分支系数），即预测下一个词时可以有多少种选择。别人在作报告时说模型的PPL下降到90，可以直观地理解为，在模型生成一句话时下一个词有90个合理选择，可选词数越少，我们大致认为模型越准确。这样也能解释，为什么PPL越小，模型越好。</p>
 </div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/73/">73</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
