@@ -2,7 +2,7 @@
 layout: post
 categories: Languages
 tag: []
-date: 2019-04-22
+date: 2023-04-22
 Author: Joe
 ---
 
@@ -70,7 +70,7 @@ Author: Joe
 
 
 
-# C++ Syntax Arrg.
+# C++ Syntax Review
 
 - APIS: 
 

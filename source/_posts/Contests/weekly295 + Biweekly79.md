@@ -8,10 +8,6 @@ Author: Jo
 
 
 
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h380m00lvdj21000e4mz2.jpg" alt="image-20220614195114137" style="zoom:67%;" />
-
-
-
 
 
 # Weekly295 -- 2287~2290
