@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Risc-V/1 Risc-V ISA"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>Risc-V/1 Risc-V ISA | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#機器語言到匯編語言到高級語言"><span class="toc-number">1.</span> <span class="toc-text">機器語言到匯編語言到高級語言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OS★"><span class="toc-number">2.</span> <span class="toc-text">OS★</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ISA"><span class="toc-number"></span> <span class="toc-text">ISA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ISA-Instruction-Set-Architecture"><span class="toc-number"></span> <span class="toc-text">ISA (Instruction Set Architecture)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#知名ISA們"><span class="toc-number">1.</span> <span class="toc-text">知名ISA們</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RISC-V-ISA"><span class="toc-number"></span> <span class="toc-text">RISC-V ISA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HART"><span class="toc-number">1.</span> <span class="toc-text">HART</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特權級別"><span class="toc-number">2.</span> <span class="toc-text">特權級別</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RAM保護及管理"><span class="toc-number">3.</span> <span class="toc-text">RAM保護及管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exception-amp-Interrupt"><span class="toc-number">4.</span> <span class="toc-text">Exception &amp; Interrupt</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Compile-amp-Link"><span class="toc-number"></span> <span class="toc-text">Compile &amp; Link</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GCC"><span class="toc-number">1.</span> <span class="toc-text">GCC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number"></span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ELF-Executable-Linkable-Format"><span class="toc-number">1.</span> <span class="toc-text">ELF, Executable Linkable Format</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exercise"><span class="toc-number">2.</span> <span class="toc-text">Exercise</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#反匯編"><span class="toc-number">2.1.</span> <span class="toc-text">反匯編</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dev-on-Embedded"><span class="toc-number"></span> <span class="toc-text">Dev on Embedded</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QEMU"><span class="toc-number">1.</span> <span class="toc-text">QEMU</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">382</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">65</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">Risc-V/1 Risc-V ISA</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-05-17</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/RISC-V/">RISC-V</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>ISA – Instruction Set Architecture</p>
+<ul>
+<li>CISC<ul>
+<li>在處理器中去特別設計電路去處理這指令</li>
+</ul>
+</li>
+<li>RISC<ul>
+<li>指令相對少，每個指令很簡易</li>
+</ul>
+</li>
+</ul>
+<p>32位元是取決於cpu中的<u>暫存器register的位元寬度</u>，如果是32位元的話，那尋址範位就是在2^32 == 4GB</p>
+<p>所以當電腦是32位的時候，即使主機板插超過4GB的RAM，OS也沒法讀到，就是因為處理器裡的暫存器沒辦法定址到這麼高位元的資料</p>
+<p>注意一個問題：ISA的寬度和指令編碼長度無關，像x86指令長度不固定，但是在Risc-V不管是32還是64位元的版本，編譯後，其指令的長度「大致上」是一致的，例外是像RV32C這種特規的指令</p>
+<p>知名ISA:</p>
+<ul>
+<li>X86</li>
+<li>SPARC</li>
+<li>Power</li>
+<li>ARM </li>
+<li>MIPS <ul>
+<li>因商業化考量加上發展不當，一直被交易，現在沒落，</li>
+<li>現在都會基於Risc-V作開發，所以接下來的開源指令集架構都會以Rics-V為主</li>
+</ul>
+</li>
+<li>Risc-V</li>
+</ul>
+<p><img src="https://p.ipic.vip/ao2elh.png" alt="image-20230515224234562"></p>
+<p>安裝啦！<a href="https://cdimage.ubuntu.com/releases/20.04/release/" target="_blank" rel="noopener">Ubuntu 20.04.5 LTS (Focal Fossa)</a></p>
+<p>ref: </p>
+<ul>
+<li><p><a href="https://gitee.com/unicornx/riscv-operating-system-mooc#/unicornx/riscv-operating-system-mooc/blob/main/howto-run-with-ubuntu1804_zh.md" target="_blank" rel="noopener">Gitee, riscv-operating-system-mooc: 开放课程《循序渐进，学习开发一个 RISC-V 上的操作系统》配套教材代码仓库。 mirror to https://github.com/plctlab/riscv-operating-system-mooc (gitee.com)</a></p>
+</li>
+<li><p><a href="https://www.weiyun.com/disk/folder/37e60709a663d833fd17f0dc114bd201" target="_blank" rel="noopener">resource on Tencent Cloud</a></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>ADDR 4 個 bits, 代表CPU只能訪問16個bytes<ul>
+<li><img src="https://p.ipic.vip/vmv5ai.png" alt="image-20230518110010231"></li>
+</ul>
+</li>
+<li><img src="https://p.ipic.vip/qfcrqv.png" alt="image-20230518110752766"><ul>
+<li>Von Neumann – 指令和數據放在同個地方的<ul>
+<li>例子：黃色是指令，綠色是數據，搭配下張圖一起解讀！<img src="https://p.ipic.vip/mrc3v9.png" alt="image-20230518111436451"></li>
+<li><img src="https://p.ipic.vip/zhwup0.png" alt="image-20230518111403461"></li>
+<li>再個例子<br><img src="https://p.ipic.vip/mgtont.png" alt="image-20230518111722403"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="機器語言到匯編語言到高級語言"><a href="#機器語言到匯編語言到高級語言" class="headerlink" title="機器語言到匯編語言到高級語言"></a>機器語言到匯編語言到高級語言</h3><p><img src="https://p.ipic.vip/p4cjb8.png" alt="image-20230518112444353"></p>
+<h3 id="OS★"><a href="#OS★" class="headerlink" title="OS★"></a>OS★</h3><p><img src="https://p.ipic.vip/2bzyui.png" alt="image-20230518113118013"></p>
+<h1 id="ISA"><a href="#ISA" class="headerlink" title="ISA"></a>ISA</h1><h2 id="ISA-Instruction-Set-Architecture"><a href="#ISA-Instruction-Set-Architecture" class="headerlink" title="ISA (Instruction Set Architecture)"></a>ISA (Instruction Set Architecture)</h2><img src="https://p.ipic.vip/aqj5iq.png" alt="image-20230518114052278" style="zoom: 25%;" />
+
+<ul>
+<li>是底層硬件向上層軟件程序提供的「接口規範」，一種「標準」</li>
+<li>主要是跟CPU打交道時操作它的registers</li>
+<li>WORD – 32 bits</li>
+<li>RAM少，所以需要用少點bytes，所以RISC；早期的中文字也是，一個字代表很多義，因為紙、羊皮貴</li>
+<li>現今intel也往RISC變化中</li>
+</ul>
+<p>★ 暫存器的大小，決定了ISA指令集的<code>寬度</code>，也決定了這款CPU的處理能力<br><img src="https://p.ipic.vip/osvdlx.png" alt="image-20230518115502590"></p>
+<ul>
+<li>8051指的就是每個register只有8bits這麼寬，每次只能讀8bits的數據到裡面去</li>
+<li>後來就是16位，就是8086 x86，MSP是TI的概念機</li>
+</ul>
+<p>★ 另， 指令集的寬度和每條指令的長度是兩回事；cpu32 or 64位裡，不管，RISC-V的每條指令都是32bits</p>
+<h3 id="知名ISA們"><a href="#知名ISA們" class="headerlink" title="知名ISA們"></a>知名ISA們</h3><p>如開頭</p>
+<h2 id="RISC-V-ISA"><a href="#RISC-V-ISA" class="headerlink" title="RISC-V ISA"></a>RISC-V ISA</h2><img src="https://p.ipic.vip/icq88m.png" alt="image-20230518152728511" style="zoom:50%;" />
+
+
+
+<ul>
+<li>沒有歷史包俯</li>
+</ul>
+<p><img src="https://p.ipic.vip/y1g6mf.png" alt="image-20230518153202510"></p>
+<ul>
+<li>E: embedded<ul>
+<li>register變少</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://p.ipic.vip/eaib58.png" alt="image-20230518153708407"></p>
+<h3 id="HART"><a href="#HART" class="headerlink" title="HART"></a>HART</h3><ul>
+<li>HARdware Thread </li>
+<li>每個流(thread)去取址、解碼、執行</li>
+<li>Intel號稱一個核可跑兩個流</li>
+<li>抽象資源可以獨立去取址到執行</li>
+<li>想成是本來以為的「CPU」，現在就是個「獨立運行的”指令流”」</li>
+<li>不等於是「CPU」</li>
+</ul>
+<p><img src="https://p.ipic.vip/qfao4j.png" alt="image-20230518154104259"></p>
+<h3 id="特權級別"><a href="#特權級別" class="headerlink" title="特權級別"></a>特權級別</h3><p>目的：保護register</p>
+<p>有三種態：用戶態(去寫高級別的會報異常)、supervisor、Machine</p>
+<p><img src="https://p.ipic.vip/l4vqos.png" alt="image-20230518154822022"></p>
+<h3 id="RAM保護及管理"><a href="#RAM保護及管理" class="headerlink" title="RAM保護及管理"></a>RAM保護及管理</h3><ul>
+<li>如果要啟動虛擬內存(由特殊hardware–MMU實現) 保護，是需要CPU支援Supervisor這級別的，這對CPU設計的要求高一些<br><img src="https://p.ipic.vip/f7578l.png" alt="image-20230518155224862"></li>
+</ul>
+<h3 id="Exception-amp-Interrupt"><a href="#Exception-amp-Interrupt" class="headerlink" title="Exception &amp; Interrupt"></a>Exception &amp; Interrupt</h3><p><img src="https://p.ipic.vip/ljdser.png" alt="image-20230518155555184"></p>
+<ul>
+<li>異常會回來本來這指令讓再執行一次</li>
+<li>中斷是去到下一條</li>
+</ul>
+<h1 id="Compile-amp-Link"><a href="#Compile-amp-Link" class="headerlink" title="Compile &amp; Link"></a>Compile &amp; Link</h1><h3 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h3><h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://p.ipic.vip/h0c8uy.png" alt="image-20230518162443364" style="zoom: 25%;" /></h2><img src="https://p.ipic.vip/0nbppa.png" alt="image-20230518162432018" style="zoom:25%;" />
+
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230518162457444.png" alt="image-20230518162457444" style="zoom:25%;" />
+
+
+
+<img src="https://p.ipic.vip/odwogs.png" alt="image-20230518161015599" style="zoom: 15%;" />
+
+<h3 id="ELF-Executable-Linkable-Format"><a href="#ELF-Executable-Linkable-Format" class="headerlink" title="ELF, Executable Linkable Format"></a>ELF, Executable Linkable Format</h3><img src="https://p.ipic.vip/r8e62o.png" alt="image-20230518161427574" style="zoom: 20%;" />
+
+<ul>
+<li>Unix-like 系統上的二進文件格式標準</li>
+<li>運行視圖：這個是在運行時候才會用到的<ul>
+<li>目的：由於有alignment, 這可以讓不到4k的.text, .init各自就占了一個4k大小，取代的是將多個section合為一個segment，在運行時在內存裡合併在一起</li>
+</ul>
+</li>
+</ul>
+<p>★ Binutils<br><img src="https://p.ipic.vip/y9srnp.png" alt="image-20230518162150835" style="zoom: 20%;" /></p>
+<h3 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">jo@fossa4gb:~/repo/temp$ readelf -h hello.o</span><br><span class="line">ELF Header:</span><br><span class="line">  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 </span><br><span class="line">  Class:                             ELF64</span><br><span class="line">  Data:                              2's complement, little endian</span><br><span class="line">  Version:                           1 (current)</span><br><span class="line">  OS/ABI:                            UNIX - System V</span><br><span class="line">  ABI Version:                       0</span><br><span class="line">  Type:                              REL (Relocatable file)</span><br><span class="line">  Machine:                           AArch64</span><br><span class="line">  Version:                           0x1</span><br><span class="line">  Entry point address:               0x0</span><br><span class="line">  Start of program headers:          0 (bytes into file)</span><br><span class="line">  Start of section headers:          776 (bytes into file)</span><br><span class="line">  Flags:                             0x0</span><br><span class="line">  Size of this header:               64 (bytes)</span><br><span class="line">  Size of program headers:           0 (bytes)</span><br><span class="line">  Number of program headers:         0</span><br><span class="line">  Size of section headers:           64 (bytes)</span><br><span class="line">  Number of section headers:         13</span><br><span class="line">  Section header string table index: 12</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">jo@fossa4gb:~/repo/temp$ readelf -SW hello.o</span><br><span class="line">There are 13 section headers, starting at offset 0x308:</span><br><span class="line"></span><br><span class="line">Section Headers:</span><br><span class="line">  [Nr] Name              Type            Address          Off    Size   ES Flg Lk Inf Al</span><br><span class="line">  [ 0]                   NULL            0000000000000000 000000 000000 00      0   0  0</span><br><span class="line">  [ 1] .text             PROGBITS        0000000000000000 000040 000020 00  AX  0   0  4</span><br><span class="line">  [ 2] .rela.text        RELA            0000000000000000 000240 000048 18   I 10   1  8</span><br><span class="line">  [ 3] .data             PROGBITS        0000000000000000 000060 000000 00  WA  0   0  1</span><br><span class="line">  [ 4] .bss              NOBITS          0000000000000000 000060 000000 00  WA  0   0  1</span><br><span class="line">  [ 5] .rodata           PROGBITS        0000000000000000 000060 00000b 00   A  0   0  8</span><br><span class="line">  [ 6] .comment          PROGBITS        0000000000000000 00006b 00002c 01  MS  0   0  1</span><br><span class="line">  [ 7] .note.GNU-stack   PROGBITS        0000000000000000 000097 000000 00      0   0  1</span><br><span class="line">  [ 8] .eh_frame         PROGBITS        0000000000000000 000098 000038 00   A  0   0  8</span><br><span class="line">  [ 9] .rela.eh_frame    RELA            0000000000000000 000288 000018 18   I 10   8  8</span><br><span class="line">  [10] .symtab           SYMTAB          0000000000000000 0000d0 000150 18     11  12  8</span><br><span class="line">  [11] .strtab           STRTAB          0000000000000000 000220 00001b 00      0   0  1</span><br><span class="line">  [12] .shstrtab         STRTAB          0000000000000000 0002a0 000061 00      0   0  1</span><br><span class="line">Key to Flags:</span><br><span class="line">  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),</span><br><span class="line">  L (link order), O (extra OS processing required), G (group), T (TLS),</span><br><span class="line">  C (compressed), x (unknown), o (OS specific), E (exclude),</span><br><span class="line">  p (processor specific)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="反匯編"><a href="#反匯編" class="headerlink" title="反匯編"></a>反匯編</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">jo@fossa4gb:~/repo/temp$ rm hello.o </span><br><span class="line">jo@fossa4gb:~/repo/temp$ gcc -g -c hello.c</span><br><span class="line">jo@fossa4gb:~/repo/temp$ objdump -S hello.o </span><br><span class="line"></span><br><span class="line">hello.o:     file format elf64-littleaarch64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line">0000000000000000 &lt;main&gt;:</span><br><span class="line"><span class="meta">#</span><span class="bash">include &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">   0:   a9bf7bfd        stp     x29, x30, [sp, #-16]!</span><br><span class="line">   4:   910003fd        mov     x29, sp</span><br><span class="line">    printf("Hi! World!");</span><br><span class="line">   8:   90000000        adrp    x0, 0 &lt;main&gt;</span><br><span class="line">   c:   91000000        add     x0, x0, #0x0</span><br><span class="line">  10:   94000000        bl      0 &lt;printf&gt;</span><br><span class="line">  14:   d503201f        nop</span><br><span class="line">  18:   a8c17bfd        ldp     x29, x30, [sp], #16</span><br><span class="line">  1c:   d65f03c0        ret</span><br><span class="line">jo@fossa4gb:~/repo/temp$</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="Dev-on-Embedded"><a href="#Dev-on-Embedded" class="headerlink" title="Dev on Embedded"></a>Dev on Embedded</h1><p><img src="https://p.ipic.vip/4j6fg7.png" alt="image-20230518163714090"></p>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230518163851710.png" alt="image-20230518163851710" style="zoom:50%;" />
+
+
+
+<h3 id="QEMU"><a href="#QEMU" class="headerlink" title="QEMU"></a>QEMU</h3><p><img src="https://p.ipic.vip/7fh111.png" alt="image-20230518164151876"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">jo@fossa4gb:~/repo/temp$ riscv64-linux-gnu-gcc hello.c </span><br><span class="line">jo@fossa4gb:~/repo/temp$ ls -lcth </span><br><span class="line">total 52K</span><br><span class="line">-rwxrwxr-x 1 jo jo 8.4K May 18 09:25 a.out</span><br><span class="line">-rw-rw-r-- 1 jo jo   62 May 18 08:42 hello.c</span><br><span class="line">-rw-rw-r-- 1 jo jo 5.7K May 18 08:30 hello.o</span><br><span class="line">-rw-rw-r-- 1 jo jo 1.6K May 18 08:05 foo.o</span><br><span class="line">-rw-rw-r-- 1 jo jo  556 May 18 08:05 foo.s</span><br><span class="line">-rw-rw-r-- 1 jo jo  17K May 18 08:04 foo.i</span><br><span class="line">jo@fossa4gb:~/repo/temp$ ./a.out </span><br><span class="line">bash: ./a.out: cannot execute binary file: Exec format error</span><br><span class="line">jo@fossa4gb:~/repo/temp$ file a.out </span><br><span class="line">a.out: ELF 64-bit LSB shared object, UCB RISC-V, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-riscv64-lp64d.so.1, BuildID[sha1]=b66403ff821ac85c13c3f145822d54c3290b0fe4, for GNU/Linux 4.15.0, not stripped</span><br><span class="line"></span><br><span class="line">jo@fossa4gb:~/repo/temp$ riscv64-linux-gnu-gcc -static hello.c </span><br><span class="line">jo@fossa4gb:~/repo/temp$ qemu-riscv64 ./a.out </span><br><span class="line">Hi! World!</span><br></pre></td></tr></table></figure>
+
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2022/05/17/Risc-V/1%20Risc-V%20ISA/">http://yoursite.com/2022/05/17/Risc-V/1%20Risc-V%20ISA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2022/05/18/Risc-V/5%20RVV-AS/"><i class="fa fa-chevron-left">  </i><span>Risc-V/5 RVV-AS</span></a></div><div class="next-post pull-right"><a href="/2022/05/17/DevOps/2022-05-17-Ubuntu20.04%20in%20M1%20VMWareFusion%20/"><span>DevOps/2022-05-17-Ubuntu20.04 in M1 VMWareFusion </span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

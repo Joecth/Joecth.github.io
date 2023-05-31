@@ -13,242 +13,702 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">364</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">61</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/04/Contests/weekly296/">Contests/weekly296</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-04</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Contests/">Contests</a></span><div class="content"><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h380owzc0ej20w00fwabf.jpg" alt="image-20220614195405622" style="zoom:67%;" />
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">382</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">65</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/24/Risc-V/SIMD/">Risc-V/SIMD</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-24</time><div class="content"><h2 id="Hardware-Aspects"><a href="#Hardware-Aspects" class="headerlink" title="Hardware Aspects"></a>Hardware Aspects</h2><p><img src="https://p.ipic.vip/98sfm8.png" alt="image-20230524114039763"></p>
+<p><img src="https://p.ipic.vip/0ba5i2.png" alt="image-20230524114127909"></p>
+<p><img src="https://p.ipic.vip/4i3ul1.png" alt="image-20230524114230862"></p>
+<h2 id="Software-Aspects"><a href="#Software-Aspects" class="headerlink" title="Software Aspects"></a>Software Aspects</h2><p><img src="https://p.ipic.vip/nd1dy4.png" alt="image-20230524114212963"></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2023/04/22/LC/0_note/">LC/0_note</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-04-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Languages/">Languages</a></span><div class="content"><h4 id="Hard-to-solve"><a href="#Hard-to-solve" class="headerlink" title="Hard, to solve:"></a>Hard, to solve:</h4><pre><code>- 301.remove-invalidparantheses TLE for enumeration w/ backtracking, 
+- 140.word-break-ii a)MLE w/ case &quot;a&quot;*n &amp; b)Trie method (Trie not faster for single query, but for multi query in 472.)
+- SegmentTree
+- BinaryIndexedTree
+- Letter Combinatino of A Phone Number</code></pre><table>
+<thead>
+<tr>
+<th></th>
+<th>Python3</th>
+<th>Cpp</th>
+<th>JS</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>dict</strong></td>
+<td></td>
+<td>include <unordered_map>, //Similar to defaultdict() in python3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>d = {}</td>
+<td>unordered_map&lt;Node*&gt; d;</td>
+<td>d = {}; new Map();</td>
+<td>Map&lt;Node, Node&gt; visited = new HashMap();</td>
+</tr>
+<tr>
+<td></td>
+<td>d[k] = v;</td>
+<td>d[k] = v;</td>
+<td>d[k]=v; map.<strong>set</strong>(0,1)</td>
+<td>visited.<strong>put</strong>(k, v)</td>
+</tr>
+<tr>
+<td></td>
+<td>d[k]; d.get(k,0)</td>
+<td>d[k];</td>
+<td>d[k]; map.get(k)</td>
+<td>visited.get(cur_O)</td>
+</tr>
+<tr>
+<td></td>
+<td>k not in d</td>
+<td>(d.find(k)==d.end())</td>
+<td>!(nbr_O.val in visited)</td>
+<td>!visited.containsKey(nbr_O)</td>
+</tr>
+<tr>
+<td></td>
+<td>k in d</td>
+<td>(d.find(k)!=d.end())</td>
+<td>nbr_O.val in visited; (map.<strong>has</strong>(sum-k))</td>
+<td>visited.<strong>containsKey</strong>(nbr_O)</td>
+</tr>
+<tr>
+<td></td>
+<td>del d[k]</td>
+<td>d.<strong>erase</strong>(key)</td>
+<td>this.d.<strong>delete</strong>(key);</td>
+<td>this.d.<strong>remove</strong>(key);</td>
+</tr>
+<tr>
+<td></td>
+<td>len(d)</td>
+<td>size()</td>
+<td>d.<strong>size</strong></td>
+<td>d.size()</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>d.empty()  //true; false</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>NotOK</td>
+<td></td>
+<td></td>
+<td>{k:v} in Initialization</td>
+<td></td>
+</tr>
+<tr>
+<td>Special APIs</td>
+<td></td>
+<td>reserve(capacity)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Iterate</td>
+<td>for k in d.keys():</td>
+<td>for (auto k: d)</td>
+<td>for (var key in dict){}</td>
+<td>for(char c:  ransomNote.toCharArray()) {</td>
+</tr>
+<tr>
+<td><strong>Ordered_dict</strong></td>
+<td>self.od.popitem(last=False)<br /><a href="https://www.pythonf.cn/read/89970" target="_blank" rel="noopener">https://www.pythonf.cn/read/89970</a><br /><a href="https://gist.github.com/joequery/12332f410a05e6c7c949" target="_blank" rel="noopener">https://gist.github.com/joequery/12332f410a05e6c7c949</a></td>
+<td></td>
+<td>d = new Map(); APIs↑↑ //ref: <a href="https://stackoverflow.com/questions/2798893/ordered-hash-in-javascript" target="_blank" rel="noopener">https://stackoverflow.com/questions/2798893/ordered-hash-in-javascript</a></td>
+<td>LinkedHashMap&lt;Integer, Integer&gt; d;<br />this.d = new LinkedHashMap&lt;&gt;();</td>
+</tr>
+<tr>
+<td></td>
+<td>first = next(iter(self.od))</td>
+<td></td>
+<td></td>
+<td>Integer first = this.d.keySet().iterator().next();</td>
+</tr>
+<tr>
+<td><strong>queue</strong></td>
+<td>from collections import deque</td>
+<td>include  <deque></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>deque();</td>
+<td>deque&lt;Node*&gt;</td>
+<td>let Q = [];</td>
+<td>Queue<Node> Q = new LinkedList(); //LinkedList<Node> Q = new LinkedList<Node>(); //雙向</td>
+</tr>
+<tr>
+<td></td>
+<td>Q.append(cur); v=Q.popleft()</td>
+<td>Q.push_back(cur); v=Q.front(),Q.pop_front()</td>
+<td>Q.push(cur); v=Q.shift(); // O(n)</td>
+<td>Q.add(nbr_O);//Q.push(nbr_O); Q.poll();</td>
+</tr>
+<tr>
+<td></td>
+<td>while d</td>
+<td>while (!Q.empty())</td>
+<td>while (Q.length != 0)</td>
+<td>while (!Q.isEmpty())</td>
+</tr>
+<tr>
+<td><strong>deque</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td>ArrayDeque雙向實現了DEque的interface</td>
+</tr>
+<tr>
+<td><strong>vector</strong></td>
+<td></td>
+<td>include <vector></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>self.res = []</td>
+<td>vector&lt;vector<int>&gt; result;</td>
+<td>res = [];</td>
+<td>List&lt;List<Integer>&gt; res = new ArrayList&lt;List<Integer>&gt;();</td>
+</tr>
+<tr>
+<td></td>
+<td>item.append(nums[idx])</td>
+<td>item.push_back(nums[idx]);</td>
+<td>item.push(nums[idx]);</td>
+<td>item.add(nums[idx]);</td>
+</tr>
+<tr>
+<td></td>
+<td>item.pop()</td>
+<td>item.pop_back();</td>
+<td>item.pop();</td>
+<td>item.remove(item.size()-1);</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>l.length; // 注意！跟dict不同，這邊是 length</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>for</td>
+<td>for (<strong><em>let</em></strong> i=0; i&lt;l.length; i++)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>l = [False] * 3</td>
+<td>vector<bool> dp(3, false);</td>
+<td>const dp = new Array(3).fill(false);</td>
+<td>List<Boolean> dp = new ArrayList(Collections.nCopies(s.length(), false));</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>int[] nums;, nums.length</td>
+</tr>
+<tr>
+<td><strong>Doublely LinkedList</strong></td>
+<td></td>
+<td><strong>std::list</strong><br /><strong>List</strong> stores elements at non contiguous memory location i.e. it internally uses a doubly linked list i.e.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>back(); front();</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>pop_back(); pop_front();</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>db_ll.erase(d[key])</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>APIs</strong></td>
+<td>from collections import Counter<br />Counter(l)</td>
+<td>X</td>
+<td>_.countBy(l)</td>
+<td>X</td>
+</tr>
+<tr>
+<td></td>
+<td>max</td>
+<td>max</td>
+<td>Math.max</td>
+<td>Math.max</td>
+</tr>
+<tr>
+<td><strong>String</strong></td>
+<td>len(s)</td>
+<td>s.length()</td>
+<td>s.length</td>
+<td>s.length()</td>
+</tr>
+<tr>
+<td></td>
+<td>s[i]</td>
+<td>s[i]</td>
+<td>s[i]</td>
+<td>s.charAt(i)</td>
+</tr>
+<tr>
+<td></td>
+<td>s[3:5]</td>
+<td>token = s.substr(start, i-start+1);</td>
+<td>s.slice(3, 5);</td>
+<td>s.substring(start, i+1);</td>
+</tr>
+<tr>
+<td><strong>Set</strong></td>
+<td>ws = set(wD)</td>
+<td>unordered_set<string> ws;<br/>        <br/>        for (auto s: wordDict){<br/>            ws.insert(s);<br/>        }</td>
+<td>let ws = new Set(wD)</td>
+<td>HashSet<String> ws = new HashSet(wordDict);</td>
+</tr>
+<tr>
+<td></td>
+<td>token in ws</td>
+<td>ws.find(token) != ws.end()</td>
+<td>ws.has(token)</td>
+<td>ws.contains(token)</td>
+</tr>
+<tr>
+<td><strong>MAX</strong></td>
+<td>float(‘-inf’)</td>
+<td>INT_MIN;</td>
+<td>-Number.MAX_VALUE;</td>
+<td>Integer.MIN_VALUE;</td>
+</tr>
+<tr>
+<td><strong>2D Init</strong></td>
+<td>[[0 for j in range(n)] for i in range(m)]</td>
+<td></td>
+<td></td>
+<td>[…Array(3)].map(x=&gt;Array(5).fill(0))</td>
+</tr>
+<tr>
+<td><strong>1D sort</strong></td>
+<td>l.sort(reverse=True)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Node</strong></td>
+<td>if not head</td>
+<td>if (!head); if (nullputr == head)</td>
+<td>if (!root); if (head == null)</td>
+<td>if (head == null)</td>
+</tr>
+</tbody></table>
+<h2 id="Special-issues"><a href="#Special-issues" class="headerlink" title="Special issues:"></a>Special issues:</h2><ul>
+<li><p>Java &amp; js</p>
+</li>
+<li><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gegmwb46qaj312a0u0qb1.jpg" alt="image-20200504191823941" style="zoom:67%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h380pp44x7j21cu0eiq4q.jpg" alt="image-20220614195450915" style="zoom:50%;" />
 
 
-
-<h1 id="Weekly296-–-2293-2296"><a href="#Weekly296-–-2293-2296" class="headerlink" title="Weekly296 – 2293~2296"></a>Weekly296 – 2293~2296</h1><p>Specially discuss 2294</p>
-<h2 id="2294-Partition-Array-Such-That-Maximum-Difference-Is-K"><a href="#2294-Partition-Array-Such-That-Maximum-Difference-Is-K" class="headerlink" title="2294  Partition Array Such That Maximum Difference Is K"></a>2294  Partition Array Such That Maximum Difference Is K</h2><p>You are given an integer array <code>nums</code> and an integer <code>k</code>. You may partition <code>nums</code> into one or more <strong>subsequences</strong> such that each element in <code>nums</code> appears in <strong>exactly</strong> one of the subsequences.</p>
-<p>Return <em>the <strong>minimum</strong> number of subsequences needed such that the difference between the maximum and minimum values in each subsequence is <strong>at most*</strong> <code>k</code></em>.*</p>
-<p>A <strong>subsequence</strong> is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [3,6,1,2,5], k &#x3D; 2</span><br><span class="line">Output: 2</span><br><span class="line">Explanation:</span><br><span class="line">We can partition nums into the two subsequences [3,1,2] and [6,5].</span><br><span class="line">The difference between the maximum and minimum value in the first subsequence is 3 - 1 &#x3D; 2.</span><br><span class="line">The difference between the maximum and minimum value in the second subsequence is 6 - 5 &#x3D; 1.</span><br><span class="line">Since two subsequences were created, we return 2. It can be shown that 2 is the minimum number of subsequences needed.</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [1,2,3], k &#x3D; 1</span><br><span class="line">Output: 2</span><br><span class="line">Explanation:</span><br><span class="line">We can partition nums into the two subsequences [1,2] and [3].</span><br><span class="line">The difference between the maximum and minimum value in the first subsequence is 2 - 1 &#x3D; 1.</span><br><span class="line">The difference between the maximum and minimum value in the second subsequence is 3 - 3 &#x3D; 0.</span><br><span class="line">Since two subsequences were created, we return 2. Note that another optimal solution is to partition nums into the two subsequences [1] and [2,3].</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [2,2,4,5], k &#x3D; 0</span><br><span class="line">Output: 3</span><br><span class="line">Explanation:</span><br><span class="line">We can partition nums into the three subsequences [2,2], [4], and [5].</span><br><span class="line">The difference between the maximum and minimum value in the first subsequences is 2 - 2 &#x3D; 0.</span><br><span class="line">The difference between the maximum and minimum value in the second subsequences is 4 - 4 &#x3D; 0.</span><br><span class="line">The difference between the maximum and minimum value in the third subsequences is 5 - 5 &#x3D; 0.</span><br><span class="line">Since three subsequences were created, we return 3. It can be shown that 3 is the minimum number of subsequences needed.</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 105</code></li>
-<li><code>0 &lt;= nums[i] &lt;= 105</code></li>
-<li><code>0 &lt;= k &lt;= 105</code></li>
+</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partitionArray</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># return self.inContest(nums, k)	# ALSO AC</span></span><br><span class="line">        nums.sort(key=<span class="keyword">lambda</span> x: x)</span><br><span class="line">        accu_diff = <span class="number">0</span></span><br><span class="line">        cut = <span class="number">0</span></span><br><span class="line">        seq_min = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            now_diff = nums[i] - seq_min</span><br><span class="line">            <span class="keyword">if</span> now_diff &gt; k:</span><br><span class="line">                cut += <span class="number">1</span></span><br><span class="line">                seq_min = nums[i]</span><br><span class="line">                </span><br><span class="line">        <span class="comment"># if now_diff &gt; 0:</span></span><br><span class="line">        cut += <span class="number">1</span></span><br><span class="line">        <span class="comment"># print(max_cnt, cut)</span></span><br><span class="line">        <span class="keyword">return</span> cut        </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inContest</span><span class="params">(self, nums)</span>:</span>	<span class="comment"># ALSO AC</span></span><br><span class="line">        n = len(nums)   </span><br><span class="line">        lo, hi = <span class="number">1</span>, n</span><br><span class="line">        <span class="comment"># print(nums)</span></span><br><span class="line">        <span class="keyword">while</span> lo + <span class="number">1</span> &lt; hi:</span><br><span class="line">            mid = lo + (hi - lo) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> self.isMaxDiffLessThanK(nums, k, mid):</span><br><span class="line">                hi = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                lo = mid</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">if</span> self.isMaxDiffLessThanK(nums, k, lo):</span><br><span class="line">            <span class="keyword">return</span> lo</span><br><span class="line">        <span class="keyword">return</span> hi</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isMaxDiffLessThanK</span><span class="params">(self, nums, k, max_cnt)</span>:</span></span><br><span class="line">        accu_diff = <span class="number">0</span></span><br><span class="line">        cut = <span class="number">0</span></span><br><span class="line">        seq_min = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            now_diff = nums[i] - seq_min</span><br><span class="line">            <span class="keyword">if</span> now_diff &gt; k:</span><br><span class="line">                cut += <span class="number">1</span></span><br><span class="line">                seq_min = nums[i]</span><br><span class="line">                </span><br><span class="line">        <span class="comment"># if now_diff &gt; 0:</span></span><br><span class="line">        cut += <span class="number">1</span></span><br><span class="line">        <span class="comment"># print(max_cnt, cut)</span></span><br><span class="line">        <span class="keyword">return</span> cut &lt;= max_cnt</span><br></pre></td></tr></table></figure>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/03/Algo.%20Ult./SCC%20&amp;%20Bridges/">Algo. Ult./SCC &amp; Bridges</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-03</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AlgoUlt/">AlgoUlt.</a></span><div class="content"><h1 id="SCC-Strong-Connected-Component"><a href="#SCC-Strong-Connected-Component" class="headerlink" title="SCC - Strong Connected Component"></a>SCC - Strong Connected Component</h1><h3 id="1192-Critical-Connections-in-a-Network"><a href="#1192-Critical-Connections-in-a-Network" class="headerlink" title="1192. Critical Connections in a Network"></a>1192. Critical Connections in a Network</h3><p>Hard</p>
-<p>4508162Add to ListShare</p>
-<p>There are <code>n</code> servers numbered from <code>0</code> to <code>n - 1</code> connected by undirected server-to-server <code>connections</code> forming a network where <code>connections[i] = [ai, bi]</code> represents a connection between servers <code>ai</code> and <code>bi</code>. Any server can reach other servers directly or indirectly through the network.</p>
-<p>A <em>critical connection</em> is a connection that, if removed, will make some servers unable to reach some other server.</p>
-<p>Return all critical connections in the network in any order.</p>
-<p><strong>Example 1:</strong></p>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2w2vkovebj205i06w746.jpg" alt="img"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n &#x3D; 4, connections &#x3D; [[0,1],[1,2],[2,0],[1,3]]</span><br><span class="line">Output: [[1,3]]</span><br><span class="line">Explanation: [[3,1]] is also accepted.</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: n &#x3D; 2, connections &#x3D; [[0,1]]</span><br><span class="line">Output: [[0,1]]</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>Constraints:</strong></p>
+<h1 id="C-Syntax-Review"><a href="#C-Syntax-Review" class="headerlink" title="C++ Syntax Review"></a>C++ Syntax Review</h1><ul>
+<li><p>APIS: </p>
 <ul>
-<li><code>2 &lt;= n &lt;= 105</code></li>
-<li><code>n - 1 &lt;= connections.length &lt;= 105</code></li>
-<li><code>0 &lt;= ai, bi &lt;= n - 1</code></li>
-<li><code>ai != bi</code></li>
-<li>There are no repeated connections.</li>
+<li>INT_MIN, isalnum(str[i]), swap(matrix[i][j], matrix[j][i]); reverse(matrix[i].begin(), matrix[i].end());</li>
+<li>int end = upper_bound(nums.begin(), nums.end(), target - x) - nums.begin();</li>
+<li>const size_t n;</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    </span><br><span class="line">    rank = &#123;&#125;</span><br><span class="line">    graph = defaultdict(list)</span><br><span class="line">    conn_dict = &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">criticalConnections</span><span class="params">(self, n: int, connections: List[List[int]])</span> -&gt; List[List[int]]:</span></span><br><span class="line"></span><br><span class="line">        self.formGraph(n, connections)</span><br><span class="line">        self.dfs(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">        </span><br><span class="line">        result = []</span><br><span class="line">        <span class="keyword">for</span> u, v <span class="keyword">in</span> self.conn_dict:</span><br><span class="line">            result.append([u, v])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, node: int, discovery_rank: int)</span> -&gt; int:</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># That means this node is already visited. We simply return the rank.</span></span><br><span class="line">        <span class="keyword">if</span> self.rank[node]:</span><br><span class="line">            <span class="keyword">return</span> self.rank[node]</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Update the rank of this node.</span></span><br><span class="line">        self.rank[node] = discovery_rank</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># This is the max we have seen till now. So we start with this instead of INT_MAX or something.</span></span><br><span class="line">        min_rank = discovery_rank + <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> neighbor <span class="keyword">in</span> self.graph[node]:</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># Skip the parent.</span></span><br><span class="line">            <span class="keyword">if</span> self.rank[neighbor] <span class="keyword">and</span> self.rank[neighbor] == discovery_rank - <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">                </span><br><span class="line">            <span class="comment"># Recurse on the neighbor.    </span></span><br><span class="line">            recursive_rank = self.dfs(neighbor, discovery_rank + <span class="number">1</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># Step 1, check if this edge needs to be discarded.</span></span><br><span class="line">            <span class="keyword">if</span> recursive_rank &lt;= discovery_rank:</span><br><span class="line">                <span class="keyword">del</span> self.conn_dict[(min(node, neighbor), max(node, neighbor))]</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># Step 2, update the minRank if needed.</span></span><br><span class="line">            min_rank = min(min_rank, recursive_rank)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> min_rank</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="Tarjan"><a href="#Tarjan" class="headerlink" title="Tarjan"></a>Tarjan</h2><pre><code class="python"></code></pre>
-<p>ref: </p>
-<p><a href="https://home.gamer.com.tw/artwork.php?sn=5169819" target="_blank" rel="noopener">https://home.gamer.com.tw/artwork.php?sn=5169819</a></p>
-<h2 id="Kosaraju"><a href="#Kosaraju" class="headerlink" title="Kosaraju"></a>Kosaraju</h2><p>ref:</p>
-<p><a href="https://www.cnblogs.com/nullzx/p/6437926.html" target="_blank" rel="noopener">https://www.cnblogs.com/nullzx/p/6437926.html</a></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/03/Contests/weekly295%20+%20Biweekly79/">Contests/weekly295 + Biweekly79</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-03</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Contests/">Contests</a></span><div class="content"><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h380m00lvdj21000e4mz2.jpg" alt="image-20220614195114137" style="zoom:67%;" />
-
-
-
-
-
-<h1 id="Weekly295-–-2287-2290"><a href="#Weekly295-–-2287-2290" class="headerlink" title="Weekly295 – 2287~2290"></a>Weekly295 – 2287~2290</h1><h2 id="2290-Minimum-Obstacle-Removal-to-Reach-Corner"><a href="#2290-Minimum-Obstacle-Removal-to-Reach-Corner" class="headerlink" title="2290 Minimum Obstacle Removal to Reach Corner"></a>2290 Minimum Obstacle Removal to Reach Corner</h2><p>You are given a <strong>0-indexed</strong> 2D integer array <code>grid</code> of size <code>m x n</code>. Each cell has one of two values:</p>
+</li>
+<li><p>OVERFLOW:</p>
 <ul>
-<li><code>0</code> represents an <strong>empty</strong> cell,</li>
-<li><code>1</code> represents an <strong>obstacle</strong> that may be removed.</li>
+<li><p>res += ((long long)pow(2, end_cnt) % M);  <strong>FIX</strong> in ↓</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; p(n, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">  p[i] = p[i - <span class="number">1</span>] * <span class="number">2</span>  % M;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">res += p[end_cnt];</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>You can move up, down, left, or right from and to an empty cell.</p>
-<p>Return <em>the <strong>minimum</strong> number of <strong>obstacles</strong> to <strong>remove</strong> so you can move from the upper left corner</em> <code>(0, 0)</code> <em>to the lower right corner</em> <code>(m - 1, n - 1)</code>.</p>
-<p><strong>Example 1:</strong></p>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2xvr7kkwqj20gt06u0t5.jpg" alt="img"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: grid &#x3D; [[0,1,1],[1,1,0],[1,1,0]]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: We can remove the obstacles at (0, 1) and (0, 2) to create a path from (0, 0) to (2, 2).</span><br><span class="line">It can be shown that we need to remove at least 2 obstacles, so we return 2.</span><br><span class="line">Note that there may be other ways to remove 2 obstacles to create a path.</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 2:</strong></p>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2xvr6hui1j20b906uglo.jpg" alt="img"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: grid &#x3D; [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: We can move from (0, 0) to (2, 4) without removing any obstacles, so we return 0.</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>Constraints:</strong></p>
+</li>
+<li><p>Hash</p>
 <ul>
-<li><code>m == grid.length</code></li>
-<li><code>n == grid[i].length</code></li>
-<li><code>1 &lt;= m, n &lt;= 105</code></li>
-<li><code>2 &lt;= m * n &lt;= 105</code></li>
-<li><code>grid[i][j]</code> is either <code>0</code> <strong>or</strong> <code>1</code>.</li>
-<li><code>grid[0][0] == grid[m - 1][n - 1] == 0</code></li>
+<li><p>unordered_map&lt;int, int&gt; lookup;</p>
+</li>
+<li><p>unordered_map&lt;char, char&gt; m = { {‘(‘, ‘)’}, {‘[‘, ‘]’}, {‘{‘, ‘}’} };</p>
+</li>
+<li><p>if (lookup.find(target - nums[i]) != lookup.end()){</p>
+</li>
+<li><p>for (auto item: m){</p>
+<p>​    res.push_back(item.second);  // 注意！是second, 不是 second()</p>
+<p>}</p>
+</li>
+<li><p>private:</p>
+<p>​    unordered_set<int> s;</p>
+</li>
+<li><p>s.erase(key);</p>
+</li>
+<li><p>unordered_set<string> lookup(wordDict.begin(), wordDict.end());</p>
+</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">DIRE = [(<span class="number">1</span>, <span class="number">0</span>), (<span class="number">-1</span>, <span class="number">0</span>), (<span class="number">0</span>, <span class="number">1</span>), (<span class="number">0</span>, <span class="number">-1</span>)]</span><br><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minimumObstacles</span><span class="params">(self, grid: List[List[int]])</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># return self.my_TLE(grid)</span></span><br><span class="line">        <span class="keyword">return</span> self.my_20220605(grid)</span><br><span class="line">                </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">my_20220605</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">        m, n = len(grid), len(grid[<span class="number">0</span>])</span><br><span class="line">        <span class="comment"># que = deque([(0, 0, 0)])    # i, j, removed cnt</span></span><br><span class="line">        hque = [(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)]</span><br><span class="line">        visited = &#123;&#125;</span><br><span class="line">        visited[(<span class="number">0</span>, <span class="number">0</span>)] = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># back_que = deque([(m - 1, n - 1, 0)])</span></span><br><span class="line">        <span class="comment"># back_visited = &#123;&#125;</span></span><br><span class="line">        <span class="comment"># back_visited[(m - 1, n - 1)] = 0</span></span><br><span class="line">        <span class="keyword">while</span> hque:</span><br><span class="line">            <span class="comment"># if len(que) &gt; len(back_que):</span></span><br><span class="line">            <span class="comment">#     que, back_que = back_que, que</span></span><br><span class="line">            <span class="comment">#     visited, back_visited = back_visited, visited</span></span><br><span class="line">                </span><br><span class="line">            <span class="comment"># i, j, rm_cnt = que.popleft()</span></span><br><span class="line">            rm_cnt, i, j = heapq.heappop(hque)</span><br><span class="line">            <span class="keyword">if</span> (i, j) == (m - <span class="number">1</span>, n - <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">return</span> rm_cnt</span><br><span class="line">            <span class="comment"># print(i, j, rm_cnt)</span></span><br><span class="line">            <span class="keyword">for</span> di, dj <span class="keyword">in</span> DIRE:</span><br><span class="line">                ni, nj = i + di, j + dj</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> &lt;= ni &lt; m <span class="keyword">and</span> <span class="number">0</span> &lt;= nj &lt; n: <span class="comment">#and (ni, nj) not in visited:</span></span><br><span class="line">                    <span class="comment"># if (ni, nj) in back_visited:</span></span><br><span class="line">                    <span class="comment">#     return visited.get((ni, nj), 0) + back_visited.get((ni, nj), 0)</span></span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">if</span> (ni, nj) <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                        <span class="comment"># que.append((ni, nj, rm_cnt + grid[ni][nj]))</span></span><br><span class="line">                        heapq.heappush(hque, (rm_cnt + grid[ni][nj], ni, nj))</span><br><span class="line">                        visited[(ni, nj)] = rm_cnt + grid[ni][nj]</span><br><span class="line">                        </span><br><span class="line">                    <span class="comment"># if rm_cnt + 1 &lt; visited.get((ni, nj), 0):</span></span><br><span class="line">                    <span class="comment"># if rm_cnt + 1 &lt;= visited.get((ni, nj), 0):</span></span><br><span class="line">                    <span class="comment">#     que.append((ni, nj, rm_cnt + grid[ni][nj]))</span></span><br><span class="line">                    <span class="comment">#     visited[(ni, nj)] = min(rm_cnt + grid[ni][nj], visited.get((ni, nj), 0))</span></span><br><span class="line">        <span class="comment"># return visited[(m - 1, n - 1)]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">my_TLE</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">        m, n = len(grid), len(grid[<span class="number">0</span>])</span><br><span class="line">        que = deque([(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)])    <span class="comment"># i, j, removed cnt</span></span><br><span class="line">        visited = &#123;&#125;</span><br><span class="line">        visited[(<span class="number">0</span>, <span class="number">0</span>)] = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        back_que = deque([(m - <span class="number">1</span>, n - <span class="number">1</span>, <span class="number">0</span>)])</span><br><span class="line">        back_visited = &#123;&#125;</span><br><span class="line">        back_visited[(m - <span class="number">1</span>, n - <span class="number">1</span>)] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> que:</span><br><span class="line">            <span class="comment"># if len(que) &gt; len(back_que):</span></span><br><span class="line">            <span class="comment">#     que, back_que = back_que, que</span></span><br><span class="line">            <span class="comment">#     visited, back_visited = back_visited, visited</span></span><br><span class="line">                </span><br><span class="line">            i, j, rm_cnt = que.popleft()</span><br><span class="line">            <span class="comment"># print(i, j, rm_cnt)</span></span><br><span class="line">            <span class="keyword">for</span> di, dj <span class="keyword">in</span> DIRE:</span><br><span class="line">                ni, nj = i + di, j + dj</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> &lt;= ni &lt; m <span class="keyword">and</span> <span class="number">0</span> &lt;= nj &lt; n: <span class="comment">#and (ni, nj) not in visited:</span></span><br><span class="line">                    <span class="comment"># if (ni, nj) in back_visited:</span></span><br><span class="line">                    <span class="comment">#     return visited.get((ni, nj), 0) + back_visited.get((ni, nj), 0)</span></span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">if</span> (ni, nj) <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                        que.append((ni, nj, rm_cnt + grid[ni][nj]))</span><br><span class="line">                        visited[(ni, nj)] = rm_cnt + grid[ni][nj]</span><br><span class="line">                        </span><br><span class="line">                    <span class="comment"># if rm_cnt + 1 &lt; visited.get((ni, nj), 0):</span></span><br><span class="line">                    <span class="keyword">if</span> rm_cnt + <span class="number">1</span> &lt;= visited.get((ni, nj), <span class="number">0</span>):</span><br><span class="line">                        que.append((ni, nj, rm_cnt + grid[ni][nj]))</span><br><span class="line">                        visited[(ni, nj)] = min(rm_cnt + grid[ni][nj], visited.get((ni, nj), <span class="number">0</span>))</span><br><span class="line">        <span class="keyword">return</span> visited[(m - <span class="number">1</span>, n - <span class="number">1</span>)]</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2289-Steps-to-Make-Array-Non-descreasing"><a href="#2289-Steps-to-Make-Array-Non-descreasing" class="headerlink" title="2289 Steps to Make Array Non-descreasing"></a>2289 Steps to Make Array Non-descreasing</h2><p>ref: <a href="https://www.youtube.com/watch?v=NQGduRE1Crk" target="_blank" rel="noopener">https://www.youtube.com/watch?v=NQGduRE1Crk</a></p>
-<h1 id="Biweekly79-–-2283-2286"><a href="#Biweekly79-–-2283-2286" class="headerlink" title="Biweekly79 – 2283~2286"></a>Biweekly79 – 2283~2286</h1></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/05/31/DevOps-Clouds/GCE/">DevOps-Clouds/GCE</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-05-31</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AWS-Hhigh-Traffic/">AWS-Hhigh-Traffic</a></span><div class="content"><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2t0isr14wj217u0u078o.jpg" alt="image-20220601202443727" style="zoom:67%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2t8n0bqu9j216d0u0q6o.jpg" alt="image-20220602010534184" style="zoom: 67%;" />
-
-
-
-
-
-
-
-<h2 id="Instances-Info"><a href="#Instances-Info" class="headerlink" title="Instances Info"></a>Instances Info</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2ybyez808j20w00u0wkm.jpg" alt="image-20220606104809298" style="zoom:67%;" />
-
-<p><a href="https://gcpinstances.doit-intl.com/" target="_blank" rel="noopener">https://gcpinstances.doit-intl.com/</a></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/05/29/Deeplearning/2022-05-29-AWS%20GPU%20usage/">Deeplearning/2022-05-29-AWS GPU usage</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-05-29</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/DevOps/">DevOps</a></span><div class="content"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">2  sudo apt-get update</span><br><span class="line"> 3  wget https://developer.download.nvidia.com/compute/cuda/11.7.0/local_installers/cuda_11.7.0_515.43.04_linux.run	  </span><br><span class="line"> 6  sudo sh cuda_11.7.0_515.43.04_linux.run</span><br><span class="line">11  wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-x86_64.sh</span><br><span class="line">13  sh Miniconda3-py39_4.12.0-Linux-x86_64.sh</span><br><span class="line">16  vi ~/.bashrc	<span class="comment"># LD_LIBRARY_PATH=/usr/local/cuda-11.7/lib64</span></span><br><span class="line">18  <span class="built_in">source</span> ~/.bashrc</span><br><span class="line">19  conda create -n dl37 python=3.7 pip</span><br><span class="line">20  conda activate dl37</span><br><span class="line">21  pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113</span><br><span class="line"><span class="comment"># 可看到 pytorch 2G，比 cuda還要大! 也是相當厲害…</span></span><br><span class="line">22  wget https://zh-v2.d2l.ai/d2l-zh.zip</span><br><span class="line">23  sudo apt-get install unzip</span><br><span class="line">33  pip install -U d2l jupyter</span><br><span class="line">34  jupyter notebook</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="jupyter-notebook"><a href="#jupyter-notebook" class="headerlink" title="jupyter notebook"></a>jupyter notebook</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i ~/.ssh/emr-key-A.pem -L8888:localhost:8888 ubuntu@ec2-54-159-193-111.compute-1.amazonaws.com</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="nvidia-smi"><a href="#nvidia-smi" class="headerlink" title="nvidia-smi"></a>nvidia-smi</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">(base) ubuntu@ip-192-168-81-198:~$ nvidia-smi</span><br><span class="line">Mon May 30 09:58:50 2022</span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">| NVIDIA-SMI 515.43.04    Driver Version: 515.43.04    CUDA Version: 11.7     |</span><br><span class="line">|-------------------------------+----------------------+----------------------+</span><br><span class="line">| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |</span><br><span class="line">| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |</span><br><span class="line">|                               |                      |               MIG M. |</span><br><span class="line">|===============================+======================+======================|</span><br><span class="line">|   0  Tesla T4            Off  | 00000000:00:1E.0 Off |                    0 |</span><br><span class="line">| N/A   32C    P0    27W /  70W |   2751MiB / 15360MiB |      0%      Default |</span><br><span class="line">|                               |                      |                  N/A |</span><br><span class="line">+-------------------------------+----------------------+----------------------+</span><br><span class="line"></span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">| Processes:                                                                  |</span><br><span class="line">|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |</span><br><span class="line">|        ID   ID                                                   Usage      |</span><br><span class="line">|=============================================================================|</span><br><span class="line">|    0   N/A  N/A     11902      C   ...nda3/envs/dl37/bin/python     2747MiB |</span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">(base) ubuntu@ip-192-168-81-198:~$ nvidia-smi</span><br><span class="line">Mon May 30 09:59:31 2022</span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">| NVIDIA-SMI 515.43.04    Driver Version: 515.43.04    CUDA Version: 11.7     |</span><br><span class="line">|-------------------------------+----------------------+----------------------+</span><br><span class="line">| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |</span><br><span class="line">| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |</span><br><span class="line">|                               |                      |               MIG M. |</span><br><span class="line">|===============================+======================+======================|</span><br><span class="line">|   0  Tesla T4            Off  | 00000000:00:1E.0 Off |                    0 |</span><br><span class="line">| N/A   33C    P0    27W /  70W |    335MiB / 15360MiB |      6%      Default |</span><br><span class="line">|                               |                      |                  N/A |</span><br><span class="line">+-------------------------------+----------------------+----------------------+</span><br><span class="line"></span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">| Processes:                                                                  |</span><br><span class="line">|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |</span><br><span class="line">|        ID   ID                                                   Usage      |</span><br><span class="line">|=============================================================================|</span><br><span class="line">|    0   N/A  N/A     12017      C   ...nda3/envs/dl37/bin/python      331MiB |</span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">(base) ubuntu@ip-192-168-81-198:~$ nvidia-smi</span><br><span class="line">Mon May 30 09:59:38 2022</span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">| NVIDIA-SMI 515.43.04    Driver Version: 515.43.04    CUDA Version: 11.7     |</span><br><span class="line">|-------------------------------+----------------------+----------------------+</span><br><span class="line">| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |</span><br><span class="line">| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |</span><br><span class="line">|                               |                      |               MIG M. |</span><br><span class="line">|===============================+======================+======================|</span><br><span class="line">|   0  Tesla T4            Off  | 00000000:00:1E.0 Off |                    0 |</span><br><span class="line">| N/A   37C    P0    79W /  70W |   2749MiB / 15360MiB |     98%      Default |</span><br><span class="line">|                               |                      |                  N/A |</span><br><span class="line">+-------------------------------+----------------------+----------------------+</span><br><span class="line"></span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">| Processes:                                                                  |</span><br><span class="line">|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |</span><br><span class="line">|        ID   ID                                                   Usage      |</span><br><span class="line">|=============================================================================|</span><br><span class="line">|    0   N/A  N/A     12017      C   ...nda3/envs/dl37/bin/python     2745MiB |</span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">(base) ubuntu@ip-192-168-81-198:~$ nvidia-smi</span><br><span class="line">Mon May 30 09:59:42 2022</span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">| NVIDIA-SMI 515.43.04    Driver Version: 515.43.04    CUDA Version: 11.7     |</span><br><span class="line">|-------------------------------+----------------------+----------------------+</span><br><span class="line">| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |</span><br><span class="line">| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |</span><br><span class="line">|                               |                      |               MIG M. |</span><br><span class="line">|===============================+======================+======================|</span><br><span class="line">|   0  Tesla T4            Off  | 00000000:00:1E.0 Off |                    0 |</span><br><span class="line">| N/A   38C    P0    68W /  70W |   2749MiB / 15360MiB |     97%      Default |</span><br><span class="line">|                               |                      |                  N/A |</span><br><span class="line">+-------------------------------+----------------------+----------------------+</span><br><span class="line"></span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">| Processes:                                                                  |</span><br><span class="line">|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |</span><br><span class="line">|        ID   ID                                                   Usage      |</span><br><span class="line">|=============================================================================|</span><br><span class="line">|    0   N/A  N/A     12017      C   ...nda3/envs/dl37/bin/python     2745MiB |</span><br><span class="line">+-----------------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="InfoGPU"><a href="#InfoGPU" class="headerlink" title="InfoGPU"></a>InfoGPU</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">torch.cuda.current_device()</span><br><span class="line">torch.cuda.device_count()</span><br><span class="line">torch.cuda.get_device_name(<span class="number">0</span>)</span><br><span class="line">torch.cuda.is_available()</span><br></pre></td></tr></table></figure>
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38arz9jvxj20u00ue42e.jpg" alt="image-20220530192309711" style="zoom:50%;" />
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.version.cuda</span><br><span class="line"><span class="string">'11.3'</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2qots3vvfj213c0ac3zt.jpg" alt="image-20220530200847113" style="zoom:50%;" />
-
-<p>​                </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dl37rmbg) ubuntu@ip<span class="number">-192</span><span class="number">-168</span><span class="number">-81</span><span class="number">-198</span>:~/codes/rm-bg-test$ pip list | grep onnx</span><br><span class="line">onnxruntime                  <span class="number">1.11</span><span class="number">.1</span></span><br><span class="line">(dl37rmbg) ubuntu@ip<span class="number">-192</span><span class="number">-168</span><span class="number">-81</span><span class="number">-198</span>:~/codes/rm-bg-test$</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="Before"><a href="#Before" class="headerlink" title="Before"></a>Before</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"> * Debug mode: off</span><br><span class="line">2022-05-30 12:01:59 INFO      * Running on all addresses (0.0.0.0)</span><br><span class="line">   WARNING: This is a development server. Do not use it in a production deployment.</span><br><span class="line"> * Running on http://127.0.0.1:5005</span><br><span class="line"> * Running on http://192.168.81.198:5005 (Press CTRL+C to quit)</span><br><span class="line">2022-05-30 12:02:06 INFO     49.216.44.45 - - [30/May/2022 12:02:06] "GET / HTTP/1.1" 200 -</span><br><span class="line">2022-05-30 12:02:06 INFO     49.216.44.45 - - [30/May/2022 12:02:06] "GET /favicon.ico HTTP/1.1" 404 -</span><br><span class="line">2022-05-30 12:02:14 INFO     49.216.44.45 - - [30/May/2022 12:02:14] "OPTIONS /predict/u2 HTTP/1.1" 200 -</span><br><span class="line">2022-05-30 12:02:15 INFO     Using algorithm -- u2</span><br><span class="line">2022-05-30 12:02:15 INFO     in get_prediction!!!!</span><br><span class="line">2022-05-30 12:02:15 INFO     dict_keys(['image'])</span><br><span class="line">2022-05-30 12:02:15 INFO     Time spent for successfully uploaded usr img img4predict_20220530-12:02:15.jpeg to S3 : 0.7874946594238281</span><br><span class="line">2022-05-30 12:02:15 INFO     Acquiring U2 Lock... Waiting...</span><br><span class="line">2022-05-30 12:02:15 INFO     Time spent for Acquiring U2 Lock: 6.9141387939453125e-06</span><br><span class="line">2022-05-30 12:02:15 INFO     Start predicting with U2</span><br><span class="line">2022-05-30 12:02:15 INFO     Acquired Lock for U2!</span><br><span class="line">2022-05-30 12:02:15 INFO     Time spent for reading image from S3 by cv2! : 0.06653761863708496</span><br><span class="line">Downloading...</span><br><span class="line">From: https://drive.google.com/uc?id=1tCU5MM1LhRgGou5OpmpjBQbSrYIUoYab</span><br><span class="line">To: /home/ubuntu/.u2net/u2net.onnx</span><br><span class="line"><span class="meta">100%</span><span class="bash">|████████████████████████████████████████████| 176M/176M [00:01&lt;00:00, 104MB/s]</span></span><br><span class="line">2022-05-30 12:02:19 INFO     &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time spent for U2 model.detect: 3.3960742950439453</span><br><span class="line">2022-05-30 12:02:19 INFO     Time spent for U2: 3.4032671451568604</span><br><span class="line">2022-05-30 12:02:19 INFO     uploaded_name: removed_back_U2_20220530-12:02:15.png</span><br><span class="line">2022-05-30 12:02:19 INFO     Time spent for upload_file to S3: 0.09176993370056152</span><br><span class="line">2022-05-30 12:02:19 INFO     &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time spent for U2 model: 3.5619876384735107</span><br><span class="line">2022-05-30 12:02:19 INFO     Released Lock for U2!</span><br><span class="line">2022-05-30 12:02:19 INFO     49.216.44.45 - - [30/May/2022 12:02:19] "POST /predict/u2 HTTP/1.1" 200 -</span><br><span class="line">2022-05-30 12:02:37 INFO     49.216.44.45 - - [30/May/2022 12:02:37] "OPTIONS /predict/u2 HTTP/1.1" 200 -</span><br><span class="line">2022-05-30 12:02:37 INFO     Using algorithm -- u2</span><br><span class="line">2022-05-30 12:02:37 INFO     in get_prediction!!!!</span><br><span class="line">2022-05-30 12:02:40 INFO     dict_keys(['image'])</span><br><span class="line">2022-05-30 12:02:41 INFO     Time spent for successfully uploaded usr img img4predict_20220530-12:02:40.jpeg to S3 : 3.314974784851074</span><br><span class="line">2022-05-30 12:02:41 INFO     Acquiring U2 Lock... Waiting...</span><br><span class="line">2022-05-30 12:02:41 INFO     Time spent for Acquiring U2 Lock: 5.245208740234375e-06</span><br><span class="line">2022-05-30 12:02:41 INFO     Start predicting with U2</span><br><span class="line">2022-05-30 12:02:41 INFO     Acquired Lock for U2!</span><br><span class="line">2022-05-30 12:02:41 INFO     Time spent for reading image from S3 by cv2! : 0.13377881050109863</span><br><span class="line">2022-05-30 12:02:43 INFO     &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time spent for U2 model.detect: 2.55837082862854</span><br><span class="line">2022-05-30 12:02:43 INFO     Time spent for U2: 2.6617114543914795</span><br><span class="line">2022-05-30 12:02:43 INFO     uploaded_name: removed_back_U2_20220530-12:02:40.png</span><br><span class="line">2022-05-30 12:02:44 INFO     Time spent for upload_file to S3: 0.1535935401916504</span><br><span class="line">2022-05-30 12:02:44 INFO     &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time spent for U2 model: 2.9496042728424072</span><br><span class="line">2022-05-30 12:02:44 INFO     Released Lock for U2!</span><br><span class="line">2022-05-30 12:02:44 INFO     49.216.44.45 - - [30/May/2022 12:02:44] "POST /predict/u2 HTTP/1.1" 200 -</span><br><span class="line">2022-05-30 12:04:49 INFO     49.216.44.45 - - [30/May/2022 12:04:49] "OPTIONS /predict/u2 HTTP/1.1" 200 -</span><br><span class="line">2022-05-30 12:04:49 INFO     Using algorithm -- u2</span><br><span class="line">2022-05-30 12:04:49 INFO     in get_prediction!!!!</span><br><span class="line">2022-05-30 12:04:51 INFO     dict_keys(['image'])</span><br><span class="line">2022-05-30 12:04:52 INFO     Time spent for successfully uploaded usr img img4predict_20220530-12:04:51.jpeg to S3 : 2.766263723373413</span><br><span class="line">2022-05-30 12:04:52 INFO     Acquiring U2 Lock... Waiting...</span><br><span class="line">2022-05-30 12:04:52 INFO     Time spent for Acquiring U2 Lock: 6.67572021484375e-06</span><br><span class="line">2022-05-30 12:04:52 INFO     Start predicting with U2</span><br><span class="line">2022-05-30 12:04:52 INFO     Acquired Lock for U2!</span><br><span class="line">2022-05-30 12:04:52 INFO     Time spent for reading image from S3 by cv2! : 0.07762646675109863</span><br><span class="line">2022-05-30 12:04:54 INFO     &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time spent for U2 model.detect: 1.9941890239715576</span><br><span class="line">2022-05-30 12:04:54 INFO     Time spent for U2: 2.0525596141815186</span><br><span class="line">2022-05-30 12:04:54 INFO     uploaded_name: removed_back_U2_20220530-12:04:51.png</span><br><span class="line">2022-05-30 12:04:54 INFO     Time spent for upload_file to S3: 0.11681175231933594</span><br><span class="line">2022-05-30 12:04:54 INFO     &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time spent for U2 model: 2.2475361824035645</span><br><span class="line">2022-05-30 12:04:54 INFO     Released Lock for U2!</span><br><span class="line">2022-05-30 12:04:54 INFO     49.216.44.45 - - [30/May/2022 12:04:54] "POST /predict/u2 HTTP/1.1" 200 -</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="After"><a href="#After" class="headerlink" title="After"></a>After</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2qoyzgd0cj20xo0d876d.jpg" alt="image-20220530201339682" style="zoom:50%;" />
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"> * Debug mode: off</span><br><span class="line">2022-05-30 12:14:18 INFO      * Running on all addresses (0.0.0.0)</span><br><span class="line">   WARNING: This is a development server. Do not use it in a production deployment.</span><br><span class="line"> * Running on http://127.0.0.1:5005</span><br><span class="line"> * Running on http://192.168.81.198:5005 (Press CTRL+C to quit)</span><br><span class="line">2022-05-30 12:14:59 INFO     49.216.44.45 - - [30/May/2022 12:14:59] "OPTIONS /predict/u2 HTTP/1.1" 200 -</span><br><span class="line">2022-05-30 12:15:00 INFO     Using algorithm -- u2</span><br><span class="line">2022-05-30 12:15:00 INFO     in get_prediction!!!!</span><br><span class="line">2022-05-30 12:15:02 INFO     dict_keys(['image'])</span><br><span class="line">2022-05-30 12:15:03 INFO     Time spent for successfully uploaded usr img img4predict_20220530-12:15:02.jpeg to S3 : 3.0525119304656982</span><br><span class="line">2022-05-30 12:15:03 INFO     Acquiring U2 Lock... Waiting...</span><br><span class="line">2022-05-30 12:15:03 INFO     Time spent for Acquiring U2 Lock: 6.198883056640625e-06</span><br><span class="line">2022-05-30 12:15:03 INFO     Start predicting with U2</span><br><span class="line">2022-05-30 12:15:03 INFO     Acquired Lock for U2!</span><br><span class="line">2022-05-30 12:15:03 INFO     Time spent for reading image from S3 by cv2! : 0.10718274116516113</span><br><span class="line">2022-05-30 12:15:03.755888640 [W:onnxruntime:Default, onnxruntime_pybind_state.cc:526 CreateExecutionProviderInstance] Failed to create TensorrtExecutionProvider. Please reference https://onnxruntime.ai/docs/execution-providers/TensorRT-ExecutionProvider.html#requirements to ensure all dependencies are met.</span><br><span class="line">2022-05-30 12:15:03.755924162 [W:onnxruntime:Default, onnxruntime_pybind_state.cc:552 CreateExecutionProviderInstance] Failed to create CUDAExecutionProvider. Please reference https://onnxruntime.ai/docs/reference/execution-providers/CUDA-ExecutionProvider.html#requirements to ensure all dependencies are met.</span><br><span class="line">2022-05-30 12:15:05 INFO     &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time spent for U2 model.detect: 2.503098249435425</span><br><span class="line">2022-05-30 12:15:05 INFO     Time spent for U2: 2.5608794689178467</span><br><span class="line">2022-05-30 12:15:05 INFO     uploaded_name: removed_back_U2_20220530-12:15:02.png</span><br><span class="line">2022-05-30 12:15:05 INFO     Time spent for upload_file to S3: 0.0716698169708252</span><br><span class="line">2022-05-30 12:15:05 INFO     &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time spent for U2 model: 2.740231990814209</span><br><span class="line">2022-05-30 12:15:05 INFO     Released Lock for U2!</span><br><span class="line">2022-05-30 12:15:05 INFO     49.216.44.45 - - [30/May/2022 12:15:05] "POST /predict/u2 HTTP/1.1" 200 -</span><br><span class="line">2022-05-30 12:15:50 INFO     49.216.44.45 - - [30/May/2022 12:15:50] "OPTIONS /predict/u2 HTTP/1.1" 200 -</span><br><span class="line">2022-05-30 12:15:50 INFO     Using algorithm -- u2</span><br><span class="line">2022-05-30 12:15:50 INFO     in get_prediction!!!!</span><br><span class="line">2022-05-30 12:15:53 INFO     dict_keys(['image'])</span><br><span class="line">2022-05-30 12:15:53 INFO     Time spent for successfully uploaded usr img img4predict_20220530-12:15:53.jpeg to S3 : 2.71683931350708</span><br><span class="line">2022-05-30 12:15:53 INFO     Acquiring U2 Lock... Waiting...</span><br><span class="line">2022-05-30 12:15:53 INFO     Time spent for Acquiring U2 Lock: 6.67572021484375e-06</span><br><span class="line">2022-05-30 12:15:53 INFO     Start predicting with U2</span><br><span class="line">2022-05-30 12:15:53 INFO     Acquired Lock for U2!</span><br><span class="line">2022-05-30 12:15:53 INFO     Time spent for reading image from S3 by cv2! : 0.09477829933166504</span><br><span class="line">2022-05-30 12:15:54.261673705 [W:onnxruntime:Default, onnxruntime_pybind_state.cc:526 CreateExecutionProviderInstance] Failed to create TensorrtExecutionProvider. Please reference https://onnxruntime.ai/docs/execution-providers/TensorRT-ExecutionProvider.html#requirements to ensure all dependencies are met.</span><br><span class="line">2022-05-30 12:15:54.261700073 [W:onnxruntime:Default, onnxruntime_pybind_state.cc:552 CreateExecutionProviderInstance] Failed to create CUDAExecutionProvider. Please reference https://onnxruntime.ai/docs/reference/execution-providers/CUDA-ExecutionProvider.html#requirements to ensure all dependencies are met.</span><br><span class="line">2022-05-30 12:15:55 INFO     &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time spent for U2 model.detect: 1.9362876415252686</span><br><span class="line">2022-05-30 12:15:55 INFO     Time spent for U2: 2.035747528076172</span><br><span class="line">2022-05-30 12:15:55 INFO     uploaded_name: removed_back_U2_20220530-12:15:53.png</span><br><span class="line">2022-05-30 12:15:56 INFO     Time spent for upload_file to S3: 0.16250967979431152</span><br><span class="line">2022-05-30 12:15:56 INFO     &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time spent for U2 model: 2.2935831546783447</span><br><span class="line">2022-05-30 12:15:56 INFO     Released Lock for U2!</span><br><span class="line">2022-05-30 12:15:56 INFO     49.216.44.45 - - [30/May/2022 12:15:56] "POST /predict/u2 HTTP/1.1" 200 -</span><br></pre></td></tr></table></figure>
-
-<h4 id="To-be-Debugged…"><a href="#To-be-Debugged…" class="headerlink" title="To be Debugged…"></a>To be Debugged…</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(dl37) ubuntu@ip-192-168-81-198:~/codes/rm-bg-test$ nvcc</span><br><span class="line">Command 'nvcc' not found, but can be installed with:</span><br><span class="line">sudo apt install nvidia-cuda-toolkit</span><br><span class="line">(dl37) ubuntu@ip-192-168-81-198:~/codes/rm-bg-test$ sudo apt install nvidia-cuda-toolkit</span><br></pre></td></tr></table></figure>
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2qwhz0066j21bg0r6wk6.jpg" alt="image-20220531003424795" style="zoom:50%;" />
-
-
-
-<p>still issue:</p>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2qxq59vu7j21l60u0q9d.jpg" alt="image-20220531011651588"></p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2ribc6nnkj21jl0u0tdh.jpg" alt="image-20220531130858981" style="zoom:80%;" />
-
-
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2rrsnyp4cj22280pgtev.jpg" alt="image-20220531183707169" style="zoom:67%;" />
-
-
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38as3hkw7j20zq03swet.jpg" alt="image-20220601201815869" style="zoom:70%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38as53kxxj21om0te0z5.jpg" alt="image-20220602130731483" style="zoom:67%;" />
-
-
-
-
-
-<h3 id="Fixed"><a href="#Fixed" class="headerlink" title="Fixed!"></a>Fixed!</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2tuku93g7j21a70u0n2c.jpg" alt="image-20220602134439595"  />
-
-
-
-<h3 id="T4-8TFLOPS"><a href="#T4-8TFLOPS" class="headerlink" title="T4: 8TFLOPS"></a>T4: 8TFLOPS</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38as95071j20ws0f80tt.jpg" alt="image-20220530175459347" style="zoom:50%;" />
-
-
-
-
-
-<p>vs </p>
-<h2 id="Desktop"><a href="#Desktop" class="headerlink" title="Desktop"></a>Desktop</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38asbbp5qj21060u041a.jpg" alt="image-20220530190225031" style="zoom:67%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2qmxf3k38j213g0mmwg7.jpg" alt="image-20220530190314249" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38asf5hnbj215e0l4q7e.jpg" alt="image-20220530190425812" style="zoom:67%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38ash054dj20zy0l6juc.jpg" alt="image-20220530190343502" style="zoom:67%;" />
-
-
-
-
-
-<h2 id="Others-白嫖平台"><a href="#Others-白嫖平台" class="headerlink" title="Others 白嫖平台"></a>Others 白嫖平台</h2><p>Colab</p>
-<p>Kabble</p>
-<p>AI Studio</p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2qn0jg4rhj21090u0din.jpg" alt="image-20220530190615177" style="zoom:67%;" />
-
-
-
-
-
-
-
-<p>ref: <a href="https://www.bilibili.com/video/BV1MA411L78X?t=493" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1MA411L78X?t=493</a></p>
-<h2 id="CUDAs"><a href="#CUDAs" class="headerlink" title="CUDAs"></a>CUDAs</h2><p>2</p>
-<p><code>torch.version.cuda</code> is just defined as a string. It doesn’t query anything. It doesn’t tell you which version of CUDA you have installed. It only tells you that the PyTorch you have installed is meant for that (<code>10.2</code>) version of CUDA. But the version of CUDA you are actually running on your system is <code>11.4</code>.</p>
-<p>If you installed PyTorch with, say,</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision torchaudio cudatoolkit=<span class="number">11.1</span> -c pytorch -c nvidia</span><br></pre></td></tr></table></figure>
-
-<p>then you should also have the necessary libraries (<code>cudatoolkit</code>) in your Anaconda directory, which may be different from your system-level libraries.</p>
-<p>However, note that these depend on the NVIDIA display drivers:</p>
-<p><a href="https://i.stack.imgur.com/lKSLg.png" target="_blank" rel="noopener"><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2qxb8m3snj20dw0auwf5.jpg" alt="enter image description here"></a></p>
-<p>Installing <code>cudatoolkit</code> does not install the drivers (<code>nvidia.ko</code>), which you need to install separately on your system.</p>
-<p><a href="https://stackoverflow.com/questions/69497328/why-are-torch-version-cuda-and-devicequery-reporting-different-versions" target="_blank" rel="noopener">https://stackoverflow.com/questions/69497328/why-are-torch-version-cuda-and-devicequery-reporting-different-versions</a></p>
-</div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/73/">73</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2022 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+</li>
+<li><p>DP</p>
+<ul>
+<li>vector<int> dp = {1, 1, 2};</li>
+<li>vector<int> dp(n + 1);</li>
+<li>vector&lt;vector<int>&gt; dp(n, vector<int>(2));</li>
+</ul>
+</li>
+<li><p>Bits</p>
+<ul>
+<li>uint32_t x = n;</li>
+</ul>
+</li>
+<li><p>Matrix</p>
+<ul>
+<li><p>if (matrix.size() == 0 || matrix[0].size() == 0) return {};</p>
+</li>
+<li><p>int m = matrix.size(), n = matrix[0].size();</p>
+</li>
+<li><p>int DIRECTIONS[4][2] = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };</p>
+</li>
+<li><p>seen.insert(i * n + j);</p>
+</li>
+<li><p>seen.find(ni * n + nj) != seen.end()</p>
+</li>
+<li><p>if (grid[i][j] == ‘1’ &amp;&amp; (visited.find(i * n + j) == visited.end())){</p>
+</li>
+<li><p>PII now = q.front(); q.pop();</p>
+<p>int i = now.first, j = now.second;</p>
+<p>// printf(“%d, %d\n”, r, c);</p>
+<p>for (auto dir:DIRECTIONS){</p>
+<p>​    // int di = dir.first, nj = dir.second;  // WRONG</p>
+<p>​    int di = dir[0], dj = dir[1];   // FIX</p>
+</li>
+</ul>
+</li>
+<li><p>LINEAR – String, or Arr, with Vector as Stack, prefer to just use vector to make API name easier</p>
+<ul>
+<li><p>Vector</p>
+<ul>
+<li><p>v.push_back(x)</p>
+</li>
+<li><p>v.back() // 注意，API 不是top(); v.pop_back() // 注意，不是pop()</p>
+</li>
+<li><p>// vector<int> right(n) = {1}; // WRONG!        </p>
+<p>vector<int> left(n, 1);</p>
+</li>
+<li><p>string dfs_and_compare(TreeNode* root, string sub_pat, vector<bool> &amp;res){. // Don’t Forget <code>&amp;</code>! </p>
+</li>
+<li><pre><code class="cpp"><span class="keyword">private</span>:
+    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; p;<span class="comment">//(3); 宣告不可指定大小</span>
+<span class="keyword">public</span>:
+    ParkingSystem(<span class="keyword">int</span> big, <span class="keyword">int</span> medium, <span class="keyword">int</span> small) {
+        p = {big, medium, small};
+    }
+&lt;!--￼<span class="number">1</span>--&gt;
+
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Interval</p>
+<ul>
+<li>int s = interval[0], e = interval[1];</li>
+</ul>
+</li>
+<li><p>LinkedList</p>
+<ul>
+<li><p>printf(“var[%d] = %x\n”, i - 1, ptr);</p>
+</li>
+<li><p>printf(“var[%d] = %d\n”, i - 1, *ptr);</p>
+</li>
+<li><p>if (!head || !head-&gt;next) return head;</p>
+</li>
+<li><p>// ListNode* my_20230520_recursive(ListNode* prev, ListNode* head, vector&lt;ListNode*&gt; res) { // ERROR!</p>
+<p>ListNode* my_20230520_recursive(ListNode* prev, ListNode* head, vector&lt;ListNode*&gt; &amp;res) {   // FIX by adding &amp; for <code>res</code></p>
+</li>
+<li><p>// vector&lt;ListNode*&gt; res; //runtime error: reference binding to null pointer of type ‘ListNode *’ (stl_vector.h)</p>
+<p>vector&lt;ListNode*&gt; res(1);    // FIX</p>
+</li>
+</ul>
+</li>
+<li><p>Tree</p>
+<ul>
+<li>bool ans = dfs(root, LONG_MIN, LONG_MAX);<br>bool dfs(TreeNode* root, long lo, long hi){        // FIX!, 別用 INT_MIN, INT_MAX</li>
+</ul>
+</li>
+<li><p>Graph</p>
+<ul>
+<li>vector&lt;vector<int>&gt; g(numCourses);</li>
+<li>Node* tmp = new Node(node-&gt;val);    // FIX!, dont’ forget <code>new</code> to create the “pointer”</li>
+<li>void dfs(vector&lt;vector<int>&gt; &amp;graph, int node, unordered_set<int> &amp;visited){    // FIX! copy of the graph in every dfs call will lead to TLE!</li>
+<li>vector&lt;vector<int>&gt; graph(n); // WRONG –&gt; vector&lt;vector<int>&gt; graph(n, vector<int>);</li>
+<li><u>to be a tree</u>, shoud be (edges.size() + 1 != n)</li>
+</ul>
+</li>
+</ul>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/2%20%E8%BB%8A%E8%B2%B8/">Loans/2 車貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/4%20%E4%BF%A1%E8%B2%B8/">Loans/4 信貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"><h2 id="What-is-信貸"><a href="#What-is-信貸" class="headerlink" title="What is 信貸"></a>What is 信貸</h2><ul>
+<li><p><strong>沒提供任何擔保品</strong></p>
+</li>
+<li><p>又叫「上班族貸款」，根據個人信用</p>
+</li>
+<li><p>平均月薪的22倍，不看我的其他產權</p>
+<ul>
+<li>這個是「台灣所有的銀行加總起來給我的額度」</li>
+</ul>
+</li>
+<li><p>非針對雇主</p>
+</li>
+<li><p>一般上限都是7年，一年內還清會有違約金要罰</p>
+</li>
+<li><p>利率隨央行調整</p>
+</li>
+</ul>
+<h2 id="還款方式"><a href="#還款方式" class="headerlink" title="還款方式"></a>還款方式</h2><ul>
+<li><p>本利攤還</p>
+</li>
+<li><p>循環的額度</p>
+<ul>
+<li>e.g. 申請100萬，可以給張金融卡去提款，按日計息，如果今天用了50萬，過兩天放回去，在額度裡盡量用；利率比本利攤還高兩碼0.5</li>
+</ul>
+</li>
+</ul>
+<h2 id="哪些類別算信貸"><a href="#哪些類別算信貸" class="headerlink" title="哪些類別算信貸"></a>哪些類別算信貸</h2><ul>
+<li>預借現金<ul>
+<li>一定是低於額度，一般學生2w是上限</li>
+</ul>
+</li>
+<li>P2p (鄉民貸) 就是無擔保貸款，用的是個人的信用<ul>
+<li>像傳統私人貸</li>
+<li>資金的借貸的仲介商，透過一個平台的仲介，撮合兩者</li>
+<li>民間的借貸平台</li>
+<li>30幾年前英國人創的</li>
+<li>歐美投資銀行現在也把這個就包裝成證券化賣出！</li>
+<li>台灣金管會限制20%；中國可到40, 50%, 當時2007年資金提供者有被匡錢，現掛了</li>
+<li>對資金需求者要作一連串的徵信…！</li>
+<li>所以對於個人來說，錢放那邊，利息可能到10%, 而銀行就不到1%! 前提是做好徵信的工作… <u>有眉角</u>…</li>
+</ul>
+</li>
+</ul>
+<h2 id="上班族貸款-非上班族貸款"><a href="#上班族貸款-非上班族貸款" class="headerlink" title="上班族貸款/非上班族貸款"></a>上班族貸款/非上班族貸款</h2><ul>
+<li>五師</li>
+<li>月收入來源<ul>
+<li>上班族還有扣繳憑單</li>
+<li>非上班族主要看資產所產生的月收入變化，讓銀行提供額度<ul>
+<li>租金開證明</li>
+<li>存款的利息</li>
+<li>股票在集保</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="預借現金"><a href="#預借現金" class="headerlink" title="預借現金"></a>預借現金</h3><ul>
+<li>年限短，一般２年</li>
+<li>10%利率；相較一般信貸2~3% (黃金人員) 高不少</li>
+<li>5w算一般基層人員，利率比黃金人員高可能1%</li>
+<li>小公司，又薪水低，利率可能就4, 5%或6, 7%，所以公司名氣也很重要</li>
+</ul>
+<h2 id="如何貸好"><a href="#如何貸好" class="headerlink" title="如何貸好"></a>如何貸好</h2></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/23/Loans/1%20%E8%B2%B8%E6%AC%BE%E5%95%8F%E9%A1%8C-%E6%88%BF%E8%B2%B8/">Loans/1 貸款問題-房貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"><h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><ul>
+<li>負利率！</li>
+</ul>
+<h1 id="基本原則"><a href="#基本原則" class="headerlink" title="基本原則"></a>基本原則</h1><p>貸款種類</p>
+<ul>
+<li>沒工作的人、未出社會：信用卡預借現金 4~10%</li>
+<li>一般正常的信貸：3-4%, 2-3%</li>
+</ul>
+<p>貸款運用</p>
+<p>房貸、車貸利率都很低，用銀行的資金來購買房產、投資房產、買汽車都是很正常</p>
+<h2 id="為何借"><a href="#為何借" class="headerlink" title="為何借"></a>為何借</h2><p>投資、週轉、紀錄</p>
+<p>要小心，自己的風控</p>
+<h2 id="術語"><a href="#術語" class="headerlink" title="術語"></a>術語</h2><ul>
+<li><p>小白 – 怕是人頭，除非有資產，但也是會打折變5、６成</p>
+</li>
+<li><p>建信用，存款、信用卡</p>
+</li>
+</ul>
+<h2 id="分期付款"><a href="#分期付款" class="headerlink" title="分期付款"></a>分期付款</h2><ul>
+<li>還款對信用有差</li>
+<li>買的時候的沒差，利息是廠商付的 – 即廠商為促銷活動而去付給銀行的錢</li>
+</ul>
+<h2 id="借款不等於負債"><a href="#借款不等於負債" class="headerlink" title="借款不等於負債"></a>借款不等於負債</h2><h4 id="負債"><a href="#負債" class="headerlink" title="負債"></a>負債</h4><p>以債養債或創業失敗</p>
+<h4 id="資產"><a href="#資產" class="headerlink" title="資產"></a>資產</h4><p>房價、股票漲、租金，都是上漲！跟各人投資運氣有關</p>
+<h2 id="貨比三家"><a href="#貨比三家" class="headerlink" title="貨比三家"></a>貨比三家</h2><p>低利率</p>
+<p>高額度</p>
+<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p>主流銀行</p>
+<p><strong><em>不要隨便簽下「個資查詢同意書」！！</em></strong></p>
+<h1 id="房貸"><a href="#房貸" class="headerlink" title="房貸"></a>房貸</h1><h2 id="估價原則"><a href="#估價原則" class="headerlink" title="估價原則"></a>估價原則</h2><p>銀行怎麼估呢？</p>
+<ol>
+<li>自己有的估價師，如台新是有的<ol>
+<li>問建設公司，有往來的建設公司, 問型態，如公寓或華廈etc</li>
+<li>實價登錄作參考</li>
+<li>大型房仲</li>
+</ol>
+</li>
+<li>長期來講價增值、貨幣貶值，薪水↑物價↑，though 人口↓,　所以只要選對區域，長期而言是↑</li>
+</ol>
+<h2 id="貸款種類"><a href="#貸款種類" class="headerlink" title="貸款種類"></a>貸款種類</h2><h4 id="購屋貸款"><a href="#購屋貸款" class="headerlink" title="購屋貸款"></a>購屋貸款</h4><h4 id="原屋融資-中古屋貸款"><a href="#原屋融資-中古屋貸款" class="headerlink" title="原屋融資 (中古屋貸款)"></a>原屋融資 (中古屋貸款)</h4><p>可以享受房地產增值的好處，貸到更多的錢</p>
+<p> Links <a href="https://www.youtube.com/watch?v=AnsMtGUxLXU" target="_blank" rel="noopener">1</a>, </p>
+<h5 id="流程-1"><a href="#流程-1" class="headerlink" title="流程"></a>流程</h5><p>申請估價審核對保設定撥款</p>
+<h3 id="房屋類型影響的貸款成數跟效果"><a href="#房屋類型影響的貸款成數跟效果" class="headerlink" title="房屋類型影響的貸款成數跟效果"></a>房屋類型影響的貸款成數跟效果</h3><h4 id="成數"><a href="#成數" class="headerlink" title="成數"></a>成數</h4><ul>
+<li>一般住宅 7~8成</li>
+<li>小套 10~12.5坪↓, 5成，因為法拍可能要到三、四拍，不易呀！一次就打八折去了，第三拍就是64折了，流動差<ul>
+<li>看權狀，有分公共設施還有室內坪數(含陽台)，小於12p，就叫作小套房</li>
+<li>銀行自己也自行評估當地房產↑或↓，如果成數高代表銀行也覺得增值性↑；要是成數保守，就代表銀行覺得房地產增值性不高；當然也跟個人收入條件有關係</li>
+</ul>
+</li>
+<li>豪宅<ul>
+<li>台北7Kw; 新北6Kw; 其他地4Kw; 央行規定不得超過6成<ul>
+<li>但還是<u>有眉角</u>… 可以去到 7、8成 (噓)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>工業用住宅<ul>
+<li>一定是比較差的，所以比一般低一1, 2成，二手市場去化慢，so 貸6~7成</li>
+<li>另，電費、房屋稅多</li>
+<li>除非真的蓋超好格局環境，不然盡量避開！</li>
+</ul>
+</li>
+<li>店面 &amp; 商辦<ul>
+<li>店面市場只在金字塔頂層的人，所去化不易，成數低！–&gt; 保守</li>
+<li>辦公大樓好些！租金上穩定，也不像店面那麼高單價，投報率都不錯</li>
+</ul>
+</li>
+</ul>
+<h2 id="還款繳息"><a href="#還款繳息" class="headerlink" title="還款繳息"></a>還款繳息</h2><h4 id="單一利率-VS-組合利率-amp-本息攤還-VS-本金攤還"><a href="#單一利率-VS-組合利率-amp-本息攤還-VS-本金攤還" class="headerlink" title="單一利率 VS 組合利率 &amp; 本息攤還 VS 本金攤還"></a>單一利率 VS 組合利率 &amp; 本息攤還 VS 本金攤還</h4><p>Link <a href="https://www.youtube.com/watch?v=9YgnvKp2HFQ" target="_blank" rel="noopener">1</a></p>
+<ul>
+<li><p>利息不是愈低愈好，要看是否是單一或很賤的組合利率</p>
+</li>
+<li><p>還款方式會影響月繳金額跟利息高低</p>
+</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h8ff6c8rnij30u010awiw.jpg" alt="image-20221123221547111"></p>
+<ul>
+<li>減低壓力的方式<ol>
+<li>頭款多些</li>
+<li>年數拉長</li>
+<li>善用寬限期, 前三年只付利息不付本金</li>
+</ol>
+</li>
+</ul>
+<h4 id="純繳息"><a href="#純繳息" class="headerlink" title="純繳息"></a>純繳息</h4><ul>
+<li>一般銀行只壓在7成以內適用</li>
+<li>可能每年要換單，可能一次打7年的合約，7年內只要繳息正常，它都給我純繳息 <ul>
+<li>我不還本金，對銀行來講利息是比較多的呀！</li>
+</ul>
+</li>
+<li>但它也考慮到房子萬一貶值…，我還沒還到本金<ul>
+<li>所以它成數不像本利攤還</li>
+</ul>
+</li>
+<li>可能就是給個7年的時間，7或3年換一次單…</li>
+</ul>
+<h4 id="本息平均攤還-階段式還款"><a href="#本息平均攤還-階段式還款" class="headerlink" title="本息平均攤還/階段式還款"></a>本息平均攤還/階段式還款</h4><ul>
+<li>15~30年<ul>
+<li>可能還3年的本金已還款10%</li>
+<li>ps. 貸的時間長如到40年對銀行不划算，因為它的資金都是來自定存最長就兩、三年而已的，跟壽險保單持續20年都會有資金進來不一樣</li>
+<li>前三年可以要寬限期，第四年開始以剩下的17年作「本利攤還」<ul>
+<li>理由一般是裝潢，自備款不夠，還需累積收入</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>３年內還掉要賠違約金1% (1kw就是8w), 但還是<u>有眉角</u>變 0.5%之類 (即4w)…<ul>
+<li>它吸存款是0.8，放貸是1.8，只賺了1%</li>
+<li>裡面還有租金、折舊、成本人力，銀行前三年貸出來都是虧的，要提存款準備、呆帳準備 (目前金管會定是1%)</li>
+</ul>
+</li>
+</ul>
+<h2 id="原屋融資的目的"><a href="#原屋融資的目的" class="headerlink" title="原屋融資的目的"></a>原屋融資的目的</h2><ul>
+<li>投資、周轉需求、增額度(增貸)、降息(但現在比價都差個0.1而已很少，而且還要搬家費違約金、貸入、設抵押權轉換的費用、地政事務所費)</li>
+<li><code>平轉</code>, 目的：我想要 1增貸(通常都是) 2寬限期(即純繳息) 3降息<ul>
+<li>!=搬家；平轉就純粹只是為了降低利率、省掉利息，我額度不增加</li>
+<li>如在台銀不隨中央降0.1%，要是貸3kw，一年差3w，5年就15w，第一年把手續費用攤平了，後面四年可以省下利息，這就叫作平轉</li>
+<li>還可能能再多要到兩好處<ul>
+<li>寬限期，可能我的第二家信用卡的銀行願意「再給」<ul>
+<li>btw, 1kw的純繳息如果2%一個月大概就20w/12=1.6w; 加要是加上本金可能就共5w, 其中本金占了3.?w</li>
+</ul>
+</li>
+<li>利率再降低</li>
+</ul>
+</li>
+<li>可如此施壓給原銀行降利率</li>
+<li>但不能讓銀行覺得是我沒能力繳本利攤 … <u>有眉角</u>…，讓銀行再給一次寬限期，這樣我就不用再浪費移轉的手續費，這個要好幾萬的</li>
+<li>增貸: 生意、周轉、斷頭、創業…</li>
+</ul>
+</li>
+</ul>
+<h2 id="以房養老"><a href="#以房養老" class="headerlink" title="以房養老"></a>以房養老</h2><ul>
+<li>利用房子來增加他的生活費用</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h8gau5ja8vj315c0ho40v.jpg" alt="image-20221124163114121"></p>
+<ul>
+<li>當退休後，除了基本的退休金以外，可以跟銀行申悄以方養老這種類型的房貸，利息也不用付，就是從額度裡面去扣，然後再給後代覺得這個房子要出售還是轉換成原屋融資</li>
+<li>保守型的退休人員，錢留著自己用</li>
+</ul>
+<h2 id="二胎-amp-地下金融"><a href="#二胎-amp-地下金融" class="headerlink" title="二胎 &amp; 地下金融"></a>二胎 &amp; 地下金融</h2><h4 id="二胎"><a href="#二胎" class="headerlink" title="二胎"></a>二胎</h4><ul>
+<li>第一順位的抵押權是在A銀行，想增貸又不想離開A銀行，不想搬家，只想增40, 50w，很少就是100w內，所以想想是否能以房子作第二順位的抵押</li>
+<li>3%~6％，比較高一點，一般金額都不給高都是小額</li>
+<li>一、兩家銀行有作，看扣掉第一順位銀行的貸款後還有多少殘值，再貸給我這樣的錢</li>
+</ul>
+<h4 id="地下金融"><a href="#地下金融" class="headerlink" title="地下金融"></a>地下金融</h4><ul>
+<li>有很多也是提供給這個二順位的貸款</li>
+<li>額度可能高些，但可能利率就是高高高，因為也不受民法上利率20%的上限管制</li>
+<li>要36%, 就是一個月3w了，相對銀行一年也才2%! 是18倍</li>
+</ul>
+<h4 id="整債–打交道的經驗"><a href="#整債–打交道的經驗" class="headerlink" title="整債–打交道的經驗"></a>整債–打交道的經驗</h4><p>可跟很好的金額跟利率，<u>有眉角</u>…</p>
+<h2 id="授信準則及標準"><a href="#授信準則及標準" class="headerlink" title="授信準則及標準"></a>授信準則及標準</h2><p>物＆人的財力存款股票房地產</p>
+<h2 id="如何申請最有利的房貸"><a href="#如何申請最有利的房貸" class="headerlink" title="如何申請最有利的房貸"></a>如何申請最有利的房貸</h2><p>ABC客戶</p>
+<ul>
+<li>A黃金職業</li>
+<li>B受薪基層<ul>
+<li>二等親，看後台實力</li>
+<li>非六都比較低</li>
+</ul>
+</li>
+</ul>
+<p>利率、額度、還款期限/金額、還款彈性、撥款速度</p>
+<ul>
+<li>彈性<ul>
+<li>往來一年後，我想增貸，可談</li>
+<li>中央如果降</li>
+<li>延長寬限期，就是搬家啦，就是技巧，但人家也會看你中間的繳的方式判斷，談判，<u>有眉角</u>…</li>
+</ul>
+</li>
+<li>撥款速度<ul>
+<li>權狀交給銀行要辦理設定，徵信到結束，差不多7~10工作天</li>
+<li>依金額，要審到高階看還款能力</li>
+</ul>
+</li>
+</ul>
+<h1 id="總流程"><a href="#總流程" class="headerlink" title="總流程"></a>總流程</h1></div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/77/">77</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')

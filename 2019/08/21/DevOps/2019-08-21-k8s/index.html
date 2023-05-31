@@ -1,0 +1,115 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="DevOps/2019-08-21-k8s"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>DevOps/2019-08-21-k8s | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#yml-–-deployment-yml"><span class="toc-number">1.1.</span> <span class="toc-text">yml – deployment.yml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kubectl-as-docker-cmd"><span class="toc-number">1.2.</span> <span class="toc-text">Kubectl, as docker cmd</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Main-Features"><span class="toc-number"></span> <span class="toc-text">4 Main Features</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pod"><span class="toc-number">1.</span> <span class="toc-text">Pod</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deployment"><span class="toc-number">2.</span> <span class="toc-text">Deployment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service"><span class="toc-number">3.</span> <span class="toc-text">Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-compose-alternative-in-K8S-–-DNS"><span class="toc-number">4.</span> <span class="toc-text">Docker-compose alternative in K8S – DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#in-d2"><span class="toc-number">4.1.</span> <span class="toc-text">in d2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ingress"><span class="toc-number">5.</span> <span class="toc-text">Ingress</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#One-more-host"><span class="toc-number">5.1.</span> <span class="toc-text">One more host</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">382</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">65</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">DevOps/2019-08-21-k8s</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-21</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/DevOps/">DevOps</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>Auto-Scaling</p>
+<p>Failure Recovery w/ replica set</p>
+<p>LB – by Control Plane – as a <strong><em>master</em></strong> w/ API </p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5eq68hk4qj217o0lun01.jpg" alt="image-20220821214945800" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5eq6q45goj20jq0j0q48.jpg" alt="image-20220821215014648" style="zoom:33%;" />
+
+
+
+<p>Simulate w Minikube</p>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20220821215049055.png" alt="image-20220821215049055" style="zoom:50%;" />
+
+
+
+<h3 id="yml-–-deployment-yml"><a href="#yml-–-deployment-yml" class="headerlink" title="yml – deployment.yml"></a>yml – deployment.yml</h3><p>pod, containers, service … configs, as dockerfils</p>
+<ul>
+<li>vscode has plugin!</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5eqaxeu7fj20im0lwab7.jpg" alt="image-20220821215416754" style="zoom: 50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5eqc79ye9j20nm0miwfx.jpg" alt="image-20220821215530040" style="zoom: 50%;" />
+
+
+
+<h3 id="Kubectl-as-docker-cmd"><a href="#Kubectl-as-docker-cmd" class="headerlink" title="Kubectl, as docker cmd"></a>Kubectl, as docker cmd</h3><p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5eqd766ysj20uu06udga.jpg" alt="image-20220821215627505"></p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5eqdiyitrj20z006c0tb.jpg" alt="image-20220821215646360" style="zoom:50%;" />
+
+
+
+
+
+<h1 id="4-Main-Features"><a href="#4-Main-Features" class="headerlink" title="4 Main Features"></a>4 Main Features</h1><h2 id="Pod"><a href="#Pod" class="headerlink" title="Pod"></a>Pod</h2><ul>
+<li>一個或多個容器的集合</li>
+<li>一般會有Web App, DB.. etc</li>
+</ul>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20220821214807531.png" alt="image-20220821214807531" style="zoom:33%;" />
+
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epcluj00j210k0kqq69.jpg" alt="image-20220821212117353"></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epbh0n7gj21280jggmu.jpg" alt="image-20220821212008692"></p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epblkss0j20aa044jrc.jpg" alt="image-20220821212019914" style="zoom:50%;" />
+
+
+
+<h2 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h2><p>maintain/create number of pod</p>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20220821212249276.png" alt="image-20220821212249276" style="zoom:67%;" />
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epetvc4pj211w0os77j.jpg" alt="image-20220821212325632"></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epfhvymqj20zy0pw785.jpg" alt="image-20220821212403780"></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epfxbusgj217k0gywhq.jpg" alt="image-20220821212428458"></p>
+<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><p>map multi-pods into one service</p>
+<p>將多個pod抽象為一個服務！</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epizjo24j217a0o0dkt.jpg" alt="image-20220821212724529"></p>
+<h2 id="Docker-compose-alternative-in-K8S-–-DNS"><a href="#Docker-compose-alternative-in-K8S-–-DNS" class="headerlink" title="Docker-compose alternative in K8S – DNS"></a>Docker-compose alternative in K8S – DNS</h2><p>Docker-compose 可進行容器間的通信，但在k8s裡已不是以container 為單位作管理了, 而是以Pod</p>
+<p>所以Service間可以用IP作通信，但IP會變，所以用K8S提供的DNS</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epmktxlyj218c0ngq8n.jpg" alt="image-20220821213051660"></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epntwacij20xe0letbg.jpg" alt="image-20220821213204149"></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epo9m8rlj20yq0c8tac.jpg" alt="image-20220821213229872"></p>
+<h3 id="in-d2"><a href="#in-d2" class="headerlink" title="in d2"></a>in d2</h3><ul>
+<li>在 d2 中 access d1</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epoyigc2j211e0da766.jpg" alt="image-20220821213309986"></p>
+<h2 id="Ingress"><a href="#Ingress" class="headerlink" title="Ingress"></a>Ingress</h2><p>我們服務的IP，外界的用戶不知道，他們只會知道master的公網IP，而虛擬的IP不是公網IP，所以用戶肯定不知道 </p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epqsg8dqj218c0r8ten.jpg" alt="image-20220821213454798"></p>
+<ul>
+<li>sunwu51/notebook/Ingress-deployment.yml @ github</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epx9qdiej20jo0c6js1.jpg" alt="image-20220821214109378" style="zoom:50%;" />
+
+<ul>
+<li><p>ing-conf.yml</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epy9b0jqj20rw0keab8.jpg" alt="image-20220821214206229" style="zoom:67%;" />
+
+
+
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5epz4jvsej20ke0803yp.jpg" alt="image-20220821214256316" style="zoom:50%;" />
+
+
+
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20220821214348034.png" alt="image-20220821214348034" style="zoom:50%;" />
+
+
+
+<h3 id="One-more-host"><a href="#One-more-host" class="headerlink" title="One more host"></a>One more host</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5eq1dmm19j20je0dk3z9.jpg" alt="image-20220821214505928" style="zoom:50%;" />
+
+
+
+<p>ref: </p>
+<p>1 <a href="https://www.youtube.com/watch?v=HsvAVGjlN9k" target="_blank" rel="noopener">https://www.youtube.com/watch?v=HsvAVGjlN9k</a></p>
+<p>2 <a href="https://www.youtube.com/watch?v=ubz3cFgxeJA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=ubz3cFgxeJA</a></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/21/DevOps/2019-08-21-k8s/">http://yoursite.com/2019/08/21/DevOps/2019-08-21-k8s/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/08/21/DevOps/2019-08-21-Homebrew-change-mirror-source/"><i class="fa fa-chevron-left">  </i><span>DevOps/2019-08-21-Homebrew-change-mirror-source</span></a></div><div class="next-post pull-right"><a href="/2019/08/04/CV%20notes/2019-08-04-Pose-Generation/"><span>CV notes/2019-08-04-Pose-Generation</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

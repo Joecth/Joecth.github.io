@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Kaggles-Winner-Tips/0-my-flow"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>Kaggles-Winner-Tips/0-my-flow | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Appendix"><span class="toc-number">1.</span> <span class="toc-text">Appendix:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PyTorch-Hub"><span class="toc-number"></span> <span class="toc-text">PyTorch Hub</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Param-sharing"><span class="toc-number">1.</span> <span class="toc-text">Param sharing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Downsampling-Compression-–-Pooling"><span class="toc-number">2.</span> <span class="toc-text">Downsampling (Compression) – Pooling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AlexNet"><span class="toc-number">3.</span> <span class="toc-text">AlexNet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VGG"><span class="toc-number">4.</span> <span class="toc-text">VGG</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ResNet"><span class="toc-number">5.</span> <span class="toc-text">ResNet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Receptive-Field"><span class="toc-number">6.</span> <span class="toc-text">Receptive Field</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FC"><span class="toc-number">7.</span> <span class="toc-text">FC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DataSet"><span class="toc-number">8.</span> <span class="toc-text">DataSet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-in-cache"><span class="toc-number">9.</span> <span class="toc-text">Model in .cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Softmax-NLLLoss-neg-log-likelihood"><span class="toc-number">10.</span> <span class="toc-text">Softmax + NLLLoss (neg log likelihood)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Strategy"><span class="toc-number"></span> <span class="toc-text">Strategy</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Epoch"><span class="toc-number">0.1.</span> <span class="toc-text">Epoch</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SM"><span class="toc-number"></span> <span class="toc-text">SM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kernels"><span class="toc-number"></span> <span class="toc-text">Kernels</span></a></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">382</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">65</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">Kaggles-Winner-Tips/0-my-flow</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-09-07</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/KaggleWinnerTips/">KaggleWinnerTips</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix:"></a>Appendix:</h3><p> <a href="https://www.jiuzhang.com/seminar/293/" target="_blank" rel="noopener">https://www.jiuzhang.com/seminar/293/</a></p>
+<h2 id="PyTorch-Hub"><a href="#PyTorch-Hub" class="headerlink" title="PyTorch Hub"></a>PyTorch Hub</h2><p><a href="https://colab.research.google.com/github/pytorch/pytorch.github.io/blob/master/assets/hub/pytorch_vision_deeplabv3_resnet101.ipynb#scrollTo=interpreted-democracy" target="_blank" rel="noopener">https://colab.research.google.com/github/pytorch/pytorch.github.io/blob/master/assets/hub/pytorch_vision_deeplabv3_resnet101.ipynb#scrollTo=interpreted-democracy</a></p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71fpdqf6hj30x50u0gqp.jpg" alt="image-20221011163550657"></p>
+<h3 id="Param-sharing"><a href="#Param-sharing" class="headerlink" title="Param sharing"></a>Param sharing</h3><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71g0f3f3zj31de0nsafn.jpg" alt="image-20221011164630536"></p>
+<h3 id="Downsampling-Compression-–-Pooling"><a href="#Downsampling-Compression-–-Pooling" class="headerlink" title="Downsampling (Compression) – Pooling"></a>Downsampling (Compression) – Pooling</h3><h3 id="AlexNet"><a href="#AlexNet" class="headerlink" title="AlexNet"></a>AlexNet</h3><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71g88tcpej30yv0gpwhv.jpg" alt="img"></p>
+<h3 id="VGG"><a href="#VGG" class="headerlink" title="VGG"></a>VGG</h3><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71r4xcii2j31600mg0wr.jpg" alt="image-20221011231121905"></p>
+<h3 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h3><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71rb9v5faj316o0ne0vv.jpg" alt="image-20221011231732347"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71rc8d980j310q0dgtaz.jpg" alt="image-20221011231827669"></p>
+<h3 id="Receptive-Field"><a href="#Receptive-Field" class="headerlink" title="Receptive Field"></a>Receptive Field</h3><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71rfyb28kj319g0kyjw0.jpg" alt="image-20221011232201081"></p>
+<p>小的好處</p>
+<p>1 權重少</p>
+<p>2 非線性增多</p>
+<h3 id="FC"><a href="#FC" class="headerlink" title="FC"></a>FC</h3><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71tr746xwj317w0l8tea.jpg" alt="image-20221012004201570"></p>
+<h3 id="DataSet"><a href="#DataSet" class="headerlink" title="DataSet"></a>DataSet</h3><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71u4phnnhj30iw08u3z6.jpg" alt="image-20221012005500818"></p>
+<h3 id="Model-in-cache"><a href="#Model-in-cache" class="headerlink" title="Model in .cache"></a>Model in .cache</h3><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h72b8ch38bj30g204adfw.jpg" alt="image-20221012104642160"></p>
+<h3 id="Softmax-NLLLoss-neg-log-likelihood"><a href="#Softmax-NLLLoss-neg-log-likelihood" class="headerlink" title="Softmax + NLLLoss (neg log likelihood)"></a>Softmax + NLLLoss (neg log likelihood)</h3><p>NLLLoss for Multi-classes Classification 任務的 Loss function</p>
+<p>其意義為將 『Softmax』 過後的機率值『取 Log』並將正確答案的『機率值』加總取平均。</p>
+<p>基本上，這種 Loss function 是越低越好，我們也可以經過實際的使用來發現，基本上機率值高的選項與我們的『標準答案』越一致，Loss 的確就會越小。</p>
+<h2 id="Strategy"><a href="#Strategy" class="headerlink" title="Strategy"></a>Strategy</h2><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h72a7ljwpfj30wy0mqn04.jpg" alt="image-20221012101122430"></p>
+<ul>
+<li>A – init<ul>
+<li>Task far from the model other’s orig task</li>
+</ul>
+</li>
+<li>B – Freeze, when dataset<ul>
+<li>小, &lt; 10K, only train FC</li>
+<li>中, 10K~20K, only freeze former part, train FC and last 4 convs</li>
+<li>大… vice versa</li>
+</ul>
+</li>
+</ul>
+<h4 id="Epoch"><a href="#Epoch" class="headerlink" title="Epoch"></a>Epoch</h4><p>10~20</p>
+<p>Best to 50</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">text &#x3D; &#39;&#39;&#39;</span><br><span class="line">[default]</span><br><span class="line">aws_access_key_id &#x3D; &lt;your access key id&gt; </span><br><span class="line">aws_secret_access_key &#x3D; &lt;your secret access key&gt;</span><br><span class="line">region &#x3D; &lt;your region&gt;</span><br><span class="line">&#39;&#39;&#39;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="SM"><a href="#SM" class="headerlink" title="SM"></a>SM</h2><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h73pm3rdqcj30ko1dk40p.jpg" alt="image-20221013154951805"></p>
+<h2 id="Kernels"><a href="#Kernels" class="headerlink" title="Kernels"></a>Kernels</h2><p><a href="https://setosa.io/ev/image-kernels/" target="_blank" rel="noopener">https://setosa.io/ev/image-kernels/</a></p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h742rkxwbpj32o00qy7ab.jpg" alt="image-20221013232452155"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h74k7mwz7cj31os0u0jxu.jpg" alt="image-20221014092832004"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h76azpuf56j31ps0rgqa5.jpg" alt="image-20221015214040099"></p>
+<img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h75bhvvjg7j31380am0vo.jpg" alt="image-20221015011230215" style="zoom: 50%;" />
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h75qa7clebj30ve0u0ael.jpg" alt="image-20221015094409519"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h75zdlrr56j315y0u07cf.jpg" alt="image-20221015145849141"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h762n5w5xbj31430u0ten.jpg" alt="image-20221015165148387"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h77b07f0rkj31300imgpn.jpg" alt="image-20221016182641874"></p>
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody></table>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2021/09/07/Kaggles-Winner-Tips/0-my-flow/">http://yoursite.com/2021/09/07/Kaggles-Winner-Tips/0-my-flow/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2021/12/21/DP%20Ult./DP-7-%E9%9B%A3%E9%A1%8C%20DP/"><i class="fa fa-chevron-left">  </i><span>DP Ult./DP-7-難題 DP</span></a></div><div class="next-post pull-right"><a href="/2021/06/17/NodeJS/0_nvm_VS_npm/"><span>NodeJS/0_nvm_VS_npm</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
