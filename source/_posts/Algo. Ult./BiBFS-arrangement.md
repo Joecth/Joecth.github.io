@@ -256,3 +256,76 @@ class Solution:
 
 
 
+### LC127 Word Ladder
+
+```python
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:   
+      	# return self.my_20220914(beginWord, endWord, set(wordList))    # AC
+        return self.my_20220914_bibfs(beginWord, endWord, set(wordList))    # AC!
+
+    def my_20220914_bibfs(self, beginWord, endWord, wordset):
+        if endWord not in wordset:  # FIX case2
+            return 0
+        
+        que = deque([beginWord])
+        steps = 0
+        # visited = set([beginWord])
+        visited = {beginWord:1}
+        
+        end_que = deque([endWord])
+        end_visited = {endWord:1}
+        while que:
+            if len(end_que) < len(que):
+                que, end_que = end_que, que
+                visited, end_visited = end_visited, visited
+            
+            size = len(que)
+            for _ in range(size):
+                now = que.popleft()
+                # if now == endWord:
+                    # return steps + 1
+                    
+                nbrs = self.getNeighbors_20220914(now, wordset) # 26*L^2
+                for nbr in nbrs:
+                    if nbr not in visited:
+                        que.append(nbr)
+                        # visited.add(nbr)
+                        if nbr in end_visited:
+                            return end_visited[nbr] + visited[now]
+                        visited[nbr] = visited[now] + 1    
+            # steps += 1
+        return 0
+            
+    
+    def my_20220914(self, beginWord, endWord, wordset):
+        # n = len(wordset)
+        # wordset.add(endWord)  # BUG! 這題不該加
+        que = deque([beginWord])
+        steps = 0
+        visited = set([beginWord])   # 別忘了呀！！！
+        while que:      # N
+            size = len(que)
+            for _ in range(size):
+                now = que.popleft()
+                if now == endWord:
+                    return steps + 1
+                nbrs = self.getNeighbors_20220914(now, wordset) # 26*L^2
+                for nbr in nbrs:
+                    if nbr not in visited:
+                        que.append(nbr)
+                        visited.add(nbr)
+                # [que.append(nbr) for nbr in nbrs if nbr not in visited]
+                
+            steps += 1
+        return 0
+
+    def getNeighbors_20220914(self, now, wordset):
+        nbrs = []
+        for j in range(len(now)):   # L
+            for k in range(26):     # 26
+                token = now[:j] + chr(k + ord('a'))+ now[j+1:]  # L
+                if token in wordset:
+                    nbrs.append(token)
+        return nbrs
+```

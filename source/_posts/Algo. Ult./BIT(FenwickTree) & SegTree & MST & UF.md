@@ -119,6 +119,36 @@ https://www.youtube.com/watch?time_continue=2&v=Oq2E2yGadnU&feature=emb_logo
 
 ![image-20200731220717640](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghaib0wwh8j30wc0luaj8.jpg)
 
+
+
+### Tutorial 3: Lazy Tag
+
+```python
+class MyCalendarThree(object):
+
+    def __init__(self):
+        self.seg = collections.defaultdict(int)
+        self.lazy = collections.defaultdict(int)
+        
+    def book(self, start, end):
+        def update(s, e, l = 0, r = 10**9, ID = 1):
+            if r <= s or e <= l: return 
+            if s <= l < r <= e:
+                self.seg[ID] += 1
+                self.lazy[ID] += 1
+            else:
+                m = (l + r) // 2
+                update(s, e, l, m, 2 * ID)
+                update(s, e, m, r, 2*ID+1)
+                self.seg[ID] = self.lazy[ID] + max(self.seg[2*ID], self.seg[2*ID+1])
+        update(start, end)
+        return self.seg[1] + self.lazy[1]
+```
+
+https://leetcode.com/problems/my-calendar-iii/discuss/214831/Python-13-Lines-Segment-Tree-with-Lazy-Propagation-O(1)-time
+
+
+
 ## 9P SegTree
 
 ![image-20210310122717309](https://tva1.sinaimg.cn/large/e6c9d24egy1h382c643jyj20ha06pweq.jpg)
@@ -165,9 +195,77 @@ https://www.youtube.com/watch?time_continue=2&v=Oq2E2yGadnU&feature=emb_logo
 
 ref; https://youtu.be/e_bK-dgPvfM?t=555
 
-**Pro: able to see the array as a tree after ` build_tree**
+**Pro: able to see the array as a tree after ` build_tree`**
 
 
+
+<iframe src="https://leetcode.com/playground/QAS2H4yZ/shared" frameBorder="0" width="400" height="300"></iframe>
+
+```python
+print("Hello World!")
+M = 1000
+
+
+def build_tree(arr, start, end, tree, node):
+    if start == end:
+        tree[node] = arr[start]
+        return
+    mid = start + (end - start) // 2
+    left_node = node * 2 + 1
+    right_node = node * 2 + 2
+    build_tree(arr, start, mid, tree, left_node)
+    build_tree(arr, mid+1, end, tree, right_node)
+    tree[node] = tree[left_node] + tree[right_node]
+
+def update_tree(arr, start, end, tree, node, idx, val):
+    if start == end:
+        # print(node)
+        tree[node] = val
+        arr[idx] = val
+        return
+    mid = start + (end - start) // 2
+    left_node = node * 2 + 1
+    right_node = node * 2 + 2
+    if start <= idx <= mid:
+        update_tree(arr, start, mid, tree, left_node, idx, val)
+    else:
+        update_tree(arr, mid+1, end, tree, right_node, idx, val)
+    tree[node] = tree[left_node] + tree[right_node]
+    
+def query_tree(arr, start, end, tree, node, L, R):
+    print(f'start={start}, end={end}')
+    if start == end:
+        return tree[node]
+    if L > end or R < start:
+        return 0
+    if start >= L and end <= R: # Further understanding: check with https://youtu.be/e_bK-dgPvfM?t=2714
+        return tree[node]
+        
+    mid = start + (end - start) // 2
+    left_node = node * 2 + 1
+    right_node = node * 2 + 2
+    L_sum = query_tree(arr, start, mid, tree, left_node, L, R)
+    R_sum = query_tree(arr, mid+1, end, tree, right_node, L, R)
+    return L_sum + R_sum
+
+
+arr = [1, 3, 5, 7, 9, 11]
+size = len(arr)
+tree = [0] * M
+
+build_tree(arr, 0, size-1, tree, 0)
+print(f'arr: {arr}')
+print(f'tree: {tree[:15]}')
+
+update_tree(arr, 0, size-1, tree, 0, 4, 6)
+print(f'arr: {arr}')
+print(f'tree: {tree[:15]}')
+
+L, R = 2, 5
+query_sum = query_tree(arr, 0, size-1, tree, 0, L, R)
+print(f'arr: {arr}')
+print(f'query_sum [{L}:{R}]: {query_sum}')
+```
 
 
 

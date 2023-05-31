@@ -63,4 +63,289 @@ Author: Joe
 ## Special issues:
 
 - Java & js
+
 - <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gegmwb46qaj312a0u0qb1.jpg" alt="image-20200504191823941" style="zoom:67%;" />
+
+
+
+
+
+# C++ Syntax Arrg.
+
+- APIS: 
+
+  - INT_MIN, isalnum(str\[i\]), swap(matrix[i][j], matrix[j][i]); reverse(matrix[i].begin(), matrix[i].end());
+  - int end = upper_bound(nums.begin(), nums.end(), target - x) - nums.begin();
+  - const size_t n;
+
+- OVERFLOW:
+
+  - res += ((long long)pow(2, end_cnt) % M);  **FIX** in ↓
+
+    ```cpp
+    vector<int> p(n, 1);
+    for (int i = 1; i < n; i++){
+      p[i] = p[i - 1] * 2  % M;
+    }
+    
+    res += p[end_cnt];
+    ```
+
+- Hash
+
+  - unordered_map<int, int> lookup;
+  - unordered_map<char, char> m = { {'(', ')'}, {'[', ']'}, {'{', '}'} };
+  - if (lookup.find(target - nums[i]) != lookup.end()){
+  - for (auto item: m){
+
+    ​    res.push_back(item.second);  // 注意！是second, 不是 second()
+
+    }
+  - private:
+
+    ​    unordered_set<int> s;
+  - s.erase(key);
+  - unordered_set<string> lookup(wordDict.begin(), wordDict.end());
+
+- DP
+
+  - vector<int> dp = {1, 1, 2};
+  - vector<int> dp(n + 1);
+  - vector<vector<int>> dp(n, vector<int>(2));
+
+- Bits
+
+  - uint32_t x = n;
+
+- Matrix
+
+  - if (matrix.size() == 0 || matrix[0].size() == 0) return {};
+
+  - int m = matrix.size(), n = matrix[0].size();
+
+  - int DIRECTIONS\[4]\[2] = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
+
+  - seen.insert(i * n + j);
+
+  - seen.find(ni * n + nj) != seen.end()
+
+  - if (grid[i][j] == '1' && (visited.find(i * n + j) == visited.end())){
+
+  - PII now = q.front(); q.pop();
+
+    int i = now.first, j = now.second;
+
+    // printf("%d, %d\n", r, c);
+
+    for (auto dir:DIRECTIONS){
+
+    ​    // int di = dir.first, nj = dir.second;  // WRONG
+
+    ​    int di = dir[0], dj = dir[1];   // FIX
+
+- LINEAR -- String, or Arr, with Vector as Stack, prefer to just use vector to make API name easier
+
+  - Vector
+
+    - v.push_back(x)
+
+    - v.back() // 注意，API 不是top(); v.pop_back() // 注意，不是pop()
+
+    - // vector<int> right(n) = {1}; // WRONG!        
+
+      vector<int> left(n, 1);
+
+    - string dfs_and_compare(TreeNode* root, string sub_pat, vector<bool> &res){. // Don't Forget `&`! 
+
+    - ```cpp
+      private:
+          vector<int> p;//(3); 宣告不可指定大小
+      public:
+          ParkingSystem(int big, int medium, int small) {
+              p = {big, medium, small};
+          }
+      ```
+
+  - Queue
+
+    - while (!q.empty())
+    - q.push(nbr)
+    - q.front() // 注意，不是 top() ; q.pop()
+    - // for(auto &x: q) {    NO trvs queue in CPP!
+
+  - String
+
+    - for (char c: s){
+
+    - to_string(root->val)
+
+    - string pat = "(" + l + " " + to_string(root->val) + " " + r + ")";
+
+      ​        if (pat == sub_pat){
+
+      ​            res[0] = true;
+
+      ​        } 
+
+    - string tmp = s;  // COPY a string
+
+    - isalnum(s[i]); 
+
+    - tolower(s[i]) != tolower(s[j])
+
+    - return s.substr(lo, hi - lo+1);
+
+    - const int bi = i < b.size() ? b[i] - '0' : 0;
+
+    - result.insert(result.begin(), val + '0');
+    
+    - // if (lookup.find(s.substr(i, j)) != lookup.end()){    // BUG!! BE CAREFUL!!!
+    
+      ​	if (lookup.find(s.substr(i, j - i)) != lookup.end()){ // FIX!
+    
+
+- PQ, Top-K
+
+  - // printf("%d %d\n", x.first, x.second);
+
+  - private:
+
+    ​    priority_queue<int> pq;
+
+    ​    int sz;
+
+  - ```cpp
+    #define pii pair<int,int>
+    #define tii tuple<int,int>
+    
+    class Solution {
+    public:
+        static bool cmp(pair<int, int>& m, pair<int, int>& n) {
+            return m.second > n.second;
+        }    
+        vector<int> topKFrequent(vector<int>& nums, int k) {
+            // return sol_20230523(nums, k);
+            return py_20230523(nums, k);
+        }
+    
+        vector<int> sol_20230523(vector<int>& nums, int k) {    // AC!
+            unordered_map<int, int> counter;
+            for (auto x: nums) counter[x]++;
+    
+            int n = nums.size();
+    
+            // priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> pq(cmp);
+            // auto cmp = [](const pair<int, int>& a, const pair<int, int>& b) {
+            //     return a.second > b.second; // Sort in descending order of frequency
+            // };        
+            // priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(&cmp)> pq(cmp);
+            priority_queue<pii, vector<pii>, decltype(&cmp)> pq(cmp);
+            for (auto x: counter){
+                // printf("%d %d\n", x.first, x.second);
+                pq.push(x);
+                if (pq.size() > k) pq.pop();
+            }
+            vector<int> res;
+            while (!pq.empty()){
+                res.push_back(pq.top().first);
+                pq.pop();
+            }
+    
+            return res;
+        }
+    
+        vector<int> py_20230523(vector<int>& nums, int k) {     // AC!
+            unordered_map<int, int> counter;
+            for (auto x: nums) counter[x]++;
+    
+            int n = nums.size();
+        
+            // priority_queue<pii> pq;
+            priority_queue<tii> pq;
+            for (auto x: counter){
+                // printf("%d %d\n", x.first, x.second);
+                // pq.push(pair(-x.second, x.first));
+                // if (pq.size() > k) pq.pop();
+                pq.push(tuple(-x.second, x.first));
+                if (pq.size() > k) pq.pop();
+            }
+    
+            vector<int> res;
+            while (!pq.empty()){
+                // res.push_back(pq.top().second);
+                res.push_back(get<1>(pq.top()));
+                pq.pop();
+            }
+    
+            return res;
+        }    
+    };
+    
+        ListNode* mergeKLists(vector<ListNode*>& lists) {
+            // write your code here
+            int n = lists.size();
+            if (n == 0){
+                return NULL;
+            }
+            auto cmp = [](ListNode * left, ListNode * right){
+                return left->val > right->val;
+            };
+            priority_queue<ListNode *, vector<ListNode*>, decltype(cmp)> heap(cmp);
+            for (int i = 0; i < n; i++){
+                if (lists[i] != NULL){
+                    heap.push(lists[i]);
+                }
+            }
+            // ListNode DummyNode(0);
+            ListNode * DummyNode = new ListNode(0);
+            ListNode * tail = DummyNode;
+            while(!heap.empty()){
+                ListNode * node = heap.top();
+                heap.pop();
+                tail->next = node;
+                tail = tail->next;
+                if (node->next){
+                    heap.push(node->next);
+                }
+            }
+            return DummyNode->next;
+        }
+    ```
+
+
+- Interval
+
+  - int s = interval[0], e = interval[1];
+
+- LinkedList
+
+  - printf("var[%d] = %x\n", i - 1, ptr);
+
+  - printf("var[%d] = %d\n", i - 1, *ptr);
+
+  - if (!head || !head->next) return head;
+
+  - // ListNode* my_20230520_recursive(ListNode* prev, ListNode* head, vector<ListNode*> res) { // ERROR!
+
+    ListNode* my_20230520_recursive(ListNode* prev, ListNode* head, vector<ListNode*> &res) {   // FIX by adding & for `res`
+
+  - // vector<ListNode*> res; //runtime error: reference binding to null pointer of type 'ListNode *' (stl_vector.h)
+
+    vector<ListNode*> res(1);	// FIX
+
+- Tree
+
+  - bool ans = dfs(root, LONG_MIN, LONG_MAX);
+    bool dfs(TreeNode* root, long lo, long hi){        // FIX!, 別用 INT_MIN, INT_MAX
+
+- Graph
+
+  - vector<vector<int>> g(numCourses);
+  - Node* tmp = new Node(node->val);    // FIX!, dont' forget `new` to create the "pointer"
+  - void dfs(vector<vector<int>> &graph, int node, unordered_set<int> &visited){    // FIX! copy of the graph in every dfs call will lead to TLE!
+  - vector<vector<int>> graph(n); // WRONG --> vector<vector<int>> graph(n, vector<int>);
+  - <u>to be a tree</u>, shoud be (edges.size() + 1 != n)
+
+  
+
+  

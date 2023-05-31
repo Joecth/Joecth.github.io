@@ -149,3 +149,41 @@ class Solution:
         return res
         
 ```
+
+
+
+### Lintcode 391
+
+```python
+Interval.__lt__ = lambda self, other: self.end < other.end 
+class Solution:
+    """
+    @param airplanes: An interval array
+    @return: Count of airplanes are in the sky.
+    """
+    def countOfAirplanes(self, airplanes):
+        # write your code here
+        # return self.my_20211111(airplanes)  # AC
+        # return self.my_20211111_B(airplanes)    # AC
+        # return self.my_20211111_C(airplanes)    # AC
+        return self.my_20220802(airplanes)
+
+    def my_20220802(self, airplanes):
+        # airplanes.sort(key=lambda x: x[0])
+        airplanes.sort(key=lambda x: x.start)
+        n = len(airplanes)
+        landing_times = []
+        cnt = 0
+        for i in range(n):
+            # if not landing_times or landing_times[-1] > airplanes[i].end: # BUGGG!
+            if not landing_times or landing_times[0] > airplanes[i].start: # FIX!
+                # landing_times.append(airplanes[i].end)
+                heapq.heappush(landing_times, airplanes[i].end)
+            else:
+                heapq.heappush(landing_times, airplanes[i].end)
+                heapq.heappop(landing_times)
+            cnt = max(cnt, len(landing_times))
+        return cnt
+
+```
+
