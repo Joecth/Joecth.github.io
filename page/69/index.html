@@ -13,7 +13,39 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">382</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">65</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/23/AB_Test/Bayesian_ML/Sec7%20-%20Conjugate%20Priors%20&amp;%20Using%20Ads%20&amp;%20CPM%20&amp;%20CPC..etc/">AB_Test/Bayesian_ML/Sec7 - Conjugate Priors &amp; Using Ads &amp; CPM &amp; CPC..etc</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BayesianML/">BayesianML</a></span><div class="content"><h1 id="Conjugate-Priors-amp-Using-Ads-amp-CPM-amp-CPC"><a href="#Conjugate-Priors-amp-Using-Ads-amp-CPM-amp-CPC" class="headerlink" title="Conjugate Priors &amp; Using Ads &amp; CPM &amp; CPC"></a>Conjugate Priors &amp; Using Ads &amp; CPM &amp; CPC</h1><h6 id="CPM-Cost-Per-1000-Impression"><a href="#CPM-Cost-Per-1000-Impression" class="headerlink" title="CPM: Cost Per 1000 Impression"></a>CPM: Cost Per 1000 Impression</h6><h6 id="CPC-Cost-Per-Click"><a href="#CPC-Cost-Per-Click" class="headerlink" title="CPC: Cost Per Click"></a>CPC: Cost Per Click</h6><h2 id="Exercises-on-Conjugate-Priors"><a href="#Exercises-on-Conjugate-Priors" class="headerlink" title="Exercises on Conjugate Priors"></a>Exercises on Conjugate Priors</h2><h3 id="GOAL"><a href="#GOAL" class="headerlink" title="GOAL:"></a>GOAL:</h3><blockquote>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">384</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">66</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/26/AB_Test/RL_AB/Sec5%20DP%20in%20RL/">AB_Test/RL_AB/Sec5 DP in RL</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-26</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RL/">RL</a></span><div class="content"><h1 id="DP-in-RL"><a href="#DP-in-RL" class="headerlink" title="DP in RL"></a>DP in RL</h1><h2 id="Design-My-RL-Program"><a href="#Design-My-RL-Program" class="headerlink" title="Design My RL Program"></a>Design My RL Program</h2><h4 id="Supervised-Recap"><a href="#Supervised-Recap" class="headerlink" title="Supervised Recap"></a>Supervised Recap</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm53nvyua9j30tm0g8adl.jpg" alt="image-20201229223431339" style="zoom:50%;" />
+
+
+
+<h4 id="RL-Pattern"><a href="#RL-Pattern" class="headerlink" title="RL Pattern"></a>RL Pattern</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381u2nzyuj20v80hcgob.jpg" alt="image-20201229223729427" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381u4w41bj20wg0h8t9v.jpg" alt="image-20201229223846265" style="zoom:50%;" />
+
+
+
+
+
+
+
+<h2 id="Gridworld-in-code"><a href="#Gridworld-in-code" class="headerlink" title="Gridworld in code"></a>Gridworld in code</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381u7mhtaj20v00ic76d.jpg" alt="image-20201229223237666" style="zoom:50%;" />
+
+
+
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/23/DevOps/2018-11-23-C++%20ReArrange/">DevOps/2018-11-23-C++ ReArrange</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/C/">C++</a></span><div class="content"><h3 id="1-cout-of-char"><a href="#1-cout-of-char" class="headerlink" title="1.  cout of char*"></a>1.  cout of <code>char*</code></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *str = <span class="string">"hellogogo"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *pstr = str;</span><br><span class="line">  <span class="built_in">cout</span> <span class="string">"The address of pstr is: "</span> &lt;&lt; pstr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------</span><br><span class="line"> <span class="string">"The address of pstr is: hellogogo"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-compiled-by-c-or-c"><a href="#2-compiled-by-c-or-c" class="headerlink" title="2. compiled by c or c++"></a>2. compiled by c or c++</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cpluscplu</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"cpp"</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	print(<span class="string">"c"</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-compiled-time-OP-symbol"><a href="#3-compiled-time-OP-symbol" class="headerlink" title="3. compiled time OP symbol"></a>3. compiled time OP symbol</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> id[<span class="keyword">sizeof</span>(<span class="keyword">unsigned</span> <span class="keyword">long</span>)];</span><br><span class="line"></span><br><span class="line"><span class="comment">// Compiled OK, cuz sizeof is COMPILING time symbol, which is determined in compile, regarded as machine-dependent constant.</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h3></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/23/AB_Test/Bayesian_ML/Sec7%20-%20Conjugate%20Priors%20&amp;%20Using%20Ads%20&amp;%20CPM%20&amp;%20CPC..etc/">AB_Test/Bayesian_ML/Sec7 - Conjugate Priors &amp; Using Ads &amp; CPM &amp; CPC..etc</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BayesianML/">BayesianML</a></span><div class="content"><h1 id="Conjugate-Priors-amp-Using-Ads-amp-CPM-amp-CPC"><a href="#Conjugate-Priors-amp-Using-Ads-amp-CPM-amp-CPC" class="headerlink" title="Conjugate Priors &amp; Using Ads &amp; CPM &amp; CPC"></a>Conjugate Priors &amp; Using Ads &amp; CPM &amp; CPC</h1><h6 id="CPM-Cost-Per-1000-Impression"><a href="#CPM-Cost-Per-1000-Impression" class="headerlink" title="CPM: Cost Per 1000 Impression"></a>CPM: Cost Per 1000 Impression</h6><h6 id="CPC-Cost-Per-Click"><a href="#CPC-Cost-Per-Click" class="headerlink" title="CPC: Cost Per Click"></a>CPC: Cost Per Click</h6><h2 id="Exercises-on-Conjugate-Priors"><a href="#Exercises-on-Conjugate-Priors" class="headerlink" title="Exercises on Conjugate Priors"></a>Exercises on Conjugate Priors</h2><h3 id="GOAL"><a href="#GOAL" class="headerlink" title="GOAL:"></a>GOAL:</h3><blockquote>
 <p>Thompson Sampling / modifying posterior distribution for the params in question in REAL-TIME</p>
 </blockquote>
 <p>–&gt; Every sample I collect, I can update my beliefs and my estimate of the parameter becomes better! </p>
@@ -158,98 +190,6 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
 </ul>
 <p>谷歌在推广 TensorFlow 上已经花费了大量的资源，其投入要远远大于任何其它公司或者团队，并且我想这也是为什么 TensorFlow 会如此出名的原因之一（对于很多深度学习的门外汉，TensorFlow 是他们唯一听说过的框架）。正如之前所述，TensorFlow 在几周前发布了动态计算选项，这将解决了一些上述提到的问题。然后许多人就向 fast.ai 提问说我们是否考虑迁移回 TensorFlow 框架。<strong>但是目前 TensorFlow 提供的动态选项还比较新颖而且开发也不够完善，所以我们依然选择继续愉快地使用 PyTorch</strong>。但是 TensorFlow 团队非常乐意于接受我们的想法，我们也很高兴看到我们的 fastai 库（<a href="http://t.cn/RYyK6jC）被移植到" target="_blank" rel="noopener">http://t.cn/RYyK6jC）被移植到</a> TensorFlow 中。</p>
 <hr>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/20/AB_Test/Bayesian_ML/Sec6%20-%20Bayesian%20AB%20Extension/">AB_Test/Bayesian_ML/Sec6 - Bayesian AB Extension</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BayesianML/">BayesianML</a></span><div class="content"><h1 id="Bayesian-AB-Extension"><a href="#Bayesian-AB-Extension" class="headerlink" title="Bayesian AB Extension"></a>Bayesian AB Extension</h1><h2 id="More-on-E-E-Dilemma"><a href="#More-on-E-E-Dilemma" class="headerlink" title="More on E-E Dilemma"></a>More on E-E Dilemma</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkyclw23ypj310o0i4dq8.jpg" alt="image-20201122230439546" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkycmbcfgpj310o0ka4a6.jpg" alt="image-20201122230506347" style="zoom:50%;" />
-
-
-
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkycn1b66lj31080kqtj4.jpg" alt="image-20201122230548086"></p>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkycnozfy0j31040ky45k.jpg" alt="image-20201122230626279" style="zoom:50%;" />
-
-
-
-<h4 id="Howmany-samples-is-enough-samples"><a href="#Howmany-samples-is-enough-samples" class="headerlink" title="Howmany samples is enough samples?"></a>Howmany samples is enough samples?</h4><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkyco8nlcvj310q0ks49x.jpg" alt="image-20201122230658011"></p>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkycp75hbdj31060kg145.jpg" alt="image-20201122230750459" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381l0mcbrj210w0imn01.jpg" alt="image-20201122230758633" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkycprfmbvj310i0kq14f.jpg" alt="image-20201122230825368" style="zoom:50%;" />
-
-
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381l4cmd4j20xw0iygo2.jpg" alt="image-20201122230933572" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkycroqfcnj310m0km7bn.jpg" alt="image-20201122231016552" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381l86z9pj210i0ke40y.jpg" alt="image-20201122231050776" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381lcb1ffj210y0jaacs.jpg" alt="image-20201122231105102" style="zoom:50%;" />
-
-
-
-
-
-<h2 id="Confidence-Interval-Approximation-vs-Bayesian-Beta-Poterior"><a href="#Confidence-Interval-Approximation-vs-Bayesian-Beta-Poterior" class="headerlink" title="Confidence Interval Approximation vs. Bayesian Beta Poterior"></a>Confidence Interval Approximation vs. Bayesian Beta Poterior</h2><h4 id="Q-How-accurate-was-the-Confidence-Interval-I-derived-earlier"><a href="#Q-How-accurate-was-the-Confidence-Interval-I-derived-earlier" class="headerlink" title="Q: How accurate was the Confidence Interval I derived earlier?"></a>Q: How accurate was the Confidence Interval I derived earlier?</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli0j7cg4bj30ua0mo77p.jpg" alt="image-20201209231814288" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381lgg6xoj20us0mqdgs.jpg" alt="image-20201209231734378" style="zoom:50%;" />
-
-
-
-<h2 id="Adaptive-Ad-Server-Exercise"><a href="#Adaptive-Ad-Server-Exercise" class="headerlink" title="Adaptive Ad Server Exercise"></a>Adaptive Ad Server Exercise</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381lk6xz5j20ww09mjsc.jpg" alt="image-20201122231741015" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381lnkfj1j20wi0go0tr.jpg" alt="image-20201122231937821" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkyd2dlzthj30vs0e2dj5.jpg" alt="image-20201122232033453" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkyd2wsi3nj30vu0ggdk2.jpg" alt="image-20201122232103954" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381lvgq7lj20vm0ha0tv.jpg" alt="image-20201123143232903" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkz3ft5ii4j30ts0f4782.jpg" alt="image-20201123143302400" style="zoom:50%;" />
-
-
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381lx9sbej20us07474s.jpg" alt="image-20201123231622877" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkzils8iutj30ug0c0dk5.jpg" alt="image-20201123231745825" style="zoom:50%;" />
-
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/06/DevOps/2018-11-06-Jupyter%20Ipykernel/">DevOps/2018-11-06-Jupyter Ipykernel</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-06</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/DevOps/">DevOps</a></span><div class="content"><h2 id="Conda"><a href="#Conda" class="headerlink" title="Conda"></a>Conda</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">list all env:</span><br><span class="line"></span><br><span class="line">conda info --env</span><br><span class="line"></span><br><span class="line">create a simple virtual env:</span><br><span class="line"></span><br><span class="line">conda create -n YourEnvName python=3*</span><br><span class="line"></span><br><span class="line">delete virtual env</span><br><span class="line"></span><br><span class="line">conda env remove -n NAME</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Jupyter"><a href="#Jupyter" class="headerlink" title="Jupyter"></a>Jupyter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> activate myenv</span><br><span class="line">pip install ipykernel</span><br><span class="line">python -m ipykernel install --user --name myenv --display-name <span class="string">"Python (myenv)"</span></span><br></pre></td></tr></table></figure>
-
-<p><em>Installed kernelspec joe_segmentation_36 in /mnt/raid1/home/huangjiancong/.local/share/jupyter/kernels/joe_segmentation_36</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(joe4_py36) xxx@hpc4:~$ python -m ipykernel install --user --name joe4_py36_kernel --display-name <span class="string">"Joe4_Py36_Kernel"</span></span><br></pre></td></tr></table></figure>
-
-<p><em>Installed kernelspec joe4_py36_kernel in /mnt/raid4/home/huangjiancong/.local/share/jupyter/kernels/joe4_py36_kernel</em></p>
 </div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/68/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><span class="page-number current">69</span><a class="page-number" href="/page/70/">70</a><span class="space">&hellip;</span><a class="page-number" href="/page/77/">77</a><a class="extend next" rel="next" href="/page/70/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')

@@ -13,7 +13,42 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">382</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">25</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">65</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2023/04/22/LC/0_note/">LC/0_note</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-04-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Languages/">Languages</a></span><div class="content"><h4 id="Hard-to-solve"><a href="#Hard-to-solve" class="headerlink" title="Hard, to solve:"></a>Hard, to solve:</h4><pre><code>- 301.remove-invalidparantheses TLE for enumeration w/ backtracking, 
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">384</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">66</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/31/AI-System/Terms/">AI-System/Terms</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-31</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AI-System/">AI-System</a></span><div class="content"><p>Interpreter VS Compiler</p>
+<p>JIT vs AOT</p>
+<p>Pass &amp; IR</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/25/Concurrency/2023-05-25%20HighConcurrency%20VS%20MultiThreading/">Concurrency/2023-05-25 HighConcurrency VS MultiThreading</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-25</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Concurrency/">Concurrency</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Concurrency/">Concurrency</a></span><div class="content"><h1 id="High-Concurrency"><a href="#High-Concurrency" class="headerlink" title="High Concurrency"></a>High Concurrency</h1><p>High concurrency refers to a situation where a system encounters a large number of operation requests in a short period of time, mainly occurring in web systems with concentrated access and receiving a large number of requests (e.g., ticket grabbing on 12306; Second-Kill event). This situation leads to the system performing a large number of operations during a pretty short time, such as requests on services, apps, and database operations.</p>
+<h3 id="Performance-Metrics"><a href="#Performance-Metrics" class="headerlink" title="Performance Metrics"></a>Performance Metrics</h3><p>including: response time, throughput, queries per second (QPS), and concurrent user count.</p>
+<ul>
+<li><code>Response Time</code><br> The time it takes for the system to respond to a request. For example, if it takes 200ms for the system to process an HTTP request, that 200ms is the system’s response time. </li>
+<li><code>Throughput</code><br> The number of requests processed per unit of time. </li>
+<li><code>Queries Per Second (QPS)</code> The # of requests responded to per second. In the Internet domain, this metric is not as clearly distinguished from throughput. </li>
+<li><code>Concurrent User Count</code> The number of users who can simultaneously use the system’s features normally. E.g., in an instant messaging system, the number of users online at the same time to some extent represents the system’s concurrent user count.</li>
+</ul>
+<h3 id="High-Concurrency-Solutions"><a href="#High-Concurrency-Solutions" class="headerlink" title="High Concurrency Solutions"></a>High Concurrency Solutions</h3><ul>
+<li>Use CDN for static resources to handle image file access.</li>
+<li>Distributed caching: Redis, Memcached, etc.</li>
+<li>Message queue middleware: ActiveMQ, etc., to solve the asynchronous processing capability of a large number of messages.</li>
+<li>Application splitting: A single project is split into multiple projects for deployment, using Dubbo to solve communication between multiple projects.</li>
+<li>Vertical and horizontal database splitting (sharding).</li>
+<li>Database read-write separation to solve large data query problems.</li>
+<li>Use NoSQL, such as MongoDB, in combination with MySQL.</li>
+<li>Establish service degradation and flow control mechanisms under high data access conditions.</li>
+</ul>
+<p>In sum, high concurrency refers to a system’s ability to handle a large number of concurrent requests or transactions simultaneously. It refers to the system’s capability to process multiple user requests or transactions at the same time. High concurrency performance is an important measure of a system’s load capacity and responsiveness. Multithreading is often used as a common technique for achieving high concurrency. By using multithreading, concurrent requests or transactions can be assigned to different threads for processing, thus enhancing the system’s concurrent processing capability.</p>
+<h1 id="Multithreading"><a href="#Multithreading" class="headerlink" title="Multithreading"></a>Multithreading</h1><p>A program can have multiple threads running in parallel internally. The execution of a thread can be considered as a CPU executing the program. When a program runs with multiple threads, it’s as if multiple CPUs are executing the program simultaneously.</p>
+<p>In summary, multithreading can be understood as follows: <u>Multithreading is a programming method for handling high concurrency, meaning that concurrency needs to be implemented using multiple threads,</u> e.g. 1) Stress-tested Aliyun’s audio generation API with C++’s multithread library<br>2) Adopted multithreading &amp; coroutine to build “Automatic Video Generation System” and “Async Web Service for Adobe Application”, from my experiences.</p>
+<p>In sum, multi-threading refers to the execution of multiple threads simultaneously within a program, where each thread can run independently and perform different tasks. The main purpose of multithreading is to improve program performance and resource utilization. By dividing tasks into multiple threads, the parallel computing capabilities of multi-core processors can be fully utilized, enabling tasks to be executed in parallel. Multithreading is commonly used in scenarios involving simultaneous execution of multiple tasks, I/O-intensive operations, and parallel computing.</p>
+<h1 id="Relationship-btw-The-2-Terms"><a href="#Relationship-btw-The-2-Terms" class="headerlink" title="Relationship btw The 2 Terms"></a>Relationship btw The 2 Terms</h1><p>Though they are usually mentioned together and are related, giving the impression that they are equal, but in fact, <code>high concurrency ≠ multithreading</code> ,</p>
+<p>Therefore, it can be said that multithreading is one of the commonly used techniques for achieving high concurrency. <u>However</u>, high concurrency performance is also influenced by other factors such as system architecture, resource management, locking mechanisms, and algorithm design. Hence, multithreading and high concurrency are related but not exactly the same concepts..</p>
+<h3 id="Scenarios"><a href="#Scenarios" class="headerlink" title="Scenarios"></a>Scenarios</h3><ol>
+<li>High concurrency scenarios –  When we have a Java web project, and after it goes live, a large number of users log in to the system, which is considered high concurrency. For the system, there will be <u>a large number of requests coming in</u>, each request corresponding to a thread, and each thread is independent (Tomcat supports 200-300). Although it is the same code, it is executed in different threads without affecting each other.</li>
+<li>Multithreading scenarios – Multithreading is used either for <u>asynchronous tasks</u> or for running <u>subtasks</u>. Each user thread is the main thread. Asynchronous tasks involve opening another thread. The purpose of running subtasks is to handle large data sets. Single-threaded processing would be slow, so the task is split into multiple subtasks, and multiple threads run them, making it faster.</li>
+</ol>
+<p>ref: </p>
+<p><a href="https://cloud.tencent.com/developer/article/1477818" target="_blank" rel="noopener">怎么理解分布式、高并发、多线程？（含面试题和答案解析）-腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
+<p><a href="https://juejin.cn/post/6964748689382326280" target="_blank" rel="noopener">美团面试官：哟！你对高并发与多线程的解决思路了解的还挺深！ - 掘金 (juejin.cn)</a></p>
+<p><a href="https://juejin.cn/post/6947966434748301326#_35" target="_blank" rel="noopener">【多线程与高并发】告诉你二者的区别 - 掘金 (juejin.cn)</a></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2023/04/22/LC/0_note/">LC/0_note</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-04-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Languages/">Languages</a></span><div class="content"><h4 id="Hard-to-solve"><a href="#Hard-to-solve" class="headerlink" title="Hard, to solve:"></a>Hard, to solve:</h4><pre><code>- 301.remove-invalidparantheses TLE for enumeration w/ backtracking, 
 - 140.word-break-ii a)MLE w/ case &quot;a&quot;*n &amp; b)Trie method (Trie not faster for single query, but for multi query in 472.)
 - SegmentTree
 - BinaryIndexedTree
@@ -531,216 +566,7 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
 <li>5w算一般基層人員，利率比黃金人員高可能1%</li>
 <li>小公司，又薪水低，利率可能就4, 5%或6, 7%，所以公司名氣也很重要</li>
 </ul>
-<h2 id="如何貸好"><a href="#如何貸好" class="headerlink" title="如何貸好"></a>如何貸好</h2></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/23/Loans/1%20%E8%B2%B8%E6%AC%BE%E5%95%8F%E9%A1%8C-%E6%88%BF%E8%B2%B8/">Loans/1 貸款問題-房貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"><h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><ul>
-<li>負利率！</li>
-</ul>
-<h1 id="基本原則"><a href="#基本原則" class="headerlink" title="基本原則"></a>基本原則</h1><p>貸款種類</p>
-<ul>
-<li>沒工作的人、未出社會：信用卡預借現金 4~10%</li>
-<li>一般正常的信貸：3-4%, 2-3%</li>
-</ul>
-<p>貸款運用</p>
-<p>房貸、車貸利率都很低，用銀行的資金來購買房產、投資房產、買汽車都是很正常</p>
-<h2 id="為何借"><a href="#為何借" class="headerlink" title="為何借"></a>為何借</h2><p>投資、週轉、紀錄</p>
-<p>要小心，自己的風控</p>
-<h2 id="術語"><a href="#術語" class="headerlink" title="術語"></a>術語</h2><ul>
-<li><p>小白 – 怕是人頭，除非有資產，但也是會打折變5、６成</p>
-</li>
-<li><p>建信用，存款、信用卡</p>
-</li>
-</ul>
-<h2 id="分期付款"><a href="#分期付款" class="headerlink" title="分期付款"></a>分期付款</h2><ul>
-<li>還款對信用有差</li>
-<li>買的時候的沒差，利息是廠商付的 – 即廠商為促銷活動而去付給銀行的錢</li>
-</ul>
-<h2 id="借款不等於負債"><a href="#借款不等於負債" class="headerlink" title="借款不等於負債"></a>借款不等於負債</h2><h4 id="負債"><a href="#負債" class="headerlink" title="負債"></a>負債</h4><p>以債養債或創業失敗</p>
-<h4 id="資產"><a href="#資產" class="headerlink" title="資產"></a>資產</h4><p>房價、股票漲、租金，都是上漲！跟各人投資運氣有關</p>
-<h2 id="貨比三家"><a href="#貨比三家" class="headerlink" title="貨比三家"></a>貨比三家</h2><p>低利率</p>
-<p>高額度</p>
-<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p>主流銀行</p>
-<p><strong><em>不要隨便簽下「個資查詢同意書」！！</em></strong></p>
-<h1 id="房貸"><a href="#房貸" class="headerlink" title="房貸"></a>房貸</h1><h2 id="估價原則"><a href="#估價原則" class="headerlink" title="估價原則"></a>估價原則</h2><p>銀行怎麼估呢？</p>
-<ol>
-<li>自己有的估價師，如台新是有的<ol>
-<li>問建設公司，有往來的建設公司, 問型態，如公寓或華廈etc</li>
-<li>實價登錄作參考</li>
-<li>大型房仲</li>
-</ol>
-</li>
-<li>長期來講價增值、貨幣貶值，薪水↑物價↑，though 人口↓,　所以只要選對區域，長期而言是↑</li>
-</ol>
-<h2 id="貸款種類"><a href="#貸款種類" class="headerlink" title="貸款種類"></a>貸款種類</h2><h4 id="購屋貸款"><a href="#購屋貸款" class="headerlink" title="購屋貸款"></a>購屋貸款</h4><h4 id="原屋融資-中古屋貸款"><a href="#原屋融資-中古屋貸款" class="headerlink" title="原屋融資 (中古屋貸款)"></a>原屋融資 (中古屋貸款)</h4><p>可以享受房地產增值的好處，貸到更多的錢</p>
-<p> Links <a href="https://www.youtube.com/watch?v=AnsMtGUxLXU" target="_blank" rel="noopener">1</a>, </p>
-<h5 id="流程-1"><a href="#流程-1" class="headerlink" title="流程"></a>流程</h5><p>申請估價審核對保設定撥款</p>
-<h3 id="房屋類型影響的貸款成數跟效果"><a href="#房屋類型影響的貸款成數跟效果" class="headerlink" title="房屋類型影響的貸款成數跟效果"></a>房屋類型影響的貸款成數跟效果</h3><h4 id="成數"><a href="#成數" class="headerlink" title="成數"></a>成數</h4><ul>
-<li>一般住宅 7~8成</li>
-<li>小套 10~12.5坪↓, 5成，因為法拍可能要到三、四拍，不易呀！一次就打八折去了，第三拍就是64折了，流動差<ul>
-<li>看權狀，有分公共設施還有室內坪數(含陽台)，小於12p，就叫作小套房</li>
-<li>銀行自己也自行評估當地房產↑或↓，如果成數高代表銀行也覺得增值性↑；要是成數保守，就代表銀行覺得房地產增值性不高；當然也跟個人收入條件有關係</li>
-</ul>
-</li>
-<li>豪宅<ul>
-<li>台北7Kw; 新北6Kw; 其他地4Kw; 央行規定不得超過6成<ul>
-<li>但還是<u>有眉角</u>… 可以去到 7、8成 (噓)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>工業用住宅<ul>
-<li>一定是比較差的，所以比一般低一1, 2成，二手市場去化慢，so 貸6~7成</li>
-<li>另，電費、房屋稅多</li>
-<li>除非真的蓋超好格局環境，不然盡量避開！</li>
-</ul>
-</li>
-<li>店面 &amp; 商辦<ul>
-<li>店面市場只在金字塔頂層的人，所去化不易，成數低！–&gt; 保守</li>
-<li>辦公大樓好些！租金上穩定，也不像店面那麼高單價，投報率都不錯</li>
-</ul>
-</li>
-</ul>
-<h2 id="還款繳息"><a href="#還款繳息" class="headerlink" title="還款繳息"></a>還款繳息</h2><h4 id="單一利率-VS-組合利率-amp-本息攤還-VS-本金攤還"><a href="#單一利率-VS-組合利率-amp-本息攤還-VS-本金攤還" class="headerlink" title="單一利率 VS 組合利率 &amp; 本息攤還 VS 本金攤還"></a>單一利率 VS 組合利率 &amp; 本息攤還 VS 本金攤還</h4><p>Link <a href="https://www.youtube.com/watch?v=9YgnvKp2HFQ" target="_blank" rel="noopener">1</a></p>
-<ul>
-<li><p>利息不是愈低愈好，要看是否是單一或很賤的組合利率</p>
-</li>
-<li><p>還款方式會影響月繳金額跟利息高低</p>
-</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h8ff6c8rnij30u010awiw.jpg" alt="image-20221123221547111"></p>
-<ul>
-<li>減低壓力的方式<ol>
-<li>頭款多些</li>
-<li>年數拉長</li>
-<li>善用寬限期, 前三年只付利息不付本金</li>
-</ol>
-</li>
-</ul>
-<h4 id="純繳息"><a href="#純繳息" class="headerlink" title="純繳息"></a>純繳息</h4><ul>
-<li>一般銀行只壓在7成以內適用</li>
-<li>可能每年要換單，可能一次打7年的合約，7年內只要繳息正常，它都給我純繳息 <ul>
-<li>我不還本金，對銀行來講利息是比較多的呀！</li>
-</ul>
-</li>
-<li>但它也考慮到房子萬一貶值…，我還沒還到本金<ul>
-<li>所以它成數不像本利攤還</li>
-</ul>
-</li>
-<li>可能就是給個7年的時間，7或3年換一次單…</li>
-</ul>
-<h4 id="本息平均攤還-階段式還款"><a href="#本息平均攤還-階段式還款" class="headerlink" title="本息平均攤還/階段式還款"></a>本息平均攤還/階段式還款</h4><ul>
-<li>15~30年<ul>
-<li>可能還3年的本金已還款10%</li>
-<li>ps. 貸的時間長如到40年對銀行不划算，因為它的資金都是來自定存最長就兩、三年而已的，跟壽險保單持續20年都會有資金進來不一樣</li>
-<li>前三年可以要寬限期，第四年開始以剩下的17年作「本利攤還」<ul>
-<li>理由一般是裝潢，自備款不夠，還需累積收入</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>３年內還掉要賠違約金1% (1kw就是8w), 但還是<u>有眉角</u>變 0.5%之類 (即4w)…<ul>
-<li>它吸存款是0.8，放貸是1.8，只賺了1%</li>
-<li>裡面還有租金、折舊、成本人力，銀行前三年貸出來都是虧的，要提存款準備、呆帳準備 (目前金管會定是1%)</li>
-</ul>
-</li>
-</ul>
-<h2 id="原屋融資的目的"><a href="#原屋融資的目的" class="headerlink" title="原屋融資的目的"></a>原屋融資的目的</h2><ul>
-<li>投資、周轉需求、增額度(增貸)、降息(但現在比價都差個0.1而已很少，而且還要搬家費違約金、貸入、設抵押權轉換的費用、地政事務所費)</li>
-<li><code>平轉</code>, 目的：我想要 1增貸(通常都是) 2寬限期(即純繳息) 3降息<ul>
-<li>!=搬家；平轉就純粹只是為了降低利率、省掉利息，我額度不增加</li>
-<li>如在台銀不隨中央降0.1%，要是貸3kw，一年差3w，5年就15w，第一年把手續費用攤平了，後面四年可以省下利息，這就叫作平轉</li>
-<li>還可能能再多要到兩好處<ul>
-<li>寬限期，可能我的第二家信用卡的銀行願意「再給」<ul>
-<li>btw, 1kw的純繳息如果2%一個月大概就20w/12=1.6w; 加要是加上本金可能就共5w, 其中本金占了3.?w</li>
-</ul>
-</li>
-<li>利率再降低</li>
-</ul>
-</li>
-<li>可如此施壓給原銀行降利率</li>
-<li>但不能讓銀行覺得是我沒能力繳本利攤 … <u>有眉角</u>…，讓銀行再給一次寬限期，這樣我就不用再浪費移轉的手續費，這個要好幾萬的</li>
-<li>增貸: 生意、周轉、斷頭、創業…</li>
-</ul>
-</li>
-</ul>
-<h2 id="以房養老"><a href="#以房養老" class="headerlink" title="以房養老"></a>以房養老</h2><ul>
-<li>利用房子來增加他的生活費用</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h8gau5ja8vj315c0ho40v.jpg" alt="image-20221124163114121"></p>
-<ul>
-<li>當退休後，除了基本的退休金以外，可以跟銀行申悄以方養老這種類型的房貸，利息也不用付，就是從額度裡面去扣，然後再給後代覺得這個房子要出售還是轉換成原屋融資</li>
-<li>保守型的退休人員，錢留著自己用</li>
-</ul>
-<h2 id="二胎-amp-地下金融"><a href="#二胎-amp-地下金融" class="headerlink" title="二胎 &amp; 地下金融"></a>二胎 &amp; 地下金融</h2><h4 id="二胎"><a href="#二胎" class="headerlink" title="二胎"></a>二胎</h4><ul>
-<li>第一順位的抵押權是在A銀行，想增貸又不想離開A銀行，不想搬家，只想增40, 50w，很少就是100w內，所以想想是否能以房子作第二順位的抵押</li>
-<li>3%~6％，比較高一點，一般金額都不給高都是小額</li>
-<li>一、兩家銀行有作，看扣掉第一順位銀行的貸款後還有多少殘值，再貸給我這樣的錢</li>
-</ul>
-<h4 id="地下金融"><a href="#地下金融" class="headerlink" title="地下金融"></a>地下金融</h4><ul>
-<li>有很多也是提供給這個二順位的貸款</li>
-<li>額度可能高些，但可能利率就是高高高，因為也不受民法上利率20%的上限管制</li>
-<li>要36%, 就是一個月3w了，相對銀行一年也才2%! 是18倍</li>
-</ul>
-<h4 id="整債–打交道的經驗"><a href="#整債–打交道的經驗" class="headerlink" title="整債–打交道的經驗"></a>整債–打交道的經驗</h4><p>可跟很好的金額跟利率，<u>有眉角</u>…</p>
-<h2 id="授信準則及標準"><a href="#授信準則及標準" class="headerlink" title="授信準則及標準"></a>授信準則及標準</h2><p>物＆人的財力存款股票房地產</p>
-<h2 id="如何申請最有利的房貸"><a href="#如何申請最有利的房貸" class="headerlink" title="如何申請最有利的房貸"></a>如何申請最有利的房貸</h2><p>ABC客戶</p>
-<ul>
-<li>A黃金職業</li>
-<li>B受薪基層<ul>
-<li>二等親，看後台實力</li>
-<li>非六都比較低</li>
-</ul>
-</li>
-</ul>
-<p>利率、額度、還款期限/金額、還款彈性、撥款速度</p>
-<ul>
-<li>彈性<ul>
-<li>往來一年後，我想增貸，可談</li>
-<li>中央如果降</li>
-<li>延長寬限期，就是搬家啦，就是技巧，但人家也會看你中間的繳的方式判斷，談判，<u>有眉角</u>…</li>
-</ul>
-</li>
-<li>撥款速度<ul>
-<li>權狀交給銀行要辦理設定，徵信到結束，差不多7~10工作天</li>
-<li>依金額，要審到高階看還款能力</li>
-</ul>
-</li>
-</ul>
-<h1 id="總流程"><a href="#總流程" class="headerlink" title="總流程"></a>總流程</h1></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/09/12/Algo.%20Ult./SegTree%20Advanced/">Algo. Ult./SegTree Advanced</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-09-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AlgoUlt/">AlgoUlt.</a></span><div class="content"><h2 id="2407-LIS-II"><a href="#2407-LIS-II" class="headerlink" title="2407. LIS II"></a>2407. LIS II</h2><p><em>hard</em></p>
-<p>Find the longest subsequence of <code>nums</code> that meets the following requirements:</p>
-<ul>
-<li>The subsequence is <strong>strictly increasing</strong> and</li>
-<li>The difference between adjacent elements in the subsequence is <strong>at most</strong> <code>k</code>.</li>
-</ul>
-<p>Return <em>the length of the <strong>longest</strong> <strong>subsequence</strong> that meets the requirements.</em></p>
-<p>A <strong>subsequence</strong> is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [4,2,1,4,3,4,5,8,15], k &#x3D; 3</span><br><span class="line">Output: 5</span><br><span class="line">Explanation:</span><br><span class="line">The longest subsequence that meets the requirements is [1,3,4,5,8].</span><br><span class="line">The subsequence has a length of 5, so we return 5.</span><br><span class="line">Note that the subsequence [1,3,4,5,8,15] does not meet the requirements because 15 - 8 &#x3D; 7 is larger than 3.</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [7,4,5,1,8,12,4,7], k &#x3D; 5</span><br><span class="line">Output: 4</span><br><span class="line">Explanation:</span><br><span class="line">The longest subsequence that meets the requirements is [4,5,8,12].</span><br><span class="line">The subsequence has a length of 4, so we return 4.</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [1,5], k &#x3D; 1</span><br><span class="line">Output: 1</span><br><span class="line">Explanation:</span><br><span class="line">The longest subsequence that meets the requirements is [1].</span><br><span class="line">The subsequence has a length of 1, so we return 1.</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 105</code></li>
-<li><code>1 &lt;= nums[i], k &lt;= 105</code></li>
-</ul>
-<h4 id="My-Code"><a href="#My-Code" class="headerlink" title="My Code"></a>My Code</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SegTree</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        self.n = n</span><br><span class="line">        self.tree = [<span class="number">0</span>] * n * <span class="number">2</span>  <span class="comment"># 2 for boundary cases: 0 and n</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, left, right)</span>:</span>   <span class="comment"># on [left, right)</span></span><br><span class="line">        l, r = left + self.n, right + self.n</span><br><span class="line">        res = -sys.maxsize</span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            <span class="keyword">if</span> l &amp; <span class="number">1</span> == <span class="number">1</span>:</span><br><span class="line">                res = max(res, self.tree[l])</span><br><span class="line">                l += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> r &amp; <span class="number">1</span> == <span class="number">1</span>:</span><br><span class="line">                r -= <span class="number">1</span>  <span class="comment"># because it's an open boundary</span></span><br><span class="line">                res = max(res, self.tree[r])</span><br><span class="line">            l &gt;&gt;= <span class="number">1</span></span><br><span class="line">            r &gt;&gt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, i, val)</span>:</span></span><br><span class="line">        idx = i + self.n</span><br><span class="line">        self.tree[idx] = val</span><br><span class="line">        <span class="keyword">while</span> idx &gt; <span class="number">0</span>:</span><br><span class="line">            idx &gt;&gt;= <span class="number">1</span></span><br><span class="line">            <span class="comment"># self.tree[idx] = max([self.tree[idx &gt;&gt; 1], self.tree[idx &gt;&gt; 1 | 1]])  # BUG!</span></span><br><span class="line">            self.tree[idx] = max([self.tree[idx &lt;&lt; <span class="number">1</span>], self.tree[idx &lt;&lt; <span class="number">1</span> | <span class="number">1</span>]])</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLIS</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># return self.my_20220912_numpymax(nums, k)  # AC! with numpy</span></span><br><span class="line">        <span class="keyword">return</span> self.my_20220912_segtree(nums, k)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">my_20220912_segtree</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        seg = SegTree(max(nums) + <span class="number">1</span>) <span class="comment"># max(nums) + 1 means the length of the dp, where dp[i] means LIS end with value </span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            x = nums[i]</span><br><span class="line">            prev_max = seg.query(max(<span class="number">0</span>, x-k), x)  <span class="comment"># prev_max = dp[max(0, x-k):x]</span></span><br><span class="line">            <span class="comment"># print(i, nums[i], prev_max, seg.tree)</span></span><br><span class="line">            seg.update(x, prev_max+<span class="number">1</span>)   <span class="comment"># dp[x] = prev_max + 1</span></span><br><span class="line">            res = max(res, prev_max+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">my_20220912_numpymax</span><span class="params">(self, nums, k)</span>:</span>    <span class="comment"># AC! once AC...</span></span><br><span class="line">        n = len(nums)   </span><br><span class="line">        dp = np.array([<span class="number">0</span>] * (<span class="number">10</span> ** <span class="number">5</span> + <span class="number">2</span>))</span><br><span class="line">        <span class="comment"># dp = np.array([0] * (max(nums) + 1))</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            x = nums[i]</span><br><span class="line">            dp[x] = dp[max(<span class="number">0</span>, x-k):x].max() + <span class="number">1</span></span><br><span class="line">            res = max(dp[x], res)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<p>Ref: </p>
-<p>1 <a href="https://leetcode.com/problems/longest-increasing-subsequence-ii/discuss/2560085/Python-Explanation-with-pictures-Segment-Tree" target="_blank" rel="noopener">https://leetcode.com/problems/longest-increasing-subsequence-ii/discuss/2560085/Python-Explanation-with-pictures-Segment-Tree</a></p>
-<p>2 <a href="https://codeforces.com/blog/entry/18051" target="_blank" rel="noopener">https://codeforces.com/blog/entry/18051</a></p>
-<p>3 <a href="https://omeletwithoutegg.github.io/" target="_blank" rel="noopener">https://omeletwithoutegg.github.io/</a> in 中文</p>
-</div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/77/">77</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+<h2 id="如何貸好"><a href="#如何貸好" class="headerlink" title="如何貸好"></a>如何貸好</h2></div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/77/">77</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')
