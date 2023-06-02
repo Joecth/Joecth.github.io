@@ -13,9 +13,132 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">385</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">66</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/31/AI-System/Terms/">AI-System/Terms</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-31</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AI-System/">AI-System</a></span><div class="content"><p>Interpreter VS Compiler</p>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">386</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">66</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/29/AI-System/2%20AI%20Compiler/">AI-System/2 AI Compiler</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-29</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AI-System/">AI-System</a></span><div class="content"><h1 id="Why-we-need-AI-Compiler"><a href="#Why-we-need-AI-Compiler" class="headerlink" title="Why we need AI Compiler"></a>Why we need AI Compiler</h1></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/27/AI-System/1%20Traditional%20Compilers%20/">AI-System/1 Traditional Compilers </a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-27</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AI-System/">AI-System</a></span><div class="content"><p>Interpreter VS Compiler</p>
 <p>JIT vs AOT</p>
 <p>Pass &amp; IR</p>
+<h2 id="History-of-Compilers-–-GCC-VS-LLVM"><a href="#History-of-Compilers-–-GCC-VS-LLVM" class="headerlink" title="History of Compilers – GCC VS LLVM"></a>History of Compilers – GCC VS LLVM</h2><p><img src="https://p.ipic.vip/wjd955.png" alt="image-20230602161322366"></p>
+<p>Compiler –  e.g. turn hello.c to hello.o(binary)</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Sourcecode --&gt; 		Compiler --&gt; 		exe binary</span><br><span class="line">​						(FE, IR Optimizer, BE)</span><br><span class="line">(to AST)												(MachineCode)</span><br><span class="line">Abstract Syntax Tree</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>GCC 1.0 @ 1987</p>
+<img src="https://p.ipic.vip/5y76rq.png" alt="image-20230602160844823" style="zoom:50%;" />
+
+<p>​                        Free the Free!</p>
+<p>(Richard Matthew Stallman)</p>
+<p>Apple – Free! but OS kernel pretty closed</p>
+<p><img src="https://p.ipic.vip/mxxzdg.png" alt="image-20230602161010238"></p>
+<h3 id="Apple-met-LLVM"><a href="#Apple-met-LLVM" class="headerlink" title="Apple met LLVM"></a>Apple met LLVM</h3><img src="https://p.ipic.vip/lm33h3.png" alt="image-20230602161146709" style="zoom: 25%;" />
+
+
+
+
+
+<h3 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h3><img src="https://p.ipic.vip/bcso75.png" alt="image-20230602161456787" style="zoom: 50%;" />
+
+<img src="https://p.ipic.vip/eht8wd.png" alt="image-20230602161738949" style="zoom:67%;" />
+
+
+
+
+
+<h3 id="LLVM"><a href="#LLVM" class="headerlink" title="LLVM"></a>LLVM</h3><p>low level VM</p>
+<p>Compiler Toolchain</p>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230602161604175.png" alt="image-20230602161604175" style="zoom: 67%;" />
+
+
+
+
+
+<p>Introduced IR! bettern than GCC</p>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230602161815300.png" alt="image-20230602161815300" style="zoom:67%;" />
+
+
+
+
+
+<h2 id="CLANG-VS-GCC"><a href="#CLANG-VS-GCC" class="headerlink" title="CLANG VS GCC"></a>CLANG VS GCC</h2><p><img src="https://p.ipic.vip/cqugk4.png" alt="image-20230602162331702"></p>
+<p><img src="https://p.ipic.vip/304pgi.png" alt="image-20230602162406871"></p>
+<p><img src="https://p.ipic.vip/n0rsd7.png" alt="image-20230602162448009"></p>
+<p><img src="https://p.ipic.vip/rtj8ia.png" alt="image-20230602162529839"></p>
+<p>​    - *.ll  – huan readable</p>
+<ul>
+<li><pre><code class="bash">&gt; clang -emit-llvm hello.i -c -o hello.bc
+&gt; code hello.bc
+&gt; od -b hello.bc
+
+$ clang -ccc-print-phases hello.cpp
+               +- 0: input, <span class="string">"hello.cpp"</span>, c++
+            +- 1: preprocessor, {0}, c++-cpp-output
+         +- 2: compiler, {1}, ir
+      +- 3: backend, {2}, assembler
+   +- 4: assembler, {3}, object
++- 5: linker, {4}, image
+6: <span class="built_in">bind</span>-arch, <span class="string">"arm64"</span>, {5}, image
+
+(base)
+<span class="comment"># joe @ J-M1-Pro-16 in ~/exp [16:35:49]</span>
+$ cat hello.s | less
+    .cfi_endproc
+                                        ; -- End <span class="keyword">function</span>
+    .p2align    2                               ; -- Begin <span class="keyword">function</span> _ZNSt3__18ios_base8setstateEj
+__ZNSt3__18ios_base8setstateEj:         ; @_ZNSt3__18ios_base8setstateEj
+    .cfi_startproc
+; %bb.0:
+    sub    sp, sp, <span class="comment">#32</span>
+    stp    x29, x30, [sp, <span class="comment">#16]             ; 16-byte Folded Spill</span>
+        .section        __TEXT,__text,regular,pure_instructions
+        .build_version macos, 12, 0     sdk_version 12, 3
+        .globl  _main                           ; -- Begin <span class="keyword">function</span> main
+        .p2align        2
+_main:                                  ; @main
+        .cfi_startproc
+; %bb.0:
+        stp     x29, x30, [sp, <span class="comment">#-16]!           ; 16-byte Folded Spill</span>
+        mov     x29, sp
+        .cfi_def_cfa w29, 16
+        .cfi_offset w30, -8
+        .cfi_offset w29, -16
+        adrp    x0, l_.str@PAGE
+        add     x0, x0, l_.str@PAGEOFF
+        bl      _printf
+        adrp    x0, __ZNSt3__14coutE@GOTPAGE
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### LLVM IR★</span><br><span class="line"></span><br><span class="line">![image-20230602163418928](https:&#x2F;&#x2F;p.ipic.vip&#x2F;e85fsn.png)</span><br><span class="line"></span><br><span class="line">- SSA - Static Single Assignment </span><br><span class="line">  - ~  RISC ISA</span><br><span class="line">  - 3-address-code</span><br><span class="line">    - &lt;img src&#x3D;&quot;https:&#x2F;&#x2F;p.ipic.vip&#x2F;jwvvo5.png&quot; alt&#x3D;&quot;image-20230602163826992&quot; style&#x3D;&quot;zoom:33%;&quot; &#x2F;&gt;</span><br><span class="line">  - inf registers</span><br><span class="line">- Structure</span><br><span class="line">  - Module -&gt; Function -&gt; Basicblock -&gt; Instruction</span><br><span class="line">- Concepts</span><br><span class="line">  - Value, Use, User, </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### LLVM FE</span><br><span class="line"></span><br><span class="line">&lt;img src&#x3D;&quot;https:&#x2F;&#x2F;p.ipic.vip&#x2F;qtr860.png&quot; alt&#x3D;&quot;image-20230602164519532&quot; style&#x3D;&quot;zoom: 50%;&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">- Lexical Analysis --&gt; Syntatical Analysis --&gt; Semantic Analysis</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;&#96;bash</span><br><span class="line">    10018  clang -cc1 -dump-tokens hello.cpp</span><br><span class="line">    10019  clang -fsyntax-only -Xclang -ast-dump hello.cpp</span><br><span class="line">    10020  clang -c hello.cpp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### LLVM Optimizer</span><br><span class="line"></span><br><span class="line">- Finding PASS</span><br><span class="line"></span><br><span class="line">  - Analysis Pass</span><br><span class="line"></span><br><span class="line">  - Transform pass</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;	bash</span><br><span class="line">    &gt; opt hello.bc -instcount -time-passes -domtree -o hello-tmp.bc -stats</span><br></pre></td></tr></table></figure>
+
+- [LLVM’s Analysis and Transform Passes — LLVM 17.0.0git documentation](https://llvm.org/docs/Passes.html)
+
+  - e.g. -adce: Aggressive Dead Code Elimination
+  - e.g.  -constmerge: Merge Duplicate Global Constants
+
+- ModulePass, FunctionPass, BasicBlockPass
+
+
+</code></pre>
+</li>
+</ul>
+<h3 id="LLVM-BE"><a href="#LLVM-BE" class="headerlink" title="LLVM BE"></a>LLVM BE</h3><img src="/Users/joe/Library/Application Support/typora-user-images/image-20230602165508513.png" alt="image-20230602165508513" style="zoom: 40%;" />
+
+
+
+<h4 id="SelectionDAG-gt-Scheduling"><a href="#SelectionDAG-gt-Scheduling" class="headerlink" title="SelectionDAG -&gt; Scheduling"></a>SelectionDAG -&gt; Scheduling</h4><p><img src="https://p.ipic.vip/3r23t5.png" alt="image-20230602165708989"></p>
+<p>Topological sort to know nodes that are able to run parallelly</p>
+<h4 id="MCInst-gt-Code-Emission"><a href="#MCInst-gt-Code-Emission" class="headerlink" title="MCInst -&gt; Code Emission"></a>MCInst -&gt; Code Emission</h4><h4 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h4><p><img src="https://p.ipic.vip/gtnep5.png" alt="image-20230602165926323"></p>
+<h2 id="OnGoing-History"><a href="#OnGoing-History" class="headerlink" title="OnGoing History"></a>OnGoing History</h2><p>Chris start his bizness at “Modular”</p>
+<h2 id="LLVM-Related-AI-Compilers"><a href="#LLVM-Related-AI-Compilers" class="headerlink" title="LLVM Related AI Compilers"></a>LLVM Related AI Compilers</h2><p>built on LLVM, including</p>
+<ul>
+<li>XLA in TF,  by Google</li>
+<li>JAX, autograd + XLA, by Google</li>
+<li>TensorFlow, on XLA, then on LLVM</li>
+<li>TVM for different hardwares</li>
+<li>Julia, for HPC, using LLVM JIT</li>
+</ul>
+<p>ref to </p>
+<ul>
+<li>series of <a href="https://youtu.be/i5_BptwCBHA" target="_blank" rel="noopener">AI videos</a> on YT</li>
+</ul>
 </div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/25/Concurrency/2023-05-25%20HighConcurrency%20VS%20MultiThreading/">Concurrency/2023-05-25 HighConcurrency VS MultiThreading</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-25</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Concurrency/">Concurrency</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Concurrency/">Concurrency</a></span><div class="content"><h1 id="High-Concurrency"><a href="#High-Concurrency" class="headerlink" title="High Concurrency"></a>High Concurrency</h1><p>High concurrency refers to a situation where a system encounters a large number of operation requests in a short period of time, mainly occurring in web systems with concentrated access and receiving a large number of requests (e.g., ticket grabbing on 12306; Second-Kill event). This situation leads to the system performing a large number of operations during a pretty short time, such as requests on services, apps, and database operations.</p>
 <h3 id="Performance-Metrics"><a href="#Performance-Metrics" class="headerlink" title="Performance Metrics"></a>Performance Metrics</h3><p>including: response time, throughput, queries per second (QPS), and concurrent user count.</p>
 <ul>
@@ -460,11 +583,14 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     ParkingSystem(<span class="keyword">int</span> big, <span class="keyword">int</span> medium, <span class="keyword">int</span> small) {
         p = {big, medium, small};
     }
-&lt;!--￼<span class="number">1</span>--&gt;
-
-</code></pre>
+&lt;!--￼<span class="number">1</span>--&gt;</code></pre>
 </li>
 </ul>
+</li>
+<li><p>auto cmp = [](ListNode * left, ListNode * right){</p>
+<p>​        return left-&gt;val &gt; right-&gt;val;</p>
+<p>};</p>
+<p>priority_queue&lt;ListNode <em>, vector&lt;ListNode</em>&gt;, decltype(cmp)&gt; heap(cmp);</p>
 </li>
 </ul>
 </li>
@@ -506,69 +632,7 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
 </ul>
 </li>
 </ul>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/2%20%E8%BB%8A%E8%B2%B8/">Loans/2 車貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/4%20%E4%BF%A1%E8%B2%B8/">Loans/4 信貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"><h2 id="What-is-信貸"><a href="#What-is-信貸" class="headerlink" title="What is 信貸"></a>What is 信貸</h2><ul>
-<li><p><strong>沒提供任何擔保品</strong></p>
-</li>
-<li><p>又叫「上班族貸款」，根據個人信用</p>
-</li>
-<li><p>平均月薪的22倍，不看我的其他產權</p>
-<ul>
-<li>這個是「台灣所有的銀行加總起來給我的額度」</li>
-</ul>
-</li>
-<li><p>非針對雇主</p>
-</li>
-<li><p>一般上限都是7年，一年內還清會有違約金要罰</p>
-</li>
-<li><p>利率隨央行調整</p>
-</li>
-</ul>
-<h2 id="還款方式"><a href="#還款方式" class="headerlink" title="還款方式"></a>還款方式</h2><ul>
-<li><p>本利攤還</p>
-</li>
-<li><p>循環的額度</p>
-<ul>
-<li>e.g. 申請100萬，可以給張金融卡去提款，按日計息，如果今天用了50萬，過兩天放回去，在額度裡盡量用；利率比本利攤還高兩碼0.5</li>
-</ul>
-</li>
-</ul>
-<h2 id="哪些類別算信貸"><a href="#哪些類別算信貸" class="headerlink" title="哪些類別算信貸"></a>哪些類別算信貸</h2><ul>
-<li>預借現金<ul>
-<li>一定是低於額度，一般學生2w是上限</li>
-</ul>
-</li>
-<li>P2p (鄉民貸) 就是無擔保貸款，用的是個人的信用<ul>
-<li>像傳統私人貸</li>
-<li>資金的借貸的仲介商，透過一個平台的仲介，撮合兩者</li>
-<li>民間的借貸平台</li>
-<li>30幾年前英國人創的</li>
-<li>歐美投資銀行現在也把這個就包裝成證券化賣出！</li>
-<li>台灣金管會限制20%；中國可到40, 50%, 當時2007年資金提供者有被匡錢，現掛了</li>
-<li>對資金需求者要作一連串的徵信…！</li>
-<li>所以對於個人來說，錢放那邊，利息可能到10%, 而銀行就不到1%! 前提是做好徵信的工作… <u>有眉角</u>…</li>
-</ul>
-</li>
-</ul>
-<h2 id="上班族貸款-非上班族貸款"><a href="#上班族貸款-非上班族貸款" class="headerlink" title="上班族貸款/非上班族貸款"></a>上班族貸款/非上班族貸款</h2><ul>
-<li>五師</li>
-<li>月收入來源<ul>
-<li>上班族還有扣繳憑單</li>
-<li>非上班族主要看資產所產生的月收入變化，讓銀行提供額度<ul>
-<li>租金開證明</li>
-<li>存款的利息</li>
-<li>股票在集保</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="預借現金"><a href="#預借現金" class="headerlink" title="預借現金"></a>預借現金</h3><ul>
-<li>年限短，一般２年</li>
-<li>10%利率；相較一般信貸2~3% (黃金人員) 高不少</li>
-<li>5w算一般基層人員，利率比黃金人員高可能1%</li>
-<li>小公司，又薪水低，利率可能就4, 5%或6, 7%，所以公司名氣也很重要</li>
-</ul>
-<h2 id="如何貸好"><a href="#如何貸好" class="headerlink" title="如何貸好"></a>如何貸好</h2></div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/77/">77</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/2%20%E8%BB%8A%E8%B2%B8/">Loans/2 車貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"></div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/78/">78</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')

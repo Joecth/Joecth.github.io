@@ -13,7 +13,128 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">385</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">66</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/26/AB_Test/RL_AB/Sec4%20Markov%20Decision%20Proccesses/">AB_Test/RL_AB/Sec4 Markov Decision Proccesses</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-26</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RL/">RL</a></span><div class="content"><h1 id="Markov-Decision-Processes-MDPs"><a href="#Markov-Decision-Processes-MDPs" class="headerlink" title="Markov Decision Processes (MDPs)"></a>Markov Decision Processes (MDPs)</h1><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><ul>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">386</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">66</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/26/AB_Test/RL_AB/Sec3%20High%20Level%20Overview%20of%20RL/">AB_Test/RL_AB/Sec3 High Level Overview of RL</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-26</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RL/">RL</a></span><div class="content"><h1 id="High-Level-of-RL"><a href="#High-Level-of-RL" class="headerlink" title="High Level of RL"></a>High Level of RL</h1><h2 id="What’s-RL"><a href="#What’s-RL" class="headerlink" title="What’s RL?"></a>What’s RL?</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr9q2h3ejj30xe07y0ut.jpg" alt="image-20201217232618652" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr9qxutefj31380ly10y.jpg" alt="image-20201217232708388" style="zoom:50%;" />
+
+<ul>
+<li>RL: does things that humans can do, which can be very dynamic</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr9szui5ej30vg0ieadx.jpg" alt="image-20201217232906830" style="zoom:50%;" />
+
+<ul>
+<li>Cluster: some example: return a mapping to some vector or a cluster identity</li>
+<li>They are too similar that make sense to put them in the same lib</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrawol676j311q0kaalq.jpg" alt="image-20201218000715482" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glraxwvom2j31240lsqke.jpg" alt="image-20201218000826506" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrb5g87r8j31280lmttn.jpg" alt="image-20201218001538879" style="zoom:50%;" />
+
+<ul>
+<li>static: has no life time</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrbaesicsj312o0jm7i6.jpg" alt="image-20201218002026886" style="zoom:50%;" />
+
+<ul>
+<li><p>Infeasible amount of input data for comparison</p>
+</li>
+<li><p>Also, we want to allow for creativity and stochastic</p>
+</li>
+<li><p>A supervised modeleven if it were feasible to train would only have one target per input so it would never be able togenerate poetry (RNN?!)</p>
+</li>
+</ul>
+<h2 id="On-Unusual-or-Unexpected-Strategies-of-RL"><a href="#On-Unusual-or-Unexpected-Strategies-of-RL" class="headerlink" title="On Unusual or Unexpected Strategies of RL"></a>On Unusual or Unexpected Strategies of RL</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381w25916j21260kiq59.jpg" alt="image-20201218002544266" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrbhg4jyej312a0l047o.jpg" alt="image-20201218002713034" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrbk62m9cj311y0ky15y.jpg" alt="image-20201218002949873" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrbl0xdk9j310e0mgqay.jpg" alt="image-20201218003039627" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrblb9cumj31240iw48a.jpg" alt="image-20201218003055704" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381w5vnfmj210q0icjv1.jpg" alt="image-20201218003145761" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrbmk7bh5j30ys0lctgu.jpg" alt="image-20201218003207405" style="zoom:50%;" />
+
+
+
+
+
+
+
+<h2 id="Bandits-–-gt-RL"><a href="#Bandits-–-gt-RL" class="headerlink" title="Bandits –&gt; RL"></a>Bandits –&gt; RL</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrbo12jx8j310e0ls10b.jpg" alt="image-20201218003332356" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrborlhnuj30zu0lk44v.jpg" alt="image-20201218003415381" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl2yzm0j9dj30sc0amq79.jpg" alt="image-20201126230119135" style="zoom:50%;" />
+
+<h4 id="Contextual-Bandits"><a href="#Contextual-Bandits" class="headerlink" title="Contextual Bandits!"></a>Contextual Bandits!</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl2z1azi2pj30vc0iwn3k.jpg" alt="image-20201126230256945" style="zoom:50%;" />
+
+<h6 id="Input-features-as-States"><a href="#Input-features-as-States" class="headerlink" title="Input features as States"></a>Input features as States</h6><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl2z1tluzsj31000iyagd.jpg" alt="image-20201126230327507" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl2z33sq3rj30vs0hen22.jpg" alt="image-20201126230441694" style="zoom:50%;" />
+
+<h6 id="Compare-rewards"><a href="#Compare-rewards" class="headerlink" title="Compare rewards"></a>Compare rewards</h6><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381w8n7lkj212m0mc415.jpg" alt="image-20201218003921597" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrburicmaj312o0li10i.jpg" alt="image-20201218004000861" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrbvj8ntsj30yw0lwjxa.jpg" alt="image-20201218004045423" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrbvtwdooj30zg0lu455.jpg" alt="image-20201218004102606" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glrbwaagcwj31100m67b4.jpg" alt="image-20201218004128410" style="zoom:50%;" />
+
+
+
+<h6 id="GO-also-state-sequence-dependent"><a href="#GO-also-state-sequence-dependent" class="headerlink" title="GO also state-sequence dependent:"></a>GO also state-sequence dependent:</h6><ul>
+<li>There’re some environments where it’s not just the state by itself that matters but rather the sequence of the states ==&gt; MDP</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381wbh53qj20zs0iy0tx.jpg" alt="image-20201127145128803" style="zoom:50%;" />
+
+<ul>
+<li>First, I looked at the MAB problem once and defined some new terms to help thnk about the problem more abstractly specifically</li>
+<li>MAB: CHOOSING an ACTION to oatain the best REWARD</li>
+<li>Next, the Contextual bandit problem, where instead of just having to choose an action, also have to pay attention to the state, which help us have more fine grained control on which action to choose!</li>
+<li>Finally, some foreshadowing and know sittuation where instead of just random states which are not related to one another in terms of predicting a reward, we can have states which are interdependent!</li>
+</ul>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/26/AB_Test/RL_AB/Sec4%20Markov%20Decision%20Proccesses/">AB_Test/RL_AB/Sec4 Markov Decision Proccesses</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-26</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RL/">RL</a></span><div class="content"><h1 id="Markov-Decision-Processes-MDPs"><a href="#Markov-Decision-Processes-MDPs" class="headerlink" title="Markov Decision Processes (MDPs)"></a>Markov Decision Processes (MDPs)</h1><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><ul>
 <li>a kind of framework</li>
 </ul>
 <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381uf1kxhj20xk0g4myj.jpg" alt="image-20201229205217435" style="zoom:50%;" />
@@ -270,21 +391,7 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
 
 <img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkzjf9bkckj312a0li7h3.jpg" alt="image-20201123234604809" style="zoom:50%;" />
 
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/20/DevOps/2018-11-20-Source-Tree-Error/">DevOps/2018-11-20-Source-Tree-Error</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/DevOps/">DevOps</a></span><div class="content"><p>Error: The following untracked working tree files would be overwritten by checkout:</p>
-<p>Sol:</p>
-<p>​    開啟SourceTree通過命令列，進入本地版本倉庫目錄下，直接執行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean -d -fx</span><br></pre></td></tr></table></figure>
-
-<p>即可。可能很多人都不明白-d，-fx到底是啥意思，其實git clean -d -fx表示：刪除 一些 沒有 git add 的 檔案；</p>
-<p>​    git clean 引數 </p>
-<p>​    -n 顯示將要刪除的檔案和目錄；</p>
-<p>​    -x —–刪除忽略檔案已經對git來說不識別的檔案</p>
-<p>​    -d —–刪除未被新增到git的路徑中的檔案</p>
-<p>​    -f —–強制執行</p>
-<p>​    git clean -n</p>
-<p>​    git clean -df</p>
-<p>​    git clean -f</p>
-</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/68/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><span class="page-number current">69</span><a class="page-number" href="/page/70/">70</a><span class="space">&hellip;</span><a class="page-number" href="/page/77/">77</a><a class="extend next" rel="next" href="/page/70/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/68/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><span class="page-number current">69</span><a class="page-number" href="/page/70/">70</a><span class="space">&hellip;</span><a class="page-number" href="/page/78/">78</a><a class="extend next" rel="next" href="/page/70/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')

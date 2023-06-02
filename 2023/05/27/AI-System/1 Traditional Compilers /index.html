@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="AI-System/1 Traditional Compilers "><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>AI-System/1 Traditional Compilers  | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#History-of-Compilers-–-GCC-VS-LLVM"><span class="toc-number">1.</span> <span class="toc-text">History of Compilers – GCC VS LLVM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Apple-met-LLVM"><span class="toc-number">1.1.</span> <span class="toc-text">Apple met LLVM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GCC"><span class="toc-number">1.2.</span> <span class="toc-text">GCC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LLVM"><span class="toc-number">1.3.</span> <span class="toc-text">LLVM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CLANG-VS-GCC"><span class="toc-number">2.</span> <span class="toc-text">CLANG VS GCC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LLVM-BE"><span class="toc-number">2.1.</span> <span class="toc-text">LLVM BE</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SelectionDAG-gt-Scheduling"><span class="toc-number">2.1.1.</span> <span class="toc-text">SelectionDAG -&gt; Scheduling</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MCInst-gt-Code-Emission"><span class="toc-number">2.1.2.</span> <span class="toc-text">MCInst -&gt; Code Emission</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Review"><span class="toc-number">2.1.3.</span> <span class="toc-text">Review</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OnGoing-History"><span class="toc-number">3.</span> <span class="toc-text">OnGoing History</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LLVM-Related-AI-Compilers"><span class="toc-number">4.</span> <span class="toc-text">LLVM Related AI Compilers</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">386</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">66</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">AI-System/1 Traditional Compilers </div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-27</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/AI-System/">AI-System</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>Interpreter VS Compiler</p>
+<p>JIT vs AOT</p>
+<p>Pass &amp; IR</p>
+<h2 id="History-of-Compilers-–-GCC-VS-LLVM"><a href="#History-of-Compilers-–-GCC-VS-LLVM" class="headerlink" title="History of Compilers – GCC VS LLVM"></a>History of Compilers – GCC VS LLVM</h2><p><img src="https://p.ipic.vip/wjd955.png" alt="image-20230602161322366"></p>
+<p>Compiler –  e.g. turn hello.c to hello.o(binary)</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Sourcecode --&gt; 		Compiler --&gt; 		exe binary</span><br><span class="line">​						(FE, IR Optimizer, BE)</span><br><span class="line">(to AST)												(MachineCode)</span><br><span class="line">Abstract Syntax Tree</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>GCC 1.0 @ 1987</p>
+<img src="https://p.ipic.vip/5y76rq.png" alt="image-20230602160844823" style="zoom:50%;" />
+
+<p>​                        Free the Free!</p>
+<p>(Richard Matthew Stallman)</p>
+<p>Apple – Free! but OS kernel pretty closed</p>
+<p><img src="https://p.ipic.vip/mxxzdg.png" alt="image-20230602161010238"></p>
+<h3 id="Apple-met-LLVM"><a href="#Apple-met-LLVM" class="headerlink" title="Apple met LLVM"></a>Apple met LLVM</h3><img src="https://p.ipic.vip/lm33h3.png" alt="image-20230602161146709" style="zoom: 25%;" />
+
+
+
+
+
+<h3 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h3><img src="https://p.ipic.vip/bcso75.png" alt="image-20230602161456787" style="zoom: 50%;" />
+
+<img src="https://p.ipic.vip/eht8wd.png" alt="image-20230602161738949" style="zoom:67%;" />
+
+
+
+
+
+<h3 id="LLVM"><a href="#LLVM" class="headerlink" title="LLVM"></a>LLVM</h3><p>low level VM</p>
+<p>Compiler Toolchain</p>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230602161604175.png" alt="image-20230602161604175" style="zoom: 67%;" />
+
+
+
+
+
+<p>Introduced IR! bettern than GCC</p>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230602161815300.png" alt="image-20230602161815300" style="zoom:67%;" />
+
+
+
+
+
+<h2 id="CLANG-VS-GCC"><a href="#CLANG-VS-GCC" class="headerlink" title="CLANG VS GCC"></a>CLANG VS GCC</h2><p><img src="https://p.ipic.vip/cqugk4.png" alt="image-20230602162331702"></p>
+<p><img src="https://p.ipic.vip/304pgi.png" alt="image-20230602162406871"></p>
+<p><img src="https://p.ipic.vip/n0rsd7.png" alt="image-20230602162448009"></p>
+<p><img src="https://p.ipic.vip/rtj8ia.png" alt="image-20230602162529839"></p>
+<p>​    - *.ll  – huan readable</p>
+<ul>
+<li><pre><code class="bash">&gt; clang -emit-llvm hello.i -c -o hello.bc
+&gt; code hello.bc
+&gt; od -b hello.bc
+
+$ clang -ccc-print-phases hello.cpp
+               +- 0: input, <span class="string">"hello.cpp"</span>, c++
+            +- 1: preprocessor, {0}, c++-cpp-output
+         +- 2: compiler, {1}, ir
+      +- 3: backend, {2}, assembler
+   +- 4: assembler, {3}, object
++- 5: linker, {4}, image
+6: <span class="built_in">bind</span>-arch, <span class="string">"arm64"</span>, {5}, image
+
+(base)
+<span class="comment"># joe @ J-M1-Pro-16 in ~/exp [16:35:49]</span>
+$ cat hello.s | less
+    .cfi_endproc
+                                        ; -- End <span class="keyword">function</span>
+    .p2align    2                               ; -- Begin <span class="keyword">function</span> _ZNSt3__18ios_base8setstateEj
+__ZNSt3__18ios_base8setstateEj:         ; @_ZNSt3__18ios_base8setstateEj
+    .cfi_startproc
+; %bb.0:
+    sub    sp, sp, <span class="comment">#32</span>
+    stp    x29, x30, [sp, <span class="comment">#16]             ; 16-byte Folded Spill</span>
+        .section        __TEXT,__text,regular,pure_instructions
+        .build_version macos, 12, 0     sdk_version 12, 3
+        .globl  _main                           ; -- Begin <span class="keyword">function</span> main
+        .p2align        2
+_main:                                  ; @main
+        .cfi_startproc
+; %bb.0:
+        stp     x29, x30, [sp, <span class="comment">#-16]!           ; 16-byte Folded Spill</span>
+        mov     x29, sp
+        .cfi_def_cfa w29, 16
+        .cfi_offset w30, -8
+        .cfi_offset w29, -16
+        adrp    x0, l_.str@PAGE
+        add     x0, x0, l_.str@PAGEOFF
+        bl      _printf
+        adrp    x0, __ZNSt3__14coutE@GOTPAGE
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### LLVM IR★</span><br><span class="line"></span><br><span class="line">![image-20230602163418928](https:&#x2F;&#x2F;p.ipic.vip&#x2F;e85fsn.png)</span><br><span class="line"></span><br><span class="line">- SSA - Static Single Assignment </span><br><span class="line">  - ~  RISC ISA</span><br><span class="line">  - 3-address-code</span><br><span class="line">    - &lt;img src&#x3D;&quot;https:&#x2F;&#x2F;p.ipic.vip&#x2F;jwvvo5.png&quot; alt&#x3D;&quot;image-20230602163826992&quot; style&#x3D;&quot;zoom:33%;&quot; &#x2F;&gt;</span><br><span class="line">  - inf registers</span><br><span class="line">- Structure</span><br><span class="line">  - Module -&gt; Function -&gt; Basicblock -&gt; Instruction</span><br><span class="line">- Concepts</span><br><span class="line">  - Value, Use, User, </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### LLVM FE</span><br><span class="line"></span><br><span class="line">&lt;img src&#x3D;&quot;https:&#x2F;&#x2F;p.ipic.vip&#x2F;qtr860.png&quot; alt&#x3D;&quot;image-20230602164519532&quot; style&#x3D;&quot;zoom: 50%;&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">- Lexical Analysis --&gt; Syntatical Analysis --&gt; Semantic Analysis</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;&#96;bash</span><br><span class="line">    10018  clang -cc1 -dump-tokens hello.cpp</span><br><span class="line">    10019  clang -fsyntax-only -Xclang -ast-dump hello.cpp</span><br><span class="line">    10020  clang -c hello.cpp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### LLVM Optimizer</span><br><span class="line"></span><br><span class="line">- Finding PASS</span><br><span class="line"></span><br><span class="line">  - Analysis Pass</span><br><span class="line"></span><br><span class="line">  - Transform pass</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;	bash</span><br><span class="line">    &gt; opt hello.bc -instcount -time-passes -domtree -o hello-tmp.bc -stats</span><br></pre></td></tr></table></figure>
+
+- [LLVM’s Analysis and Transform Passes — LLVM 17.0.0git documentation](https://llvm.org/docs/Passes.html)
+
+  - e.g. -adce: Aggressive Dead Code Elimination
+  - e.g.  -constmerge: Merge Duplicate Global Constants
+
+- ModulePass, FunctionPass, BasicBlockPass
+
+
+</code></pre>
+</li>
+</ul>
+<h3 id="LLVM-BE"><a href="#LLVM-BE" class="headerlink" title="LLVM BE"></a>LLVM BE</h3><img src="/Users/joe/Library/Application Support/typora-user-images/image-20230602165508513.png" alt="image-20230602165508513" style="zoom: 40%;" />
+
+
+
+<h4 id="SelectionDAG-gt-Scheduling"><a href="#SelectionDAG-gt-Scheduling" class="headerlink" title="SelectionDAG -&gt; Scheduling"></a>SelectionDAG -&gt; Scheduling</h4><p><img src="https://p.ipic.vip/3r23t5.png" alt="image-20230602165708989"></p>
+<p>Topological sort to know nodes that are able to run parallelly</p>
+<h4 id="MCInst-gt-Code-Emission"><a href="#MCInst-gt-Code-Emission" class="headerlink" title="MCInst -&gt; Code Emission"></a>MCInst -&gt; Code Emission</h4><h4 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h4><p><img src="https://p.ipic.vip/gtnep5.png" alt="image-20230602165926323"></p>
+<h2 id="OnGoing-History"><a href="#OnGoing-History" class="headerlink" title="OnGoing History"></a>OnGoing History</h2><p>Chris start his bizness at “Modular”</p>
+<h2 id="LLVM-Related-AI-Compilers"><a href="#LLVM-Related-AI-Compilers" class="headerlink" title="LLVM Related AI Compilers"></a>LLVM Related AI Compilers</h2><p>built on LLVM, including</p>
+<ul>
+<li>XLA in TF,  by Google</li>
+<li>JAX, autograd + XLA, by Google</li>
+<li>TensorFlow, on XLA, then on LLVM</li>
+<li>TVM for different hardwares</li>
+<li>Julia, for HPC, using LLVM JIT</li>
+</ul>
+<p>ref to </p>
+<ul>
+<li>series of <a href="https://youtu.be/i5_BptwCBHA" target="_blank" rel="noopener">AI videos</a> on YT</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2023/05/27/AI-System/1%20Traditional%20Compilers%20/">http://yoursite.com/2023/05/27/AI-System/1%20Traditional%20Compilers%20/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2023/05/29/AI-System/2%20AI%20Compiler/"><i class="fa fa-chevron-left">  </i><span>AI-System/2 AI Compiler</span></a></div><div class="next-post pull-right"><a href="/2023/05/25/Concurrency/2023-05-25%20HighConcurrency%20VS%20MultiThreading/"><span>Concurrency/2023-05-25 HighConcurrency VS MultiThreading</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
