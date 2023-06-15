@@ -13,7 +13,7 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">386</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">66</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/29/AI-System/2%20AI%20Compiler/">AI-System/2 AI Compiler</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-29</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AI-System/">AI-System</a></span><div class="content"><h1 id="Why-we-need-AI-Compiler"><a href="#Why-we-need-AI-Compiler" class="headerlink" title="Why we need AI Compiler"></a>Why we need AI Compiler</h1><ul>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">395</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">69</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/29/AI-System/2%20AI%20Compiler/">AI-System/2 AI Compiler</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-29</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AI-System/">AI-System</a></span><div class="content"><h1 id="Why-we-need-AI-Compiler"><a href="#Why-we-need-AI-Compiler" class="headerlink" title="Why we need AI Compiler"></a>Why we need AI Compiler</h1><ul>
 <li>OPs ↑</li>
 <li>HW vendors release similar libs, e.g. CuDNN, MKL-DNN for their own chips</li>
 <li>Transplanation issue, e.g. CPU &amp; GPU’s existing  Pass hard to be transplanted to NPU</li>
@@ -628,104 +628,181 @@ _main:                                  ; @main
 <li><p>if (lookup.find(target - nums[i]) != lookup.end()){</p>
 </li>
 <li><p>for (auto item: m){</p>
-<pre><code>res.push_back(item.second);  // 注意！是second, 不是 second()</code></pre><p>}</p>
+<p>​        res.push_back(item.second);  // 注意！是second, 不是 second()</p>
+<p>}</p>
 </li>
 <li><p>private:</p>
-<pre><code>unordered_set`&lt;int&gt;` s;</code></pre></li>
+<p>​        unordered_set<code>&lt;int&gt;</code> s;</p>
+</li>
 <li><p>s.erase(key);</p>
 </li>
 <li><p>unordered_set<code>&lt;string&gt;</code> lookup(wordDict.begin(), wordDict.end());</p>
 </li>
 <li><p>unordered_set&lt;pair&lt;int, int&gt;, #SHOULD PROVIDE HASH HERE…&gt; visited; // so, change to use</p>
 </li>
+<li><p>Map</p>
+<ul>
+<li>```cpp<pre><code>vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt;updates;</code></pre>int idx = upper_bound(updates[index].begin(), updates[index].end(), make_pair(snap_id,INT_MAX)) - updates[index].begin();<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">- DP</span><br><span class="line"></span><br><span class="line">  - vector&#96;&lt;int&gt;&#96; dp &#x3D; &#123;1, 1, 2&#125;;</span><br><span class="line">  - vector&#96;&lt;int&gt;&#96; dp(n + 1);</span><br><span class="line">  - vector&lt;vector&#96;&lt;int&gt;&#96;&gt; dp(n, vector&#96;&lt;int&gt;&#96;(2));</span><br><span class="line">- Bits</span><br><span class="line"></span><br><span class="line">  - uint32_t x &#x3D; n;</span><br><span class="line">  - &#96;&#96;&#96;cpp</span><br><span class="line">    int num &#x3D; 5;</span><br><span class="line">    bool a &#x3D; false;</span><br><span class="line">    cout &lt;&lt; typeid(a).name() &lt;&lt; endl;</span><br><span class="line">    std::bitset&lt;8&gt; binary(num);  &#x2F;&#x2F; 將數字轉換為8位元的二進制</span><br><span class="line">    std::cout &lt;&lt; &quot;Binary representation of &quot; &lt;&lt; num &lt;&lt; &quot;: &quot; &lt;&lt; binary &lt;&lt; std::endl;</span><br><span class="line">    &#x2F;&#x2F; printf(&quot;%s&quot;, binary.to_string());</span><br><span class="line">    for (int i &#x3D; 0; i &lt; binary.size(); i++)&#123;</span><br><span class="line">        if (binary.test(i))</span><br><span class="line">            printf(&quot;i: %d,  \n&quot;, i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    string s &#x3D; binary.to_string();</span><br><span class="line">    for (int i &#x3D; 0; i &lt; s.size(); i++)&#123;</span><br><span class="line">        if (s[i] &#x3D;&#x3D; &#39;1&#39;)</span><br><span class="line">            printf(&quot;i: %d,  \n&quot;, i);</span><br><span class="line">    &#125;  </span><br><span class="line">    </span><br><span class="line">    return 0;</span><br><span class="line">    </span><br><span class="line">    ---------------------------------------------</span><br><span class="line">    Hello world!b</span><br><span class="line">    Binary representation of 5: 00000101</span><br><span class="line">    i: 0,  </span><br><span class="line">    i: 2,  </span><br><span class="line">    i: 5,  </span><br><span class="line">    i: 7,  </span><br><span class="line">    </span><br><span class="line">    int minFlips(int a, int b, int c) &#123;</span><br><span class="line">      bitset&lt;32&gt; bin_a(a), bin_b(b), bin_c(c);</span><br><span class="line">      size_t cnt &#x3D; 0;</span><br><span class="line">      for (int i &#x3D; 0; i &lt; 32; i++)&#123;</span><br><span class="line">        if ((bin_a.test(i) | bin_b.test(i)) !&#x3D; bin_c.test(i))&#123;</span><br><span class="line">          if (bin_c.test(i) &#x3D;&#x3D; 1) cnt +&#x3D; 1;</span><br><span class="line">          else cnt +&#x3D; bin_a.test(i) + bin_b.test(i);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      return cnt;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li><p>DP</p>
-<ul>
-<li>vector<code>&lt;int&gt;</code> dp = {1, 1, 2};</li>
-<li>vector<code>&lt;int&gt;</code> dp(n + 1);</li>
-<li>vector&lt;vector<code>&lt;int&gt;</code>&gt; dp(n, vector<code>&lt;int&gt;</code>(2));</li>
 </ul>
 </li>
-<li><p>Bits</p>
+<li><p>Matrix</p>
 <ul>
-<li><p>uint32_t x = n;</p>
+<li><p>if (matrix.size() == 0 || matrix[0].size() == 0) return {};</p>
 </li>
-<li><p>```cpp<br>int num = 5;<br>bool a = false;<br>cout &lt;&lt; typeid(a).name() &lt;&lt; endl;<br>std::bitset&lt;8&gt; binary(num);  // 將數字轉換為8位元的二進制<br>std::cout &lt;&lt; “Binary representation of “ &lt;&lt; num &lt;&lt; “: “ &lt;&lt; binary &lt;&lt; std::endl;<br>// printf(“%s”, binary.to_string());<br>for (int i = 0; i &lt; binary.size(); i++){</p>
-<pre><code>if (binary.test(i))
-    printf(&quot;i: %d,  \n&quot;, i);</code></pre><p>}</p>
-<p>string s = binary.to_string();<br>for (int i = 0; i &lt; s.size(); i++){</p>
-<pre><code>if (s[i] == &apos;1&apos;)
-    printf(&quot;i: %d,  \n&quot;, i);</code></pre><p>}  </p>
-<p>return 0;</p>
-<hr>
-<p>Hello world!b<br>Binary representation of 5: 00000101<br>i: 0,<br>i: 2,<br>i: 5,<br>i: 7,  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">- Matrix</span><br><span class="line"></span><br><span class="line">  - if (matrix.size() &#x3D;&#x3D; 0 || matrix[0].size() &#x3D;&#x3D; 0) return &#123;&#125;;</span><br><span class="line">  - int m &#x3D; matrix.size(), n &#x3D; matrix[0].size();</span><br><span class="line">  - int DIRECTIONS\[4]\[2] &#x3D; &#123; &#123;0, 1&#125;, &#123;1, 0&#125;, &#123;0, -1&#125;, &#123;-1, 0&#125; &#125;;</span><br><span class="line">  - seen.insert(i * n + j);</span><br><span class="line">  - seen.find(ni * n + nj) !&#x3D; seen.end()</span><br><span class="line">  - if (grid[i][j] &#x3D;&#x3D; &#39;1&#39; &amp;&amp; (visited.find(i * n + j) &#x3D;&#x3D; visited.end()))&#123;</span><br><span class="line">  - PII now &#x3D; q.front(); q.pop();</span><br><span class="line"></span><br><span class="line">    int i &#x3D; now.first, j &#x3D; now.second;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; printf(&quot;%d, %d\n&quot;, r, c);</span><br><span class="line"></span><br><span class="line">    for (auto dir:DIRECTIONS)&#123;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; int di &#x3D; dir.first, nj &#x3D; dir.second;  &#x2F;&#x2F; WRONG</span><br><span class="line">        </span><br><span class="line">        int di &#x3D; dir[0], dj &#x3D; dir[1];   &#x2F;&#x2F; FIX</span><br><span class="line">- LINEAR -- String, or Arr, with Vector as Stack, prefer to just use vector to make API name easier</span><br><span class="line"></span><br><span class="line">  - Vector</span><br><span class="line"></span><br><span class="line">    - v.push_back(x)</span><br><span class="line">    - v.back() &#x2F;&#x2F; 注意，API 不是top(); v.pop_back() &#x2F;&#x2F; 注意，不是pop()</span><br><span class="line">    - &#x2F;&#x2F; vector&#96;&lt;int&gt;&#96; right(n) &#x3D; &#123;1&#125;; &#x2F;&#x2F; WRONG!</span><br><span class="line"></span><br><span class="line">      vector&#96;&lt;int&gt;&#96; left(n, 1);</span><br><span class="line">    - string dfs_and_compare(TreeNode* root, string sub_pat, vector&#96;&lt;bool&gt;&#96; &amp;res)&#123;. &#x2F;&#x2F; Don&#39;t Forget &#96;&amp;&#96;!</span><br><span class="line">    - &#96;&#96;&#96;cpp</span><br><span class="line">      private:</span><br><span class="line">          vector&lt;int&gt; p;&#x2F;&#x2F;(3); 宣告不可指定大小</span><br><span class="line">      public:</span><br><span class="line">          ParkingSystem(int big, int medium, int small) &#123;</span><br><span class="line">              p &#x3D; &#123;big, medium, small&#125;;</span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>vector<code>&lt;int&gt;</code>&amp; tail = res.back();<br>tail[1] = max(e, prev_end);</li>
+<li><p>int m = matrix.size(), n = matrix[0].size();</p>
+</li>
+<li><p>int DIRECTIONS[4][2] = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };</p>
+</li>
+<li><p>seen.insert(i * n + j);</p>
+</li>
+<li><p>seen.find(ni * n + nj) != seen.end()</p>
+</li>
+<li><p>if (grid[i][j] == ‘1’ &amp;&amp; (visited.find(i * n + j) == visited.end())){</p>
+</li>
+<li><p>PII now = q.front(); q.pop();</p>
+<p>int i = now.first, j = now.second;</p>
+<p>// printf(“%d, %d\n”, r, c);</p>
+<p>for (auto dir:DIRECTIONS){</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// int di = dir.first, nj = dir.second;  // WRONG</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> di = dir[<span class="number">0</span>], dj = dir[<span class="number">1</span>];   <span class="comment">// FIX</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li><p>Queue</p>
+<li><p>LINEAR – String, or Arr, with Vector as Stack, prefer to just use vector to make API name easier</p>
 <ul>
-<li>while (!q.empty())</li>
-<li>q.push(nbr)</li>
-<li>q.front() // 注意，不是 top() ; q.pop()</li>
-<li>// for(auto &amp;x: q) {    NO trvs queue in CPP!</li>
+<li><p>Vector</p>
+<ul>
+<li><p>v.push_back(x)</p>
+</li>
+<li><p>v.back() // 注意，API 不是top(); v.pop_back() // 注意，不是pop()</p>
+</li>
+<li><p>// vector<code>&lt;int&gt;</code> right(n) = {1}; // WRONG!</p>
+<p>vector<code>&lt;int&gt;</code> left(n, 1);</p>
+</li>
+<li><p>string dfs_and_compare(TreeNode* root, string sub_pat, vector<code>&lt;bool&gt;</code> &amp;res){. // Don’t Forget <code>&amp;</code>!</p>
+</li>
+<li><p>```cpp<br>private:</p>
+<pre><code>vector&lt;int&gt; p;//(3); 宣告不可指定大小</code></pre><p>public:</p>
+<pre><code>ParkingSystem(int big, int medium, int small) {
+    p = {big, medium, small};
+}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">  - vector&#96;&lt;int&gt;&#96;&amp; tail &#x3D; res.back();</span><br><span class="line">    tail[1] &#x3D; max(e, prev_end);</span><br><span class="line">  - private:</span><br><span class="line">    </span><br><span class="line">    ​    vector&lt;map&lt;int, int&gt;&gt; arr;</span><br><span class="line">    </span><br><span class="line">    public:</span><br><span class="line">    </span><br><span class="line">    ​    SnapshotArray(int length) &#123;</span><br><span class="line">    </span><br><span class="line">    ​        &#x2F;&#x2F; arr(length);	&#x2F;&#x2F; WRONG!</span><br><span class="line">    ​		arr.resize(length)  &#x2F;&#x2F; FIX!</span><br><span class="line">- Queue</span><br><span class="line"></span><br><span class="line">  - while (!q.empty())</span><br><span class="line">  - q.push(nbr)</span><br><span class="line">  - q.front() &#x2F;&#x2F; 注意，不是 top() ; q.pop()</span><br><span class="line">  - &#x2F;&#x2F; for(auto &amp;x: q) &#123;    NO trvs queue in CPP!</span><br><span class="line">- String</span><br><span class="line"></span><br><span class="line">  - for (char c: s)&#123;</span><br><span class="line">  - to_string(root-&gt;val)</span><br><span class="line">  - string pat &#x3D; &quot;(&quot; + l + &quot; &quot; + to_string(root-&gt;val) + &quot; &quot; + r + &quot;)&quot;;</span><br><span class="line">  - if (pat &#x3D;&#x3D; sub_pat)&#123;</span><br><span class="line">  </span><br><span class="line">    res[0] &#x3D; true;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">  - string tmp &#x3D; s;  &#x2F;&#x2F; COPY a string</span><br><span class="line">  - isalnum(s[i]);</span><br><span class="line">  - tolower(s[i]) !&#x3D; tolower(s[j])</span><br><span class="line">  - return s.substr(lo, hi - lo+1);</span><br><span class="line">  - const int bi &#x3D; i &lt; b.size() ? b[i] - &#39;0&#39; : 0;</span><br><span class="line">  - result.insert(result.begin(), val + &#39;0&#39;);</span><br><span class="line">  - &#x2F;&#x2F; if (lookup.find(s.substr(i, j)) !&#x3D; lookup.end())&#123;    &#x2F;&#x2F; BUG!! BE CAREFUL!!!</span><br><span class="line">  </span><br><span class="line">    ​	if (lookup.find(s.substr(i, j - i)) !&#x3D; lookup.end())&#123; &#x2F;&#x2F; FIX!</span><br><span class="line">  - &#96;&#96;&#96;cpp</span><br><span class="line">    class Codec &#123;</span><br><span class="line">    public:</span><br><span class="line">    </span><br><span class="line">        &#x2F;&#x2F; Encodes a list of strings to a single string.</span><br><span class="line">        string encode(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        std::string encoded;</span><br><span class="line">        for (const std::string&amp; str : strs) &#123;</span><br><span class="line">          encoded +&#x3D; str + &quot;\n&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        return encoded;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        &#x2F;&#x2F; Decodes a single string to a list of strings.</span><br><span class="line">        vector&lt;string&gt; decode(string s) &#123;</span><br><span class="line">            stringstream ss(s);</span><br><span class="line">            string word;</span><br><span class="line">            vector&lt;string&gt; res;</span><br><span class="line">            &#x2F;&#x2F; while (ss &gt;&gt; word)&#123;</span><br><span class="line">            char delim &#x3D; &#39;\n&#39;;</span><br><span class="line">            while (getline(ss, word, delim))&#123;</span><br><span class="line">                res.push_back(word);</span><br><span class="line">            &#125;</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li><p>String</p>
+</ul>
+</li>
+<li><p>PQ, Top-K &amp; Comparator</p>
 <ul>
-<li><p>for (char c: s){</p>
+<li><p>// printf(“%d %d\n”, x.first, x.second);</p>
 </li>
-<li><p>to_string(root-&gt;val)</p>
-</li>
-<li><p>string pat = “(“ + l + “ “ + to_string(root-&gt;val) + “ “ + r + “)”;</p>
-<pre><code>if (pat == sub_pat){
+<li><p>private:</p>
+<pre><code>priority_queue`&lt;int&gt;` pq;
 
-res[0] = true;
+int sz;</code></pre></li>
+<li><pre><code class="cpp"><span class="meta">#<span class="meta-keyword">define</span> pii pair<span class="meta-string">&lt;int,int&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">define</span> tii tuple<span class="meta-string">&lt;int,int&gt;</span></span>
 
-}</code></pre></li>
-<li><p>string tmp = s;  // COPY a string</p>
-</li>
-<li><p>isalnum(s[i]);</p>
-</li>
-<li><p>tolower(s[i]) != tolower(s[j])</p>
-</li>
-<li><p>return s.substr(lo, hi - lo+1);</p>
-</li>
-<li><p>const int bi = i &lt; b.size() ? b[i] - ‘0’ : 0;</p>
-</li>
-<li><p>result.insert(result.begin(), val + ‘0’);</p>
-</li>
-<li><p>// if (lookup.find(s.substr(i, j)) != lookup.end()){    // BUG!! BE CAREFUL!!!</p>
-<pre><code>if (lookup.find(s.substr(i, j - i)) != lookup.end()){ // FIX!</code></pre></li>
-<li><p>```cpp<br>class Codec {<br>public:</p>
-<pre><code>// Encodes a list of strings to a single string.
-string encode(vector&lt;string&gt;&amp; strs) {
-std::string encoded;
-for (const std::string&amp; str : strs) {
-  encoded += str + &quot;\n&quot;;
-}
-return encoded;
-}
-
-// Decodes a single string to a list of strings.
-vector&lt;string&gt; decode(string s) {
-    stringstream ss(s);
-    string word;
-    vector&lt;string&gt; res;
-    // while (ss &gt;&gt; word){
-    char delim = &apos;\n&apos;;
-    while (getline(ss, word, delim)){
-        res.push_back(word);
+<span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp; m, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp; n)</span> </span>{
+        <span class="keyword">return</span> m.second &gt; n.second;
+    }  
+    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; topKFrequent(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) {
+        <span class="comment">// return sol_20230523(nums, k);</span>
+        <span class="keyword">return</span> py_20230523(nums, k);
     }
-    return res;
-}</code></pre><p>};</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">- PQ, Top-K &amp; Comparator</span><br><span class="line"></span><br><span class="line">  - &#x2F;&#x2F; printf(&quot;%d %d\n&quot;, x.first, x.second);</span><br><span class="line">  - private:</span><br><span class="line"></span><br><span class="line">        priority_queue&#96;&lt;int&gt;&#96; pq;</span><br><span class="line">        </span><br><span class="line">        int sz;</span><br><span class="line">  - &#96;&#96;&#96;cpp</span><br><span class="line">    #define pii pair&lt;int,int&gt;</span><br><span class="line">    #define tii tuple&lt;int,int&gt;</span><br><span class="line">    </span><br><span class="line">    class Solution &#123;</span><br><span class="line">    public:</span><br><span class="line">        static bool cmp(pair&lt;int, int&gt;&amp; m, pair&lt;int, int&gt;&amp; n) &#123;</span><br><span class="line">            return m.second &gt; n.second;</span><br><span class="line">        &#125;  </span><br><span class="line">        vector&lt;int&gt; topKFrequent(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">            &#x2F;&#x2F; return sol_20230523(nums, k);</span><br><span class="line">            return py_20230523(nums, k);</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        vector&lt;int&gt; sol_20230523(vector&lt;int&gt;&amp; nums, int k) &#123;    &#x2F;&#x2F; AC!</span><br><span class="line">            unordered_map&lt;int, int&gt; counter;</span><br><span class="line">            for (auto x: nums) counter[x]++;</span><br><span class="line">    </span><br><span class="line">            int n &#x3D; nums.size();</span><br><span class="line">    </span><br><span class="line">            &#x2F;&#x2F; priority_queue&lt;pair&lt;int, int&gt;, vector&lt;pair&lt;int, int&gt;&gt;, decltype(cmp)&gt; pq(cmp);</span><br><span class="line">            &#x2F;&#x2F; auto cmp &#x3D; [](const pair&lt;int, int&gt;&amp; a, const pair&lt;int, int&gt;&amp; b) &#123;</span><br><span class="line">            &#x2F;&#x2F;     return a.second &gt; b.second; &#x2F;&#x2F; Sort in descending order of frequency</span><br><span class="line">            &#x2F;&#x2F; &#125;;      </span><br><span class="line">            &#x2F;&#x2F; priority_queue&lt;pair&lt;int, int&gt;, vector&lt;pair&lt;int, int&gt;&gt;, decltype(&amp;cmp)&gt; pq(cmp);</span><br><span class="line">            priority_queue&lt;pii, vector&lt;pii&gt;, decltype(&amp;cmp)&gt; pq(cmp);</span><br><span class="line">            for (auto x: counter)&#123;</span><br><span class="line">                &#x2F;&#x2F; printf(&quot;%d %d\n&quot;, x.first, x.second);</span><br><span class="line">                pq.push(x);</span><br><span class="line">                if (pq.size() &gt; k) pq.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            vector&lt;int&gt; res;</span><br><span class="line">            while (!pq.empty())&#123;</span><br><span class="line">                res.push_back(pq.top().first);</span><br><span class="line">                pq.pop();</span><br><span class="line">            &#125;</span><br><span class="line">    </span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        vector&lt;int&gt; py_20230523(vector&lt;int&gt;&amp; nums, int k) &#123;     &#x2F;&#x2F; AC!</span><br><span class="line">            unordered_map&lt;int, int&gt; counter;</span><br><span class="line">            for (auto x: nums) counter[x]++;</span><br><span class="line">    </span><br><span class="line">            int n &#x3D; nums.size();</span><br><span class="line">    </span><br><span class="line">            &#x2F;&#x2F; priority_queue&lt;pii&gt; pq;</span><br><span class="line">            priority_queue&lt;tii&gt; pq;</span><br><span class="line">            for (auto x: counter)&#123;</span><br><span class="line">                &#x2F;&#x2F; printf(&quot;%d %d\n&quot;, x.first, x.second);</span><br><span class="line">                &#x2F;&#x2F; pq.push(pair(-x.second, x.first));</span><br><span class="line">                &#x2F;&#x2F; if (pq.size() &gt; k) pq.pop();</span><br><span class="line">                pq.push(tuple(-x.second, x.first));</span><br><span class="line">                if (pq.size() &gt; k) pq.pop();</span><br><span class="line">            &#125;</span><br><span class="line">    </span><br><span class="line">            vector&lt;int&gt; res;</span><br><span class="line">            while (!pq.empty())&#123;</span><br><span class="line">                &#x2F;&#x2F; res.push_back(pq.top().second);</span><br><span class="line">                res.push_back(get&lt;1&gt;(pq.top()));</span><br><span class="line">                pq.pop();</span><br><span class="line">            &#125;</span><br><span class="line">    </span><br><span class="line">            return res;</span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">        ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) &#123;</span><br><span class="line">            &#x2F;&#x2F; write your code here</span><br><span class="line">            int n &#x3D; lists.size();</span><br><span class="line">            if (n &#x3D;&#x3D; 0)&#123;</span><br><span class="line">                return NULL;</span><br><span class="line">            &#125;</span><br><span class="line">            auto cmp &#x3D; [](ListNode * left, ListNode * right)&#123;</span><br><span class="line">                return left-&gt;val &gt; right-&gt;val;</span><br><span class="line">            &#125;;</span><br><span class="line">            priority_queue&lt;ListNode *, vector&lt;ListNode*&gt;, decltype(cmp)&gt; heap(cmp);</span><br><span class="line">            for (int i &#x3D; 0; i &lt; n; i++)&#123;</span><br><span class="line">                if (lists[i] !&#x3D; NULL)&#123;</span><br><span class="line">                    heap.push(lists[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F; ListNode DummyNode(0);</span><br><span class="line">            ListNode * DummyNode &#x3D; new ListNode(0);</span><br><span class="line">            ListNode * tail &#x3D; DummyNode;</span><br><span class="line">            while(!heap.empty())&#123;</span><br><span class="line">                ListNode * node &#x3D; heap.top();</span><br><span class="line">                heap.pop();</span><br><span class="line">                tail-&gt;next &#x3D; node;</span><br><span class="line">                tail &#x3D; tail-&gt;next;</span><br><span class="line">                if (node-&gt;next)&#123;</span><br><span class="line">                    heap.push(node-&gt;next);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return DummyNode-&gt;next;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
+
+    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sol_20230523(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) {    <span class="comment">// AC!</span>
+        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; counter;
+        <span class="keyword">for</span> (<span class="keyword">auto</span> x: nums) counter[x]++;
+
+        <span class="keyword">int</span> n = nums.size();
+
+        <span class="comment">// priority_queue&lt;pair&lt;int, int&gt;, vector&lt;pair&lt;int, int&gt;&gt;, decltype(cmp)&gt; pq(cmp);</span>
+        <span class="comment">// auto cmp = [](const pair&lt;int, int&gt;&amp; a, const pair&lt;int, int&gt;&amp; b) {</span>
+        <span class="comment">//     return a.second &gt; b.second; // Sort in descending order of frequency</span>
+        <span class="comment">// };      </span>
+
+        <span class="comment">// priority_queue&lt;pair&lt;int, int&gt;, vector&lt;pair&lt;int, int&gt;&gt;, decltype(&amp;cmp)&gt; pq(cmp);</span>
+          <span class="comment">//auto cmp = [](ListNode * left, ListNode * right){</span>
+                <span class="comment">//        return left-&gt;val &gt; right-&gt;val;</span>
+                <span class="comment">//};</span>
+                <span class="comment">//priority_queue&lt;ListNode *, vector&lt;ListNode*&gt;, decltype(cmp)&gt; heap(cmp);</span>
+
+          priority_queue&lt;pii, <span class="built_in">vector</span>&lt;pii&gt;, <span class="keyword">decltype</span>(&amp;cmp)&gt; pq(cmp);
+        <span class="keyword">for</span> (<span class="keyword">auto</span> x: counter){
+            <span class="comment">// printf("%d %d\n", x.first, x.second);</span>
+            pq.push(x);
+            <span class="keyword">if</span> (pq.size() &gt; k) pq.pop();
+        }
+        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;
+        <span class="keyword">while</span> (!pq.empty()){
+            res.push_back(pq.top().first);
+            pq.pop();
+        }
+
+        <span class="keyword">return</span> res;
+    }
+
+    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; py_20230523(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) {     <span class="comment">// AC!</span>
+        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; counter;
+        <span class="keyword">for</span> (<span class="keyword">auto</span> x: nums) counter[x]++;
+
+        <span class="keyword">int</span> n = nums.size();
+
+        <span class="comment">// priority_queue&lt;pii&gt; pq;</span>
+        priority_queue&lt;tii&gt; pq;
+        <span class="keyword">for</span> (<span class="keyword">auto</span> x: counter){
+            <span class="comment">// printf("%d %d\n", x.first, x.second);</span>
+            <span class="comment">// pq.push(pair(-x.second, x.first));</span>
+            <span class="comment">// if (pq.size() &gt; k) pq.pop();</span>
+            pq.push(tuple(-x.second, x.first));
+            <span class="keyword">if</span> (pq.size() &gt; k) pq.pop();
+        }
+
+        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;
+        <span class="keyword">while</span> (!pq.empty()){
+            <span class="comment">// res.push_back(pq.top().second);</span>
+            res.push_back(get&lt;<span class="number">1</span>&gt;(pq.top()));
+            pq.pop();
+        }
+
+        <span class="keyword">return</span> res;
+    }  
+};
+
+    <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(<span class="built_in">vector</span>&lt;ListNode*&gt;&amp; lists)</span> </span>{
+        <span class="comment">// write your code here</span>
+        <span class="keyword">int</span> n = lists.size();
+        <span class="keyword">if</span> (n == <span class="number">0</span>){
+            <span class="keyword">return</span> <span class="literal">NULL</span>;
+        }
+        <span class="keyword">auto</span> cmp = [](ListNode * left, ListNode * right){
+            <span class="keyword">return</span> left-&gt;val &gt; right-&gt;val;
+        };
+        priority_queue&lt;ListNode *, <span class="built_in">vector</span>&lt;ListNode*&gt;, <span class="keyword">decltype</span>(cmp)&gt; heap(cmp);
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++){
+            <span class="keyword">if</span> (lists[i] != <span class="literal">NULL</span>){
+                heap.push(lists[i]);
+            }
+        }
+        <span class="comment">// ListNode DummyNode(0);</span>
+        ListNode * DummyNode = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
+        ListNode * tail = DummyNode;
+        <span class="keyword">while</span>(!heap.empty()){
+            ListNode * node = heap.top();
+            heap.pop();
+            tail-&gt;next = node;
+            tail = tail-&gt;next;
+            <span class="keyword">if</span> (node-&gt;next){
+                heap.push(node-&gt;next);
+            }
+        }
+        <span class="keyword">return</span> DummyNode-&gt;next;
+    }</code></pre>
 </li>
 <li><p>auto cmp = [](ListNode * left, ListNode * right){</p>
-<pre><code>return left-&gt;val &gt; right-&gt;val;</code></pre><p>};</p>
+<p>​        return left-&gt;val &gt; right-&gt;val;</p>
+<p>};</p>
 <p>priority_queue&lt;ListNode <em>, vector&lt;ListNode</em>&gt;, decltype(cmp)&gt; heap(cmp);</p>
 </li>
 </ul>
@@ -767,7 +844,7 @@ vector&lt;string&gt; decode(string s) {
 </li>
 </ul>
 <h1 id="Best-Record"><a href="#Best-Record" class="headerlink" title="Best Record"></a>Best Record</h1><p><img src="https://p.ipic.vip/z75ght.png" alt="image-20230602210901526"></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/2%20%E8%BB%8A%E8%B2%B8/">Loans/2 車貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"></div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/78/">78</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/2%20%E8%BB%8A%E8%B2%B8/">Loans/2 車貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"></div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/">79</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')

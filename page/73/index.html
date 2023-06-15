@@ -13,233 +13,930 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">386</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">66</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2018/06/20/CVs/2018-06-20-ISP(ImageSignalProcessor)_and_3A/">CVs/2018-06-20-ISP(ImageSignalProcessor)_and_3A</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-06-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/CV/">CV</a></span><div class="content"><p> Camera! Let’s go!</p>
-<h1 id="ISP-Architecture-Image-Signal-Processor"><a href="#ISP-Architecture-Image-Signal-Processor" class="headerlink" title="ISP Architecture (Image Signal Processor)"></a>ISP Architecture (Image Signal Processor)</h1><p><strong>Important features in Camera Principle</strong></p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a>Notes:</h3><p>isp晶片 會有個sensor 會裝個 len，會有rgb的pixels e.g.1920 1080 的方格，每一個都是一個r、g、b</p>
-<p>接收不同光的是不同的像素格，在光進來後再做處理，進isp，isp再去處理，變成了後制成圖片</p>
-<p>廣角、distortion重，</p>
-<p>影像邊邊是彎彎的，魚眼鏡頭180度(水平最大的視角)，通常會有鏡頭到120、130就算很廣了</p>
-<p>這種鏡頭的邊邊的distortion就很重</p>
-<p>Isp就是可以校正這種畸變</p>
-<p>針對鏡頭就算同型號畸變還是會有差</p>
-<p>生產時會校正</p>
-<p>同組參用在同型號的鏡頭</p>
-<p>Isp的好壞會影響校出來的結果 </p>
-<p>校出來的是另一個</p>
-<p>sensor的光會進isp (pipeline)，</p>
-<p>​    isp做distortion、還有像lens shading 邊邊入光量比較小就比較暗，邊邊的gain就要拉高一點，gain拉高，noise就會也一起高了</p>
-<p>​    isp也要做noise reduction，noice太大，鏡頭光圈小入光就小，得用sensor 的gain拉大，這樣noise也大，就得靠isp去降噪</p>
-<p>​    先mosaiac 還原，各個有各自的功能</p>
-<p>​    3a只是其中的功能 aito white</p>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3es8d1qs4j20ug0j6abd.jpg" alt="img"></p>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3es9u7fkhj20ny0cyt9u.jpg" alt="img"></p>
-<p>ref: <a href="https://zhuanlan.zhihu.com/p/98820927" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/98820927</a></p>
-<h1 id="3A-in-Camera"><a href="#3A-in-Camera" class="headerlink" title="3A in Camera"></a>3A in Camera</h1><h3 id="Auto-focus"><a href="#Auto-focus" class="headerlink" title="Auto focus"></a>Auto focus</h3><p>​    isp 會吐個focus value看銳俐度 —&gt; isp有硬體可以偵測影像的銳俐度，在算pixel的微分</p>
-<p>​    </p>
-<p>​    會拿到focus value，會去動鏡頭，即對焦，再得到下一個focus value</p>
-<p>​    很快推到最高點，鏡頭有個焦距，它原理就是看不同鏡頭對焦，</p>
-<p>​    有個壓電效應在做的</p>
-<p>​    <strong>壓電效應 (Piezoelectricity)</strong>，電流愈大，壓力就愈大，裡面有液體，壓力大，鏡頭就被會壓然後被推</p>
-<p>​    就是電流去控焦距</p>
-<p>​    input 就是focus value，output就是我要送多大的電流，也要判斷場景是不是有變</p>
-<p>​    拿手機去對焦也會發現自動對焦會對錯或是不對，是代表演算法沒有很精準</p>
-<h3 id="Auto-White-Balance"><a href="#Auto-White-Balance" class="headerlink" title="Auto White-Balance"></a>Auto White-Balance</h3><p>白平衡難! 色彩學!</p>
-<p>​    假設室內是黃光，我們台灣喜歡白光，黃光的室內的話就會把畫面變白，他會希望你看到的畫面是白的</p>
-<p>​    人眼就是有自動白平衡的功能</p>
-<p>​    假設我們看一個apple，有人打藍光，我還是知道apple是紅色，我人眼還是可以分得出原色，不會被黃光給影響到覺得是黃apple</p>
-<p>​    當他偵測到r比較多，r的gain就得要小一點，b的gain就得要大一點，讓畫面沒有那麼紅!</p>
-<p>​    光源 or 原色造成? 不知道</p>
-<p>​    偶有過白! </p>
-<h3 id="Auto-Exposure"><a href="#Auto-Exposure" class="headerlink" title="Auto Exposure"></a>Auto Exposure</h3><p>​    光源不希望太亮或太暗</p>
-<p>​    eg 行車紀錄器，我要進出tunnel，光會突然變暗，使用者會希望亮度馬上可以調到看得到裡面的東西</p>
-<p>​    所以一sense到變暗，gain就要拉起來，過頭就會太亮，所以「怎麼拉」很重要</p>
-<p>​    不可以給感覺一下子太亮或太暗</p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/06/15/Deeplearning.ai/2018-06-15-Deeplearning.ai_Course1/">Deeplearning.ai/2018-06-15-Deeplearning.ai_Course1</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-06-15</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Deep-Learning/">Deep-Learning</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Deep-Learning/AI/">AI</a></span><div class="content"><h3 id="Course1"><a href="#Course1" class="headerlink" title="Course1"></a>Course1</h3><h4 id="Week1"><a href="#Week1" class="headerlink" title="Week1"></a>Week1</h4><p>Would structured or unstructured data have features such as pixel values or individual words?</p>
-<p>Ans: Unstructured data</p>
-<h4 id="Week2"><a href="#Week2" class="headerlink" title="Week2"></a>Week2</h4><p>![image-20190906215336217](/Users/joe/Library/Application Support/typora-user-images/image-20190906215336217.png)</p>
-<p>![image-20190906215454393](/Users/joe/Library/Application Support/typora-user-images/image-20190906215454393.png)</p>
-<h5 id="Logistic-Regression’s-Gradient-Descent"><a href="#Logistic-Regression’s-Gradient-Descent" class="headerlink" title="Logistic Regression’s Gradient Descent"></a>Logistic Regression’s Gradient Descent</h5><p>![image-20190906215703253](/Users/joe/Library/Application Support/typora-user-images/image-20190906215703253.png)</p>
-<p><a href="https://ithelp.ithome.com.tw/articles/10193718" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10193718</a></p>
-<h6 id="My-Note"><a href="#My-Note" class="headerlink" title="My Note"></a>My Note</h6><p>![image-20190906215840755](/Users/joe/Library/Application Support/typora-user-images/image-20190906215840755.png)</p>
-<h6 id="Cross-Entropy"><a href="#Cross-Entropy" class="headerlink" title="Cross Entropy"></a>Cross Entropy</h6><p>![image-20190906215928611](/Users/joe/Library/Application Support/typora-user-images/image-20190906215928611.png)</p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7hgpf462kj31440u0x6n.jpg" alt="image-20190930130717483"></p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7hgre16lwj318q0u0u0x.jpg" alt="image-20190930130913470"></p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7hgs6tkroj30yk0nkqpv.jpg" alt="image-20190930131000168"></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/05/08/CVs/2018-05-08-GEMM-how-caffe-implements-CNN/">CVs/2018-05-08-GEMM-how-caffe-implements-CNN</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-05-08</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/CV/">CV</a></span><div class="content"><h1 id="Img2col"><a href="#Img2col" class="headerlink" title="Img2col"></a>Img2col</h1><p>ref: <a href="https://petewarden.com/2015/04/20/why-gemm-is-at-the-heart-of-deep-learning/" target="_blank" rel="noopener">https://petewarden.com/2015/04/20/why-gemm-is-at-the-heart-of-deep-learning/</a></p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gejzl2gv8lj30fa07tq5m.jpg" alt="patches"></p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gejzl4t9kuj30fa070dhu.jpg" alt="im2col_corrected"></p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gejzl83aijj30fa09776o.jpg" alt="im2colmult_corrected"></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/05/06/Python/2018-05-06-Faster%20than%20O(N)%20--%20SortedContainers/">Python/2018-05-06-Faster than O(N) -- SortedContainers</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-05-06</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span><div class="content"><p>ref: <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">http://www.grantjenks.com/docs/sortedcontainers/</a></p>
-<p>For Map/TreeMap data structure, we may use <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">sortedcontainers</a> library.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sortedcontainers <span class="keyword">import</span> SortedList</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sl = SortedList([<span class="string">'e'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'b'</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sl</span><br><span class="line">SortedList([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sl *= <span class="number">10</span>_000_000</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sl.count(<span class="string">'c'</span>)</span><br><span class="line"><span class="number">10000000</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sl[<span class="number">-3</span>:]</span><br><span class="line">[<span class="string">'e'</span>, <span class="string">'e'</span>, <span class="string">'e'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sortedcontainers <span class="keyword">import</span> SortedDict</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sd = SortedDict(&#123;<span class="string">'c'</span>: <span class="number">3</span>, <span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sd</span><br><span class="line">SortedDict(&#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>, <span class="string">'c'</span>: <span class="number">3</span>&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sd.popitem(index=<span class="number">-1</span>)</span><br><span class="line">(<span class="string">'c'</span>, <span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sortedcontainers <span class="keyword">import</span> SortedSet</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ss = SortedSet(<span class="string">'abracadabra'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ss</span><br><span class="line">SortedSet([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'r'</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ss.bisect_left(<span class="string">'c'</span>)</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">395</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">69</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/05/AB_Test/RL_AB/Sec2%20MAB%20in%20RL/">AB_Test/RL_AB/Sec2 MAB in RL</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-05</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RL/">RL</a></span><div class="content"><h1 id="MAB-–-Bayesian-AB-Testing"><a href="#MAB-–-Bayesian-AB-Testing" class="headerlink" title="MAB – Bayesian AB Testing"></a>MAB – Bayesian AB Testing</h1><h2 id="Explore-Exploit-Dilemma"><a href="#Explore-Exploit-Dilemma" class="headerlink" title="Explore-Exploit Dilemma"></a>Explore-Exploit Dilemma</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk7iwt959j31120840w4.jpg" alt="image-20201110173053477" style="zoom:50%;" />
 
-<p>All of the operations shown above run in faster than linear time.</p>
-<p>Ref: <a href="https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages-" target="_blank" rel="noopener">https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages-</a></p>
-<blockquote>
-<h1 id="What-are-the-environments-for-the-programming-languages"><a href="#What-are-the-environments-for-the-programming-languages" class="headerlink" title="What are the environments for the programming languages?"></a>What are the environments for the programming languages?</h1><ul>
-<li><p>1 month ago</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk7jej62ij30yc0jq7au.jpg" alt="image-20201110173124688" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk7khaq7lj30ye0l8n3g.jpg" alt="image-20201110173226758" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381wxx801j210g0jodhs.jpg" alt="image-20201110173322193" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk7mnki67j311i0ga0z8.jpg" alt="image-20201110173432306" style="zoom:50%;" />
+
+
+
+<h4 id="Why-Against-Greey-on-the-maximum-likelihood-estimate-of-win-rate-now"><a href="#Why-Against-Greey-on-the-maximum-likelihood-estimate-of-win-rate-now" class="headerlink" title="Why Against Greey on the maximum likelihood estimate of win rate now?"></a>Why Against Greey on the maximum likelihood estimate of win rate now?</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk7oolfu9j30z40js7df.jpg" alt="image-20201110173629144" style="zoom:50%;" />
+
+
+
+<h5 id="Effect-size"><a href="#Effect-size" class="headerlink" title="Effect size"></a>Effect size</h5><ul>
+<li>it’s related to the difference btw the win-rate of the two slot machines</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk7r8m39bj311s0juk0q.jpg" alt="image-20201110173856256" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk7vhhpd9j310o0ictj2.jpg" alt="image-20201110174301320" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk7wtb6w8j30y40lk46h.jpg" alt="image-20201110174418284" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk7xqhob8j30xw0jw7bt.jpg" alt="image-20201110174511335" style="zoom:50%;" />
+
+<ul>
+<li>Algs can be used in place of a traditional AB test in software system</li>
+<li>Methods that overcome some of the awkard problems like effect size, wanting to stop my experiment early and the controversial P-value.</li>
+<li><strong>Adaptive</strong>, meaning that they learn on the fly, ∴ advantageous, especialy in high throughput online business settings.</li>
+</ul>
+<h3 id="Applications"><a href="#Applications" class="headerlink" title="Applications"></a>Applications</h3><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk83n89tgj30yw082adg.jpg" alt="image-20201110175052050"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk84dvwwdj310u0jugu1.jpg" alt="image-20201110175134119" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk85p1cx7j31120hyq8h.jpg" alt="image-20201110175250231" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381xcghimj211m0jc0up.jpg" alt="image-20201110175336380" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkk87yzs5rj311g0kcn8u.jpg" alt="image-20201110175501274" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381xice2sj211m0hwju8.jpg" alt="image-20201111161819125" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gklb2mo08hj312c0lwh26.jpg" alt="image-20201111161914956" style="zoom:50%;" />
+
+
+
+<h5 id="Gaussian-vs-Bernoulli"><a href="#Gaussian-vs-Bernoulli" class="headerlink" title="Gaussian vs. Bernoulli"></a>Gaussian vs. Bernoulli</h5><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gklb3n1rduj311w0kytde.jpg" alt="image-20201111162013595" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gklb4hjtr7j311006sq69.jpg" alt="image-20201111162102271" style="zoom:50%;" />
+
+
+
+
+
+<h2 id="1-–-ε-Greedy"><a href="#1-–-ε-Greedy" class="headerlink" title="1 – ε-Greedy"></a>1 – ε-Greedy</h2><ul>
+<li>to Balance exploration and exploitation</li>
+<li>Short-sighted</li>
+<li>use only immediately available info as a heuristic</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gklb5gqlc4j30y40i6dlr.jpg" alt="image-20201111162158881" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381xle3aej21260kcq5t.jpg" alt="image-20201111162516984" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gklbadmawjj311k0gs43b.jpg" alt="image-20201111162642379" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gklbbhdlo7j310q0ka0y2.jpg" alt="image-20201111162746138" style="zoom:50%;" />
+
+
+
+<ul>
+<li>once we have X, we can update the estimate for the mean of the bandit we selected.</li>
+</ul>
+<h5 id="Additional-Details"><a href="#Additional-Details" class="headerlink" title="Additional Details"></a>Additional Details</h5><ul>
+<li>Want to collect each data abou each bandit!<ul>
+<li>∵ want estimate of win-rate to be accurate</li>
+</ul>
 </li>
-<li></li>
-<li><p>Updated</p>
+<li>But at <ul>
+<li>What point shouldwe stop exploring ? </li>
+<li>What happens if we let the algorithm run forever?<ul>
+<li>if not stop exploring, ==&gt; total collective reward will be suboptimal…</li>
+</ul>
 </li>
 </ul>
-<p><a href="https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages-/subscription.html" target="_blank" rel="noopener">Follow</a></p>
+</li>
+<li>By definition, if one of the bandits is optimal, then the other bandits are not optimal.</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gklbszfncdj31200k8dmp.jpg" alt="image-20201111164434393" style="zoom:50%;" />
+
+
+
+<h4 id="Decaying-Epsilon"><a href="#Decaying-Epsilon" class="headerlink" title="Decaying Epsilon"></a>Decaying Epsilon</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gklbuxw8ulj310o0h6wis.jpg" alt="image-20201111164627855" style="zoom:50%;" />
+
+
+
+<h3 id="Calculating-a-Sample-Mean"><a href="#Calculating-a-Sample-Mean" class="headerlink" title="Calculating a Sample Mean"></a>Calculating a Sample Mean</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gklbwp331wj30wg0i40w2.jpg" alt="image-20201111164808831" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gklbxwofw5j313m0eaq6h.jpg" alt="image-20201111164918981" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr9fu5673j312s0lmjvr.jpg" alt="image-20201217231627781" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr9g2xgaqj312o0lygpv.jpg" alt="image-20201217231642310" style="zoom:50%;" />
+
+<h6 id="If-the-values-of-the-RV-can-only-be-0or-1-thenthesample-mean-is-exactly-the-MLE-of-the-Bernoulli-param"><a href="#If-the-values-of-the-RV-can-only-be-0or-1-thenthesample-mean-is-exactly-the-MLE-of-the-Bernoulli-param" class="headerlink" title="If the values of the RV can only be 0or 1, thenthesample mean is exactly the MLE of the Bernoulli param"></a>If the values of the RV can only be 0or 1, thenthesample mean is exactly the MLE of the Bernoulli param</h6><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gklbz4pmlmj31000lu796.jpg" alt="image-20201111165029387" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gklc06yks6j30tm0jqwjc.jpg" alt="image-20201111165130844" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkld3xquubj31220j2tdo.jpg" alt="image-20201111172942379" style="zoom:50%;" />
+
+
+
+<h4 id="Rolling-mean"><a href="#Rolling-mean" class="headerlink" title="Rolling mean"></a>Rolling mean</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381xolo91j212c0k0tae.jpg" alt="image-20201111173021174" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381xrxw6lj20zq0k8763.jpg" alt="image-20201111173948929" style="zoom:50%;" />
+
+
+
+<h4 id="Constant-Time-amp-Space-for-Sample-Mean-estimation"><a href="#Constant-Time-amp-Space-for-Sample-Mean-estimation" class="headerlink" title="Constant Time &amp; Space for Sample Mean estimation"></a>Constant Time &amp; Space for Sample Mean estimation</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkldf47f1jj30w20lujw7.jpg" alt="image-20201111174027387" style="zoom:50%;" />
+
+
+
+<h3 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkldiimo4cj311q0gon2r.jpg" alt="image-20201111174342893" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkldkkdb86j31200iiwkb.jpg" alt="image-20201111174541096" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381xucz2dj21lq0ry7d8.jpg" alt="image-20201112114635385" style="zoom: 67%;" />
+
+
+
+
+
+<h3 id="Designing-My-Bandint-Program"><a href="#Designing-My-Bandint-Program" class="headerlink" title="Designing My Bandint Program"></a>Designing My Bandint Program</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381xxltrqj210c0kiwg3.jpg" alt="image-20201112105916065" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkm7gvw2inj30yo0katei.jpg" alt="image-20201112110006940" style="zoom:50%;" />
+
+
+
+<p>==&gt; Also pattern to be followed for My Bandit Prog.</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkm7jpesxhj312s0gywop.jpg" alt="image-20201112110249987" style="zoom:50%;" />
+
+
+
+<h3 id="My-Code’s-Result"><a href="#My-Code’s-Result" class="headerlink" title="My Code’s Result"></a>My Code’s Result</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381y0twbcj20x10u0q4g.jpg" alt="image-20201112154844278" style="zoom: 33%;" />
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381y3zh13j20xr0u0q4t.jpg" alt="image-20201112163522404" style="zoom:33%;" />
+
+
+
+<h3 id="Cmp-Diff-ε-w-Reward-in-Real-Value-as-N-μ-σ-2"><a href="#Cmp-Diff-ε-w-Reward-in-Real-Value-as-N-μ-σ-2" class="headerlink" title="Cmp Diff ε w/ Reward in Real Value as  ~ N(μ, σ**2)"></a>Cmp Diff ε w/ Reward in Real Value as  ~ N(μ, σ**2)</h3><ul>
+<li><p>I have</p>
+<ol>
+<li>BanditArm class</li>
+<li>run_exp()</li>
+<li>print &amp; plot()</li>
+</ol>
+</li>
+<li><p>Changes:</p>
+<ul>
+<li>pull()<ul>
+<li>as reward distribution has changed from Bernoulli to Gaussian</li>
+<li><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381y7pecjj20rw03gt8s.jpg" alt="image-20201117173314978" style="zoom:33%;" /></li>
+</ul>
+</li>
+<li>plt.xscale(‘log’) ‘s REASON<ul>
+<li>Alg. will converge so fast, so it’s difficult to truly see the differences btw each value of EPSILON./</li>
+<li>Using a log scale allows me to zoom-in to the relevant parts of the plot.</li>
+</ul>
+</li>
+<li>Return the cumulative average reward from this functin so that in the main section, I’ll can plot the cumulative averages for DIFFERENT values of EPSILON in the same plot.</li>
+</ul>
+</li>
+<li><p>No Changes:</p>
+<ul>
+<li>Update()<ul>
+<li>Since same way I calc the sample mean</li>
+</ul>
+</li>
+<li>run_experiment()</li>
+</ul>
+</li>
+<li><p>My main()</p>
+<ul>
+<li>3 bandits w/ diff means: 1.5, 2.5, and 3.5</li>
+<li>ε I’ll try: 0.1, 0.05, 0.01</li>
+<li>100,000 trials for each experiment</li>
+<li><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gksaxt9402j30r007ewfe.jpg" alt="image-20201117173334595" style="zoom:33%;" />
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="For-Real-Data-amp-Online-Learning"><a href="#For-Real-Data-amp-Online-Learning" class="headerlink" title="For Real Data &amp; Online Learning"></a>For Real Data &amp; Online Learning</h3><ul>
+<li><p>The hypothesis tests work on static datasets (a data file).</p>
+<p>​                    ↑  →←  ↓</p>
+</li>
+<li><p>Epsilon-greedy works in real-time systems adapting to users who enter data into the system at different times. It’s not a static data file.</p>
+</li>
+<li><p>Bandit Summary, Real Data, and Online Learning</p>
+</li>
+<li><p>Adaptive Ad service for the Streaming</p>
+</li>
+</ul>
+<h2 id="2-–-Optimistic-Initial-Values"><a href="#2-–-Optimistic-Initial-Values" class="headerlink" title="2 – Optimistic Initial Values"></a>2 – Optimistic Initial Values</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkmi7fzl0cj312q0jmahe.jpg" alt="image-20201112171136617" style="zoom:50%;" />
+
+<h4 id="Pseudocode"><a href="#Pseudocode" class="headerlink" title="Pseudocode"></a>Pseudocode</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkmi9u8tj3j30rw0gugp4.jpg" alt="image-20201112171356320" style="zoom: 33%;" />
+
+<ul>
+<li>it’s an overestimate of the true mean</li>
+</ul>
+<h3 id="Choosing-Bandit"><a href="#Choosing-Bandit" class="headerlink" title="Choosing Bandit"></a>Choosing Bandit</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkmiex4oohj310c0k6n52.jpg" alt="image-20201112171848566" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkmijzpu1hj31160k2doi.jpg" alt="image-20201112172340672" style="zoom:50%;" />
+
+
+
+<ul>
+<li>even for the optimal one,we can’t expect it to have a good estimate of the true mean, because the ini value could have so <strong>HIGH</strong>, and the number of trials <strong>so LOW enough</strong> that the estimted mean is an overestimate by the end of the experiment</li>
+</ul>
+<h3 id="Init-value-meaning"><a href="#Init-value-meaning" class="headerlink" title="Init value meaning"></a>Init value meaning</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381ya53ylj20z00b475k.jpg" alt="image-20201112172900427" style="zoom: 33%;" />
+
+
+
+<h3 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise"></a>Exercise</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkmjbqqmn9j30xi0k6gwd.jpg" alt="image-20201112175021736" style="zoom:50%;" />
+
+
+
+
+
+<h3 id="MyCode"><a href="#MyCode" class="headerlink" title="MyCode"></a>MyCode</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381ycfdlxj20rg0gujrv.jpg" alt="image-20201112175755223" style="zoom:33%;" />
+
+<ul>
+<li>No gap btw final cumulative rewards rate and the true optimal win rate, which is 0.75</li>
+</ul>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mean estimate: 0.5454545454545454</span><br><span class="line">mean estimate: 0.5958904109589042</span><br><span class="line">mean estimate: 0.753300832825516</span><br><span class="line">total reward earned: 7495.0</span><br><span class="line">overall win rate: 0.7495</span><br><span class="line">num <span class="built_in">times</span> selected each bandit: [11.0, 146.0, 9846.0]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>For optimal bandit, the estimated mean will probably slowly climb down from the initial value, down to 0.75 eventually.<ul>
+<li>So if we start at 5, it’s going to go down from 5 to 0.75</li>
+</ul>
+</li>
+<li>For other suboptimal bandits, they are going to stop being selected if they go anywhere below 0.75, since we’re being <strong>greedy</strong>, ∴ no chance to converget to true means<ul>
+<li>stop getting updated…</li>
+</ul>
+</li>
+<li>suboptimal 沒怎麼被選到！</li>
+</ul>
+<h3 id="Sum"><a href="#Sum" class="headerlink" title="Sum:"></a>Sum:</h3><ul>
+<li>make the mean estimation artificially high, so that ech bandit gets chosen more often until we learn the true mean is not that actually high</li>
+</ul>
+<h2 id="3-–-UCB1"><a href="#3-–-UCB1" class="headerlink" title="3 – UCB1"></a>3 – UCB1</h2><ul>
+<li>Each of the ideas take the prev idea and makes it a little more complex!</li>
+</ul>
+<h5 id="OIV"><a href="#OIV" class="headerlink" title="OIV :"></a>OIV :</h5><ul>
+<li>make the mean estimation artificially high, so that ech bandit gets chosen more often until we learn the true mean is not that actually high</li>
+</ul>
+<h5 id="UCB1"><a href="#UCB1" class="headerlink" title="UCB1"></a>UCB1</h5><ul>
+<li>use the Prob. to infer a upper bound!</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl9x3jwv6xj31420mu10f.jpg" alt="image-20201202231448981"></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl9xootsubj31020lin2a.jpg" alt="image-20201202233509282"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl9xw19lavj31180lon1s.jpg" alt="image-20201202234214674" style="zoom:50%;" />
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl9xuno45xj31140logq4.jpg" alt="image-20201202234054598"></p>
+<h6 id="Sum-1"><a href="#Sum-1" class="headerlink" title="Sum"></a>Sum</h6><p>The prob of being larger than a large Error is smaller; </p>
+<p>The prob of being larger than a smaller Error is larger</p>
+<h5 id="Q-What’s-the-prob-that-my-Error-is-bigger-than-some-T"><a href="#Q-What’s-the-prob-that-my-Error-is-bigger-than-some-T" class="headerlink" title="Q: What’s the prob that my Error is bigger than some T?"></a>Q: What’s the prob that my Error is bigger than some T?</h5><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381yfakphj212w0iagnc.jpg" alt="image-20201202234726793" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl9y3a2xnij30yw0iq44g.jpg" alt="image-20201202234912413" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl9y5fvmr8j31220le116.jpg" alt="image-20201202235116829" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl9y73fl1qj30zg0lmjvm.jpg" alt="image-20201202235252606" style="zoom:50%;" />
+
+
+
+<ol>
+<li>sample mean on bandit-j</li>
+<li><strong>error upper bound</strong>! Like the optimistic initial values method, except that<br>instead of using an optimistic estimate for the mean, we use the actual sample mean, plus some upper bound on the error</li>
+<li>JUST think of it as using the upper bound on the confidence interval as intuition</li>
+<li>Still greedy wrt the upper bound!</li>
+</ol>
+<h3 id="CI-Intuition"><a href="#CI-Intuition" class="headerlink" title="CI Intuition"></a>CI Intuition</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl9ytkrvwij31100kowlf.jpg" alt="image-20201203001428672" style="zoom:50%;" />
+
+
+
+<ol>
+<li>Case #1:<ul>
+<li>Haven’t collected a lot of samples yet</li>
+<li>estimate is bad; CI is large!  ==&gt; I want to explore this bandit, so that I can collect more samples</li>
+<li>Using  upper bound of the confidence interval would be useful since it would be very high, and if I take the bandit with the maximum upper bound, then I can explore this bandit</li>
+</ul>
+</li>
+<li>Case #2:<ul>
+<li>data Ok, so my estimate is very accurate and I no longer need to explore this bandit</li>
+<li>The only way I can explore this bandit is if it’s true mean is actually high and is higher than the upper bound on the other bandits</li>
+</ul>
+</li>
+<li>Upper bound of a confidence interval allows me to explore and exploit in a reasonable way!</li>
+</ol>
+<h3 id="EE-in-UCB1"><a href="#EE-in-UCB1" class="headerlink" title="EE in UCB1"></a>EE in UCB1</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381ykt36aj21240m8q4y.jpg" alt="image-20201203003218896" style="zoom:50%;" />
+
+<ul>
+<li>2 : merely heuristic</li>
+</ul>
+<h3 id="Why-does-it-work"><a href="#Why-does-it-work" class="headerlink" title="Why does it work?"></a>Why does it work?</h3><p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3820y7h7xj210s0j840g.jpg" alt="image-20201203155508009"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glaq3c3wf4j30u20haads.jpg" alt="image-20201203155759465" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381yswdjnj20wq0k8wgy.jpg" alt="image-20201203162128500" style="zoom:50%;" />
+
+
+
+<h3 id="Code-amp-Result"><a href="#Code-amp-Result" class="headerlink" title="Code &amp; Result!"></a>Code &amp; Result!</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">NUM_TRIALS = <span class="number">100000</span></span><br><span class="line">EPS = <span class="number">0.1</span></span><br><span class="line">BANDIT_PROBABILITIES = [<span class="number">0.2</span>, <span class="number">0.5</span>, <span class="number">0.75</span>]</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bandit</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, p)</span>:</span></span><br><span class="line">        <span class="comment"># p: the win rate</span></span><br><span class="line">        self.p = p</span><br><span class="line">        self.p_estimate = <span class="number">0.</span></span><br><span class="line">        self.N = <span class="number">0.</span>  <span class="comment"># num samples collected so far</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pull</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># draw a 1 with probability p</span></span><br><span class="line">        <span class="keyword">return</span> np.random.random() &lt; self.p</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.N += <span class="number">1.</span></span><br><span class="line">        self.p_estimate = ((self.N - <span class="number">1</span>) * self.p_estimate + x) / self.N</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ucb</span><span class="params">(mean, n, nj)</span>:</span>  <span class="comment"># TODO</span></span><br><span class="line">    <span class="keyword">return</span> mean + np.sqrt(<span class="number">2</span> * np.log(n) / nj)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_experiment</span><span class="params">()</span>:</span></span><br><span class="line">    bandits = [Bandit(p) <span class="keyword">for</span> p <span class="keyword">in</span> BANDIT_PROBABILITIES]</span><br><span class="line">    rewards = np.empty(NUM_TRIALS)</span><br><span class="line">    total_plays = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># initialization: play each bandit once</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(bandits)):</span><br><span class="line">        x = bandits[j].pull()</span><br><span class="line">        total_plays += <span class="number">1</span></span><br><span class="line">        bandits[j].update(x)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(NUM_TRIALS):</span><br><span class="line">        <span class="comment"># j = # TODO</span></span><br><span class="line">        <span class="comment"># j = np.argmax([ucb(b.p_estimate, i, b.N) for b in bandits])</span></span><br><span class="line">        j = np.argmax([ucb(b.p_estimate, total_plays, b.N) <span class="keyword">for</span> b <span class="keyword">in</span> bandits])</span><br><span class="line">        x = bandits[j].pull()</span><br><span class="line">        total_plays += <span class="number">1</span></span><br><span class="line">        bandits[j].update(x)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># for the plot</span></span><br><span class="line">        rewards[i] = x</span><br><span class="line">    cumulative_average = np.cumsum(rewards) / (np.arange(NUM_TRIALS) + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># plot moving average ctr</span></span><br><span class="line">    plt.plot(cumulative_average)</span><br><span class="line">    plt.plot(np.ones(NUM_TRIALS) * np.max(BANDIT_PROBABILITIES))</span><br><span class="line">    plt.xscale(<span class="string">'log'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># plot moving average ctr linear</span></span><br><span class="line">    plt.plot(cumulative_average)</span><br><span class="line">    plt.plot(np.ones(NUM_TRIALS) * np.max(BANDIT_PROBABILITIES))</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> bandits:</span><br><span class="line">        print(b.p_estimate)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"total reward earned:"</span>, rewards.sum())</span><br><span class="line">    print(<span class="string">"overall win rate:"</span>, rewards.sum() / NUM_TRIALS)</span><br><span class="line">    print(<span class="string">"num times selected each bandit:"</span>, [b.N <span class="keyword">for</span> b <span class="keyword">in</span> bandits])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cumulative_average</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    run_experiment()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-–-Bayesian-Bandits-Thompson-Sampling-Theory"><a href="#4-–-Bayesian-Bandits-Thompson-Sampling-Theory" class="headerlink" title="4 – Bayesian Bandits / Thompson Sampling Theory"></a>4 – Bayesian Bandits / Thompson Sampling Theory</h2><p>digression</p>
+<h4 id="CI-as-tool-for-nice-picture"><a href="#CI-as-tool-for-nice-picture" class="headerlink" title="CI as tool for nice picture"></a>CI as tool for nice picture</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381yw6i5vj20ww0ksmz8.jpg" alt="image-20201207235724448" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glfqgbc6a8j30wa0kywkf.jpg" alt="image-20201207235819616" style="zoom:50%;" />
+
+
+
+<ul>
+<li>代表true mean的可能在的地方，就是分布</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glfqhtg8nuj30wa0heq82.jpg" alt="image-20201207235946520" style="zoom:50%;" />
+
+
+
+
+
+<h3 id="Bayes-Rule"><a href="#Bayes-Rule" class="headerlink" title="Bayes Rule"></a>Bayes Rule</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381yzgy59j20zc0l4dhy.jpg" alt="image-20201208000356712" style="zoom:50%;" />
+
+
+
+<h3 id="Why-Proportionality"><a href="#Why-Proportionality" class="headerlink" title="Why Proportionality?"></a>Why Proportionality?</h3><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glfqn5d3e4j310a0kqjxt.jpg" alt="image-20201208000454225"></p>
+<h3 id="Conjugate-Pairs-Priors"><a href="#Conjugate-Pairs-Priors" class="headerlink" title="Conjugate Pairs/Priors"></a>Conjugate Pairs/Priors</h3><ul>
+<li>In general, the posterior doesn’t fit nicely into one of these common distributions<ul>
+<li>E.g. I can’t say if my likelihood is a Gaussian AND my prior as a uniform, then my posterior will be a Gaussian, that ==&gt; WON’T WORK</li>
+</ul>
+</li>
+<li>However, Conjugate Priors is SPECIAL,<ul>
+<li>The posterior comes from the same kind of distribution as the prior</li>
+<li>If prior is a Gaussian, then. ==&gt; posteriror will also be a Gaussian</li>
+<li>This is contingent on the fact that my likelihood matches the prior such that they are conjugate!</li>
+</ul>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glfqp78xjyj30z00kswlu.jpg" alt="image-20201208000652576" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glfr8dtfdsj31060kmtdl.jpg" alt="image-20201208002518384" style="zoom:50%;" />
+
+
+
+<h5 id="Bernoulli-Conjugate-Prior"><a href="#Bernoulli-Conjugate-Prior" class="headerlink" title="Bernoulli Conjugate Prior"></a>Bernoulli Conjugate Prior</h5><h5 id="BETA-lt-Bernoulli-BETA-α-β"><a href="#BETA-lt-Bernoulli-BETA-α-β" class="headerlink" title="BETA &lt;== Bernoulli * BETA(α, β)"></a>BETA &lt;== Bernoulli * BETA(α, β)</h5><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381z2sb57j210q0kymzs.jpg" alt="image-20201208002712077" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381z6j8ruj20vy0jgwfr.jpg" alt="image-20201208003115449" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glfrfanrgpj30ve0l0te1.jpg" alt="image-20201208003156674" style="zoom:50%;" />
+
+
+
+
+
+<h3 id="Choosing-a-Prior"><a href="#Choosing-a-Prior" class="headerlink" title="Choosing a Prior"></a>Choosing a Prior</h3><ul>
+<li>How to choose value of  α  &amp;  β?</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381z9868hj20v20is75h.jpg" alt="image-20201208234648887" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgvrkf8wnj30w20fi789.jpg" alt="image-20201208234741722" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381zc4y5pj20yi0kan0n.jpg" alt="image-20201209000022630" style="zoom:50%;" />
+
+
+
+
+
+<h2 id="4-–-Bayesian-Bandits-Cont"><a href="#4-–-Bayesian-Bandits-Cont" class="headerlink" title="4 – Bayesian Bandits (Cont.)"></a>4 – Bayesian Bandits (Cont.)</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgw71aeitj30yk0kmdop.jpg" alt="image-20201209000233644" style="zoom:50%;" />
+
+
+
+<ul>
+<li>This posterior represents our belief about the distribution of theta, the mean of a bandit<ul>
+<li>Theta could be anywhere in this range, although obviously the areas with more probability mass are more probable.</li>
+</ul>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgwg5az8lj30ye0kmwh7.jpg" alt="image-20201209001059200" style="zoom:50%;" />
+
+<ul>
+<li>By drawing samples from this distribution, we’re saying give me a value from this distribution and let that determine which bandit I choose.<ul>
+<li>Instead of just using one value, which is the upper bound, I use all of its values, <strong>according to the posterior distribution,</strong> by drawing samples</li>
+<li>As I sraw more and more samples, this distribution will become skinner and skinner as I get more confident in my belief of where the true mean lies</li>
+</ul>
+</li>
+</ul>
+<h3 id="Pseudocode-1"><a href="#Pseudocode-1" class="headerlink" title="Pseudocode"></a>Pseudocode</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgwj3lp6lj30wu0kigpn.jpg" alt="image-20201209001410545" style="zoom:50%;" />
+
+
+
+<ul>
+<li>Be greedy, but with respect to samples from the posteriors rather than some statistic estimated from the samples</li>
+</ul>
+<h3 id="Graphs-of-the-Posteriors"><a href="#Graphs-of-the-Posteriors" class="headerlink" title="Graphs of the Posteriors!"></a>Graphs of the Posteriors!</h3><h4 id="Scene-1"><a href="#Scene-1" class="headerlink" title="Scene 1"></a>Scene 1</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgwq5tw3nj30za0kk79w.jpg" alt="image-20201209002056687" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgwqixn3rj30zi0hegqs.jpg" alt="image-20201209002117789" style="zoom:50%;" />
+
+<ul>
+<li>In addition, its peak moves up a bit, since getting a one increase the mean</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgwtf04hqj30z80hk0vm.jpg" alt="image-20201209002404618" style="zoom:50%;" />
+
+
+
+<h4 id="Scene-2"><a href="#Scene-2" class="headerlink" title="Scene 2"></a>Scene 2</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgwv805cej30zo0iawkt.jpg" alt="image-20201209002548692" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgwvx7m9cj30z60he44l.jpg" alt="image-20201209002629349" style="zoom:50%;" />
+
+
+
+<h4 id="Demo-Plot"><a href="#Demo-Plot" class="headerlink" title="Demo Plot!"></a>Demo Plot!</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgwyi764lj30t00mcq7r.jpg" alt="image-20201209002857949" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgwzj1ay8j30t00mgwjg.jpg" alt="image-20201209002957232" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgx0p7qysj30t40m8dl0.jpg" alt="image-20201209003104989" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgx3vnbdnj30sa0lwaf6.jpg" alt="image-20201209003408494" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381zfbzboj20ss0ksdhb.jpg" alt="image-20201209003504263" style="zoom:50%;" />
+
+
+
+
+
+<h3 id="Sum-2"><a href="#Sum-2" class="headerlink" title="Sum"></a>Sum</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhvdscxofj311e0kewo0.jpg" alt="image-20201209202002097" style="zoom:50%;" />
+
+<ul>
+<li>Intuitive idea: I’m interested in something like the CI of win-rate estimate<ul>
+<li>This perfectly encapsulates the EE dilemma. <ul>
+<li>When CI is fat –&gt; Explore!</li>
+<li>When CI is small –&gt; Exploite this fact, by choosing the bandit with the highest mean, which we are now confident about.</li>
+</ul>
+</li>
+<li>BUT! CI is based on the CLT, and don’t portray the true distribution of the bandit win-rates</li>
+<li>Instead, the Bayesian treats the win-rate as a RV! which is to give it it’s own distribution!<ul>
+<li>In general, computing a posterior from Bayes rule is not easy, because they usually involve intractable sums or unsolvable integrals</li>
+<li>★!!!★ SO, I use Conjugate Prior’s to show that, instead of calculating the posterior by hand, we can instead use proportionality to prove that the shape of the posterior fits some particular distribution, and from there, the normalizing constant can be found since the integral of any distribution must equal to 1.</li>
+<li>NEXT, introduce the Thompson Sampling algorithm: <ul>
+<li>To choose a bandit, just rank each bandit, based on samples drawn from their posteriors. </li>
+<li>Over time, this does exactly what we want!<ul>
+<li>When distributions are FAT –&gt; explore more</li>
+<li>When distributions are Skinny –&gt; explore less</li>
+</ul>
+</li>
+<li>Importantly, when the optimal distribution becomes skinny, we can leave the suboptimal distributions FAT, since in this scenario, the optimal bandit is still usually has the highest sample.<ul>
+<li>This leads to us choosing the optimal bandit more, which is how we exploit.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhw2nvxdpj31120lik0q.jpg" alt="image-20201209204355453" style="zoom:50%;" />
+
+
+
+
+
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code!"></a>Code!</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">sample</span><span class="params">(self)</span>:</span></span><br><span class="line">   <span class="keyword">return</span> np.random.beta(self.a, self.b)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(NUM_TRIALS):</span><br><span class="line">   <span class="comment"># Thompson sampling</span></span><br><span class="line">   j = np.argmax([b.sample() <span class="keyword">for</span> b <span class="keyword">in</span> bandits])</span><br><span class="line">   <span class="comment"># Says, give me the bandit that yields the LARGEST sample from its current beta posterior</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>Thompson Sampling is nice because the sub-optimal bandits only get pushed down far enough so that their posteriors hav very little probability mass beyond the peak of the optimal bandit!<ul>
+<li>They remain FAT posterior distributions</li>
+<li>This is a good thing, because bein gfat means that they haven’t been explored that much!</li>
+<li>And this tells us that we explored just enough to be very confident that their means are not better than the optimal bandits mean</li>
+</ul>
+</li>
+</ul>
+<h2 id="Thompson-Sampling-With-Gaussian-Reward-Theory"><a href="#Thompson-Sampling-With-Gaussian-Reward-Theory" class="headerlink" title="Thompson Sampling With Gaussian Reward Theory"></a>Thompson Sampling With Gaussian Reward Theory</h2><ul>
+<li>No more study this topic, leave in the future… Terrible MATH…</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhx504b5ij30wu0ly44r.jpg" alt="image-20201209212045609" style="zoom:50%;" />
+
+
+
+
+
+<h4 id="…"><a href="#…" class="headerlink" title="….."></a>…..</h4><h4 id="Solving-for-posterior"><a href="#Solving-for-posterior" class="headerlink" title="Solving for posterior"></a>Solving for posterior</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhxou8fvjj31120gmdl3.jpg" alt="image-20201209213949750" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhxq665ifj310u0h2jwm.jpg" alt="image-20201209214108183" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhxqpfdyij311o0ikn40.jpg" alt="image-20201209214138178" style="zoom:50%;" />
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhxuzfw39j30y60jg446.jpg" alt="image-20201209214544500"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhxwjnkpxj31320m0dm4.jpg" alt="image-20201209214715123" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhxyy669xj30ya0m6q83.jpg" alt="image-20201209214933115" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhy1dt8y1j311q0lqaiy.jpg" alt="image-20201209215153654" style="zoom:50%;" />
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhy2b8tbij311w0e079a.jpg" alt="image-20201209215247334"></p>
+<h4 id="Code-1"><a href="#Code-1" class="headerlink" title="Code!"></a>Code!</h4><h2 id="Prev"><a href="#Prev" class="headerlink" title="Prev"></a>Prev</h2><ul>
+<li>In particular, does the P-value give us a definitive answer to our question?</li>
+<li>We are interested in what the drawbacks of using this type of statistical test might be?<ul>
+<li>important when Bayesian &amp; AB</li>
+</ul>
+</li>
+</ul>
+<h2 id="Why-no-use-a-lib"><a href="#Why-no-use-a-lib" class="headerlink" title="Why no use a lib?"></a>Why no use a lib?</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381ziq5fdj21240kiq5s.jpg" alt="image-20201209215920654" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381zmelv5j212g0iit9x.jpg" alt="image-20201209215958503" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhybf81emj312g0kuwna.jpg" alt="image-20201209220128303" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381zoqzsmj211o0lgdi2.jpg" alt="image-20201209220214547" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhydxbz5cj311a0m6gsm.jpg" alt="image-20201209220354590" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhyfkvxk4j30zk0l2gsn.jpg" alt="image-20201209220530442" style="zoom:50%;" />
+
+
+
+<h2 id="Nonstationary-Bandits"><a href="#Nonstationary-Bandits" class="headerlink" title="Nonstationary Bandits"></a>Nonstationary Bandits</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381zr3zbfj20tw0fu0tr.jpg" alt="image-20201122215546694" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhylfvs0jj31360lmwm1.jpg" alt="image-20201209221108933" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glhynbe4ebj313m0kg12w.jpg" alt="image-20201209221255979" style="zoom:50%;" />
+
+
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkyao03qm1j30yy0iwjyb.jpg" alt="image-20201122215732149" style="zoom:50%;" />
+
+
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381zuz8i7j210a0lkq5o.jpg" alt="image-20201209222952053" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381zxoiylj20wy0juac4.jpg" alt="image-20201122220315820" style="zoom:50%;" />
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkyawpt8dij30y20jmwjl.jpg" alt="image-20201122220554471"></p>
+<h2 id="Bandit-Summary-Real-Data-amp-Online-Learning"><a href="#Bandit-Summary-Real-Data-amp-Online-Learning" class="headerlink" title="Bandit Summary, Real Data, &amp; Online Learning"></a>Bandit Summary, Real Data, &amp; Online Learning</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38200wxy8j20pq0ciab0.jpg" alt="image-20201122223631239" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkybuimi0yj30pe0jctd2.jpg" alt="image-20201122223824159" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38206jwerj20zc0jidhl.jpg" alt="image-20201122224114107" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkybyso8bkj310c0jkgtj.jpg" alt="image-20201122224230826" style="zoom:50%;" />
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkyc06zjs4j31020gwk19.jpg" alt="image-20201122224351405"></p>
+<h2 id="Alternative-Bandit-Designs"><a href="#Alternative-Bandit-Designs" class="headerlink" title="Alternative Bandit Designs"></a>Alternative Bandit Designs</h2><h3 id=""><a href="#" class="headerlink" title=""></a><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3820uweugj210s0ieq5k.jpg" alt="image-20201122230100244"></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">	ReservationRequest</span><br><span class="line">	class BanditArm&#123;		# for ε-Greedy</span><br><span class="line">		- p # mean of Ground Truth</span><br><span class="line">		- p_estimate	# Maximum Likelihood</span><br><span class="line">		- N	# samples seen so far</span><br><span class="line">	  pull()</span><br><span class="line">	  update(xi)</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="My-Youtube-Surveys"><a href="#My-Youtube-Surveys" class="headerlink" title="My Youtube Surveys"></a>My Youtube Surveys</h1><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3820c2z0kj20n60ewt9g.jpg" alt="image-20201208183843862" style="zoom:50%;" />
+
+<p><a href="https://www.youtube.com/watch?v=aWKeSvnTalE&amp;feature=youtu.be" target="_blank" rel="noopener">https://www.youtube.com/watch?v=aWKeSvnTalE&amp;feature=youtu.be</a></p>
+<h4 id="ε-Greedy’s-Issue"><a href="#ε-Greedy’s-Issue" class="headerlink" title="ε-Greedy’s Issue"></a>ε-Greedy’s Issue</h4><p>spends equal amount of time exploring arms it knows are not optimal!</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glgmvys36lj30ni068jug.jpg" alt="image-20201208184032472" style="zoom:50%;" />
+
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3820fg9bcj20t20iign6.jpg" alt="image-20201208204846943" style="zoom:50%;" />
+
+
+
+
+
+<h4 id="https-www-youtube-com-watch-v-wcCSAbcj5Q0"><a href="#https-www-youtube-com-watch-v-wcCSAbcj5Q0" class="headerlink" title="https://www.youtube.com/watch?v=wcCSAbcj5Q0"></a><a href="https://www.youtube.com/watch?v=wcCSAbcj5Q0" target="_blank" rel="noopener">https://www.youtube.com/watch?v=wcCSAbcj5Q0</a></h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3820ibqy3j218k0oa775.jpg" alt="image-20201214165604645" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glnhve9k1kj318k0n6qh2.jpg" alt="image-20201214170556913" style="zoom:50%;" />
+
+
+
+
+
+<h4 id="https-www-youtube-com-watch-v-o6HBIGzQfJs"><a href="#https-www-youtube-com-watch-v-o6HBIGzQfJs" class="headerlink" title="https://www.youtube.com/watch?v=o6HBIGzQfJs"></a><a href="https://www.youtube.com/watch?v=o6HBIGzQfJs" target="_blank" rel="noopener">https://www.youtube.com/watch?v=o6HBIGzQfJs</a></h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glnil2lmqzj315g0nqh1w.jpg" alt="image-20201214173037639" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glniqb7xn9j31620nq12q.jpg" alt="image-20201214173539974" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glnj5gjuoxj314w0n2dpm.jpg" alt="image-20201214175013432" style="zoom:50%;" />
+
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/02/AB_Test/Bayesian_ML/MyNotes_1102/">AB_Test/Bayesian_ML/MyNotes_1102</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-02</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BayesianML/">BayesianML</a></span><div class="content"><h2 id="Two-Sample-t-test"><a href="#Two-Sample-t-test" class="headerlink" title="Two Sample t-test"></a>Two Sample t-test</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">	A[Calculate t] --&gt; B[Calculate P]</span><br><span class="line">	C[Calculate ] --&gt; B[Calculate P]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h3><ol>
+<li>moving mean; instead of re-calculate the mean every time a new sample comes in</li>
+<li>Moving std; instead of re-calculate the std every time a new sample comes in</li>
+</ol>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/10/22/AB_Test/Bayesian_ML/MyArrangement_1022/">AB_Test/Bayesian_ML/MyArrangement_1022</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BayesianML/">BayesianML</a></span><div class="content"><h2 id="Real-World-AB-Testing"><a href="#Real-World-AB-Testing" class="headerlink" title="Real World AB Testing"></a>Real World AB Testing</h2><h3 id="Pattern"><a href="#Pattern" class="headerlink" title="Pattern"></a>Pattern</h3><ul>
+<li>about cmp 2 or more items</li>
+<li>each group of itmes produces numbers</li>
+<li>Which group has a higher/lower number (stat speaks)?<ul>
+<li>We want a hard drive to last longer (higher #)</li>
+<li>We want blood pressure to go down (lower #)</li>
+<li>How do we detect these differeneces?</li>
+</ul>
+</li>
+</ul>
+<p><strong>Stat &amp; CS dept use diff programming and priorities and paradigms of thinking!</strong></p>
+<p>past of my exposure was probably isolated to one of the two sides. Bayesian for Stat and Bayesian for ML are very different!</p>
+<ul>
+<li><p>Route: </p>
+<p>have to understand the old then the <strong>new</strong> , side by side, So a complete picture fo all the techs available and then able to their merits appropriately</p>
+<ul>
+<li><p>Old: </p>
+<ul>
+<li><p>review of prob &amp; stats</p>
+</li>
+<li><p>Frequency Statistics &amp; hypothesis testing –&gt; Bayesian Stat </p>
+<p>​             ↓==AS==↓<br>Newton –&gt; Quantum Physics</p>
+</li>
+</ul>
+</li>
+<li><p>So, <strong>frequencies method (Maximum Likelihood)</strong>, then move onto <strong>adaptive methods</strong></p>
+<ul>
+<li>for Online platforms with millions of users</li>
+<li>Culminate in Bayesian Approach to AB testing! –&gt; for online advertising</li>
+</ul>
+</li>
+<li><p>adaptive:</p>
+<ul>
+<li>ε-greedy</li>
+<li>UCB</li>
+<li>thompson – related to Bayesian ML</li>
+</ul>
+</li>
+<li><p><strong>MLE VS MAP</strong></p>
+</li>
+</ul>
+</li>
+</ul>
 <table>
 <thead>
 <tr>
-<th>Language</th>
-<th>Version</th>
-<th>Notes</th>
+<th></th>
+<th>click</th>
+<th>not click</th>
+<th></th>
 </tr>
 </thead>
 <tbody><tr>
-<td>C++</td>
-<td>clang 9</td>
-<td>Uses the C++17 standard.</td>
+<td>A</td>
+<td></td>
+<td></td>
+<td>sumA</td>
 </tr>
 <tr>
-<td>Java</td>
-<td>java 13.0.1</td>
-<td>Includes <code>Pair</code> class, with documentation at <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/util/Pair.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/javafx/api/javafx/util/Pair.html</a></td>
-</tr>
-<tr>
-<td>Python</td>
-<td>python 2.7.12</td>
-<td>For Map/TreeMap data structure, you may use <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">sortedcontainers</a> library.</td>
-</tr>
-<tr>
-<td>Python3</td>
-<td>Python 3.8</td>
-<td>For Map/TreeMap data structure, you may use <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">sortedcontainers</a> library.</td>
-</tr>
-<tr>
-<td>MySQL</td>
-<td>mysql-server 5.7.21</td>
+<td>B</td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
-<td>MS SQL</td>
-<td>mssql 14.0.3</td>
 <td></td>
-</tr>
-<tr>
-<td>Oracle</td>
-<td>Oracle SQL 11.2</td>
+<td>sumclick</td>
 <td></td>
-</tr>
-<tr>
-<td>C</td>
-<td>gcc 8.2</td>
-<td>For hash table operations, you may use <a href="https://troydhanson.github.io/uthash/" target="_blank" rel="noopener">uthash</a>. <code>&quot;uthash.h&quot;</code> is included by default.</td>
-</tr>
-<tr>
-<td>C#</td>
-<td>mono 5.18.0</td>
-<td>Run with <code>/debug</code> flag, with <a href="https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7" target="_blank" rel="noopener">full support for C# 7</a>.</td>
-</tr>
-<tr>
-<td>JavaScript</td>
-<td>nodejs 10.15.0</td>
-<td>Run with <code>--harmony</code> flag, enabling <a href="http://node.green/" target="_blank" rel="noopener">new ES6 features</a>. <a href="https://lodash.com/" target="_blank" rel="noopener">lodash.js</a> library is included by default.</td>
-</tr>
-<tr>
-<td>Ruby</td>
-<td>ruby 2.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>Bash</td>
-<td>bash 4.3.30</td>
-<td></td>
-</tr>
-<tr>
-<td>Swift</td>
-<td>swift 5.0.1</td>
-<td></td>
-</tr>
-<tr>
-<td>Go</td>
-<td>go 1.13</td>
-<td></td>
-</tr>
-<tr>
-<td>Scala</td>
-<td>Scala 2.13</td>
-<td></td>
-</tr>
-<tr>
-<td>Kotlin</td>
-<td>Kotlin 1.3.10</td>
-<td></td>
-</tr>
-<tr>
-<td>Rust</td>
-<td>1.40.0</td>
-<td>edition = 2018, supports <a href="https://crates.io/crates/rand" target="_blank" rel="noopener">rand</a> from crates.io</td>
-</tr>
-<tr>
-<td>PHP</td>
-<td>PHP 7.2</td>
 <td></td>
 </tr>
 </tbody></table>
-</blockquote>
-<p>ref: <a href="https://leetcode.com/discuss/general-discussion/452863/how-do-you-deal-with-no-treeset-or-treemap-in-python" target="_blank" rel="noopener">https://leetcode.com/discuss/general-discussion/452863/how-do-you-deal-with-no-treeset-or-treemap-in-python</a></p>
-<blockquote>
-<p>There are quite a few problems that can use TreeSet or TreeMap, but it seems python does not have anything? Any tips on how to deal with this. Recently switched over from java to pyhton</p>
-<p><a href="https://leetcode.com/problems/the-skyline-problem/" target="_blank" rel="noopener">https://leetcode.com/problems/the-skyline-problem/</a> -&gt; Needs removal O log(n)<br><a href="https://leetcode.com/problems/k-empty-slots/" target="_blank" rel="noopener">https://leetcode.com/problems/k-empty-slots/</a> -&gt; TreeMap is a accepted solution</p>
-<p>Thanks,<br>Uv</p>
-<p>Comments: 1</p>
-<p>BestMost VotesNewest to OldestOldest to Newest</p>
-<p>Preview</p>
-<p>Post</p>
-<p><a href="https://leetcode.com/leetcode" target="_blank" rel="noopener"><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gejri4cfqej305k05kmx8.jpg" alt="LeetCode&#39;s avatar"></a></p>
-<p><a href="https://leetcode.com/leetcode" target="_blank" rel="noopener">LeetCode</a>Admin3460</p>
-<p>December 17, 2019 9:45 AM</p>
-<p>Read More</p>
-<p><a href="https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages-" target="_blank" rel="noopener">https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages-</a></p>
-<p>Please take a look at the environments for the programming languages above. For Python you may use <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">sortedcontainers</a> library for TreeSet/TreeMap data structure.</p>
-</blockquote>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/05/04/DevOps/2018-05-04-tmux/">DevOps/2018-05-04-tmux</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-05-04</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/DevOps/">DevOps</a></span><div class="content"><h3 id="tmux"><a href="#tmux" class="headerlink" title="tmux"></a>tmux</h3><h3 id="Concepts"><a href="#Concepts" class="headerlink" title="Concepts"></a>Concepts</h3><p>前置键: ctrl-b</p>
-<p><code>C-</code> 指的是 Ctrl + 某個鍵一起按 <code>M-</code> 則是 <code>Alt</code> 或 <code>Option</code>和某個鍵一起按。</p>
-<p>水平切割則是 <code>C-b &quot;</code></p>
-<p>移动所在视窗使用 <code>C-b</code> 搭配方向鍵</p>
-<h3 id="Main-Manipulations-within-Session"><a href="#Main-Manipulations-within-Session" class="headerlink" title="Main Manipulations within Session"></a>Main Manipulations within Session</h3><p>關閉視窗區塊只需要使用 <code>C-d</code> (注意，這不是detach，而是直接真的關了)</p>
-<ul>
-<li><code>C-b c</code> 建立一個新視窗</li>
-<li><code>C-b p</code> 上一個視窗</li>
-<li><code>C-b n</code> 下一個視窗</li>
-<li><code>C-b &lt;number&gt;</code> 依照編號直接切換（編號顯示於狀態列）</li>
+<h2 id="Conclusion-of-Experiments"><a href="#Conclusion-of-Experiments" class="headerlink" title="Conclusion of Experiments"></a>Conclusion of Experiments</h2><p>P-Value</p>
+<p><strong>t value</strong> </p>
+<p><strong>p value</strong> big –&gt; significance! –&gt; B is diff from A</p>
+<p>t-test</p>
+<p>Confidence Interval , 0.05 5%, 1%, 0.1%</p>
+<h2 id="Why-t-–-gt-Chi2"><a href="#Why-t-–-gt-Chi2" class="headerlink" title="Why t –&gt; Chi2?"></a>Why t –&gt; Chi2?</h2><ul>
+<li>“1% vs 2%” talks different stories under diff whole amount</li>
 </ul>
-<h3 id="Detach-amp-Attach"><a href="#Detach-amp-Attach" class="headerlink" title="Detach &amp; Attach"></a>Detach &amp; Attach</h3><p>如果完成工作，要 detach 只需要 <code>C-b d</code>，又或者 <code>C-b D</code> 可以選擇要從那個 <code>session</code> 離開。</p>
-<ul>
-<li>tmux attach -t 0</li>
+<p>1 out of 10 VS 2 out of 10 </p>
+<p>10 out of 100 vs 20 out 200, </p>
+<h2 id="exp-on-CTR"><a href="#exp-on-CTR" class="headerlink" title="exp on CTR"></a>exp on CTR</h2><h2 id="Freq-approaches-vs-Bayesian-ML"><a href="#Freq-approaches-vs-Bayesian-ML" class="headerlink" title="Freq approaches vs Bayesian ML"></a>Freq approaches vs Bayesian ML</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><ul>
+<li>Heights of <ol>
+<li>collect data</li>
+<li>likelihood</li>
+<li>max 2)</li>
+</ol>
+</li>
 </ul>
-<p>賦予每個 session 一個有意義的名稱</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tmux new -s database</span></span><br></pre></td></tr></table></figure>
-
-<p>修改名稱</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tmux rename-session -t 0 database</span></span><br></pre></td></tr></table></figure>
-
-<p>之後當我們要在重新連回該 session 時，只要使用該名稱即可</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tmux attach -t database</span><br></pre></td></tr></table></figure>
-
-
-
-<p>優點：</p>
-<p>點出幾個 <code>tmux</code> 的優點：</p>
 <ul>
-<li>session 的保留：attach 和 detach 協助我們在不同情境和遠端連線的情況下切換。</li>
-<li>跨平台：我們可以在 Mac 底下使用，也可以在 Linux 環境下使用，甚至遠端伺服器或 Raspberry Pi，BeagleBones 等等都可以使用一樣的東西。</li>
-<li>客製化：我們可以去自訂 tmux 的環境設定並且可以和不同平台環境同步</li>
+<li>Diff: <ul>
+<li>Freq : mean &amp; var are numbers</li>
+<li>Bayesian : mean &amp; var are prob distributions, I have to <strong>find their prob distributions.</strong>, instead of a number.</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新增</span></span><br><span class="line">$ tmux</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">$ tmux new -s &lt;your_session_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># session 列表</span></span><br><span class="line">$ tmux ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新連線 session</span></span><br><span class="line">$ tmux a -t 0</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">$ tmux a -t &lt;session_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 刪除 session</span></span><br><span class="line">$ tmux <span class="built_in">kill</span>-session -t 0</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">$ tmux <span class="built_in">kill</span>-session -t &lt;session_name&gt;</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">$ tmux <span class="built_in">kill</span>-session -a <span class="comment"># 全部</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 刪除 tmux server</span></span><br><span class="line">$ tmux <span class="built_in">kill</span>-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新命名 session</span></span><br><span class="line">$ tmux rename-session -t 0 &lt;new_session_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 快捷鍵/視窗管理</span></span><br><span class="line"><span class="comment"># C-b ? Help</span></span><br><span class="line"><span class="comment"># C-b c 新增視窗</span></span><br><span class="line"><span class="comment"># C-b， 視窗命名</span></span><br><span class="line"><span class="comment"># C-b w 視窗列表</span></span><br><span class="line"><span class="comment"># C-b f 尋找視窗</span></span><br><span class="line"><span class="comment"># C-b &amp; 刪除視窗</span></span><br><span class="line"><span class="comment"># C-b % 垂直分割區塊</span></span><br><span class="line"><span class="comment"># C-b “ 水平分割區塊</span></span><br><span class="line"><span class="comment"># C-b &lt;方向鍵&gt;</span></span><br><span class="line"><span class="comment"># C-b p 上一個視窗</span></span><br><span class="line"><span class="comment"># C-b n 下一個視窗</span></span><br><span class="line"><span class="comment"># C-b &lt;number&gt; 依照編號直接切換（編號顯示於狀態列）</span></span><br><span class="line"><span class="comment"># C-b d 離開 session</span></span><br><span class="line"><span class="comment"># C-b x 關閉 Pane</span></span><br><span class="line"><span class="comment"># C-d   關閉 Pane</span></span><br><span class="line"><span class="comment"># C-b z 讓一個 Pane 變成全螢幕，在輸入一次則回到剛剛的尺寸</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>Sampling is a domain. –&gt; Markov Chain Monte Carlo, Gibbs, <ul>
+<li>main: numerical approximate of an <strong>integral</strong></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>WHOLE other direction:</p>
+<ul>
+<li>ML &amp; “Bayesian” predictive models</li>
+<li>Weight is “distribution”, not merely number</li>
+</ul>
+</li>
+<li><p>Non-Bayesian Example</p>
+<ul>
+<li>as NN - <strong>no assumptions</strong> about how the inputs are related</li>
+</ul>
+</li>
+<li><p><strong>Bayesian Network:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">	studying --&gt; A[pass&#x2F;failed]</span><br><span class="line">	video_game --&gt; sleep --&gt; A[pass&#x2F;failed]</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<ul>
+<li>We can model these dependencies explicitly, whereas with NN, we always use the same model and let the NN figure out what the weights should be</li>
+</ul>
+<ul>
+<li><p>Bayesian ML may even be <strong><em>more complex</em></strong> than DL</p>
+</li>
+<li><p>Bayesian Logistic Regression &gt; Logistic Regression</p>
+</li>
+</ul>
+<p>for stat. </p>
+<p>if in a summer school  –&gt; 3 weeks, twice 3hrs in a week</p>
+<p>biologists, psychologists, web developers</p>
+<h4 id="My-Appendix"><a href="#My-Appendix" class="headerlink" title="My Appendix"></a>My Appendix</h4><ul>
+<li>discipline myself<ul>
+<li>Appendix – How to code by yourself</li>
+<li>Should you code along? on youtube</li>
+<li>Theory –&gt; Code</li>
+</ul>
+</li>
+<li>How to suc?<ul>
+<li>answer to my Q might be a Q</li>
+<li><strong>ML is experimentation, not philosophy</strong></li>
+</ul>
+</li>
+</ul>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/10/21/LC/2018-10-21-python-Closure%20&amp;%20Non-local%20vs%20Global/">LC/2018-10-21-python-Closure &amp; Non-local vs Global</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/python/">python</a></span><div class="content"><h3 id="Closure-amp-Non-local-vs-Global"><a href="#Closure-amp-Non-local-vs-Global" class="headerlink" title="Closure &amp; Non-local vs Global"></a>Closure &amp; Non-local vs Global</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">方法一：创建生成器            </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creatCounter</span><span class="params">( )</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">( )</span>:</span></span><br><span class="line">        x = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">              x = x +<span class="number">1</span></span><br><span class="line">              <span class="keyword">yield</span> x</span><br><span class="line">    </span><br><span class="line">    sum = f( ) </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">counter</span><span class="params">( )</span>:</span></span><br><span class="line">         <span class="keyword">return</span> next( sum )</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> counter</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源:"></a>參考資源:</h3><p><a href="https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/" target="_blank" rel="noopener">A Quick and Easy Guide to tmux</a></p>
-<p><a href="https://andyyou.github.io/2017/11/27/tmux-notes/" target="_blank" rel="noopener">tmux 快速入門筆記</a></p>
-</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/72/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/72/">72</a><span class="page-number current">73</span><a class="page-number" href="/page/74/">74</a><span class="space">&hellip;</span><a class="page-number" href="/page/78/">78</a><a class="extend next" rel="next" href="/page/74/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+<p>这里没有直接调用f( )，即next( f( ) )，而是用定义sum = f( )，即next( sum )，</p>
+<p>因为creatCounter( )返回的是counter这个函数，而此时f( )并没有执行并返回一个生成器对象，而执行next（sum）则会执行f( )生成一个新的生成器对象，变向的理解，s1 = f( )，s2 = f( )，但s1 == s2是false（这个变向理解感觉有点牵强）</p>
+<p>方法二：创建列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creatCounter</span><span class="params">()</span>:</span></span><br><span class="line">    s = [<span class="number">0</span>]</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">counter</span><span class="params">()</span>:</span></span><br><span class="line">        s[<span class="number">0</span>] = s[<span class="number">0</span>] + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creat_counter</span><span class="params">()</span>:</span></span><br><span class="line">    i=<span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">counter</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">nonlocal</span> i</span><br><span class="line">        i=i+<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">    <span class="keyword">return</span> counter</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8885skue5j30v30u042e.jpg" alt="image-20191023164204053"></p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g888hveiitj30dd0v4420.jpg" alt="image-20191023165343479"></p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g888i4jauxj30db0saq6i.jpg" alt="image-20191023165358740"></p>
+<p>Ref:</p>
+<p><a href="https://www.jianshu.com/p/703ad1289a00" target="_blank" rel="noopener">https://www.jianshu.com/p/703ad1289a00</a></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/10/21/Python/2018-10-21-python-Closure%20&amp;%20Non-local%20vs%20Global/">Python/2018-10-21-python-Closure &amp; Non-local vs Global</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-21</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span><div class="content"><h3 id="Closure-amp-Non-local-vs-Global"><a href="#Closure-amp-Non-local-vs-Global" class="headerlink" title="Closure &amp; Non-local vs Global"></a>Closure &amp; Non-local vs Global</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">方法一：创建生成器            </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creatCounter</span><span class="params">( )</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">( )</span>:</span></span><br><span class="line">        x = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">              x = x +<span class="number">1</span></span><br><span class="line">              <span class="keyword">yield</span> x</span><br><span class="line">    </span><br><span class="line">    sum = f( ) </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">counter</span><span class="params">( )</span>:</span></span><br><span class="line">         <span class="keyword">return</span> next( sum )</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> counter</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这里没有直接调用f( )，即next( f( ) )，而是用定义sum = f( )，即next( sum )，</p>
+<p>因为creatCounter( )返回的是counter这个函数，而此时f( )并没有执行并返回一个生成器对象，而执行next（sum）则会执行f( )生成一个新的生成器对象，变向的理解，s1 = f( )，s2 = f( )，但s1 == s2是false（这个变向理解感觉有点牵强）</p>
+<p>方法二：创建列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creatCounter</span><span class="params">()</span>:</span></span><br><span class="line">    s = [<span class="number">0</span>]</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">counter</span><span class="params">()</span>:</span></span><br><span class="line">        s[<span class="number">0</span>] = s[<span class="number">0</span>] + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">creat_counter</span><span class="params">()</span>:</span></span><br><span class="line">    i=<span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">counter</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">nonlocal</span> i</span><br><span class="line">        i=i+<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">    <span class="keyword">return</span> counter</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8885skue5j30v30u042e.jpg" alt="image-20191023164204053"></p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g888hveiitj30dd0v4420.jpg" alt="image-20191023165343479"></p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g888i4jauxj30db0saq6i.jpg" alt="image-20191023165358740"></p>
+<p>Ref:</p>
+<p><a href="https://www.jianshu.com/p/703ad1289a00" target="_blank" rel="noopener">https://www.jianshu.com/p/703ad1289a00</a></p>
+</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/72/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/72/">72</a><span class="page-number current">73</span><a class="page-number" href="/page/74/">74</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/">79</a><a class="extend next" rel="next" href="/page/74/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')

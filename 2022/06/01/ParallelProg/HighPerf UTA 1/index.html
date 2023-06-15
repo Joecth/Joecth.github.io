@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="ParallelProg/HighPerf UTA 1"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>ParallelProg/HighPerf UTA 1 | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#GEMM-GEneral-Matrix-Multiplication"><span class="toc-number">1.</span> <span class="toc-text">GEMM - GEneral Matrix Multiplication</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">395</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">69</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">ParallelProg/HighPerf UTA 1</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-01</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/HighPerf/">HighPerf</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p><strong>HW requirements</strong></p>
+<ul>
+<li>Intel architectures: Haswell, Broadwell, Skylake, Kaby Lake, Coffee Lake.</li>
+<li>AMD architectures: Ryzen/Epyc</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/content/drive/MyDrive/mySIMD<span class="comment"># gcc -march=native -Q --help=target|grep march</span></span><br><span class="line">  -march=                               haswell</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">content/drive/MyDrive/mySIMD<span class="comment"># more /proc/cpuinfo</span></span><br><span class="line">processor       : 0</span><br><span class="line">vendor_id       : GenuineIntel</span><br><span class="line">cpu family      : 6</span><br><span class="line">model           : 63</span><br><span class="line">model name      : Intel(R) Xeon(R) CPU @ 2.30GHz</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/content/drive/MyDrive/mySIMD/repos/LAFF-On-PfHP/Assignments/Week0/C<span class="comment"># make HelloWorld </span></span><br><span class="line">gcc driver.o FLA_Clock.o MaxAbsDiff.o RandomMatrix.o /root/blis/lib/libblis.a -o driver.x -lpthread -m64 -lm -fopenmp </span><br><span class="line"><span class="built_in">echo</span> </span><br><span class="line"></span><br><span class="line">./driver.x</span><br><span class="line">Hello World</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Understand how alg and architectures interact</p>
+<p>Using e.g. of matrix-matrix multiply </p>
+<h3 id="GEMM-GEneral-Matrix-Multiplication"><a href="#GEMM-GEneral-Matrix-Multiplication" class="headerlink" title="GEMM - GEneral Matrix Multiplication"></a>GEMM - GEneral Matrix Multiplication</h3><p>$$<br>\begin{equation<em>}<br>A =<br>\left(\begin{array}{cccc}<br>\alpha_{0,0} &amp; \alpha_{0,1} &amp; \cdots &amp; \alpha_{0,k-1} \<br>\alpha_{1,0} &amp; \alpha_{1,1} &amp; \cdots &amp; \alpha_{1,k-1} \<br>\vdots &amp; \vdots &amp; &amp; \vdots \<br>\alpha_{m-1,0} &amp; \alpha_{m-1,1} &amp; \cdots &amp; \alpha_{m-1,k-1}<br>\end{array}\right),<br>B =<br>\left(\begin{array}{cccc}<br>\beta_{0,0} &amp; \beta_{0,1} &amp; \cdots &amp; \beta_{0,n-1} \<br>\beta_{1,0} &amp; \beta_{1,1} &amp; \cdots &amp; \beta_{1,n-1} \<br>\vdots &amp; \vdots &amp; &amp; \vdots \<br>\beta_{k-1,0} &amp; \beta_{k-1,1} &amp; \cdots &amp; \beta_{k-1,n-1}<br>\end{array}\right)<br>\end{equation</em>}<br>$$</p>
+<p>$$<br>\begin{equation<em>}<br>C =<br>\left(\begin{array}{cccc}<br>\gamma_{0,0} &amp; \gamma_{0,1} &amp; \cdots &amp; \gamma_{0,n-1} \<br>\gamma_{1,0} &amp; \gamma_{1,1} &amp; \cdots &amp; \gamma_{1,n-1} \<br>\vdots &amp; \vdots &amp; &amp; \vdots \<br>\gamma_{m-1,0} &amp; \gamma_{m-1,1} &amp; \cdots &amp; \gamma_{m-1,n-1}<br>\end{array}\right).<br>\end{equation</em>}<br>$$</p>
+<p>$C := A B + C \text{.}$</p>
+<p>$$<br>\begin{equation}<br>\gamma_{i,j} :=  \sum_{p=0}^{k-1} \alpha_{i,p} \beta_{p,j} + \gamma_{i,j}\label{week1-eqn-gamma}\tag{1.1.1}<br>\end{equation}<br>$$</p>
+<p>$$<br>\begin{equation*}<br>\begin{array}{l}<br>{\bf for~} i := 0, \ldots , m-1  \</p>
+<p><del>~ {\bf for</del>} j := 0, \ldots , n-1  \</p>
+<p><del>~ {\bf for</del>} p := 0, \ldots , k-1  \</p>
+<pre><code class="\gamma_{i,j}">~~~~~~{\bf end} \\
+~~~{\bf end} \\
+{\bf end}
+\end{array}
+\end{equation*}
+$$
+
+### Pseudo Code to C code
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> alpha( i,j ) A[ (j)*ldA + i ]   <span class="comment">// map alpha( i,j ) to array A </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> beta( i,j )  B[ (j)*ldB + i ]   <span class="comment">// map beta( i,j )  to array B</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> gamma( i,j ) C[ (j)*ldC + i ]   <span class="comment">// map gamma( i,j ) to array C</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyGemm</span><span class="params">( <span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k, <span class="keyword">double</span> *A, <span class="keyword">int</span> ldA,</span></span></span><br><span class="line"><span class="function"><span class="params">	     <span class="keyword">double</span> *B, <span class="keyword">int</span> ldB, <span class="keyword">double</span> *C, <span class="keyword">int</span> ldC )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">for</span> ( <span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++ )</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n; j++ )</span><br><span class="line">      <span class="keyword">for</span> ( <span class="keyword">int</span> p=<span class="number">0</span>; p&lt;k; p++ )</span><br><span class="line">        gamma( i,j ) += alpha( i,p ) * beta( p,j );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+Gemm &quot;Gemm&quot; is a commonly used acronym that stands for &quot;Ge&quot;neral &quot;m&quot;atrix &quot;m&quot;ultiplication.
+
+The term &quot;driver&quot; is typically used for a main program that exercises (tests and/or times) functionality implemented in a routine. In our case, the driver tests a range of problem sizes by creating random matrices C , A , and B . 
+
+
+
+execution time as a function of the problem size!
+
+
+
+### GFLOPS
+
+![image-20230608013934605](https://p.ipic.vip/us5l1t.png)
+
+
+
+&lt;img src=&quot;https://p.ipic.vip/pgaej9.png&quot; alt=&quot;image-20230608014505513&quot; style=&quot;zoom:67%;&quot; /&gt;
+
+![image-20230608014348331](https://p.ipic.vip/tcasfw.png)
+
+
+
+
+
+Mapping Matrices to memory
+
+- Row major order (X)
+- Col major order (V)
+  - B.C Computational science used to used the Fortran programming language to program, and the Fortan programming language chose to store matrices by `columns major order`
+  - ![image-20230608111535626](https://p.ipic.vip/qj1dak.png)&lt;img src=&quot;https://p.ipic.vip/pzjxnb.png&quot; alt=&quot;image-20230608111832859&quot; style=&quot;zoom:67%;&quot; /&gt;
+
+
+
+The leading dimension
+
+- ![5x4 matrix](https://p.ipic.vip/4p52nk.png)
+  - The leading dimension of the boxed submatrix is : 5
+
+
+
+
+
+ A convention regarding the letter used for the loop index
+
+- why do the two implementations with better performance do better?
+  1. They access matrices by columns in the inner loop.
+  2. We store matrices in column-major order.
+  3. Accessing data contiguously usually improves performance.
+
+
+
+
+
+Nototion
+$$
+A =
+          \left( \begin{array}{r r r}
+          -2 &amp; -3 &amp; -1 \\
+          2 &amp; 0 &amp; 1 \\
+          3 &amp; -2 &amp; 2 \\
+          \end{array}
+          \right).
+$$
+
+
+- $$\alpha_{1,2} = 1$$
+
+- $$a_{0} =       \left( \begin{array}{r r r}       -2 \\       2 \\       3        \end{array}       \right)$$
+
+- $$\widetilde a_{2}^T       =       \left( \begin{array}{r r r}       3 &amp; -2 &amp; 2        \end{array}       \right)$$
+
+
+
+
+
+Dot Product
+$$
+\begin{array}{l c r}
+          {\tt A[0]} &amp; \longrightarrow &amp; -1 \\
+          &amp;&amp;0 \\
+          &amp;&amp; 2 \\
+          &amp;&amp; 3 \\
+          &amp;&amp; -1 \\
+          &amp;&amp; 1 \\
+          &amp;&amp; 4 \\
+          &amp;&amp; -1 \\
+          &amp;&amp; 3 \\
+          &amp;&amp; 5 
+          \end{array}
+$$
+
+- Dots( 3, &amp;A[1], 4, &amp;A[3], 1, &amp;gamma ) = $$1 + \left( \begin{array}{r}       0 \\       1 \\       5        \end{array} \right)^T       \left( \begin{array}{r}       3 \\       -1 \\       1        \end{array} \right)       =       1 + (0) \times (3) + (1) \times (-1) + (5) \times (1)       = 5.$$
+
+&gt; In particular, the stride when accessing a row of a matrix is ldA when the matrix is stored in column-major order with leading dimension ldA,
+
+- \#define alpha(i,j) A[ (j)*ldA + (i)] to address the matrix in a more natural way
+
+
+
+
+
+Matrix-vector multiplication via dot-product
+
+![image-20230608152820750](https://p.ipic.vip/mv01r4.png)
+
+&lt;img src=&quot;https://p.ipic.vip/1ylxqs.png&quot; alt=&quot;image-20230608154753003&quot; style=&quot;zoom:80%;&quot; /&gt;
+
+
+
+
+
+Axpy
+
+- alpha times x plus y
+  - where alpha times x is a &quot;broadcast&quot; operation
+
+
+
+
+
+Matrix-vector multiplication via axpy operations
+
+## ![image-20230608155913443](https://p.ipic.vip/jrsjlx.png)
+
+General form
+$$
+\begin{equation*}
+\begin{array}{rcl}
+y :=
+\left( \begin{array}{c | c | c | c}
+a_0  a_1  \cdots  a_{n-1} 
+\end{array} \right)
+\left( \begin{array}{c}
+\chi_0 \\ \hline
+\chi_1 \\ \hline
+\vdots \\ \hline
+\chi_{n-1}
+\end{array}
+\right) + y \\
+=
+\chi_0 a_0 + \chi_1 a_1 + \cdots + \chi_{n-1} a_{n-1} + y.
+\end{array}
+\end{equation*}
+$$
+![image-20230608161328342](https://p.ipic.vip/z8nmcl.png)
+
+
+
+Gemm in terms of Gemv
+
+![image-20230608161910223](https://p.ipic.vip/8r9a9l.png)
+
+
+
+![image-20230608162233030](https://p.ipic.vip/t3qcip.png)
+
+
+
+
+
+## Layering Matrix-Matrix Multiplication
+
+rank-1 update by columns
+
+Matrix-matrix multiplication via rank-1 updates
+
+&lt;img src=&quot;https://p.ipic.vip/09jkbw.png&quot; alt=&quot;img&quot; style=&quot;zoom: 50%;&quot; /&gt;
+
+- notice that here we&apos;re actually adding to a matrix. And it&apos;s called rank-1 update because an **`outer product` has a rank of at most 1**
+  - e,g, 
+    - A = [1, 2, 3] B = [4, 5, 6], A ⊗ B = [ 4, 5, 6 ] [ 8, 10, 12 ] [12, 15, 18 ], and the 1st row can represent the remaining 2 rows, so the 2nd and 3rd are not linear independent to 1st row, so rank is one!
+
+
+
+
+
+
+
+### Row-times-matrix multiplications
+
+
+
+
+
+
+
+ref: 
+
+[1] https://www.cs.utexas.edu/users/flame/laff/pfhp/week0-what-should-we-know.html</code></pre>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2022/06/01/ParallelProg/HighPerf%20UTA%201/">http://yoursite.com/2022/06/01/ParallelProg/HighPerf%20UTA%201/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2022/06/02/ParallelProg/HighPerf%20UTA%202%20and%20AVX/"><i class="fa fa-chevron-left">  </i><span>ParallelProg/HighPerf UTA 2 and AVX</span></a></div><div class="next-post pull-right"><a href="/2022/05/31/DevOps-Clouds/GCE/"><span>DevOps-Clouds/GCE</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

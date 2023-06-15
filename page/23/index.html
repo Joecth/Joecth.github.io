@@ -13,272 +13,382 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">386</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">66</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2020/01/08/Design-Patterns/%E2%80%9C2019-01-08-Design%20Patterns%20-%20Observer%E2%80%9D/">Design-Patterns/“2019-01-08-Design Patterns - Observer”</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-08</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/DesignPattern/">DesignPattern</a></span><div class="content"><h3 id="Observer-Pattern"><a href="#Observer-Pattern" class="headerlink" title="Observer Pattern"></a>Observer Pattern</h3><p>Still for OCP – Open Close Principle, which means, open for extension, close for modification.</p>
-<p>Define 1vsMany, such that all observers receives notification when the observable getting update.</p>
-<img src="/Users/joe/Library/Application Support/typora-user-images/image-20200116114053868.png" alt="image-20200116114053868" style="zoom:67%;" />
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">395</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">69</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2020/01/15/Python/2020-01-15-bisect%20in%20python%20/">Python/2020-01-15-bisect in python </a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-15</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span><div class="content"><h3 id="Finding-Pos"><a href="#Finding-Pos" class="headerlink" title="Finding Pos"></a>Finding Pos</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"> </span><br><span class="line">a = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">12</span>,<span class="number">15</span>,<span class="number">20</span>]</span><br><span class="line">position = bisect.bisect(a,<span class="number">13</span>)</span><br><span class="line">print(position)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 用可变序列内置的insert方法插入</span></span><br><span class="line">a.insert(position,<span class="number">13</span>)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<p>5<br>[1, 4, 6, 8, 12, 13, 15, 20]</p>
+<hr>
+<h3 id="Insert"><a href="#Insert" class="headerlink" title="Insert"></a>Insert</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"> </span><br><span class="line">a = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">12</span>,<span class="number">15</span>,<span class="number">20</span>]</span><br><span class="line">bisect.insort(a,<span class="number">13</span>)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/01/15/Python/2020-02-26-HackerRank_practice/">Python/2020-02-26-HackerRank_practice</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-15</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span><div class="content"><h2 id="Read-input-from-STDIN-Print-output-to-STDOUT"><a href="#Read-input-from-STDIN-Print-output-to-STDOUT" class="headerlink" title="Read input from STDIN. Print output to STDOUT*"></a>Read input from STDIN. Print output to STDOUT*</h2><p><strong>Sample Input</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">sam 99912222</span><br><span class="line">tom 11122222</span><br><span class="line">harry 12299933</span><br><span class="line">sam</span><br><span class="line">edward</span><br><span class="line">harry</span><br></pre></td></tr></table></figure>
+
+<p><strong>Sample Output</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sam&#x3D;99912222</span><br><span class="line">Not found</span><br><span class="line">harry&#x3D;12299933</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">n = int(input())</span><br><span class="line"></span><br><span class="line">book = [input().split() <span class="keyword">for</span> _ <span class="keyword">in</span> range(n)]  <span class="comment"># [[name1, phone1], [name2, phone2]...]</span></span><br><span class="line"><span class="comment"># print(book)</span></span><br><span class="line">d = &#123;k:v <span class="keyword">for</span> k, v <span class="keyword">in</span> book&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        name = input()</span><br><span class="line">        <span class="comment"># if not name: break</span></span><br><span class="line">        <span class="keyword">if</span> name <span class="keyword">in</span> d:</span><br><span class="line">            print(<span class="string">'&#123;&#125;=&#123;&#125;'</span>.format(name, d[name]))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'Not found'</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
 
 
 
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countApplesAndOranges</span><span class="params">(s, t, a, b, apples, oranges)</span>:</span></span><br><span class="line">    <span class="comment"># print(apples ,oranges)</span></span><br><span class="line">    </span><br><span class="line">    aa = map(<span class="keyword">lambda</span> a, x: a+x, [a]*len(apples), apples)</span><br><span class="line">    oo = map(<span class="keyword">lambda</span> b, x: b+x, [b]*len(oranges), oranges)</span><br><span class="line"></span><br><span class="line">    count_a = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> aa:</span><br><span class="line">        <span class="keyword">if</span> s &lt;= a &lt;= t:</span><br><span class="line">            count_a += <span class="number">1</span></span><br><span class="line">    print(count_a)</span><br><span class="line">    count_o = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> o <span class="keyword">in</span> oo:</span><br><span class="line">        <span class="keyword">if</span> s &lt;= o &lt;= t:</span><br><span class="line">            count_o += <span class="number">1</span></span><br><span class="line">    print(count_o)</span><br></pre></td></tr></table></figure>
 
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Vector obs = <span class="keyword">new</span> Vector();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addObserver</span><span class="params">(Observer obs)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.obs.add(obs);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delObserver</span><span class="params">(Observer obs)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.obs.remove(obs);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">notifyObserver</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(Observer o: obs)&#123;</span><br><span class="line">            o.update();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteSubject</span> <span class="keyword">extends</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"被观察者事件反生"</span>);</span><br><span class="line">        <span class="keyword">this</span>.notifyObserver();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteObserver1</span> <span class="keyword">implements</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"观察者1收到信息，并进行处理。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteObserver2</span> <span class="keyword">implements</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"观察者2收到信息，并进行处理。"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Subject sub = <span class="keyword">new</span> ConcreteSubject();</span><br><span class="line">        sub.addObserver(<span class="keyword">new</span> ConcreteObserver1()); <span class="comment">//添加观察者1</span></span><br><span class="line">        sub.addObserver(<span class="keyword">new</span> ConcreteObserver2()); <span class="comment">//添加观察者2</span></span><br><span class="line">        sub.doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>ref from: <a href="https://wiki.jikexueyuan.com/project/java-design-pattern/observer-pattern.html" target="_blank" rel="noopener">https://wiki.jikexueyuan.com/project/java-design-pattern/observer-pattern.html</a></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/01/08/System-Design/ACE/2021-01-08%201&amp;2%20Intro%20&amp;%20Components%20Review/">System-Design/ACE/2021-01-08 1&amp;2 Intro &amp; Components Review</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-08</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/SystemDesign/">SystemDesign</a></span><div class="content"><h2 id="System-Desing-vs-OOD"><a href="#System-Desing-vs-OOD" class="headerlink" title="System Desing vs OOD"></a>System Desing vs OOD</h2><table>
+<h3 id="GCD-x-LCM"><a href="#GCD-x-LCM" class="headerlink" title="GCD  x LCM"></a>GCD  x LCM</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Complete the 'getTotalX' function below.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The function is expected to return an INTEGER.</span></span><br><span class="line"><span class="comment"># The function accepts following parameters:</span></span><br><span class="line"><span class="comment">#  1. INTEGER_ARRAY a</span></span><br><span class="line"><span class="comment">#  2. INTEGER_ARRAY b</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getTotalX</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="comment"># Write your code here</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> a <span class="keyword">or</span> <span class="keyword">not</span> b:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gcd</span><span class="params">(A)</span>:</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        12 16 18 40</span></span><br><span class="line"><span class="string">        0   4  6  ４</span></span><br><span class="line"><span class="string">        0.  0. 2  ０</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="comment"># arr = sorted(A, key=lambda x: x)</span></span><br><span class="line">        <span class="comment"># p = arr[0]</span></span><br><span class="line">        <span class="comment"># while p:</span></span><br><span class="line">        <span class="comment">#     prev_p = p</span></span><br><span class="line">        <span class="comment">#     for j in range(len(arr)):</span></span><br><span class="line">        <span class="comment">#         arr[j] = arr[j] % p</span></span><br><span class="line">        <span class="comment">#     for k in range(len(arr)):</span></span><br><span class="line">        <span class="comment">#         if arr[j] != 0:</span></span><br><span class="line">        <span class="comment">#             p =  arr[j]</span></span><br><span class="line">        <span class="comment">#         if p != prev_p:</span></span><br><span class="line">        <span class="comment">#             break</span></span><br><span class="line">        <span class="comment"># return prev_p</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find_gcd</span><span class="params">(a, b)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> a &lt; b:</span><br><span class="line">            a, b = b, a</span><br><span class="line">        <span class="keyword">while</span> a:</span><br><span class="line">            <span class="comment"># print("a:&#123;&#125;, b:&#123;&#125;".format(a, b))</span></span><br><span class="line">            r = a % b       <span class="comment"># 20 16</span></span><br><span class="line">            <span class="keyword">if</span> r == <span class="number">0</span>:      <span class="comment"># 4</span></span><br><span class="line">                <span class="keyword">break</span>       </span><br><span class="line">            a, b = b, r                         </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> b</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">GCD</span><span class="params">(arr)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(arr) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> arr[<span class="number">0</span>]</span><br><span class="line">        gcd = find_gcd(arr[<span class="number">0</span>], arr[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(arr)):</span><br><span class="line">            gcd = find_gcd(gcd, arr[i])</span><br><span class="line">        <span class="keyword">return</span> gcd</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">LCM</span><span class="params">(arr)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(arr) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> arr[<span class="number">0</span>]</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">find_lcm</span><span class="params">(a, b)</span>:</span></span><br><span class="line">            gcd = find_gcd(a, b)</span><br><span class="line">            <span class="keyword">return</span> a*b/gcd</span><br><span class="line">        lcm = find_lcm(arr[<span class="number">0</span>], arr[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>, len(arr)):</span><br><span class="line">            lcm = find_lcm(lcm, arr[j])</span><br><span class="line">        <span class="keyword">return</span> lcm</span><br><span class="line"></span><br><span class="line">    gcd = GCD(b)</span><br><span class="line">    <span class="comment"># print('GCD: &#123;&#125;'.format(gcd))</span></span><br><span class="line">    lcm = LCM(a)</span><br><span class="line">    <span class="comment"># print('LCM: &#123;&#125;'.format(lcm))</span></span><br><span class="line">    n = int(gcd/lcm)</span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> gcd % (k*lcm) == <span class="number">0</span>:</span><br><span class="line">            res += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    fptr = open(os.environ[<span class="string">'OUTPUT_PATH'</span>], <span class="string">'w'</span>)</span><br><span class="line"></span><br><span class="line">    first_multiple_input = input().rstrip().split()</span><br><span class="line"></span><br><span class="line">    n = int(first_multiple_input[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">    m = int(first_multiple_input[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    arr = list(map(int, input().rstrip().split()))</span><br><span class="line"></span><br><span class="line">    brr = list(map(int, input().rstrip().split()))</span><br><span class="line"></span><br><span class="line">    total = getTotalX(arr, brr)</span><br><span class="line"></span><br><span class="line">    fptr.write(str(total) + <span class="string">'\n'</span>)</span><br><span class="line"></span><br><span class="line">    fptr.close()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Exceptions-String-to-Integer"><a href="#Exceptions-String-to-Integer" class="headerlink" title="Exceptions - String to Integer"></a><del>Exceptions - String to Integer</del></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">S = input().strip()</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    print(int(S))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">'Bad String'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Birthday-Chocolate"><a href="#Birthday-Chocolate" class="headerlink" title="Birthday Chocolate"></a><del>Birthday Chocolate</del></h3><p><strong>Sample Input 0</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">1 2 1 3 2</span><br><span class="line">3 2</span><br></pre></td></tr></table></figure>
+
+<p><strong>Sample Output 0</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">birthday</span><span class="params">(s, d, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> s <span class="keyword">or</span> <span class="keyword">not</span> d <span class="keyword">or</span> <span class="keyword">not</span> m:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m<span class="number">-1</span>, len(s)):        <span class="comment"># use m-1 instead of m to solve m==1 case, where the loop isn't gonna entered</span></span><br><span class="line">        <span class="keyword">if</span> sum(s[j:i+<span class="number">1</span>]) == d:</span><br><span class="line">            res += <span class="number">1</span></span><br><span class="line">        j += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    fptr = open(os.environ[<span class="string">'OUTPUT_PATH'</span>], <span class="string">'w'</span>)</span><br><span class="line"></span><br><span class="line">    n = int(input().strip())</span><br><span class="line"></span><br><span class="line">    s = list(map(int, input().rstrip().split()))</span><br><span class="line"></span><br><span class="line">    dm = input().rstrip().split()</span><br><span class="line"></span><br><span class="line">    d = int(dm[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">    m = int(dm[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    result = birthday(s, d, m)</span><br><span class="line"></span><br><span class="line">    fptr.write(str(result) + <span class="string">'\n'</span>)</span><br><span class="line"></span><br><span class="line">    fptr.close()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="DivisorSum"><a href="#DivisorSum" class="headerlink" title="DivisorSum"></a><del>DivisorSum</del></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Calculator</span><span class="params">(AdvancedArithmetic)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">divisorSum</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> n % j == <span class="number">0</span>:</span><br><span class="line">                res += j</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="DivisibleSumPair"><a href="#DivisibleSumPair" class="headerlink" title="DivisibleSumPair"></a><del>DivisibleSumPair</del></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">divisibleSumPairs</span><span class="params">(n, k, ar)</span>:</span></span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> (ar[i] + ar[j]) % k == <span class="number">0</span>:</span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">    <span class="comment"># print(res)</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Count-B-Sort-Swapping"><a href="#Count-B-Sort-Swapping" class="headerlink" title="Count B-Sort Swapping"></a><del>Count B-Sort Swapping</del></h3><h3 id="Generics"><a href="#Generics" class="headerlink" title="Generics"></a>Generics</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Printer</span> &lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *    Method Name: printArray</span></span><br><span class="line"><span class="comment">    *    Print each element of the generic array on a new line. Do not return anything.</span></span><br><span class="line"><span class="comment">    *    <span class="doctag">@param</span> A generic array</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Write your code here</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;E&gt; <span class="function"><span class="keyword">void</span> <span class="title">printArray</span><span class="params">(E[] generic)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(E element : generic) &#123;</span><br><span class="line">            System.out.println(element); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="BST-Height-according-to-Edges"><a href="#BST-Height-according-to-Edges" class="headerlink" title="BST Height according to Edges"></a><del>BST Height according to Edges</del></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHeight</span><span class="params">(self,root)</span>:</span></span><br><span class="line">    <span class="comment">#Write your code here</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root.left <span class="keyword">and</span> <span class="keyword">not</span> root.right:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    L = self.getHeight(root.left)</span><br><span class="line">    R = self.getHeight(root.right)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> max(L, R) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="RM-Duplicated-from-Sorted-Linked-List"><a href="#RM-Duplicated-from-Sorted-Linked-List" class="headerlink" title="RM Duplicated from Sorted Linked List"></a>RM Duplicated from Sorted Linked List</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">removeDuplicates</span><span class="params">(self,head)</span>:</span></span><br><span class="line">    <span class="comment">#Write your code here</span></span><br><span class="line">    dummy = Node(<span class="string">"INIT"</span>)</span><br><span class="line">    dummy.next = head</span><br><span class="line">    self.helper(head, dummy)</span><br><span class="line">    <span class="keyword">return</span> dummy.next</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root, prev)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> prev.data == root.data:</span><br><span class="line">        prev.next = root.next</span><br><span class="line">        self.helper(root.next, prev)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        self.helper(root.next, root)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="IsPrime-w-Input-Parsing"><a href="#IsPrime-w-Input-Parsing" class="headerlink" title="IsPrime w/ Input() Parsing"></a>IsPrime w/ Input() Parsing</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Enter your code here. Read input from STDIN. Print output to STDOUT</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line">num = int(input().strip())</span><br><span class="line"></span><br><span class="line">arr = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(num):</span><br><span class="line">    arr.append(int(input().strip()))</span><br><span class="line"><span class="comment"># print('arr: &#123;&#125;'.format(arr))</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(self, arr)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(arr)):</span><br><span class="line">            <span class="keyword">if</span> self.isPrime(arr[i]):</span><br><span class="line">                print(<span class="string">'Prime'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">'Not prime'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPrime</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        end = int(math.sqrt(n)) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>, end):</span><br><span class="line">            <span class="keyword">if</span>  n % j == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Day-26-Nested-Logic"><a href="#Day-26-Nested-Logic" class="headerlink" title="Day 26 - Nested Logic"></a>Day 26 - Nested Logic</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">actual = list(map(int, input().strip().split()))</span><br><span class="line">expect = list(map(int, input().strip().split()))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(self, actual, expect)</span>:</span></span><br><span class="line">        da, ma, ya = actual</span><br><span class="line">        de, me, ye = expect</span><br><span class="line">        <span class="keyword">if</span> ya &lt; ye <span class="keyword">or</span> da &lt;= de <span class="keyword">and</span> ma &lt;= me <span class="keyword">and</span> ya &lt;= ye:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">elif</span> ya &gt; ye:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">10000</span></span><br><span class="line">        <span class="keyword">elif</span> ma &gt; me:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">500</span> * (ma - me) </span><br><span class="line">        <span class="keyword">elif</span> da &gt; de:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">15</span> * (da - de)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    sol = Solution()</span><br><span class="line">    print(sol.foo(actual, expect))</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Day-27-Test"><a href="#Day-27-Test" class="headerlink" title="Day 27 - Test"></a>Day 27 - Test</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">minimum_index</span><span class="params">(seq)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(seq) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">"Cannot get the minimum value index from an empty sequence"</span>)</span><br><span class="line">    min_idx = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(seq)):</span><br><span class="line">        <span class="keyword">if</span> seq[i] &lt; seq[min_idx]:</span><br><span class="line">            min_idx = i</span><br><span class="line">    <span class="keyword">return</span> min_idx</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestDataEmptyArray</span><span class="params">(object)</span>:</span></span><br><span class="line">    </span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_array</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="comment"># complete this function</span></span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestDataUniqueValues</span><span class="params">(object)</span>:</span></span><br><span class="line">    arr = [<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_array</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="comment"># complete this function</span></span><br><span class="line">        <span class="keyword">return</span> TestDataUniqueValues.arr</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_expected_result</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="comment"># complete this function</span></span><br><span class="line">        <span class="keyword">return</span> minimum_index(TestDataUniqueValues.arr)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestDataExactlyTwoDifferentMinimums</span><span class="params">(object)</span>:</span></span><br><span class="line">    arr = [<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>]</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_array</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="comment"># complete this function</span></span><br><span class="line">        <span class="keyword">return</span> TestDataExactlyTwoDifferentMinimums.arr</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_expected_result</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="comment"># complete this function</span></span><br><span class="line">        <span class="keyword">return</span> minimum_index(TestDataExactlyTwoDifferentMinimums.arr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">TestWithEmptyArray</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        seq = TestDataEmptyArray.get_array()</span><br><span class="line">        result = minimum_index(seq)</span><br><span class="line">    <span class="keyword">except</span> ValueError <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">assert</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">TestWithUniqueValues</span><span class="params">()</span>:</span></span><br><span class="line">    seq = TestDataUniqueValues.get_array()</span><br><span class="line">    <span class="keyword">assert</span> len(seq) &gt;= <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">assert</span> len(list(set(seq))) == len(seq)</span><br><span class="line"></span><br><span class="line">    expected_result = TestDataUniqueValues.get_expected_result()</span><br><span class="line">    result = minimum_index(seq)</span><br><span class="line">    <span class="keyword">assert</span> result == expected_result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">TestiWithExactyTwoDifferentMinimums</span><span class="params">()</span>:</span></span><br><span class="line">    seq = TestDataExactlyTwoDifferentMinimums.get_array()</span><br><span class="line">    <span class="keyword">assert</span> len(seq) &gt;= <span class="number">2</span></span><br><span class="line">    tmp = sorted(seq)</span><br><span class="line">    <span class="keyword">assert</span> tmp[<span class="number">0</span>] == tmp[<span class="number">1</span>] <span class="keyword">and</span> (len(tmp) == <span class="number">2</span> <span class="keyword">or</span> tmp[<span class="number">1</span>] &lt; tmp[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">    expected_result = TestDataExactlyTwoDifferentMinimums.get_expected_result()</span><br><span class="line">    result = minimum_index(seq)</span><br><span class="line">    <span class="keyword">assert</span> result == expected_result</span><br><span class="line"></span><br><span class="line">TestWithEmptyArray()</span><br><span class="line">TestWithUniqueValues()</span><br><span class="line">TestiWithExactyTwoDifferentMinimums()</span><br><span class="line">print(<span class="string">"OK"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Draw-Book"><a href="#Draw-Book" class="headerlink" title="Draw Book"></a>Draw Book</h3><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcx0ix4kyej31in0u0djo.jpg" alt="image-20200317163814705"></p>
+<img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcx0kem3spj313w0880tq.jpg" alt="image-20200317163936950" style="zoom:67%;" />
+
+
+
+<h3 id="Day-28-RegEX-Pattern"><a href="#Day-28-RegEX-Pattern" class="headerlink" title="Day 28 RegEX, Pattern"></a>Day 28 RegEX, Pattern</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pattern = re.compile(<span class="string">'@gmail.com$'</span>)</span><br><span class="line"></span><br><span class="line">    N = int(input())</span><br><span class="line">    res = []</span><br><span class="line">    <span class="comment"># heapq.heapify(res)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> N_itr <span class="keyword">in</span> range(N):</span><br><span class="line">        firstNameEmailID = input().strip().split()</span><br><span class="line"></span><br><span class="line">        firstName = firstNameEmailID[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        emailID = firstNameEmailID[<span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># if emailID.split('@')[1].split('.')[0] != 'gmail':</span></span><br><span class="line">        <span class="comment">#     continue</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> pattern.search(emailID):</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="comment"># heapq.heappush(res, firstName)</span></span><br><span class="line">        res.append(firstName)</span><br><span class="line">    </span><br><span class="line">    res.sort()</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(res)):</span><br><span class="line">        <span class="comment"># print(heapq.heappop(res))</span></span><br><span class="line">        print(res[j])</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Level-Order-BFS"><a href="#Level-Order-BFS" class="headerlink" title="Level Order BFS~~"></a>Level Order BFS~~</h3></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/01/15/System-Design/ACE/2021-01-15%203%20Hacker%20Crawl/">System-Design/ACE/2021-01-15 3 Hacker Crawl</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-15</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/SystemDesign/">SystemDesign</a></span><div class="content"><h1 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h1><p>Auto-Complete不在這裡的討論</p>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
+<li>fn req: <ul>
+<li>通過關鍵詞快速及時找到相關info<ul>
+<li>及時: 如news，時效性很強!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Non-fn req: S, R,A, C, L, E<ul>
+<li>高擴展性 – 支持全網索引</li>
+<li>低延遲 – 特別是for 核心網站，像是新聞網站就是最好的例子，做索引!</li>
+<li>低延遲 – 返回給user結果</li>
+<li>高可靠性 – 返回內容與關鍵詞相關</li>
+<li>Availability – 在線</li>
+<li>一致性 – 還好，沒那麼要求啦</li>
+<li>效率: 返回給user結果時，需要高效的data structure &amp; 算法 (不高效: 每次user打了字，當下找，或是未解決不同人打一樣的關鍵詞時)</li>
+</ul>
+</li>
+<li>Non req:<ul>
+<li>非英語 (如中文未有自然斷詞)、爬蟲、搜索結果排序(page rank) – 把重要的放前面，狗家的安身立命之本</li>
+</ul>
+</li>
+</ul>
+<h4 id="QPS-單機量級"><a href="#QPS-單機量級" class="headerlink" title="QPS 單機量級:"></a>QPS 單機量級:</h4><p>單機下的ram、disk、bandwidth都是影響單機的QPS量級</p>
+<p>如果request的需求特高，QPS就會降低的</p>
+<ul>
+<li>Redis – 只是去拿個key，所以量級很高；低的話也可以降到10~100因為處理的內容相對複雜。。 。</li>
+</ul>
+<p><strong>==&gt; 不好一概而論</strong></p>
+<h2 id="資源"><a href="#資源" class="headerlink" title="資源"></a>資源</h2><ul>
+<li>全網 500M網站</li>
+</ul>
+<h2 id="系統設計圖"><a href="#系統設計圖" class="headerlink" title="系統設計圖"></a>系統設計圖</h2><h3 id="編制索引-amp-查詢索引"><a href="#編制索引-amp-查詢索引" class="headerlink" title="編制索引 &amp; 查詢索引"></a>編制索引 &amp; 查詢索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">	H(HTML Store) --&gt; Indexer --&gt; IndexStore[Index Store]</span><br><span class="line">	User(User) --&gt; QueryProcessor[Query Processor] --&gt; IndexStore</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>例子: New York 是 連著的詞組，用戶是不會想拿 New或York單獨自己的東西</li>
+</ul>
+<h2 id="Indexer"><a href="#Indexer" class="headerlink" title="Indexer"></a>Indexer</h2><h4 id="Mapper-–-給蒐"><a href="#Mapper-–-給蒐" class="headerlink" title="Mapper – 給蒐"></a>Mapper – 給蒐</h4><p>tokenization &amp; stemming </p>
+<h4 id="Reducer-–-拉出一串蕉"><a href="#Reducer-–-拉出一串蕉" class="headerlink" title="Reducer – 拉出一串蕉"></a>Reducer – 拉出一串蕉</h4><p>Sort()是為了讓在找交集時的算法表現比較好</p>
+<h3 id="Inverted-Index"><a href="#Inverted-Index" class="headerlink" title="Inverted Index"></a>Inverted Index</h3><h5 id="Posting-List"><a href="#Posting-List" class="headerlink" title="Posting List"></a>Posting List</h5><ul>
+<li><p>存pos的原因: 詞組 </p>
+</li>
+<li><p>page ranking不考慮:還得考慮是不是大網站，詞頻是否高這類的，所以在posting list中不考慮</p>
+</li>
+</ul>
+<h3 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h3><p>製作詞頻是經典例子 by DFS</p>
+<p>找詞頻也是一樣</p>
+<p>master即使down了，也可以透過execution log on GFS recovery回來</p>
+<p>User Program不是個服務，就只是deploy上去worker運行而已</p>
+<p>執行一部份的task，然後master動態調整兩邊的worker工作能平衡</p>
+<p>一個word一個reducer，但一段range是可以分配出去的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Pseudo-code for &quot;inverted index&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Q1-不能直接作inverted-index"><a href="#Q1-不能直接作inverted-index" class="headerlink" title="Q1 不能直接作inverted index"></a>Q1 不能直接作inverted index</h2><ul>
+<li>標點、時態、詞性、大小寫、同義詞、帶標點的詞(e.g. o’clock)、詞組(new york)、姓名、mail、stop words。</li>
+<li>第二句第一個字跟第一句的尾字被接在一起了…</li>
+<li></li>
+</ul>
+<p>太常見的，就去除，不要占posting list 空間</p>
+<p>所以</p>
+<ul>
+<li>Tokenization</li>
+<li>Normalization</li>
+<li>Stemming &amp; </li>
+</ul>
+<h2 id="Q2-多個單詞的搜索"><a href="#Q2-多個單詞的搜索" class="headerlink" title="Q2 多個單詞的搜索?"></a>Q2 多個單詞的搜索?</h2><p>posting list 找交集</p>
+<h2 id="Q3-索引實現連續的詞組搜索"><a href="#Q3-索引實現連續的詞組搜索" class="headerlink" title="Q3 索引實現連續的詞組搜索"></a>Q3 索引實現連續的詞組搜索</h2><ul>
+<li>posting list放入 pos info</li>
+<li>當然有些exception: N<ul>
+<li>特定詞作整體index: ew York、Dr. Who</li>
+</ul>
+</li>
+</ul>
+<h2 id="Index-Store"><a href="#Index-Store" class="headerlink" title="Index Store"></a>Index Store</h2><ul>
+<li>Partition – Document based or Term based?</li>
+</ul>
+<h2 id="Q4-Posting-Lit-Term-based-or-Document-based-partition"><a href="#Q4-Posting-Lit-Term-based-or-Document-based-partition" class="headerlink" title="Q4 Posting Lit: Term-based or Document-based partition?"></a>Q4 Posting Lit: Term-based or Document-based partition?</h2><ul>
+<li><p>Doc: posting lits are smaller, intersections are ok on one partition</p>
+</li>
+<li><p>Term: only a subset of machine are used for each query</p>
+</li>
+</ul>
+<h2 id="Q5-Posting-List是在RAM還是在-Hard-Disk"><a href="#Q5-Posting-List是在RAM還是在-Hard-Disk" class="headerlink" title="Q5 Posting List是在RAM還是在 Hard Disk?"></a>Q5 Posting List是在RAM還是在 Hard Disk?</h2><ul>
+<li>常用的放 RAM</li>
+</ul>
+<p>RAM為主(Document-partitioned) + Disk為輔(Term-partitioned)</p>
+<blockquote>
+<p>2-gram不對任意做，只對特定做</p>
+<p>Document-based 更平衡些</p>
+<p>Doc-based serach: 去所有機器找 word，然後合併</p>
+</blockquote>
+<h3 id="Posting-List-排序方案"><a href="#Posting-List-排序方案" class="headerlink" title="Posting List 排序方案"></a>Posting List 排序方案</h3><ul>
+<li>Doc ID</li>
+<li>Term Freq –&gt; </li>
+<li>Impact</li>
+</ul>
+<p>後兩者難再找交集，ID就不是從小到大了，就一會大一會小，就不能在O(N)時間找到他們的交集了；但仍認為是個優化? –&gt; 是在Document based上額外再做一份，當把範圍控得比較小，時間還是可以bounded，然後相關性也是可以增加的，就是不返回</p>
+<h2 id="索引更新"><a href="#索引更新" class="headerlink" title="索引更新"></a>索引更新</h2><h3 id="Data-structure"><a href="#Data-structure" class="headerlink" title="Data structure?"></a>Data structure?</h3><h4 id="RAM"><a href="#RAM" class="headerlink" title="RAM"></a>RAM</h4><ol>
+<li>Singly Linked List</li>
+<li>Variable Length Array (自動擴容) 省pointer 空間</li>
+<li>Linked-List of Fixed-size Array (插得快，pointer也不會用得特別多)</li>
+</ol>
+<h4 id="HD"><a href="#HD" class="headerlink" title="HD"></a>HD</h4><p>Doc Gap : 只紀錄 △</p>
+<p>Variable Byte Encoding </p>
+<h2 id="硬盤索引更新模式"><a href="#硬盤索引更新模式" class="headerlink" title="硬盤索引更新模式"></a>硬盤索引更新模式</h2><ul>
+<li>Rebuild – 出來的效果就是一塊就能拿到，但每次都從0開始去重編，遇到整個internet時工作量過大</li>
+<li><strong>間斷合併 Intermittent Merge</strong> – 把一部份寫在ram，要滿時，就跟舊的合併，合併時會找塊連續的空間，然後就保證一次的disk seek，就是一斷時間再寫</li>
+<li>Incremental update – 一有機會時，就是用戶返回時，或網站變化時，看情況更新，但可能更新hd的頻率過高，不如intermittent省工作量並省disk seek次數</li>
+</ul>
+<h2 id="查詢模式"><a href="#查詢模式" class="headerlink" title="查詢模式"></a>查詢模式</h2><ul>
+<li>單一關鍵詞<ul>
+<li>看LRU Cache</li>
+<li>內存索引先找如果足夠多，就先返回了<ol>
+<li>智慧排序 posting list</li>
+<li>Doc ID 排序 positng list</li>
+</ol>
+</li>
+<li>HD 索引<ol>
+<li>ram中尚未合併的索引</li>
+<li>智慧排序的posing list</li>
+<li>Doc ID 排序的posting list</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>多個關鍵詞 (AND、OR) apple and iPhone</li>
+<li>關鍵詞詞組 “New York”, “Doctor Who”, 拿兩個posting list比較position這類</li>
+</ul>
+<h2 id="Q6-多個關鍵詞search-AND使用什麼算法"><a href="#Q6-多個關鍵詞search-AND使用什麼算法" class="headerlink" title="Q6 多個關鍵詞search AND使用什麼算法?"></a>Q6 多個關鍵詞search AND使用什麼算法?</h2><ul>
+<li>two pointer</li>
+<li><strong>skip list</strong> –&gt; 低於 O(N) 完成<ul>
+<li>可以時不時查看更遠的是產生在最後的表中</li>
+<li>eg 跳一次後，發現新的index比表裡的index還要小，那就說明之前跳的是不用看的 –&gt; 我覺得應該是大</li>
+</ul>
+</li>
+</ul>
+<h2 id="Index-DB"><a href="#Index-DB" class="headerlink" title="Index DB"></a>Index DB</h2><p>Redis: key –&gt; Array</p>
+<h4 id="RAM-plan"><a href="#RAM-plan" class="headerlink" title="RAM plan:"></a>RAM plan:</h4><p>Redis-like solution: insert不好，後面大家要移；</p>
+<h3 id="HD-1"><a href="#HD-1" class="headerlink" title="HD"></a>HD</h3><p>BigTable        # TODO!</p>
+<blockquote>
+<p>memtable就像是一个对于DB的write-back cache</p>
+</blockquote>
+<h2 id="APIs"><a href="#APIs" class="headerlink" title="APIs"></a>APIs</h2><h4 id="查詢請求"><a href="#查詢請求" class="headerlink" title="查詢請求"></a>查詢請求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Request</span><br><span class="line">GET</span><br><span class="line">&#x2F;api&#x2F;v1&#x2F;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="擴展性"><a href="#擴展性" class="headerlink" title="擴展性"></a>擴展性</h2><p>服務器 – 1 MapReduce</p>
+<p>存儲 – BigTable, Cache, Document-based Partition (&amp; Term-based partition)</p>
+<h2 id="容災"><a href="#容災" class="headerlink" title="容災"></a>容災</h2><ul>
+<li>服務器 – MapReduce Persistency<ul>
+<li>Master、work都可fail，透過gfs裡的intermittent log file找回</li>
+</ul>
+</li>
+</ul>
+<h2 id="監控警報"><a href="#監控警報" class="headerlink" title="監控警報"></a>監控警報</h2><ul>
+<li>Mapper/Reducer Ratio</li>
+<li>Index Freshness</li>
+<li>DB Load</li>
+<li>Cache Hit Rate</li>
+</ul>
+<h2 id="Twitter-Hashtag-Search-VS-Google-Search"><a href="#Twitter-Hashtag-Search-VS-Google-Search" class="headerlink" title="Twitter Hashtag Search VS Google Search"></a>Twitter Hashtag Search VS Google Search</h2><table>
 <thead>
 <tr>
 <th></th>
-<th>Points</th>
-<th>Format</th>
-<th>Problems</th>
+<th>hashtag search</th>
+<th>G-Search</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>System Design</td>
-<td>Dataflow<br />Architecture<br />Scalability</td>
-<td>系统設計圖<br />DB設計<br />API設計</td>
-<td>Instagram</td>
+<td>Inverted-Index</td>
+<td>only hashtagh (structured)</td>
+<td>extract all article’s words</td>
 </tr>
 <tr>
-<td>OOD (不是個web service)</td>
-<td>Class Interface<br />Inheritance</td>
-<td>Code<br />Data Structure</td>
-<td>停車場</td>
+<td>Storage</td>
+<td>RAM</td>
+<td>RAM + HD</td>
+</tr>
+<tr>
+<td>Sorting factors</td>
+<td>Author + retweet</td>
+<td>N/A</td>
 </tr>
 </tbody></table>
-<h6 id="Product-Design-System-Design-Scalability"><a href="#Product-Design-System-Design-Scalability" class="headerlink" title="Product Design = System Design - Scalability"></a>Product Design = System Design - Scalability</h6><h2 id="Misunderstandings"><a href="#Misunderstandings" class="headerlink" title="Misunderstandings"></a>Misunderstandings</h2><h3 id="1-Ignored-Non-functional-Req"><a href="#1-Ignored-Non-functional-Req" class="headerlink" title="1) Ignored Non-functional Req"></a>1) Ignored Non-functional Req</h3><h3 id="2-Ignored-some-data-stream"><a href="#2-Ignored-some-data-stream" class="headerlink" title="2) Ignored some data stream"></a>2) Ignored some data stream</h3><h4 id="e-g-corner-case"><a href="#e-g-corner-case" class="headerlink" title="e.g. corner case"></a>e.g. corner case</h4><ul>
-<li><p>e.g. Whatsapp裡的四條data streaming</p>
+<h2 id="Yelp-Search-VS-Google-Search"><a href="#Yelp-Search-VS-Google-Search" class="headerlink" title="Yelp Search VS Google Search"></a>Yelp Search VS Google Search</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>Yelp Search</th>
+<th>G-Search</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>User input</td>
+<td>Geo position + Filter(小孩、停車) + 關鍵詞(Asian Noodle)</td>
+<td>關鍵詞</td>
+</tr>
+</tbody></table>
+<h1 id="RESTful-API"><a href="#RESTful-API" class="headerlink" title="RESTful API"></a>RESTful API</h1><p><strong><em>REpresentational State Transfer</em></strong></p>
+<ol>
+<li>Stateless – 服務器不需要知道我之前問過什麼問題，每次的rest api call都是個單獨的call</li>
+<li>Uniform Interface<ol>
+<li><strong>資源為核心</strong> – get是get user、resource，往往是用個<strong>名詞 而不是動詞</strong>表述get和post的目標</li>
+<li>資源的表現形式 – 可以支持返回的內容是個 json、xml、txt…etc</li>
+<li>descriptive info – API call要告訴user how to user this API. when user uses wrong, should be in “help” for User Error</li>
+<li>允許返回 link –&gt; 讓user 進一步發送request</li>
+</ol>
 </li>
-<li><p>e.g. celebrity 需要去區分不同的data streaming 作優化 &lt;= 普通人 vs 名人</p>
-</li>
-</ul>
-<h3 id="3-背書"><a href="#3-背書" class="headerlink" title="3) 背書"></a>3) 背書</h3><ul>
-<li>自己把info作長篇大論作背誦；–&gt; better to used in “deep-dive”</li>
-</ul>
-<h3 id="4-Trade-off"><a href="#4-Trade-off" class="headerlink" title="4) Trade-off"></a>4) Trade-off</h3><ul>
-<li><p>黑客版的網爬，我們可以做出五種不同的構件 &lt;= 權衡做好並作利弊</p>
-</li>
-<li><p>Ins’s Push(low latency) vs Pull(Normalization in SQL)</p>
-</li>
-</ul>
-<h3 id="5-過度依賴Tips-Guides"><a href="#5-過度依賴Tips-Guides" class="headerlink" title="5) 過度依賴Tips/Guides"></a>5) 過度依賴Tips/Guides</h3><ul>
-<li><p>自己得要想問題去問 –&gt;<br>一般人會follower多少人? 會有幾個人follower他?</p>
-</li>
-<li><p>多少人看每天？多久po文一次? –&gt; 去了解讀跟寫</p>
-</li>
-</ul>
-<h3 id="6-答題不分主次"><a href="#6-答題不分主次" class="headerlink" title="6) 答題不分主次"></a>6) 答題不分主次</h3><ul>
-<li>自己未把「abtraction」、「encapsulation」分清楚</li>
-<li>Level-wised details, to know how to deep-dive</li>
-<li>e.g. 網爬 –&gt; 網爬’s details</li>
-</ul>
-<h3 id="7-過度強調技術選型"><a href="#7-過度強調技術選型" class="headerlink" title="7) 過度強調技術選型"></a>7) 過度強調技術選型</h3><ul>
-<li><p>只知某種原理的細節 –&gt; 只知某種特定的Cache &lt;== 容易被深挖就尷了。。</p>
-</li>
-<li><p>不同種之間的廣度對比作優劣判斷</p>
-</li>
-<li><p>結論: 會把自己繞坑</p>
-</li>
-<li><p>e.g. SQL vs NoSQL</p>
-<ul>
-<li>NoSQL: Wide column! 别特定進去到 Cassandra</li>
-</ul>
-</li>
-</ul>
-<h3 id="8-混亂的系統設計圖"><a href="#8-混亂的系統設計圖" class="headerlink" title="8) 混亂的系統設計圖"></a>8) 混亂的系統設計圖</h3><ul>
-<li>如果無法修復好的話，會很亂!</li>
-<li>要清晰，不然看的人會忘</li>
-</ul>
-<h3 id="9-答得過慢"><a href="#9-答得過慢" class="headerlink" title="9) 答得過慢"></a>9) 答得過慢</h3><ul>
-<li>時間不夠用，但別糾在末節<ul>
-<li>e.g. Non-fn req: 沒到10mins, 就 3mins</li>
-<li>e.g. resource estimation:別到誇張到 8 mins </li>
-</ul>
-</li>
-<li>節奏得要是穩步向前，所以時間得able to control</li>
-</ul>
-<h3 id="10-忽略流量模式"><a href="#10-忽略流量模式" class="headerlink" title="10) 忽略流量模式!"></a>10) 忽略流量模式!</h3><p>Ins - 大v</p>
-<p>Memcached: 只是kv store; </p>
-<p>Kafka 难被替代</p>
-<p>: </p>
-<h2 id="DB"><a href="#DB" class="headerlink" title="DB"></a>DB</h2><ul>
-<li>DB是存儲實時訪問數據的永久存儲 vs warehouse &lt;== 非實時訪問 (Hive QL 類似map reduce，apache的一個項目，幫大家去存大量的歷史data)，存在hard disk裡作長期存儲，一般在服務不會去訪問它</li>
-<li>SQL vs NoSQL<ul>
-<li>SQL : hd是很稀缺的，注重把data壓到很少，因為hd很貴。所以 JOIN<ul>
-<li>好懂 –&gt; 2D表格表示事務 –&gt; 符合大腦 vs NoSQL(有時有3D)</li>
-<li>好維護 –&gt; Consistency!!! 歷經實踐檢驗、慢慢掛 vs NoSQL cascaded 地全掛</li>
-<li>靈活 –&gt; 語言強大，一些事在DB層就可用 vs NoSQL都只能在應用層來做</li>
-<li>CONS:<ul>
-<li>鎖 -&gt; 慢</li>
-<li>不靈活，表難擴展、結構難改</li>
-<li>只有partition:單機分到不同地方，没有sharding:機器間的分配<ul>
-<li>Proxy SQL可以幫sql起到sharding，讓proxy去協調哪個機器存什麼</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h6 id="kafka-topics數量不能太大；但也是看它怎麼用，topics可以分partition就可以很大-10萬或Million這級別；每個partition都是有順序"><a href="#kafka-topics數量不能太大；但也是看它怎麼用，topics可以分partition就可以很大-10萬或Million這級別；每個partition都是有順序" class="headerlink" title="kafka topics數量不能太大；但也是看它怎麼用，topics可以分partition就可以很大 10萬或Million這級別；每個partition都是有順序"></a>kafka topics數量不能太大；但也是看它怎麼用，topics可以分partition就可以很大 10萬或Million這級別；每個partition都是有順序</h6><pre><code>- event in topic 看什麼是partition key --&gt; 分partition
-- E.G. img post : img `topics`; user_id as `partition`</code></pre><h6 id="Data-lake-可能可以是hive-offline-data就是相對於stream-溪流-而言、etl-raw-data可是個data-lake部分，比較是包含很多技術的總稱"><a href="#Data-lake-可能可以是hive-offline-data就是相對於stream-溪流-而言、etl-raw-data可是個data-lake部分，比較是包含很多技術的總稱" class="headerlink" title="Data lake(可能可以是hive): offline data就是相對於stream (溪流)而言、etl raw data可是個data lake部分，比較是包含很多技術的總稱"></a>Data lake(可能可以是hive): offline data就是相對於stream (溪流)而言、etl raw data可是個data lake部分，比較是包含很多技術的總稱</h6><h6 id="Data-warehouse不能立即返回，他用的是跟sql類似的言語；hive不含sql所有功能，傾向是map-reduce去處理，而不是都在ram裡處理掉，時間跑得長，不能立即返回結果；不是文件系統，HIVE是HDFS上包裏了一層，提供了一個固定的schema表格的型式去存data的機制，並提供了語言去處理如跟map-reduce結合處理"><a href="#Data-warehouse不能立即返回，他用的是跟sql類似的言語；hive不含sql所有功能，傾向是map-reduce去處理，而不是都在ram裡處理掉，時間跑得長，不能立即返回結果；不是文件系統，HIVE是HDFS上包裏了一層，提供了一個固定的schema表格的型式去存data的機制，並提供了語言去處理如跟map-reduce結合處理" class="headerlink" title="Data warehouse不能立即返回，他用的是跟sql類似的言語；hive不含sql所有功能，傾向是map-reduce去處理，而不是都在ram裡處理掉，時間跑得長，不能立即返回結果；不是文件系統，HIVE是HDFS上包裏了一層，提供了一個固定的schema表格的型式去存data的機制，並提供了語言去處理如跟map-reduce結合處理"></a>Data warehouse不能立即返回，他用的是跟sql類似的言語；hive不含sql所有功能，傾向是map-reduce去處理，而不是都在ram裡處理掉，時間跑得長，不能立即返回結果；不是文件系統，HIVE是HDFS上包裏了一層，提供了一個固定的schema表格的型式去存data的機制，並提供了語言去處理如跟map-reduce結合處理</h6><ul>
-<li><ul>
-<li>NoSQL<ul>
-<li>讀寫強! &lt;== lock用得少</li>
-<li>存儲機制靈活多樣 &lt;== 四種大樣，且支持靈活的 schema</li>
-<li>原生支持高併發 &lt;== 易橫向擴展<ul>
-<li>横(用多台機器)、縱(單一台)有特定含義的!</li>
-</ul>
-</li>
-<li>cons:</li>
-<li>較低的一致性</li>
-<li>性能理解不足，cassandra易一串failure，如其consistent hash ring易加減機器，但系統一旦有1/4機器出包，系統會連續愈來愈多掛掉，讓一個系統很快degrade… <ul>
-<li>當時多台就是為了想stable，缺乏在大量req下deploy 服務的經驗</li>
-</ul>
-</li>
-<li>不支持JOIN –&gt; 提倡 denormalization</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="怎選"><a href="#怎選" class="headerlink" title="怎選"></a>怎選</h3><h4 id="1-是否要ACID"><a href="#1-是否要ACID" class="headerlink" title="1) 是否要ACID?"></a>1) 是否要ACID?</h4><ul>
-<li>a:原子性 –&gt; 两個寫的要求，打包發生</li>
-<li>c:一致 &lt;==有一些沒一致是ok的  –&gt; data寫的時候是準確的，讀出來還是要同個data，沒有打包這個含義 </li>
-<li>i:不同data不互影響</li>
-<li>d:長期在db</li>
-</ul>
-<h4 id="2-是否需要JOIN"><a href="#2-是否需要JOIN" class="headerlink" title="2) 是否需要JOIN?"></a>2) 是否需要JOIN?</h4><ul>
-<li>E.g. 設計db去解決要不要JOIN的問題</li>
-</ul>
-<h4 id="3-是否要scalability"><a href="#3-是否要scalability" class="headerlink" title="3) 是否要scalability"></a>3) 是否要scalability</h4><ul>
-<li>Nosql 就是可以橫向擴展</li>
-</ul>
-<h4 id="4-data-model"><a href="#4-data-model" class="headerlink" title="4) data model?"></a>4) data model?</h4><ul>
-<li>如果是個friend graph 如fb上<ul>
-<li>想找到跟用戶A有在3個結點都找到 &lt;– neo4j graph DB 可原生解決它<ul>
-<li>SQL也可以寫三層、六層XD… 很累啊</li>
-</ul>
-</li>
-<li>如果kv就ok那就是簡單的memcache就ok</li>
-</ul>
-</li>
-</ul>
-<h6 id="mongo這兩年可以join，从一個table拿出field再去query另個table，不是面試中要關心的"><a href="#mongo這兩年可以join，从一個table拿出field再去query另個table，不是面試中要關心的" class="headerlink" title="mongo這兩年可以join，从一個table拿出field再去query另個table，不是面試中要關心的"></a>mongo這兩年可以join，从一個table拿出field再去query另個table，不是面試中要關心的</h6><h6 id="捨棄P-–-gt-無法多機了。。就只有CA了"><a href="#捨棄P-–-gt-無法多機了。。就只有CA了" class="headerlink" title="捨棄P –&gt; 無法多機了。。就只有CA了"></a>捨棄P –&gt; 無法多機了。。就只有CA了</h6><h6 id="sql即使有sharding也是讀寫比較不如nosql因為有鎖"><a href="#sql即使有sharding也是讀寫比較不如nosql因為有鎖" class="headerlink" title="sql即使有sharding也是讀寫比較不如nosql因為有鎖"></a>sql即使有sharding也是讀寫比較不如nosql因為有鎖</h6><h6 id="c的cae-DB的改寫並不會去通知到要改cache"><a href="#c的cae-DB的改寫並不會去通知到要改cache" class="headerlink" title="c的cae: DB的改寫並不會去通知到要改cache"></a>c的cae: DB的改寫並不會去通知到要改cache</h6><h6 id="availability-指的不是容災，而是可被有正確值丟出-lt-TODO-11-56"><a href="#availability-指的不是容災，而是可被有正確值丟出-lt-TODO-11-56" class="headerlink" title="availability: 指的不是容災，而是可被有正確值丟出 &lt;== TODO: 11:56"></a>availability: 指的不是容災，而是可被有正確值丟出 &lt;== TODO: 11:56</h6><h3 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h3><h6 id="mongodb-我們不覺得他會常當機無法訪問"><a href="#mongodb-我們不覺得他會常當機無法訪問" class="headerlink" title="mongodb 我們不覺得他會常當機無法訪問"></a>mongodb 我們不覺得他會常當機無法訪問</h6><h4 id="Document-Store"><a href="#Document-Store" class="headerlink" title="Document Store"></a>Document Store</h4><p>Relational VS MongoDB(靈活 json)</p>
-<h4 id="KV-Store"><a href="#KV-Store" class="headerlink" title="KV Store"></a>KV Store</h4><p>現今都是redis over memcached</p>
-<ul>
-<li>memcached: value只能是simple string，非常簡單的system，source code很短，10w行以下<ul>
-<li>比較簡單的in memory 的kv</li>
-</ul>
-</li>
-<li>redis: 可以是一堆特別的data structure、還有transaction、sharding、監控、lock的系統<ul>
-<li>還會用一些disk、可以persistency</li>
-</ul>
-</li>
-</ul>
-<h4 id="Wide-Column-Store"><a href="#Wide-Column-Store" class="headerlink" title="Wide-Column Store"></a>Wide-Column Store</h4><ul>
-<li>來自  Big-Table 論文，<ul>
-<li>一個cell可以對應一堆時間!</li>
-<li>column family(少的): column(多的)</li>
-<li>Sparse DB &lt;== 後話</li>
-</ul>
-</li>
-</ul>
-<h4 id="Graph-Store"><a href="#Graph-Store" class="headerlink" title="Graph Store"></a>Graph Store</h4><ul>
-<li>Neo4j 比較好query</li>
-</ul>
-<h6 id="SQL-amp-NoSQL界線正在變模糊"><a href="#SQL-amp-NoSQL界線正在變模糊" class="headerlink" title="SQL &amp; NoSQL界線正在變模糊"></a>SQL &amp; NoSQL界線正在變模糊</h6><h2 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h2><h4 id="熱點data"><a href="#熱點data" class="headerlink" title="熱點data"></a>熱點data</h4><ul>
-<li>LRU</li>
-</ul>
-<h4 id="Session-storage"><a href="#Session-storage" class="headerlink" title="Session storage"></a>Session storage</h4><ul>
-<li>instagram預加載分頁</li>
-</ul>
-<h4 id="低latency-reading"><a href="#低latency-reading" class="headerlink" title="低latency reading"></a>低latency reading</h4><ul>
-<li>whatsapp上線後快速讀到別人發來的</li>
-</ul>
-<h4 id="custermer-side’s-cache"><a href="#custermer-side’s-cache" class="headerlink" title="custermer side’s cache"></a>custermer side’s cache</h4><ul>
-<li>Autocomplete <code>客戶端預載</code>補全結果，本地解决，減少server壓力</li>
-</ul>
-<h3 id="讀"><a href="#讀" class="headerlink" title="讀"></a>讀</h3><h4 id="Cache-Aside-TODO-12-18"><a href="#Cache-Aside-TODO-12-18" class="headerlink" title="Cache-Aside TODO:12:18"></a>Cache-Aside TODO:12:18</h4><p>先讀cache(並不在主流程中，就算cache掛了，也會去db讀)，再讀db，</p>
-<p>cache當了不會讓整個當</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h4 id="Read-Through"><a href="#Read-Through" class="headerlink" title="Read-Through"></a>Read-Through</h4><h3 id="寫"><a href="#寫" class="headerlink" title="寫"></a>寫</h3><h4 id="Write-Through"><a href="#Write-Through" class="headerlink" title="Write-Through"></a>Write-Through</h4><p>寫時先寫到cache，cache再寫去db，兩個綁在一起叫完成</p>
-<h4 id="Write-Back"><a href="#Write-Back" class="headerlink" title="Write-Back"></a>Write-Back</h4><p>Cache你何時寫給db你的事，我寫給你我ok就好了!</p>
-<h4 id="Write-Around"><a href="#Write-Around" class="headerlink" title="Write-Around"></a>Write-Around</h4><p>我直接寫給DB，Cache在旁邊</p>
+</ol>
+<h5 id="以資源為核心"><a href="#以資源為核心" class="headerlink" title="以資源為核心"></a>以資源為核心</h5><p> GET /user/123</p>
+<h2 id="HTTP-Method"><a href="#HTTP-Method" class="headerlink" title="HTTP Method"></a>HTTP Method</h2><p>GET, POST, PUT, DELETE</p>
+<h3 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h3><p>HTTP GET <a href="http://www.appdomain.com/users" target="_blank" rel="noopener">http://www.appdomain.com/users</a></p>
+<h5 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h5><p>400 Bad Request</p>
+<p>404 Not Found</p>
+<h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><h5 id="NOT-Idempotent-–-gt-call多次新增多個資源"><a href="#NOT-Idempotent-–-gt-call多次新增多個資源" class="headerlink" title="NOT Idempotent –&gt; call多次新增多個資源"></a><strong>NOT Idempotent</strong> –&gt; call多次新增多個資源</h5><p>HTTP POST <a href="http://www.appdomain.com/users" target="_blank" rel="noopener">http://www.appdomain.com/users</a></p>
+<p>HTTP POST <a href="http://www.appdomain.com/users/123/accounts" target="_blank" rel="noopener">http://www.appdomain.com/users/123/accounts</a></p>
+<h5 id="Response-1"><a href="#Response-1" class="headerlink" title="Response"></a>Response</h5><p>201 Created</p>
+<p>200 OK</p>
+<p>204 No Content – 不该返回 該返回200</p>
+<h3 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h3><p><strong>Idempotent</strong> </p>
+<h5 id="Response-2"><a href="#Response-2" class="headerlink" title="Response"></a>Response</h5><p>Same as POST’s</p>
+<h3 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h3><h4 id=""><a href="#" class="headerlink" title=""></a></h4><h2 id="Q8-對於資源-users-or-user"><a href="#Q8-對於資源-users-or-user" class="headerlink" title="Q8 對於資源 /users or /user"></a>Q8 對於資源 /users or /user</h2><h2 id="Q9-users-id-email-or-email"><a href="#Q9-users-id-email-or-email" class="headerlink" title="Q9 /users/:id/email or /email"></a>Q9 /users/:id/email or /email</h2><p>email可以獨立user去存在嗎？不行! 所以該前者</p>
+<h2 id="Q10"><a href="#Q10" class="headerlink" title="Q10"></a>Q10</h2><p>// TODO</p>
+<h2 id="Q11"><a href="#Q11" class="headerlink" title="Q11"></a>Q11</h2><p>// TODO</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/01/15/System-Design/ACE/2021-01-16%204%20Search/">System-Design/ACE/2021-01-16 4 Search</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-15</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/SystemDesign/">SystemDesign</a></span><div class="content"><h1 id="Crawl"><a href="#Crawl" class="headerlink" title="Crawl"></a>Crawl</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="1-2-Req"><a href="#1-2-Req" class="headerlink" title="1.2 Req"></a>1.2 Req</h2><p>|      | Fn Req: crawl all web (for google search)    |<br>|      | Non Fn Req: high extension – support 全網爬 |<br>|      |                                              |</p>
 <table>
 <thead>
 <tr>
+<th>Fn Req</th>
 <th></th>
-<th>Write-Through</th>
-<th>Write-Around</th>
-<th>Write-Back</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>Cache-Aside</strong></td>
-<td>N/A</td>
-<td></td>
-<td></td>
+<td>Non-Fn Requirement</td>
+<td>high extension – support 全網爬<br />核心網站要專高效爬取，避免反覆爬相同內容，如動態生出來時<br />高可用，避免死循環或crawl trap<br /></td>
 </tr>
 <tr>
-<td><strong>Read-Through</strong></td>
-<td></td>
-<td></td>
+<td>Non Requirement</td>
 <td></td>
 </tr>
 </tbody></table>
-<h6 id="TODO-12-33"><a href="#TODO-12-33" class="headerlink" title="TODO: 12:33"></a>TODO: 12:33</h6><h4 id="Redis-永久化方案"><a href="#Redis-永久化方案" class="headerlink" title="Redis 永久化方案"></a>Redis 永久化方案</h4><table>
-<thead>
-<tr>
-<th></th>
-<th>全稱</th>
-<th>優點</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>RDB 記狀態<br />snapshot</td>
-<td>Redis DB Backup File</td>
-<td>file小，不影響讀寫速度，快速災後修復</td>
-</tr>
-<tr>
-<td>AOF 記過程<br />會降低讀寫效率</td>
-<td>Append-Only File</td>
-<td>最大程度降低data丟失，紀錄每次讀寫</td>
-</tr>
-</tbody></table>
-<h6 id="MySQL本來就在DB，不需要討論持久化"><a href="#MySQL本來就在DB，不需要討論持久化" class="headerlink" title="MySQL本來就在DB，不需要討論持久化"></a>MySQL本來就在DB，不需要討論持久化</h6><h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>E.g. Netflix 我覺得他肯定在某個地方會變超popular，諾蘭的新片會很熱門! 離永戶愈近愈好!</p>
-<p>降低consume file 的成本、提高讀大文件的效率、減慢latency</p>
-<h3 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h3><h6 id="TODO"><a href="#TODO" class="headerlink" title="TODO:!!!"></a>TODO:!!!</h6></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/12/22/Web/2019-12-19-Self-defined%20JSON%20serialization%20for%20json%20dump/">Web/2019-12-19-Self-defined JSON serialization for json dump</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Web/">Web</a></span><div class="content"><h2 id="date-2019-12-21"><a href="#date-2019-12-21" class="headerlink" title="date: 2019-12-21"></a>date: 2019-12-21</h2><h3 id="Self-defined-serializable-for-JSON-dump"><a href="#Self-defined-serializable-for-JSON-dump" class="headerlink" title="Self-defined serializable for JSON dump"></a>Self-defined serializable for JSON dump</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySerialization</span><span class="params">(json.JSONEncoder)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(self, obj)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> isinstance(obj, np.integer):</span><br><span class="line">            <span class="keyword">return</span> int(obj)</span><br><span class="line">        <span class="keyword">elif</span> isinstance(obj, np.floating):</span><br><span class="line">            <span class="keyword">return</span> float(obj)</span><br><span class="line">        <span class="keyword">elif</span> isinstance(obj, np.ndarray):</span><br><span class="line">            <span class="keyword">return</span> obj.tolist()</span><br><span class="line">        <span class="keyword">if</span> isinstance(obj, time):</span><br><span class="line">            <span class="keyword">return</span> obj.__str__()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> super(NpEncoder, self).default(obj)</span><br></pre></td></tr></table></figure>
-
-
-<p>Then, </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json.dumps(data, cls=MySerialization)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gajfy4hc41j30m405jn01.jpg" alt="image-20200103161320526"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_art_inf</span><span class="params">(self, cfg)</span>:</span></span><br><span class="line">    info = &#123;&#125;</span><br><span class="line">    d1 = &#123;</span><br><span class="line">            <span class="string">"name"</span>: os.path.basename(cfg[<span class="string">'path'</span>]),  </span><br><span class="line">            <span class="string">"config_json"</span>: cfg, 	<span class="comment"># This should be a json configuration</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    info[<span class="string">"manuscript"</span>] = json.dumps(d1)   <span class="comment"># should do json.dumps() here instead of at line 5</span></span><br><span class="line">    <span class="keyword">return</span> info</span><br></pre></td></tr></table></figure>
-
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/12/13/Web/2019-12-13-Hexo%20management%20w:%202%20branches/">Web/2019-12-13-Hexo management w: 2 branches</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-13</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Web/">Web</a></span><div class="content"><p>###</p>
-<p>From below: </p>
-<p>作者：直上云霄<br>链接：<a href="https://www.zhihu.com/question/21193762/answer/489124966" target="_blank" rel="noopener">https://www.zhihu.com/question/21193762/answer/489124966</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<p><strong>git分支进行多终端工作</strong>问题来了，如果你现在在自己的笔记本上写的博客，部署在了网站上，那么你在家里用台式机，或者实验室的台式机，发现你电脑里面没有博客的文件，或者要换电脑了，最后不知道怎么移动文件，怎么办？在这里我们就可以利用git的分支系统进行多终端工作了，这样每次打开不一样的电脑，只需要进行简单的配置和在github上把文件同步下来，就可以无缝操作了。</p>
-<p><strong>机制</strong>机制是这样的，由于<code>hexo d</code>上传部署到github的其实是hexo编译后的文件，是用来生成网页的，不包含源文件。<br><img src="https://pic3.zhimg.com/50/v2-32ab30d0d28b916a204c03de4ed0fc4f_hd.jpg" alt="img">)<img src="https://pic3.zhimg.com/80/v2-32ab30d0d28b916a204c03de4ed0fc4f_hd.jpg" alt="img"></p>
-<p>也就是上传的是在本地目录里自动生成的<code>.deploy_git</code>里面。其他文件 ，包括我们写在source 里面的，和配置文件，主题文件，都没有上传到github<br><img src="https://pic4.zhimg.com/50/v2-59bb330178a4e010d9818911f789082b_hd.jpg" alt="img">)<img src="https://pic4.zhimg.com/80/v2-59bb330178a4e010d9818911f789082b_hd.jpg" alt="img"></p>
-<p>所以可以利用git的分支管理，将源文件上传到github的另一个分支即可。<br><strong>上传分支</strong>首先，先在github上新建一个hexo分支，如图：<br><img src="https://pic1.zhimg.com/50/v2-ebb3e05632e85ab036663390305caa1c_hd.jpg" alt="img">)<img src="https://pic1.zhimg.com/80/v2-ebb3e05632e85ab036663390305caa1c_hd.jpg" alt="img"></p>
-<p>然后在这个仓库的settings中，选择默认分支为hexo分支（这样每次同步的时候就不用指定分支，比较方便）。<br><img src="https://pic2.zhimg.com/50/v2-1899b6219f3787832652813b958b9b3d_hd.jpg" alt="img">)<img src="https://pic2.zhimg.com/80/v2-1899b6219f3787832652813b958b9b3d_hd.jpg" alt="img"></p>
-<p>然后在本地的任意目录下，打开git bash，<code>git clone git@github.com:ZJUFangzh/ZJUFangzh.github.io.git</code>将其克隆到本地，因为默认分支已经设成了hexo，所以clone时只clone了hexo。<br>接下来在克隆到本地的<code>ZJUFangzh.github.io</code>中，把除了.git 文件夹外的所有文件都删掉 把之前我们写的博客源文件全部复制过来，除了<code>.deploy_git</code>。这里应该说一句，复制过来的源文件应该有一个<code>.gitignore</code>，用来忽略一些不需要的文件，如果没有的话，自己新建一个，在里面写上如下，表示这些类型文件不需要git：<code>.DS_Store Thumbs.db db.json *.log node_modules/ public/ .deploy*/</code>注意，如果你之前克隆过theme中的主题文件，那么应该把主题文件中的<code>.git</code>文件夹删掉，因为git不能嵌套上传，最好是显示隐藏文件，检查一下有没有，否则上传的时候会出错，导致你的主题文件无法上传，这样你的配置在别的电脑上就用不了了。而后<code>git add . git commit –m &quot;add branch&quot; git push</code>这样就上传完了，可以去你的github上看一看hexo分支有没有上传上去，其中<code>node_modules</code>、<code>public</code>、<code>db.json</code>已经被忽略掉了，没有关系，不需要上传的，因为在别的电脑上需要重新输入命令安装 。<br><img src="https://pic4.zhimg.com/50/v2-a94330ca825f4debde8ce7ceeb8f8394_hd.jpg" alt="img">)<img src="https://pic4.zhimg.com/80/v2-a94330ca825f4debde8ce7ceeb8f8394_hd.jpg" alt="img"></p>
-<p>这样就上传完了。<br><strong>更换电脑操作</strong>一样的，跟之前的环境搭建一样，安装git<code>sudo apt-get install git</code>设置git全局邮箱和用户名<code>git config --global user.name &quot;yourgithubname&quot; git config --global user.email &quot;yourgithubemail&quot;</code>设置ssh key<code>ssh-keygen -t rsa -C &quot;youremail&quot; #生成后填到github和coding上（有coding平台的话） #验证是否成功 ssh -T git@github.com ssh -T git@git.coding.net #(有coding平台的话)</code>安装nodejs<code>sudo apt-get install nodejs sudo apt-get install npm</code>安装hexo  <code>sudo npm install hexo-cli -g</code>但是已经不需要初始化了，直接在任意文件夹下，<code>git clone git@………………</code>然后进入克隆到的文件夹：<code>cd xxx.github.io npm install npm install hexo-deployer-git --save</code>生成，部署：<code>hexo g hexo d</code><br>然后就可以开始写你的新博客了<code>hexo new newpage</code><br><strong>Tips:</strong>不要忘了，每次写完最好都把源文件上传一下<code>git add . git commit –m &quot;xxxx&quot; git push</code>如果是在已经编辑过的电脑上，已经有clone文件夹了，那么，每次只要和远端同步一下就行了<code>git pull</code></p>
-<p><a href="">发布于 2018-09-10</a></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/12/13/Web/2019-12-13-Hexo/">Web/2019-12-13-Hexo</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-13</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Web/">Web</a></span><div class="content"><h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="Hexo-Init"><a href="#Hexo-Init" class="headerlink" title="Hexo Init !"></a>Hexo Init !</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">node -v </span><br><span class="line">sudo hexo init </span><br><span class="line">ls -l </span><br><span class="line"><span class="built_in">pwd</span> </span><br><span class="line">hexo s </span><br><span class="line">hexo n <span class="string">"My first HEXO"</span></span><br><span class="line">ll <span class="built_in">source</span>/_posts/</span><br><span class="line">ls  <span class="built_in">source</span>/_posts/</span><br><span class="line">vi <span class="built_in">source</span>/_posts/My-first-HEXO.md </span><br><span class="line">vim <span class="built_in">source</span>/_posts/My-first-HEXO.md</span><br><span class="line"><span class="built_in">pwd</span> </span><br><span class="line">hexo clean </span><br><span class="line">hexo generate</span><br><span class="line">hexo s </span><br><span class="line">cnpm install --save hexo-deployer-git</span><br><span class="line">ls </span><br><span class="line">vi _config.yml </span><br><span class="line"><span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string">#  repo: https://github.com/Joecth/Joecth.github.io.git </span></span><br><span class="line"><span class="string">#  branch: master</span></span><br><span class="line"><span class="string">'</span><span class="string">''</span></span><br><span class="line"></span><br><span class="line">hexo d </span><br><span class="line"><span class="built_in">pwd</span> </span><br><span class="line">git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br><span class="line">ls -l </span><br><span class="line"><span class="built_in">cd</span> themes/</span><br><span class="line">ls </span><br><span class="line">ls -l </span><br><span class="line">.. </span><br><span class="line"><span class="built_in">cd</span> .. </span><br><span class="line">vi _config.yml </span><br><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d </span><br><span class="line"><span class="built_in">history</span> &gt; his.log</span><br><span class="line"><span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string"># ## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="string"># theme: yilia</span></span><br><span class="line"><span class="string">'</span><span class="string">''</span></span><br><span class="line"></span><br><span class="line">ref: https://www.bilibili.com/video/av44544186?from=search&amp;seid=17843376507979725408</span><br></pre></td></tr></table></figure>
-
-<h3 id="melody-w-default-sidebar"><a href="#melody-w-default-sidebar" class="headerlink" title="melody w/ default sidebar"></a>melody w/ default sidebar</h3><p>ref: <a href="https://pratnket.github.io/2019/02/22/Nexo-tutorial/#Hexo-%E9%9B%9C%E9%A0%85%E7%AD%86%E8%A8%98" target="_blank" rel="noopener">https://pratnket.github.io/2019/02/22/Nexo-tutorial/#Hexo-%E9%9B%9C%E9%A0%85%E7%AD%86%E8%A8%98</a></p>
-<h3 id="Version-Control-w-2-branches-for-Hexo"><a href="#Version-Control-w-2-branches-for-Hexo" class="headerlink" title="Version Control w/ 2 branches for Hexo"></a>Version Control w/ 2 branches for Hexo</h3><p>ref: <a href="https://www.zhihu.com/question/21193762" target="_blank" rel="noopener">https://www.zhihu.com/question/21193762</a></p>
-<h3 id="hexo-git-backup"><a href="#hexo-git-backup" class="headerlink" title="hexo-git-backup"></a>hexo-git-backup</h3><hr>
-</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/78/">78</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+<p>Non-Fn Req多了politeness</p>
+<h4 id="Q-瓶頸-–-gt-QPS"><a href="#Q-瓶頸-–-gt-QPS" class="headerlink" title="Q: 瓶頸? –&gt; QPS"></a>Q: 瓶頸? –&gt; QPS</h4><h4 id="Q3-如何實現優先級"><a href="#Q3-如何實現優先級" class="headerlink" title="Q3: 如何實現優先級?"></a>Q3: 如何實現優先級?</h4><p>A: Heap, PQueue</p>
+<h4 id="Q4-怎控制爬取同一個網站的freq"><a href="#Q4-怎控制爬取同一個網站的freq" class="headerlink" title="Q4: 怎控制爬取同一個網站的freq?"></a>Q4: 怎控制爬取同一個網站的freq?</h4><p>總不狂轟爛炸爆它吧…</p>
+<p>A: Single Host Queue, 同一個domain，和別的網站的是分開的, </p>
+<h3 id="URL-Frontier-Design"><a href="#URL-Frontier-Design" class="headerlink" title="URL Frontier Design"></a>URL Frontier Design</h3><p>URL可是從parser來，裡面找到很多的網址，發到了prioritizer，給後端的fetcher跟render</p>
+<p>Prioritizer會給每個url打個分，基本先取加上ε隨機性 – 在front queue selector。</p>
+<p>back queue是同個domain的，如wikipedia，根據politeness</p>
+<h4 id="Q5-有數萬個Single-Host-Queue，怎麼在低於O-N-下找到符合頻率要求的網址"><a href="#Q5-有數萬個Single-Host-Queue，怎麼在低於O-N-下找到符合頻率要求的網址" class="headerlink" title="Q5: 有數萬個Single Host Queue，怎麼在低於O(N)下找到符合頻率要求的網址?"></a>Q5: 有數萬個Single Host Queue，怎麼在低於O(N)下找到符合頻率要求的網址?</h4><p>A: Heap (current_ts + time_gap, queue_id)</p>
+<p>爬完後，他知道下次是x秒後；用個 min-heap</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/01/15/System-Design/ACE/ConsistentH/">System-Design/ACE/ConsistentH</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-01-15</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/SystemDesign/">SystemDesign</a></span><div class="content"><h1 id="Consistent-Hashing"><a href="#Consistent-Hashing" class="headerlink" title="Consistent Hashing"></a>Consistent Hashing</h1><h2 id="map-keys-into-key-spaces-—-–-gt-servers"><a href="#map-keys-into-key-spaces-—-–-gt-servers" class="headerlink" title="map keys into key spaces —%–&gt; servers"></a>map keys into key spaces —%–&gt; servers</h2><ul>
+<li>hash function best in uniform hash , randomly scattered</li>
+<li>key 要分布去一堆服务器做作理</li>
+</ul>
+<p>但是，「即使」一开始可以很好地randomly scattered</p>
+<ul>
+<li>NAIVE 取模 方式的问题 ，当有down(rehash)了时，<ul>
+<li>大风吹，而且又有非必要的挪动，不符合我们想要的移动最少的想法</li>
+<li>unnecessary key redistribution</li>
+</ul>
+</li>
+</ul>
+<h2 id="Consistent-Hashing-1"><a href="#Consistent-Hashing-1" class="headerlink" title="Consistent Hashing"></a>Consistent Hashing</h2><ul>
+<li>N necessary keys</li>
+<li>算出来的hash顺时针往後找吧！</li>
+<li>往回找我的工作，往前依附給下台機器</li>
+</ul>
+<h2 id="Uniformly-Distributed-Hashing-Algorithm-within-whole-hash-range"><a href="#Uniformly-Distributed-Hashing-Algorithm-within-whole-hash-range" class="headerlink" title="Uniformly Distributed Hashing Algorithm within whole hash range"></a>Uniformly Distributed Hashing Algorithm within whole hash range</h2><p>e.g. SHA, MD5</p>
+<p>這裡的話是hash ring上，也是evenly distribute打散很棒的</p>
+<p>Hash算完後再truncate掉也是Uniformly Distributed</p>
+<p>為了讓每個server的key量是相當的</p>
+<h2 id="New-Problems"><a href="#New-Problems" class="headerlink" title="New Problems"></a>New Problems</h2><p>但這樣出現的問題會是「不平均間隔」</p>
+<p><strong><em>Problem on paper –</em></strong> </p>
+<p>1 Random position of nodes leads to non-uniform data and load distribution</p>
+<p>2 Each node can have different performance characteristic (有可能機器就是不一樣的，我們希望讓強的就是算多一些，而不是受Uniform分佈影響)</p>
+<h2 id="加上-Virtual-Node-to-Solve"><a href="#加上-Virtual-Node-to-Solve" class="headerlink" title="加上 Virtual Node to Solve"></a>加上 Virtual Node to Solve</h2><p><strong><em>Solution on paper –</em></strong> </p>
+<p>2^160 nodes on ring</p>
+<p>1 Random position of nodes leads to non-uniform data and load distribution 只需要redistribution很小部份data，且每台的量都也是稱職平均的</p>
+<p>​    a More virtual nodes, key distributino is more balanced</p>
+<p>​    b When add/remove node, evenly distributed data &amp; load among node</p>
+<p>2 Each node can have different performance characteristic</p>
+<p>​    a Assign different size key range for each node</p>
+<p>最後，V-node mapping to servers!</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h687v1wssej20uw0rs76p.jpg" alt="image-20220916100307808"></p>
+<h2 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h2><ul>
+<li>管理mapping 表的在一台機器？在所有機器？過半數人？</li>
+<li>承上 Gossip 協議、Zookeeper</li>
+<li><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h6886ur03bj20q00eon09.jpg" alt="image-20220916101431164"></li>
+</ul>
+<p>Gossip protocol</p>
+<p>Zookeeper</p>
+<p>&lt;–&gt;</p>
+</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/">79</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')

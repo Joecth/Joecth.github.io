@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="ParallelProg/Parallel Programming 101"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>ParallelProg/Parallel Programming 101 | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Intro-Idea"><span class="toc-number">1.</span> <span class="toc-text">Intro Idea</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Classification-of-Parallel-Computers-amp-Programming-models"><span class="toc-number">2.</span> <span class="toc-text">Classification of Parallel Computers &amp; Programming models</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Flynn’s-classic-taxonomy"><span class="toc-number">2.0.1.</span> <span class="toc-text">1 Flynn’s classic taxonomy</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#SISD"><span class="toc-number">2.0.1.0.1.</span> <span class="toc-text">SISD</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SIMD"><span class="toc-number">2.0.1.1.</span> <span class="toc-text">SIMD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MISD"><span class="toc-number">2.0.1.2.</span> <span class="toc-text">MISD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MIMD"><span class="toc-number">2.0.1.3.</span> <span class="toc-text">MIMD</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Memory-Architecture"><span class="toc-number">2.0.2.</span> <span class="toc-text">2 Memory Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Shared-Memory"><span class="toc-number">2.0.2.1.</span> <span class="toc-text">Shared Memory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Distributed-Memory"><span class="toc-number">2.0.2.2.</span> <span class="toc-text">Distributed Memory</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-SW-Parallel-Programming-Model"><span class="toc-number">2.0.3.</span> <span class="toc-text">3 SW, Parallel Programming Model</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Shared-Memory-Prog"><span class="toc-number">2.0.3.1.</span> <span class="toc-text">Shared Memory Prog</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#"><span class="toc-number">2.0.3.2.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Message-Passing-Prog"><span class="toc-number">2.0.3.3.</span> <span class="toc-text">Message Passing Prog</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#-1"><span class="toc-number">2.0.3.4.</span> <span class="toc-text"></span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Supercomputer-amp-Latest-Techs"><span class="toc-number">3.</span> <span class="toc-text">Supercomputer &amp; Latest Techs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Supercomputer"><span class="toc-number">3.0.1.</span> <span class="toc-text">Supercomputer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TOP500-List"><span class="toc-number">3.0.1.1.</span> <span class="toc-text">TOP500 List</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Processor-Technology"><span class="toc-number">3.0.2.</span> <span class="toc-text">1 Processor Technology</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-2"><span class="toc-number">3.0.3.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Interconnect-amp-Network-Technology"><span class="toc-number">3.0.4.</span> <span class="toc-text">2 Interconnect &amp; Network Technology</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-I-O-storage-Technology"><span class="toc-number">3.0.5.</span> <span class="toc-text">3 I&#x2F;O storage Technology</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-number">3.1.</span> <span class="toc-text">Summary</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">395</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">69</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">ParallelProg/Parallel Programming 101</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-11</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>[toc]</p>
+<p>Parallel computing is an <strong>evolution of serial computing</strong></p>
+<h1 id="Intro-Idea"><a href="#Intro-Idea" class="headerlink" title="Intro Idea"></a>Intro Idea</h1><p>Diff btw parallel computing &amp; distributed computing</p>
+<ul>
+<li>parallel computing <ul>
+<li>centeredvclustered</li>
+</ul>
+</li>
+<li>Distributed computing<ul>
+<li>across distanced servers</li>
+<li>resource sharing, e.,g. Hadoop</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://p.ipic.vip/p5vvj5.png" alt="image-20230611113005715"></p>
+<p><img src="https://p.ipic.vip/vq3v47.png" alt="image-20230611113657441"></p>
+<p><img src="https://p.ipic.vip/40apfw.png" alt="image-20230611114953768"></p>
+<h1 id="Classification-of-Parallel-Computers-amp-Programming-models"><a href="#Classification-of-Parallel-Computers-amp-Programming-models" class="headerlink" title="Classification of Parallel Computers &amp; Programming models"></a>Classification of Parallel Computers &amp; Programming models</h1><ol>
+<li><p>Flynn’s classic taxonomy</p>
+</li>
+<li><p>Memory architecture classification</p>
+</li>
+<li><p>Programming model classification</p>
+</li>
+</ol>
+<h3 id="1-Flynn’s-classic-taxonomy"><a href="#1-Flynn’s-classic-taxonomy" class="headerlink" title="1 Flynn’s classic taxonomy"></a>1 Flynn’s classic taxonomy</h3><ul>
+<li>since 1966</li>
+<li>based on : <code>instruction</code> &amp; <code>data</code></li>
+<li><img src="https://p.ipic.vip/w99krn.png" alt="image-20230611115601765" style="zoom:67%;" />
+
+
+
+</li>
+</ul>
+<h5 id="SISD"><a href="#SISD" class="headerlink" title="SISD"></a>SISD</h5><p><img src="https://p.ipic.vip/cnytiv.png" alt="image-20230611115712729"></p>
+<h4 id="SIMD"><a href="#SIMD" class="headerlink" title="SIMD"></a>SIMD</h4><p><img src="https://p.ipic.vip/qepvxa.png" alt="image-20230611115814089"></p>
+<h4 id="MISD"><a href="#MISD" class="headerlink" title="MISD"></a>MISD</h4><p><img src="https://p.ipic.vip/xf4w10.png" alt="image-20230611120058551"></p>
+<h4 id="MIMD"><a href="#MIMD" class="headerlink" title="MIMD"></a>MIMD</h4><p><img src="https://p.ipic.vip/iid8f7.png" alt="image-20230611120246700"></p>
+<h3 id="2-Memory-Architecture"><a href="#2-Memory-Architecture" class="headerlink" title="2 Memory Architecture"></a>2 Memory Architecture</h3><p>Shared meory vs Distributed Memory Computer Architecture</p>
+<h4 id="Shared-Memory"><a href="#Shared-Memory" class="headerlink" title="Shared Memory"></a>Shared Memory</h4><p><img src="https://p.ipic.vip/9wn5co.png" alt="image-20230611120752829"></p>
+<p><img src="https://p.ipic.vip/3haoy3.png" alt="image-20230611120930051"></p>
+<h4 id="Distributed-Memory"><a href="#Distributed-Memory" class="headerlink" title="Distributed Memory"></a>Distributed Memory</h4><ul>
+<li>cluster  – 同一個管理者  vs Supercomputer – 每層sw set</li>
+<li></li>
+</ul>
+<img src="https://p.ipic.vip/o18ntx.png" alt="image-20230611121643961" style="zoom:67%;" />
+
+<p><img src="https://p.ipic.vip/49aaoq.png" alt="image-20230611122056110"></p>
+<h3 id="3-SW-Parallel-Programming-Model"><a href="#3-SW-Parallel-Programming-Model" class="headerlink" title="3 SW, Parallel Programming Model"></a>3 SW, Parallel Programming Model</h3><p><img src="https://p.ipic.vip/pxceyf.png" alt="image-20230611122655829"></p>
+<p>P.S. “<strong>Not restricted</strong>“ means, e.g. OpenMP is “message passing prog”, but able for a Shared memory prog machine!</p>
+<h4 id="Shared-Memory-Prog"><a href="#Shared-Memory-Prog" class="headerlink" title="Shared Memory Prog"></a>Shared Memory Prog</h4><p><img src="https://p.ipic.vip/csw96t.png" alt="image-20230611122904463"></p>
+<h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://p.ipic.vip/hc2hv4.png" alt="image-20230611122928940"  /></h4><h4 id="Message-Passing-Prog"><a href="#Message-Passing-Prog" class="headerlink" title="Message Passing Prog"></a>Message Passing Prog</h4><p><img src="https://p.ipic.vip/ocw304.png" alt="image-20230611123035755"></p>
+<h4 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://p.ipic.vip/1cwoup.png" alt="image-20230611123118348"></h4><ul>
+<li>programming model – SW</li>
+<li>parallel system – HW architecture</li>
+</ul>
+<p><img src="https://p.ipic.vip/y6obw9.png" alt="image-20230611123343220"></p>
+<h1 id="Supercomputer-amp-Latest-Techs"><a href="#Supercomputer-amp-Latest-Techs" class="headerlink" title="Supercomputer &amp; Latest Techs"></a>Supercomputer &amp; Latest Techs</h1><h3 id="Supercomputer"><a href="#Supercomputer" class="headerlink" title="Supercomputer"></a>Supercomputer</h3><img src="https://p.ipic.vip/ji2gwf.png" alt="image-20230612185350196" style="zoom:50%;" />
+
+
+
+<ul>
+<li><code>U</code> means the height of each cell</li>
+<li>measured in <code>FLOPS</code> instead of <code>MIPS</code></li>
+<li>Benchmark – ranked by the <code>TOP500</code> list since 1993<ul>
+<li>according to the <code>HPL benchmark</code> result</li>
+<li>twice/year at ISC &amp; SC conferences<ul>
+<li>LU factorization by <code>Panel factorization</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="TOP500-List"><a href="#TOP500-List" class="headerlink" title="TOP500 List"></a>TOP500 List</h4><img src="https://p.ipic.vip/oigpsr.png" alt="image-20230612185910128" style="zoom:50%;" />
+
+
+
+<p>in <a href="https://www.top500.org/lists/2018/06" target="_blank" rel="noopener">https://www.top500.org/lists/2018/06</a>, ↓</p>
+<p><img src="https://p.ipic.vip/2cyzdh.png" alt="image-20230612190238421"></p>
+<img src="https://p.ipic.vip/cssnvo.png" alt="image-20230612190356802" style="zoom:50%;" />
+
+
+
+<img src="https://p.ipic.vip/dp4iey.png" alt="image-20230612190425459" style="zoom:50%;" />
+
+
+
+<img src="https://p.ipic.vip/65yj1n.png" alt="image-20230612190510473" style="zoom:50%;" />
+
+<img src="https://p.ipic.vip/lrwd6z.png" alt="image-20230612190548760" style="zoom:50%;" />
+
+<img src="https://p.ipic.vip/tfly7d.png" alt="image-20230612190821656" style="zoom:50%;" />
+
+<img src="https://p.ipic.vip/5wk12f.png" alt="image-20230612191014562" style="zoom: 50%;" />
+
+
+
+<h3 id="1-Processor-Technology"><a href="#1-Processor-Technology" class="headerlink" title="1 Processor Technology"></a>1 Processor Technology</h3><p><img src="https://p.ipic.vip/wt3zm3.png" alt="image-20230612191226950"></p>
+<ul>
+<li>PBSM –  per block shared-memory</li>
+<li><code>Globabl Shared memory</code> for <code>in-btween blocks</code></li>
+<li>Thread Execution Manager – is the hardware Scheduler</li>
+</ul>
+<p><img src="https://p.ipic.vip/pyv6pu.png" alt="image-20230612191656520"></p>
+<img src="https://p.ipic.vip/uejx05.png" alt="image-20230612191901027" style="zoom:50%;" />
+
+
+
+
+
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><h3 id="2-Interconnect-amp-Network-Technology"><a href="#2-Interconnect-amp-Network-Technology" class="headerlink" title="2 Interconnect &amp; Network Technology"></a>2 Interconnect &amp; Network Technology</h3><p>The usual bottleneck</p>
+<p>sharedmemory or network</p>
+<img src="https://p.ipic.vip/09jgwc.png" alt="image-20230612192112407" style="zoom:50%;" />
+
+<ul>
+<li>Wait, delay, etc…</li>
+</ul>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230613004213850.png" alt="image-20230613004213850" style="zoom: 67%;" />
+
+<p><img src="https://p.ipic.vip/2ov735.png" alt="image-20230613004401691"></p>
+<p><img src="https://p.ipic.vip/sy4r7q.png" alt="image-20230613004524961"></p>
+<p><img src="https://p.ipic.vip/yu028j.png" alt="image-20230613004704255"></p>
+<p><img src="https://p.ipic.vip/zfcu3u.png" alt="image-20230613004820761"></p>
+<p><img src="https://p.ipic.vip/ryz6ji.png" alt="image-20230613004941763"></p>
+<p><img src="https://p.ipic.vip/c9nk20.png" alt="image-20230613005130735"></p>
+<p><img src="https://p.ipic.vip/wwtlfx.png" alt="image-20230613005205579"></p>
+<p><img src="https://p.ipic.vip/7sbkfs.png" alt="image-20230613005332196"></p>
+<p><img src="https://p.ipic.vip/8ciys1.png" alt="image-20230613005422539"></p>
+<h3 id="3-I-O-storage-Technology"><a href="#3-I-O-storage-Technology" class="headerlink" title="3 I/O storage Technology"></a>3 I/O storage Technology</h3><p><img src="https://p.ipic.vip/cvi0ox.png" alt="image-20230613010621983"></p>
+<p><img src="https://p.ipic.vip/bs7rlu.png" alt="image-20230613010813781"></p>
+<p><img src="https://p.ipic.vip/v7qt2b.png" alt="image-20230613011144095"></p>
+<ul>
+<li>NVRAM : non-volatile ram, as SSD, hard-drive, </li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>People has been and will always be able to find a way to keep the growth of computing </p>
+<pre><code>- Technology: CPU scaling, distributed computing, new processor architecture 
+- Optimization: algorithm, data management, compiler 
+- System design: network topology, file system </code></pre><p>It is more than just computing </p>
+<ul>
+<li>Networks and 10 become greater concerns </li>
+</ul>
+<p>Does the performance report from supercomputers really meets the needs of applications? </p>
+<ul>
+<li>People start re-thinking what should be the right objective and benchmark for designing the next generation of supercomputers</li>
+</ul>
+<p>ref: <a href="https://ocw.nthu.edu.tw/ocw/index.php?page=course&cid=231" target="_blank" rel="noopener">國立清華大學開放式課程OpenCourseWare(NTHU, OCW) - 平行程式</a></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2022/06/11/ParallelProg/Parallel%20Programming%20101/">http://yoursite.com/2022/06/11/ParallelProg/Parallel%20Programming%20101/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2022/06/11/ParallelProg/Message%20Passing%20Programming%20-%20MPI/"><i class="fa fa-chevron-left">  </i><span>ParallelProg/Message Passing Programming - MPI</span></a></div><div class="next-post pull-right"><a href="/2022/06/04/Contests/weekly296/"><span>Contests/weekly296</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

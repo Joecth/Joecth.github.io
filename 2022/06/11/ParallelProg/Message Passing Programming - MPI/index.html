@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="ParallelProg/Message Passing Programming - MPI"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>ParallelProg/Message Passing Programming - MPI | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MPI-Message-Passing-Interface"><span class="toc-number">1.</span> <span class="toc-text">MPI (Message-Passing Interface)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#History-amp-Evolution"><span class="toc-number">1.1.</span> <span class="toc-text">History &amp; Evolution</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MPI-API"><span class="toc-number">2.</span> <span class="toc-text">MPI API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SPMD"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">SPMD</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Communication-Methods"><span class="toc-number">2.1.</span> <span class="toc-text">Communication Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Env"><span class="toc-number">2.1.1.</span> <span class="toc-text">Env</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2P-Communication-Routines"><span class="toc-number">2.1.2.</span> <span class="toc-text">P2P Communication Routines</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collective-communication-Routines"><span class="toc-number">2.1.3.</span> <span class="toc-text">Collective communication Routines</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Barrier-amp-Bcast"><span class="toc-number">2.1.3.0.1.</span> <span class="toc-text">Barrier &amp; Bcast</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Scatter-amp-Gather"><span class="toc-number">2.1.3.0.2.</span> <span class="toc-text">Scatter &amp; Gather</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Reduce"><span class="toc-number">2.1.3.0.3.</span> <span class="toc-text">Reduce</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Allxxx-–"><span class="toc-number">2.1.3.0.4.</span> <span class="toc-text">Allxxx –</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Other-APIs"><span class="toc-number">2.1.3.0.5.</span> <span class="toc-text">Other APIs</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Group-amp-Communicator-Mngment-Routines"><span class="toc-number">2.1.4.</span> <span class="toc-text">Group &amp; Communicator Mngment Routines</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MPI-IO"><span class="toc-number">3.</span> <span class="toc-text">MPI-IO</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Odd-Even-Sort"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">Odd-Even Sort</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">395</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">69</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">ParallelProg/Message Passing Programming - MPI</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-11</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>[toc]</p>
+<h1 id="MPI-Message-Passing-Interface"><a href="#MPI-Message-Passing-Interface" class="headerlink" title="MPI (Message-Passing Interface)"></a>MPI (Message-Passing Interface)</h1><ul>
+<li><p>a spec for devs and users of msg passing libraries</p>
+<ul>
+<li>by itself, it’s an interface NOT a library</li>
+</ul>
+</li>
+<li><p>opposite term: shared-memory</p>
+</li>
+</ul>
+<h2 id="History-amp-Evolution"><a href="#History-amp-Evolution" class="headerlink" title="History &amp; Evolution"></a>History &amp; Evolution</h2><h1 id="MPI-API"><a href="#MPI-API" class="headerlink" title="MPI API"></a>MPI API</h1><img src="https://p.ipic.vip/fn72j1.png" alt="image-20230613122604220" style="zoom:67%;" />
+
+<ul>
+<li>easy for scalable compared to shared-memory</li>
+</ul>
+<img src="https://p.ipic.vip/01znja.png" alt="image-20230613161341091" style="zoom:80%;" />
+
+
+
+<p>Supercomputing conference!</p>
+<p><img src="https://p.ipic.vip/hdajuz.png" alt="image-20230613161707907"></p>
+<h4 id="SPMD"><a href="#SPMD" class="headerlink" title="SPMD"></a>SPMD</h4><img src="https://p.ipic.vip/gzc3x2.png" alt="image-20230613172432877" style="zoom:50%;" />
+
+
+
+
+
+<h2 id="Communication-Methods"><a href="#Communication-Methods" class="headerlink" title="Communication Methods"></a>Communication Methods</h2><h3 id="Env"><a href="#Env" class="headerlink" title="Env"></a>Env</h3><img src="https://p.ipic.vip/99otsf.png" alt="image-20230613172646088" style="zoom:67%;" />
+
+<img src="https://p.ipic.vip/4p5cmk.png" alt="image-20230613172858188" style="zoom:67%;" />
+
+
+
+<p><img src="https://p.ipic.vip/8cl546.png" alt="image-20230613173033146"></p>
+<p><img src="https://p.ipic.vip/24hcfj.png" alt="image-20230613173058617"></p>
+<ul>
+<li>if recv() calls first, it’s value will be false since no data sent yet, so, need to check!</li>
+</ul>
+<img src="https://p.ipic.vip/hsvy1a.png" alt="image-20230613173427769" style="zoom:80%;" />
+
+<ul>
+<li>SPMD, each program still executes itself’s code, but only communication in MPI call()</li>
+</ul>
+<p><img src="https://p.ipic.vip/pa6drb.png" alt="image-20230613174115721"></p>
+<ul>
+<li>Group Communicator – symbolizes the group</li>
+<li>predefined communicator – MPI_COMM_WORLD</li>
+</ul>
+<img src="https://p.ipic.vip/9xd8vu.png" alt="image-20230613174240148" style="zoom:80%;" />
+
+<ul>
+<li>each process get itsown rank_id</li>
+</ul>
+<p><img src="https://p.ipic.vip/jkgoap.png" alt="image-20230613174421144"></p>
+<h3 id="P2P-Communication-Routines"><a href="#P2P-Communication-Routines" class="headerlink" title="P2P Communication Routines"></a>P2P Communication Routines</h3><p>mainly send &amp; recv</p>
+<p><img src="https://p.ipic.vip/s6xm9t.png" alt="image-20230613185929392"></p>
+<p><img src="https://p.ipic.vip/j2tlr4.png" alt="image-20230613190000830"></p>
+<p>★ send &amp; recv一定要接在一起，要是沒對在一起就是會hang! 都要有人去call，要是有人沒call就難debug了；只有在switch時會有branches</p>
+<p>★這兩個x會是在不同machines 上的，要注意, so, independent memories</p>
+<p><img src="https://p.ipic.vip/vvast6.png" alt="image-20230613190500434"></p>
+<ul>
+<li>效能通常比較好，就是解決communication problems</li>
+<li>only recv cares about MPI_Wait, which can be moved to myrank==1 branch</li>
+<li>Test() 不會去等</li>
+</ul>
+<h3 id="Collective-communication-Routines"><a href="#Collective-communication-Routines" class="headerlink" title="Collective communication Routines"></a>Collective communication Routines</h3><ul>
+<li>everyone have to call, and blocking till everyone finishes!</li>
+</ul>
+<h5 id="Barrier-amp-Bcast"><a href="#Barrier-amp-Bcast" class="headerlink" title="Barrier &amp; Bcast"></a>Barrier &amp; Bcast</h5><p><img src="https://p.ipic.vip/wkh9zh.png" alt="image-20230613182929995"></p>
+<h5 id="Scatter-amp-Gather"><a href="#Scatter-amp-Gather" class="headerlink" title="Scatter &amp; Gather"></a>Scatter &amp; Gather</h5><p><img src="https://p.ipic.vip/hpvo6b.png" alt="image-20230613183415583"></p>
+<ul>
+<li>recv buffer 不需要allocate sendbuffer space</li>
+</ul>
+<h5 id="Reduce"><a href="#Reduce" class="headerlink" title="Reduce"></a>Reduce</h5><p><img src="https://p.ipic.vip/x7oc0a.png" alt="image-20230613183542689"></p>
+<h5 id="Allxxx-–"><a href="#Allxxx-–" class="headerlink" title="Allxxx –"></a>Allxxx –</h5><p>Allgather: Gather + Bcast</p>
+<p><img src="https://p.ipic.vip/6ke6p8.png" alt="image-20230613183720841"></p>
+<h5 id="Other-APIs"><a href="#Other-APIs" class="headerlink" title="Other APIs"></a>Other APIs</h5><p>e.g. e-gather –  senders’ sendcount are not the same</p>
+<h3 id="Group-amp-Communicator-Mngment-Routines"><a href="#Group-amp-Communicator-Mngment-Routines" class="headerlink" title="Group &amp; Communicator Mngment Routines"></a>Group &amp; Communicator Mngment Routines</h3><p><img src="https://p.ipic.vip/ufm9x4.png" alt="image-20230613184531520"></p>
+<ul>
+<li>All are “Collective (Blocking) call”</li>
+</ul>
+<p><img src="https://p.ipic.vip/v969hh.png" alt="image-20230613184740990"></p>
+<ul>
+<li>PS all nodes need to call MPI_Group_incl, since it’s a blocking-call</li>
+</ul>
+<h1 id="MPI-IO"><a href="#MPI-IO" class="headerlink" title="MPI-IO"></a>MPI-IO</h1><img src="https://p.ipic.vip/prt2d4.png" alt="image-20230613191153074" style="zoom:67%;" />
+
+
+
+<p><img src="https://p.ipic.vip/viiuvm.png" alt="image-20230613191303068"></p>
+<ul>
+<li><p>split file into small ones – amount of files is a pressure to FS</p>
+</li>
+<li><p>hard to manage!</p>
+</li>
+</ul>
+<p><img src="https://p.ipic.vip/vd7roi.png" alt="image-20230613191641979"></p>
+<ul>
+<li>again, a collective call(), MPI Lib help sync help manage the tokens</li>
+</ul>
+<p><img src="https://p.ipic.vip/3nj63w.png" alt="image-20230613191746053"></p>
+<p><img src="https://p.ipic.vip/2sbt1s.png" alt="image-20230613192227639"></p>
+<h4 id="Odd-Even-Sort"><a href="#Odd-Even-Sort" class="headerlink" title="Odd-Even Sort"></a>Odd-Even Sort</h4><p><img src="https://p.ipic.vip/i6a2fz.png" alt="image-20230613202013245"></p>
+<p><img src="https://p.ipic.vip/rnoqij.png" alt="image-20230613202152804"></p>
+<p><img src="https://p.ipic.vip/mj9ut5.png" alt="image-20230613202139671"></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2022/06/11/ParallelProg/Message%20Passing%20Programming%20-%20MPI/">http://yoursite.com/2022/06/11/ParallelProg/Message%20Passing%20Programming%20-%20MPI/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2022/06/13/ParallelProg/Parallel%20Programming%20-%20Analysis/"><i class="fa fa-chevron-left">  </i><span>ParallelProg/Parallel Programming - Analysis</span></a></div><div class="next-post pull-right"><a href="/2022/06/11/ParallelProg/Parallel%20Programming%20101/"><span>ParallelProg/Parallel Programming 101</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
