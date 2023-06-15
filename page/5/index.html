@@ -13,7 +13,248 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">395</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">69</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2022/05/30/Concurrency/2022-05-30%20High%20Traffic%20&amp;%20High%20Concurrency/">Concurrency/2022-05-30 High Traffic &amp; High Concurrency</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-05-30</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Concurrency/">Concurrency</a></span><div class="content"><h1 id="High-Concurrency"><a href="#High-Concurrency" class="headerlink" title="High Concurrency"></a>High Concurrency</h1><p><img src="https://p.ipic.vip/oeedft.png" alt="image-20230530103719241"></p>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">395</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">69</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/01/ParallelProg/HighPerf%20UTA%201/">ParallelProg/HighPerf UTA 1</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-01</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/HighPerf/">HighPerf</a></span><div class="content"><p><strong>HW requirements</strong></p>
+<ul>
+<li>Intel architectures: Haswell, Broadwell, Skylake, Kaby Lake, Coffee Lake.</li>
+<li>AMD architectures: Ryzen/Epyc</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/content/drive/MyDrive/mySIMD<span class="comment"># gcc -march=native -Q --help=target|grep march</span></span><br><span class="line">  -march=                               haswell</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">content/drive/MyDrive/mySIMD<span class="comment"># more /proc/cpuinfo</span></span><br><span class="line">processor       : 0</span><br><span class="line">vendor_id       : GenuineIntel</span><br><span class="line">cpu family      : 6</span><br><span class="line">model           : 63</span><br><span class="line">model name      : Intel(R) Xeon(R) CPU @ 2.30GHz</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/content/drive/MyDrive/mySIMD/repos/LAFF-On-PfHP/Assignments/Week0/C<span class="comment"># make HelloWorld </span></span><br><span class="line">gcc driver.o FLA_Clock.o MaxAbsDiff.o RandomMatrix.o /root/blis/lib/libblis.a -o driver.x -lpthread -m64 -lm -fopenmp </span><br><span class="line"><span class="built_in">echo</span> </span><br><span class="line"></span><br><span class="line">./driver.x</span><br><span class="line">Hello World</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Understand how alg and architectures interact</p>
+<p>Using e.g. of matrix-matrix multiply </p>
+<h3 id="GEMM-GEneral-Matrix-Multiplication"><a href="#GEMM-GEneral-Matrix-Multiplication" class="headerlink" title="GEMM - GEneral Matrix Multiplication"></a>GEMM - GEneral Matrix Multiplication</h3><p>$$<br>\begin{equation<em>}<br>A =<br>\left(\begin{array}{cccc}<br>\alpha_{0,0} &amp; \alpha_{0,1} &amp; \cdots &amp; \alpha_{0,k-1} \<br>\alpha_{1,0} &amp; \alpha_{1,1} &amp; \cdots &amp; \alpha_{1,k-1} \<br>\vdots &amp; \vdots &amp; &amp; \vdots \<br>\alpha_{m-1,0} &amp; \alpha_{m-1,1} &amp; \cdots &amp; \alpha_{m-1,k-1}<br>\end{array}\right),<br>B =<br>\left(\begin{array}{cccc}<br>\beta_{0,0} &amp; \beta_{0,1} &amp; \cdots &amp; \beta_{0,n-1} \<br>\beta_{1,0} &amp; \beta_{1,1} &amp; \cdots &amp; \beta_{1,n-1} \<br>\vdots &amp; \vdots &amp; &amp; \vdots \<br>\beta_{k-1,0} &amp; \beta_{k-1,1} &amp; \cdots &amp; \beta_{k-1,n-1}<br>\end{array}\right)<br>\end{equation</em>}<br>$$</p>
+<p>$$<br>\begin{equation<em>}<br>C =<br>\left(\begin{array}{cccc}<br>\gamma_{0,0} &amp; \gamma_{0,1} &amp; \cdots &amp; \gamma_{0,n-1} \<br>\gamma_{1,0} &amp; \gamma_{1,1} &amp; \cdots &amp; \gamma_{1,n-1} \<br>\vdots &amp; \vdots &amp; &amp; \vdots \<br>\gamma_{m-1,0} &amp; \gamma_{m-1,1} &amp; \cdots &amp; \gamma_{m-1,n-1}<br>\end{array}\right).<br>\end{equation</em>}<br>$$</p>
+<p>$C := A B + C \text{.}$</p>
+<p>$$<br>\begin{equation}<br>\gamma_{i,j} :=  \sum_{p=0}^{k-1} \alpha_{i,p} \beta_{p,j} + \gamma_{i,j}\label{week1-eqn-gamma}\tag{1.1.1}<br>\end{equation}<br>$$</p>
+<p>$$<br>\begin{equation*}<br>\begin{array}{l}<br>{\bf for~} i := 0, \ldots , m-1  \</p>
+<p><del>~ {\bf for</del>} j := 0, \ldots , n-1  \</p>
+<p><del>~ {\bf for</del>} p := 0, \ldots , k-1  \</p>
+<pre><code class="\gamma_{i,j}">~~~~~~{\bf end} \\
+~~~{\bf end} \\
+{\bf end}
+\end{array}
+\end{equation*}
+$$
+
+### Pseudo Code to C code
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> alpha( i,j ) A[ (j)*ldA + i ]   <span class="comment">// map alpha( i,j ) to array A </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> beta( i,j )  B[ (j)*ldB + i ]   <span class="comment">// map beta( i,j )  to array B</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> gamma( i,j ) C[ (j)*ldC + i ]   <span class="comment">// map gamma( i,j ) to array C</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyGemm</span><span class="params">( <span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k, <span class="keyword">double</span> *A, <span class="keyword">int</span> ldA,</span></span></span><br><span class="line"><span class="function"><span class="params">	     <span class="keyword">double</span> *B, <span class="keyword">int</span> ldB, <span class="keyword">double</span> *C, <span class="keyword">int</span> ldC )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">for</span> ( <span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m; i++ )</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n; j++ )</span><br><span class="line">      <span class="keyword">for</span> ( <span class="keyword">int</span> p=<span class="number">0</span>; p&lt;k; p++ )</span><br><span class="line">        gamma( i,j ) += alpha( i,p ) * beta( p,j );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+Gemm &quot;Gemm&quot; is a commonly used acronym that stands for &quot;Ge&quot;neral &quot;m&quot;atrix &quot;m&quot;ultiplication.
+
+The term &quot;driver&quot; is typically used for a main program that exercises (tests and/or times) functionality implemented in a routine. In our case, the driver tests a range of problem sizes by creating random matrices C , A , and B . 
+
+
+
+execution time as a function of the problem size!
+
+
+
+### GFLOPS
+
+![image-20230608013934605](https://p.ipic.vip/us5l1t.png)
+
+
+
+&lt;img src=&quot;https://p.ipic.vip/pgaej9.png&quot; alt=&quot;image-20230608014505513&quot; style=&quot;zoom:67%;&quot; /&gt;
+
+![image-20230608014348331](https://p.ipic.vip/tcasfw.png)
+
+
+
+
+
+Mapping Matrices to memory
+
+- Row major order (X)
+- Col major order (V)
+  - B.C Computational science used to used the Fortran programming language to program, and the Fortan programming language chose to store matrices by `columns major order`
+  - ![image-20230608111535626](https://p.ipic.vip/qj1dak.png)&lt;img src=&quot;https://p.ipic.vip/pzjxnb.png&quot; alt=&quot;image-20230608111832859&quot; style=&quot;zoom:67%;&quot; /&gt;
+
+
+
+The leading dimension
+
+- ![5x4 matrix](https://p.ipic.vip/4p52nk.png)
+  - The leading dimension of the boxed submatrix is : 5
+
+
+
+
+
+ A convention regarding the letter used for the loop index
+
+- why do the two implementations with better performance do better?
+  1. They access matrices by columns in the inner loop.
+  2. We store matrices in column-major order.
+  3. Accessing data contiguously usually improves performance.
+
+
+
+
+
+Nototion
+$$
+A =
+          \left( \begin{array}{r r r}
+          -2 &amp; -3 &amp; -1 \\
+          2 &amp; 0 &amp; 1 \\
+          3 &amp; -2 &amp; 2 \\
+          \end{array}
+          \right).
+$$
+
+
+- $$\alpha_{1,2} = 1$$
+
+- $$a_{0} =       \left( \begin{array}{r r r}       -2 \\       2 \\       3        \end{array}       \right)$$
+
+- $$\widetilde a_{2}^T       =       \left( \begin{array}{r r r}       3 &amp; -2 &amp; 2        \end{array}       \right)$$
+
+
+
+
+
+Dot Product
+$$
+\begin{array}{l c r}
+          {\tt A[0]} &amp; \longrightarrow &amp; -1 \\
+          &amp;&amp;0 \\
+          &amp;&amp; 2 \\
+          &amp;&amp; 3 \\
+          &amp;&amp; -1 \\
+          &amp;&amp; 1 \\
+          &amp;&amp; 4 \\
+          &amp;&amp; -1 \\
+          &amp;&amp; 3 \\
+          &amp;&amp; 5 
+          \end{array}
+$$
+
+- Dots( 3, &amp;A[1], 4, &amp;A[3], 1, &amp;gamma ) = $$1 + \left( \begin{array}{r}       0 \\       1 \\       5        \end{array} \right)^T       \left( \begin{array}{r}       3 \\       -1 \\       1        \end{array} \right)       =       1 + (0) \times (3) + (1) \times (-1) + (5) \times (1)       = 5.$$
+
+&gt; In particular, the stride when accessing a row of a matrix is ldA when the matrix is stored in column-major order with leading dimension ldA,
+
+- \#define alpha(i,j) A[ (j)*ldA + (i)] to address the matrix in a more natural way
+
+
+
+
+
+Matrix-vector multiplication via dot-product
+
+![image-20230608152820750](https://p.ipic.vip/mv01r4.png)
+
+&lt;img src=&quot;https://p.ipic.vip/1ylxqs.png&quot; alt=&quot;image-20230608154753003&quot; style=&quot;zoom:80%;&quot; /&gt;
+
+
+
+
+
+Axpy
+
+- alpha times x plus y
+  - where alpha times x is a &quot;broadcast&quot; operation
+
+
+
+
+
+Matrix-vector multiplication via axpy operations
+
+## ![image-20230608155913443](https://p.ipic.vip/jrsjlx.png)
+
+General form
+$$
+\begin{equation*}
+\begin{array}{rcl}
+y :=
+\left( \begin{array}{c | c | c | c}
+a_0  a_1  \cdots  a_{n-1} 
+\end{array} \right)
+\left( \begin{array}{c}
+\chi_0 \\ \hline
+\chi_1 \\ \hline
+\vdots \\ \hline
+\chi_{n-1}
+\end{array}
+\right) + y \\
+=
+\chi_0 a_0 + \chi_1 a_1 + \cdots + \chi_{n-1} a_{n-1} + y.
+\end{array}
+\end{equation*}
+$$
+![image-20230608161328342](https://p.ipic.vip/z8nmcl.png)
+
+
+
+Gemm in terms of Gemv
+
+![image-20230608161910223](https://p.ipic.vip/8r9a9l.png)
+
+
+
+![image-20230608162233030](https://p.ipic.vip/t3qcip.png)
+
+
+
+
+
+## Layering Matrix-Matrix Multiplication
+
+rank-1 update by columns
+
+Matrix-matrix multiplication via rank-1 updates
+
+&lt;img src=&quot;https://p.ipic.vip/09jkbw.png&quot; alt=&quot;img&quot; style=&quot;zoom: 50%;&quot; /&gt;
+
+- notice that here we&apos;re actually adding to a matrix. And it&apos;s called rank-1 update because an **`outer product` has a rank of at most 1**
+  - e,g, 
+    - A = [1, 2, 3] B = [4, 5, 6], A ⊗ B = [ 4, 5, 6 ] [ 8, 10, 12 ] [12, 15, 18 ], and the 1st row can represent the remaining 2 rows, so the 2nd and 3rd are not linear independent to 1st row, so rank is one!
+
+
+
+
+
+
+
+### Row-times-matrix multiplications
+
+
+
+
+
+
+
+ref: 
+
+[1] https://www.cs.utexas.edu/users/flame/laff/pfhp/week0-what-should-we-know.html</code></pre>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/05/31/DevOps-Clouds/GCE/">DevOps-Clouds/GCE</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-05-31</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AWS-Hhigh-Traffic/">AWS-Hhigh-Traffic</a></span><div class="content"><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2t0isr14wj217u0u078o.jpg" alt="image-20220601202443727" style="zoom:67%;" />
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2t8n0bqu9j216d0u0q6o.jpg" alt="image-20220602010534184" style="zoom: 67%;" />
+
+
+
+
+
+
+
+<h2 id="Instances-Info"><a href="#Instances-Info" class="headerlink" title="Instances Info"></a>Instances Info</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2ybyez808j20w00u0wkm.jpg" alt="image-20220606104809298" style="zoom:67%;" />
+
+<p><a href="https://gcpinstances.doit-intl.com/" target="_blank" rel="noopener">https://gcpinstances.doit-intl.com/</a></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/05/30/Concurrency/2022-05-30%20High%20Traffic%20&amp;%20High%20Concurrency/">Concurrency/2022-05-30 High Traffic &amp; High Concurrency</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-05-30</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Concurrency/">Concurrency</a></span><div class="content"><h1 id="High-Concurrency"><a href="#High-Concurrency" class="headerlink" title="High Concurrency"></a>High Concurrency</h1><p><img src="https://p.ipic.vip/oeedft.png" alt="image-20230530103719241"></p>
 <h2 id="High-Concurrency-1"><a href="#High-Concurrency-1" class="headerlink" title="High Concurrency"></a>High Concurrency</h2><ul>
 <li>System design faces the ultimate challenge of handling high-concurrency traffic.</li>
 <li>System is divided into four layers, with the top layer experiencing the highest pressure and the bottom layer having the weakest capacity.</li>
@@ -243,96 +484,6 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
 <p><a href="https://i.stack.imgur.com/lKSLg.png" target="_blank" rel="noopener"><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h2qxb8m3snj20dw0auwf5.jpg" alt="enter image description here"></a></p>
 <p>Installing <code>cudatoolkit</code> does not install the drivers (<code>nvidia.ko</code>), which you need to install separately on your system.</p>
 <p><a href="https://stackoverflow.com/questions/69497328/why-are-torch-version-cuda-and-devicequery-reporting-different-versions" target="_blank" rel="noopener">https://stackoverflow.com/questions/69497328/why-are-torch-version-cuda-and-devicequery-reporting-different-versions</a></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/05/28/ParallelProg/Parallel%20Acceleration%20--%20Laws%20&amp;%20PerfStat%20&amp;%20AVX/">ParallelProg/Parallel Acceleration -- Laws &amp; PerfStat &amp; AVX</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-05-28</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/SIMD/">SIMD</a></span><div class="content"><p>Numerical Algs –&gt; Optimizing for Performance –&gt; Writing Parallel Algs</p>
-<h1 id="Law"><a href="#Law" class="headerlink" title="Law"></a>Law</h1><h2 id="1-Amdahl’s-Law"><a href="#1-Amdahl’s-Law" class="headerlink" title="1. Amdahl’s Law"></a>1. Amdahl’s Law</h2><p>   阿姆达尔定律是一个计算机科学界的经验法则，因IBM公司计算机架构师吉恩·阿姆达尔而得名。吉恩·阿姆达尔在1967年发表的论文中提出了这个重要定律。<br>   阿姆达尔定律主要用于发现仅仅系统的部分得到改进，整体系统可以得到的最大期望改进。它经常用于并行计算领域，用来预测适用多个处理器时理论上的最大加速比。在我们的性能调优领域，我们利用此定律有助于我们解决或者缓解性能瓶颈问题。<br>   阿姆达尔定律的模型阐释了我们现实生产中串行资源争用时候的现象。如下图模型，一个系统中，不可避免有一些资源必须串行访问，这限制了我们的加速比，即使我们增加了并发数（横轴），但取得效果并不理想，难以获得线性扩展能力(图中直线)。</p>
-<h2 id="2-Gustafson’s-Law"><a href="#2-Gustafson’s-Law" class="headerlink" title="2. Gustafson’s Law"></a>2. Gustafson’s Law</h2><p>   Gustafson定律(Gustafson’s law)阐述了数据并行带来的影响。Gustafson 定律是由 John L. Gustafson 在1988年提出的。是并行计算领域除了 Amdahl 定律之后又一个重要定律。Gustafson定律看待加速比的角度会有所不同，其站在对于大量数据流处理过程中，针对重复工作的分布式运算带来的加速特性，而不仅仅局限在一个单一的程序进程&amp;单一的计算机上，串行的部分主要在于数据的分配预处理以及计算结果的收集汇总处理上。</p>
-<p>compiler optimization </p>
-<p>Options: -O1~ -O3, Ofast</p>
-<p><img src="https://p.ipic.vip/qb9bbd.png" alt="image-20230606203406991"></p>
-<p><img src="https://p.ipic.vip/8gn0if.png" alt="image-20230606203539104"></p>
-<p><img src="https://p.ipic.vip/njwuzm.png" alt="Visual representation of latencies"></p>
-<p>Pipeline and HW oriented Design</p>
-<ul>
-<li>sudo apt install linux-tools-generic</li>
-</ul>
-<h1 id="Perf-Stat"><a href="#Perf-Stat" class="headerlink" title="Perf Stat"></a>Perf Stat</h1><p>Branch prediction failed if unpredictable pattern in code would make the task-clock longer</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">(venv-py311) jo@fossa4gb:~/repo/V10793_C/Section 3/video2$ sudo perf <span class="built_in">stat</span> ./spec</span><br><span class="line"></span><br><span class="line"> Performance counter stats <span class="keyword">for</span> <span class="string">'./spec'</span>:</span><br><span class="line"></span><br><span class="line">            342.40 msec task-clock                <span class="comment">#    0.996 CPUs utilized          </span></span><br><span class="line">                16      context-switches          <span class="comment">#    0.047 K/sec                  </span></span><br><span class="line">                 0      cpu-migrations            <span class="comment">#    0.000 K/sec                  </span></span><br><span class="line">             19574      page-faults               <span class="comment">#    0.057 M/sec                  </span></span><br><span class="line">   &lt;not supported&gt;      cycles                                                      </span><br><span class="line">   &lt;not supported&gt;      instructions                                                </span><br><span class="line">   &lt;not supported&gt;      branches                                                    </span><br><span class="line">   &lt;not supported&gt;      branch-misses                                               </span><br><span class="line"></span><br><span class="line">       0.343925345 seconds time elapsed</span><br><span class="line"></span><br><span class="line">       0.243236000 seconds user</span><br><span class="line">       0.099686000 seconds sys</span><br><span class="line">       </span><br><span class="line">(venv-py311) jo@fossa4gb:~/repo/V10793_C/Section 3/video2$ sudo perf <span class="built_in">stat</span> ./spec2</span><br><span class="line"></span><br><span class="line"> Performance counter stats <span class="keyword">for</span> <span class="string">'./spec2'</span>:</span><br><span class="line"></span><br><span class="line">            465.56 msec task-clock                <span class="comment">#    0.986 CPUs utilized          </span></span><br><span class="line">                53      context-switches          <span class="comment">#    0.114 K/sec                  </span></span><br><span class="line">                 2      cpu-migrations            <span class="comment">#    0.004 K/sec                  </span></span><br><span class="line">             19574      page-faults               <span class="comment">#    0.042 M/sec                  </span></span><br><span class="line">   &lt;not supported&gt;      cycles                                                      </span><br><span class="line">   &lt;not supported&gt;      instructions                                                </span><br><span class="line">   &lt;not supported&gt;      branches                                                    </span><br><span class="line">   &lt;not supported&gt;      branch-misses                                               </span><br><span class="line"></span><br><span class="line">       0.472287268 seconds time elapsed</span><br><span class="line"></span><br><span class="line">       0.348851000 seconds user</span><br><span class="line">       0.117635000 seconds sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(j=0;j&lt;MAX;j++) &#123;</span><br><span class="line">        // i = rand() % 3;</span><br><span class="line">        i = j % 3;      //spec1</span><br><span class="line">        i = rand() % 3; //spec2</span><br><span class="line">        switch(i) &#123;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>unroll also makes faster</li>
-</ul>
-<h1 id="AVX"><a href="#AVX" class="headerlink" title="AVX"></a>AVX</h1><p><a href="https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html" target="_blank" rel="noopener">Intel® Intrinsics Guide</a></p>
-<p>x86 SIMD History</p>
-<ul>
-<li>MMX-SSE4 (1997-2006)<br>O Early SIMD was integer-only, later extended to floating point</li>
-<li>AVX (2008)<br>O 128 and 256 bit SIMD instructions with 16 new registers</li>
-<li>AVX2 (2013)<br>O Introduced with Haswell, extends AVX to 256 bit, adds FMA</li>
-<li>AVX-512 (2015)<br>O Originally in Xeon Phi KNL, extended to Skylake+: 512 bit extensions</li>
-</ul>
-<p><img src="https://p.ipic.vip/s60b9d.png" alt="image-20230606211435215"></p>
-<p>Explore caches, branching, and memory speeds</p>
-<p>Superscalar &amp; pipelining</p>
-<p>Staying out of the compiler’s way</p>
-<p>Vectorization code</p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/05/28/ParallelProg/SIMD%20on%20x86_64/">ParallelProg/SIMD on x86_64</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-05-28</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/SIMD/">SIMD</a></span><div class="content"><h1 id="SIMD-on-X86-64"><a href="#SIMD-on-X86-64" class="headerlink" title="SIMD on X86_64"></a>SIMD on X86_64</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">/content/drive/MyDrive/mySIMD<span class="comment"># lscpu </span></span><br><span class="line">Architecture:                    x86_64</span><br><span class="line">CPU op-mode(s):                  32-bit, 64-bit</span><br><span class="line">Byte Order:                      Little Endian</span><br><span class="line">Address sizes:                   46 bits physical, 48 bits virtual</span><br><span class="line">CPU(s):                          2</span><br><span class="line">On-line CPU(s) list:             0,1</span><br><span class="line">Thread(s) per core:              2</span><br><span class="line">Core(s) per socket:              1</span><br><span class="line">Socket(s):                       1</span><br><span class="line">NUMA node(s):                    1</span><br><span class="line">Vendor ID:                       GenuineIntel</span><br><span class="line">CPU family:                      6</span><br><span class="line">Model:                           79</span><br><span class="line">Model name:                      Intel(R) Xeon(R) CPU @ 2.20GHz</span><br><span class="line">Stepping:                        0</span><br><span class="line">CPU MHz:                         2199.998</span><br><span class="line">BogoMIPS:                        4399.99</span><br><span class="line">Hypervisor vendor:               KVM</span><br><span class="line">Virtualization <span class="built_in">type</span>:             full</span><br><span class="line">L1d cache:                       32 KiB</span><br><span class="line">L1i cache:                       32 KiB</span><br><span class="line">L2 cache:                        256 KiB</span><br><span class="line">L3 cache:                        55 MiB</span><br><span class="line">NUMA node0 CPU(s):               0,1</span><br><span class="line">Vulnerability Itlb multihit:     Not affected</span><br><span class="line">Vulnerability L1tf:              Mitigation; PTE Inversion</span><br><span class="line">Vulnerability Mds:               Vulnerable; SMT Host state unknown</span><br><span class="line">Vulnerability Meltdown:          Vulnerable</span><br><span class="line">Vulnerability Mmio stale data:   Vulnerable</span><br><span class="line">Vulnerability Retbleed:          Vulnerable</span><br><span class="line">Vulnerability Spec store bypass: Vulnerable</span><br><span class="line">Vulnerability Spectre v1:        Vulnerable: __user pointer sanitization and usercopy </span><br><span class="line">                                 barriers only; no swapgs barriers</span><br><span class="line">Vulnerability Spectre v2:        Vulnerable, IBPB: disabled, STIBP: disabled, PBRSB-eI</span><br><span class="line">                                 BRS: Not affected</span><br><span class="line">Vulnerability Srbds:             Not affected</span><br><span class="line">Vulnerability Tsx async abort:   Vulnerable</span><br><span class="line">Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge </span><br><span class="line">                                 mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht sy</span><br><span class="line">                                 scall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl</span><br><span class="line">                                  xtopology nonstop_tsc cpuid tsc_known_freq pni pclmu</span><br><span class="line">                                 lqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe p</span><br><span class="line">                                 opcnt aes xsave avx f16c rdrand hypervisor lahf_lm ab</span><br><span class="line">                                 m 3dnowprefetch invpcid_single ssbd ibrs ibpb stibp f</span><br><span class="line">                                 sgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpc</span><br><span class="line">                                 id rtm rdseed adx smap xsaveopt arat md_clear arch_ca</span><br><span class="line">                                 pabilities</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br></pre></td><td class="code"><pre><span class="line">~<span class="comment"># gcc -march=native -c -Q --help=target</span></span><br><span class="line">The following options are target specific:</span><br><span class="line">  -m128bit-long-double                  [enabled]</span><br><span class="line">  -m16                                  [disabled]</span><br><span class="line">  -m32                                  [disabled]</span><br><span class="line">  -m3dnow                               [disabled]</span><br><span class="line">  -m3dnowa                              [disabled]</span><br><span class="line">  -m64                                  [enabled]</span><br><span class="line">  -m80387                               [enabled]</span><br><span class="line">  -m8bit-idiv                           [disabled]</span><br><span class="line">  -m96bit-long-double                   [disabled]</span><br><span class="line">  -mabi=                                sysv</span><br><span class="line">  -mabm                                 [enabled]</span><br><span class="line">  -maccumulate-outgoing-args            [disabled]</span><br><span class="line">  -maddress-mode=                       long</span><br><span class="line">  -madx                                 [enabled]</span><br><span class="line">  -maes                                 [enabled]</span><br><span class="line">  -malign-data=                         compat</span><br><span class="line">  -malign-double                        [disabled]</span><br><span class="line">  -malign-functions=                    0</span><br><span class="line">  -malign-jumps=                        0</span><br><span class="line">  -malign-loops=                        0</span><br><span class="line">  -malign-stringops                     [enabled]</span><br><span class="line">  -mandroid                             [disabled]</span><br><span class="line">  -march=                               broadwell</span><br><span class="line">  -masm=                                att</span><br><span class="line">  -mavx                                 [enabled]</span><br><span class="line">  -mavx2                                [enabled]</span><br><span class="line">  -mavx256-split-unaligned-load         [disabled]</span><br><span class="line">  -mavx256-split-unaligned-store        [disabled]</span><br><span class="line">  -mavx5124fmaps                        [disabled]</span><br><span class="line">  -mavx5124vnniw                        [disabled]</span><br><span class="line">  -mavx512bitalg                        [disabled]</span><br><span class="line">  -mavx512bw                            [disabled]</span><br><span class="line">  -mavx512cd                            [disabled]</span><br><span class="line">  -mavx512dq                            [disabled]</span><br><span class="line">  -mavx512er                            [disabled]</span><br><span class="line">  -mavx512f                             [disabled]</span><br><span class="line">  -mavx512ifma                          [disabled]</span><br><span class="line">  -mavx512pf                            [disabled]</span><br><span class="line">  -mavx512vbmi                          [disabled]</span><br><span class="line">  -mavx512vbmi2                         [disabled]</span><br><span class="line">  -mavx512vl                            [disabled]</span><br><span class="line">  -mavx512vnni                          [disabled]</span><br><span class="line">  -mavx512vpopcntdq                     [disabled]</span><br><span class="line">  -mbionic                              [disabled]</span><br><span class="line">  -mbmi                                 [enabled]</span><br><span class="line">  -mbmi2                                [enabled]</span><br><span class="line">  -mbranch-cost=&lt;0,5&gt;                   3</span><br><span class="line">  -mcall-ms2sysv-xlogues                [disabled]</span><br><span class="line">  -mcet-switch                          [disabled]</span><br><span class="line">  -mcld                                 [disabled]</span><br><span class="line">  -mcldemote                            [disabled]</span><br><span class="line">  -mclflushopt                          [disabled]</span><br><span class="line">  -mclwb                                [disabled]</span><br><span class="line">  -mclzero                              [disabled]</span><br><span class="line">  -mcmodel=                             [default]</span><br><span class="line">  -mcpu=                      </span><br><span class="line">  -mcrc32                               [disabled]</span><br><span class="line">  -mcx16                                [enabled]</span><br><span class="line">  -mdispatch-scheduler                  [disabled]</span><br><span class="line">  -mdump-tune-features                  [disabled]</span><br><span class="line">  -mf16c                                [enabled]</span><br><span class="line">  -mfancy-math-387                      [enabled]</span><br><span class="line">  -mfentry                              [disabled]</span><br><span class="line">  -mfentry-name=              </span><br><span class="line">  -mfentry-section=           </span><br><span class="line">  -mfma                                 [enabled]</span><br><span class="line">  -mfma4                                [disabled]</span><br><span class="line">  -mforce-drap                          [disabled]</span><br><span class="line">  -mforce-indirect-call                 [disabled]</span><br><span class="line">  -mfp-ret-in-387                       [enabled]</span><br><span class="line">  -mfpmath=                             sse</span><br><span class="line">  -mfsgsbase                            [enabled]</span><br><span class="line">  -mfunction-return=                    keep</span><br><span class="line">  -mfused-madd                </span><br><span class="line">  -mfxsr                                [enabled]</span><br><span class="line">  -mgeneral-regs-only                   [disabled]</span><br><span class="line">  -mgfni                                [disabled]</span><br><span class="line">  -mglibc                               [enabled]</span><br><span class="line">  -mhard-float                          [enabled]</span><br><span class="line">  -mhle                                 [enabled]</span><br><span class="line">  -miamcu                               [disabled]</span><br><span class="line">  -mieee-fp                             [enabled]</span><br><span class="line">  -mincoming-stack-boundary=            0</span><br><span class="line">  -mindirect-branch-register            [disabled]</span><br><span class="line">  -mindirect-branch=                    keep</span><br><span class="line">  -minline-all-stringops                [disabled]</span><br><span class="line">  -minline-stringops-dynamically        [disabled]</span><br><span class="line">  -minstrument-return=                  none</span><br><span class="line">  -mintel-syntax              </span><br><span class="line">  -mlarge-data-threshold=&lt;number&gt;       65536</span><br><span class="line">  -mlong-double-128                     [disabled]</span><br><span class="line">  -mlong-double-64                      [disabled]</span><br><span class="line">  -mlong-double-80                      [enabled]</span><br><span class="line">  -mlwp                                 [disabled]</span><br><span class="line">  -mlzcnt                               [enabled]</span><br><span class="line">  -mmanual-endbr                        [disabled]</span><br><span class="line">  -mmemcpy-strategy=          </span><br><span class="line">  -mmemset-strategy=          </span><br><span class="line">  -mmitigate-rop                        [disabled]</span><br><span class="line">  -mmmx                                 [enabled]</span><br><span class="line">  -mmovbe                               [enabled]</span><br><span class="line">  -mmovdir64b                           [disabled]</span><br><span class="line">  -mmovdiri                             [disabled]</span><br><span class="line">  -mmpx                                 [disabled]</span><br><span class="line">  -mms-bitfields                        [disabled]</span><br><span class="line">  -mmusl                                [disabled]</span><br><span class="line">  -mmwaitx                              [disabled]</span><br><span class="line">  -mno-align-stringops                  [disabled]</span><br><span class="line">  -mno-default                          [disabled]</span><br><span class="line">  -mno-fancy-math-387                   [disabled]</span><br><span class="line">  -mno-push-args                        [disabled]</span><br><span class="line">  -mno-red-zone                         [disabled]</span><br><span class="line">  -mno-sse4                             [disabled]</span><br><span class="line">  -mnop-mcount                          [disabled]</span><br><span class="line">  -momit-leaf-frame-pointer             [disabled]</span><br><span class="line">  -mpc32                                [disabled]</span><br><span class="line">  -mpc64                                [disabled]</span><br><span class="line">  -mpc80                                [disabled]</span><br><span class="line">  -mpclmul                              [enabled]</span><br><span class="line">  -mpcommit                             [disabled]</span><br><span class="line">  -mpconfig                             [disabled]</span><br><span class="line">  -mpku                                 [disabled]</span><br><span class="line">  -mpopcnt                              [enabled]</span><br><span class="line">  -mprefer-avx128             </span><br><span class="line">  -mprefer-vector-width=                none</span><br><span class="line">  -mpreferred-stack-boundary=           0</span><br><span class="line">  -mprefetchwt1                         [disabled]</span><br><span class="line">  -mprfchw                              [enabled]</span><br><span class="line">  -mptwrite                             [disabled]</span><br><span class="line">  -mpush-args                           [enabled]</span><br><span class="line">  -mrdpid                               [disabled]</span><br><span class="line">  -mrdrnd                               [enabled]</span><br><span class="line">  -mrdseed                              [enabled]</span><br><span class="line">  -mrecip                               [disabled]</span><br><span class="line">  -mrecip=                    </span><br><span class="line">  -mrecord-mcount                       [disabled]</span><br><span class="line">  -mrecord-return                       [disabled]</span><br><span class="line">  -mred-zone                            [enabled]</span><br><span class="line">  -mregparm=                            6</span><br><span class="line">  -mrtd                                 [disabled]</span><br><span class="line">  -mrtm                                 [enabled]</span><br><span class="line">  -msahf                                [enabled]</span><br><span class="line">  -msgx                                 [disabled]</span><br><span class="line">  -msha                                 [disabled]</span><br><span class="line">  -mshstk                               [disabled]</span><br><span class="line">  -mskip-rax-setup                      [disabled]</span><br><span class="line">  -msoft-float                          [disabled]</span><br><span class="line">  -msse                                 [enabled]</span><br><span class="line">  -msse2                                [enabled]</span><br><span class="line">  -msse2avx                             [disabled]</span><br><span class="line">  -msse3                                [enabled]</span><br><span class="line">  -msse4                                [enabled]</span><br><span class="line">  -msse4.1                              [enabled]</span><br><span class="line">  -msse4.2                              [enabled]</span><br><span class="line">  -msse4a                               [disabled]</span><br><span class="line">  -msse5                      </span><br><span class="line">  -msseregparm                          [disabled]</span><br><span class="line">  -mssse3                               [enabled]</span><br><span class="line">  -mstack-arg-probe                     [disabled]</span><br><span class="line">  -mstack-protector-guard-offset= </span><br><span class="line">  -mstack-protector-guard-reg= </span><br><span class="line">  -mstack-protector-guard-symbol= </span><br><span class="line">  -mstack-protector-guard=              tls</span><br><span class="line">  -mstackrealign                        [disabled]</span><br><span class="line">  -mstringop-strategy=                  [default]</span><br><span class="line">  -mstv                                 [enabled]</span><br><span class="line">  -mtbm                                 [disabled]</span><br><span class="line">  -mtls-dialect=                        gnu</span><br><span class="line">  -mtls-direct-seg-refs                 [enabled]</span><br><span class="line">  -mtune-ctrl=                </span><br><span class="line">  -mtune=                               broadwell</span><br><span class="line">  -muclibc                              [disabled]</span><br><span class="line">  -mvaes                                [disabled]</span><br><span class="line">  -mveclibabi=                          [default]</span><br><span class="line">  -mvect8-ret-in-mem                    [disabled]</span><br><span class="line">  -mvpclmulqdq                          [disabled]</span><br><span class="line">  -mvzeroupper                          [enabled]</span><br><span class="line">  -mwaitpkg                             [disabled]</span><br><span class="line">  -mwbnoinvd                            [disabled]</span><br><span class="line">  -mx32                                 [disabled]</span><br><span class="line">  -mxop                                 [disabled]</span><br><span class="line">  -mxsave                               [enabled]</span><br><span class="line">  -mxsavec                              [disabled]</span><br><span class="line">  -mxsaveopt                            [enabled]</span><br><span class="line">  -mxsaves                              [disabled]</span><br><span class="line"></span><br><span class="line">  Known assembler dialects (<span class="keyword">for</span> use with the -masm= option):</span><br><span class="line">    att intel</span><br><span class="line"></span><br><span class="line">  Known ABIs (<span class="keyword">for</span> use with the -mabi= option):</span><br><span class="line">    ms sysv</span><br><span class="line"></span><br><span class="line">  Known code models (<span class="keyword">for</span> use with the -mcmodel= option):</span><br><span class="line">    32 kernel large medium small</span><br><span class="line"></span><br><span class="line">  Valid arguments to -mfpmath=:</span><br><span class="line">    387 387+sse 387,sse both sse sse+387 sse,387</span><br><span class="line"></span><br><span class="line">  Known indirect branch choices (<span class="keyword">for</span> use with the -mindirect-branch=/-mfunction-return= options):</span><br><span class="line">    keep thunk thunk-extern thunk-inline</span><br><span class="line"></span><br><span class="line">  Known choices <span class="keyword">for</span> <span class="built_in">return</span> instrumentation with -minstrument-return=:</span><br><span class="line">    call none nop5</span><br><span class="line"></span><br><span class="line">  Known data alignment choices (<span class="keyword">for</span> use with the -malign-data= option):</span><br><span class="line">    abi cacheline compat</span><br><span class="line"></span><br><span class="line">  Known vectorization library ABIs (<span class="keyword">for</span> use with the -mveclibabi= option):</span><br><span class="line">    acml svml</span><br><span class="line"></span><br><span class="line">  Known address mode (<span class="keyword">for</span> use with the -maddress-mode= option):</span><br><span class="line">    long short</span><br><span class="line"></span><br><span class="line">  Known preferred register vector length (to use with the -mprefer-vector-width= option):</span><br><span class="line">    128 256 512 none</span><br><span class="line"></span><br><span class="line">  Known stack protector guard (<span class="keyword">for</span> use with the -mstack-protector-guard= option):</span><br><span class="line">    global tls</span><br><span class="line"></span><br><span class="line">  Valid arguments to -mstringop-strategy=:</span><br><span class="line">    byte_loop libcall loop rep_4byte rep_8byte rep_byte unrolled_loop vector_loop</span><br><span class="line"></span><br><span class="line">  Known TLS dialects (<span class="keyword">for</span> use with the -mtls-dialect= option):</span><br><span class="line">    gnu gnu2</span><br><span class="line"></span><br><span class="line">  Known valid arguments <span class="keyword">for</span> -march= option:</span><br><span class="line">    i386 i486 i586 pentium lakemont pentium-mmx winchip-c6 winchip2 c3 samuel-2 c3-2 nehemiah c7 esther i686 pentiumpro pentium2 pentium3 pentium3m pentium-m pentium4 pentium4m prescott nocona core2 nehalem corei7 westmere sandybridge corei7-avx ivybridge core-avx-i haswell core-avx2 broadwell skylake skylake-avx512 cannonlake icelake-client icelake-server cascadelake tigerlake bonnell atom silvermont slm goldmont goldmont-plus tremont knl knm intel geode k6 k6-2 k6-3 athlon athlon-tbird athlon-4 athlon-xp athlon-mp x86-64 eden-x2 nano nano-1000 nano-2000 nano-3000 nano-x2 eden-x4 nano-x4 k8 k8-sse3 opteron opteron-sse3 athlon64 athlon64-sse3 athlon-fx amdfam10 barcelona bdver1 bdver2 bdver3 bdver4 znver1 znver2 btver1 btver2 generic native</span><br><span class="line"></span><br><span class="line">  Known valid arguments <span class="keyword">for</span> -mtune= option:</span><br><span class="line">    generic i386 i486 pentium lakemont pentiumpro pentium4 nocona core2 nehalem sandybridge haswell bonnell silvermont goldmont goldmont-plus tremont knl knm skylake skylake-avx512 cannonlake icelake-client icelake-server cascadelake tigerlake intel geode k6 athlon k8 amdfam10 bdver1 bdver2 bdver3 bdver4 btver1 btver2 znver1 znver2</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">/content/drive/MyDrive/mySIMD#</span><span class="bash"> g++ -o build_vec_avx2 -mavx2 build_vec.cc</span></span><br><span class="line"><span class="meta">/content/drive/MyDrive/mySIMD#</span><span class="bash"> ./build_vec_avx2 </span></span><br><span class="line">v0: [ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]</span><br><span class="line">v1: [ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]</span><br><span class="line">v0 = v0 + 1: [ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 ]</span><br><span class="line">v1 = v1 + 2: [ 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 ]</span><br><span class="line">v0 = v0 + v1: [ 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 ]</span><br><span class="line">v1 = v0 * v1: [ 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 ]</span><br><span class="line"></span><br><span class="line">v16si a = &#123;0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15&#125;;</span><br><span class="line">v16si b = &#123;0, 2, 4, 6, 8, 1, 3, 5, 7, 9, 10, 11, 12, 13, 14, 15&#125;;</span><br><span class="line">c = a &gt; b: [ 0 0 0 0 0 -1 -1 -1 -1 0 0 0 0 0 0 0 ]</span><br><span class="line">d = (a &gt; b) ? v0 : v1: [ 6 6 6 6 6 3 3 3 3 6 6 6 6 6 6 6 ]</span><br><span class="line"><span class="meta">/content/drive/MyDrive/mySIMD#</span><span class="bash"> g++ -o build_vec_avx512f -mavx512f build_vec.cc</span></span><br><span class="line"><span class="meta">/content/drive/MyDrive/mySIMD#</span><span class="bash"> ./build_vec_avx512f </span></span><br><span class="line">v0: [ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]</span><br><span class="line">v1: [ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]</span><br><span class="line">Illegal instruction (core dumped)</span><br><span class="line"><span class="meta">/content/drive/MyDrive/mySIMD#</span><span class="bash"> </span></span><br><span class="line"></span><br><span class="line">Other options: -mmmx、-msse、-msse2、-msse3、-mssse3、-msse4.1、-msse4.2、-msse4、-mavx、-mavx2、-mavx512f、-mavx512pf、-mavx512er、-mavx512cd、-mavx512vl、-mavx512bw、-mavx512dq、-mavx512ifma、-mavx512vbmi。</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p><a href="https://www.intel.com/content/www/us/en/docs/cpp-compiler/developer-guide-reference/2021-8/intrinsics.html" target="_blank" rel="noopener">Intel Manual</a></p>
-<p><img src="https://p.ipic.vip/nblx24.jpg" alt="img"></p>
-<h2 id="Hardware-Aspects"><a href="#Hardware-Aspects" class="headerlink" title="Hardware Aspects"></a>Hardware Aspects</h2><p><img src="https://p.ipic.vip/98sfm8.png" alt="image-20230524114039763"></p>
-<p><img src="https://p.ipic.vip/0ba5i2.png" alt="image-20230524114127909"></p>
-<p><img src="https://p.ipic.vip/4i3ul1.png" alt="image-20230524114230862"></p>
-<blockquote>
-<p>•性能提升更多依赖体系结构改进<br>•提高流水线效率<br>提高Cache效率<br>向量指令，提高向量长度<br>引入多核<br>以Intel为例<br>MMx 11993<br>MMX (64-bit)<br>wl vector re<br>supports<br>SSE、 SSE2、 (128-bit)<br>indeger ope<br>•<br>AVX. AVx2 (256-bit)<br>AVX-512 (512-bit)<br>ARM Neon指令集<br>当前ARM V8的向量化指令集<br>128-bit向量宽度<br>ARM SVE指令集<br>• ARM下-代向量化指令集<br>向量长度可伸缩，从128-bit 到2048-bit<br>与RISC-V V扩展类似<br>RISC-V ISA指令集架构，<br>精简的基础指令集，RV321 , RV641<br>•扩展指令集<br>• M,A,F,D,QC<br>讨论状态：V，B，J等等<br>RISC-V “V” Vector Extension<br>•当前版本1.0<br><a href="https://github.com/riscv/riscv-V-spec" target="_blank" rel="noopener">https://github.com/riscv/riscv-V-spec</a></p>
-</blockquote>
-<h2 id="Software-Aspects"><a href="#Software-Aspects" class="headerlink" title="Software Aspects"></a>Software Aspects</h2><p><img src="https://p.ipic.vip/nd1dy4.png" alt="image-20230524114212963"></p>
-<p>VS</p>
-<h2 id="AVX512-VS-GPU"><a href="#AVX512-VS-GPU" class="headerlink" title="AVX512 VS GPU"></a>AVX512 VS GPU</h2><table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>CPU + AVX512</td>
-<td>big RAM, low Latency, Cache strong</td>
-<td>High Power, Bandwidth low..</td>
-</tr>
-<tr>
-<td>GPU</td>
-<td>Scaling! CUDA</td>
-<td></td>
-</tr>
-</tbody></table>
-<ul>
-<li>Intel want “generalization” + “super high computing power”… many other people instead seek solution in ASIC or more core HW</li>
-</ul>
-<h2 id="AVX-amp-SSE"><a href="#AVX-amp-SSE" class="headerlink" title="AVX &amp; SSE"></a>AVX &amp; SSE</h2><p><a href="https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#text=_mm256_loadu_pd&amp;ig_expand=4122" target="_blank" rel="noopener">https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#text=_mm256_loadu_pd&amp;ig_expand=4122</a></p>
-<p>in 2007, AMD announced SSE5 (previously SSE1~SSE4 all announced by Intel), so in 2008, Intel announced AVX, which owns some more distinct features</p>
-<p>1 Float length doubled</p>
-<p>2 Support 3OPs instruction for old version SSEs</p>
-<p><img src="https://p.ipic.vip/qomm14.png" alt="image-20230606224503357"></p>
-<p><img src="https://p.ipic.vip/n6fj6m.png" alt="image-20230606224622809"></p>
-<blockquote>
-<p>誰是最有效率就是軟件遊戲沒有動力學優化軟體覺得我花費大量的人力物理優化提升30%的性能還不如直接等1年後的我根本就沒有用畫的東西很多錢可能會想和背景新市區有直接等過兩天是一個新的提醒我就可能是目前也不好多錢目前來看他用你</p>
-</blockquote>
 </div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/05/25/Deeplearning/2022-05-25-M1%20GPU%20usage/">Deeplearning/2022-05-25-M1 GPU usage</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-05-25</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/DevOps/">DevOps</a></span><div class="content"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">10103  chmod +x Miniforge3-MacOSX-arm64.sh</span><br><span class="line">10104  ./Miniforge3-MacOSX-arm64.sh</span><br><span class="line">10119  conda --version &lt;--- must be osx-arm64 for "platform"</span><br><span class="line">10120  python</span><br><span class="line">10121  conda create --name env_arm_py38torch python=3.8</span><br><span class="line">10122  conda activate env_arm_py38torch</span><br></pre></td></tr></table></figure>
 
 <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38arfxr23j21x20scn05.jpg" alt="image-20220525155414871" style="zoom:50%;" />

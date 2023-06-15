@@ -13,7 +13,678 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">395</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">69</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/4%20%E4%BF%A1%E8%B2%B8/">Loans/4 信貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"><h2 id="What-is-信貸"><a href="#What-is-信貸" class="headerlink" title="What is 信貸"></a>What is 信貸</h2><ul>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">395</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">69</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/17/ParallelProg/Shared-Memory%20Programming%20-%20OpenMP/">ParallelProg/Shared-Memory Programming - OpenMP</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-17</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></span><div class="content"><p>[toc]</p>
+<h1 id="Shared-memory-Programming-–-OpenMP"><a href="#Shared-memory-Programming-–-OpenMP" class="headerlink" title="Shared-memory Programming – OpenMP"></a>Shared-memory Programming – OpenMP</h1><p>memory’s address the same for all process units</p>
+<p><img src="https://p.ipic.vip/yqkg9g.png" alt="image-20230613204911655"></p>
+<h4 id="Thread-VS-Processes"><a href="#Thread-VS-Processes" class="headerlink" title="Thread VS Processes"></a>Thread VS Processes</h4><p><img src="https://p.ipic.vip/sax3xi.png" alt="image-20230613205233935"></p>
+<p><img src="https://p.ipic.vip/mljwld.png" alt="image-20230613205550640"></p>
+<ul>
+<li><code>MPI</code> also works on only 1 single machine, but since it still at least requires 1 time memcopy (not deep into network layer b.c. lib’s optimization), so still slower than <code>pthread</code></li>
+</ul>
+<h1 id="OpenMP-w-compiler’s-help"><a href="#OpenMP-w-compiler’s-help" class="headerlink" title="OpenMP, w/ compiler’s help"></a>OpenMP, w/ compiler’s help</h1><ul>
+<li>using compiler’s way to generate code</li>
+</ul>
+<p>![image-20230614175006357](/Users/joe/Library/Application Support/typora-user-images/image-20230614175006357.png)</p>
+<ul>
+<li><p>“parallel” is helped by compiler to <strong>gen code</strong><img src="https://p.ipic.vip/o9t8qs.png" alt="image-20230614175103178"></p>
+</li>
+<li><p><code>pragma</code> – means <code>compiler directive</code></p>
+<ul>
+<li><code>#include &lt;omp.h&gt;</code></li>
+<li><code>parallel for</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://p.ipic.vip/bo5aay.png" alt="image-20230614180005356"></p>
+<h2 id="Parallel-Region-Construct"><a href="#Parallel-Region-Construct" class="headerlink" title="Parallel Region Construct"></a>Parallel Region Construct</h2><ul>
+<li>create threads</li>
+<li>Fork-join model, so, there’s <strong>a barrier at the end of a parallel section</strong></li>
+<li>a thread crashes –&gt; all thread crash!</li>
+</ul>
+<p><img src="https://p.ipic.vip/pgzvly.png" alt="image-20230614180902762"></p>
+<p>![image-20230614181915982](/Users/joe/Library/Application Support/typora-user-images/image-20230614181915982.png)</p>
+<ul>
+<li>omp_set_num_thread() – so that don’t have to write num_threads in every pragma block</li>
+<li>IF is rarely used in specific case</li>
+</ul>
+<p>![image-20230614182028173](/Users/joe/Library/Application Support/typora-user-images/image-20230614182028173.png)</p>
+<h2 id="Working-Sharing-Construct"><a href="#Working-Sharing-Construct" class="headerlink" title="Working-Sharing Construct"></a>Working-Sharing Construct</h2><p><img src="https://p.ipic.vip/86k5x2.png" alt="image-20230614182135658"></p>
+<p><img src="https://p.ipic.vip/3l3nb2.png" alt="image-20230614182446713"></p>
+<h3 id="DO-for-Directive"><a href="#DO-for-Directive" class="headerlink" title="DO/for Directive"></a>DO/for Directive</h3><ul>
+<li>dup taskk, for <code>data parallelism</code></li>
+<li>最主要: 了解到shceuling 的選擇</li>
+<li>然後有order 、Collpase 這些選擇讓load更balance</li>
+</ul>
+<p><img src="https://p.ipic.vip/in110y.png" alt="image-20230614182741113"></p>
+<h5 id="Schedule"><a href="#Schedule" class="headerlink" title="Schedule"></a>Schedule</h5><ul>
+<li><p>static </p>
+<ul>
+<li><p>Chunk large –  hard to balance among threads</p>
+<p>Chunk small –  need to ask for thread many times</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://p.ipic.vip/5ehpdn.png" alt="image-20230614183623083"></p>
+<p><img src="https://p.ipic.vip/0airrf.png" alt="image-20230614183636163"></p>
+<p><img src="https://p.ipic.vip/4mye55.png" alt="image-20230614183723831"></p>
+<p><img src="https://p.ipic.vip/34i69g.png" alt="image-20230614183800116"></p>
+<p><img src="https://p.ipic.vip/wakood.png" alt="image-20230614183948584"></p>
+<ul>
+<li>兩行 pragma 也可以併到一行去；parallel 、for 有各自的clauses</li>
+</ul>
+<p><img src="https://p.ipic.vip/6crjey.png" alt="image-20230614184718386"></p>
+<h5 id="Collapse"><a href="#Collapse" class="headerlink" title="Collapse!"></a>Collapse!</h5><p><img src="https://p.ipic.vip/pqpuyb.png" alt="image-20230614185548583"></p>
+<ul>
+<li>得要 i == 1 not depent on i == 0</li>
+</ul>
+<h3 id="SECTIONS-Directive"><a href="#SECTIONS-Directive" class="headerlink" title="SECTIONS Directive"></a>SECTIONS Directive</h3><ul>
+<li>no dup</li>
+<li>Diff calls for diff threads</li>
+<li>no schedule </li>
+<li>usually 3~4 sections </li>
+</ul>
+<p><img src="https://p.ipic.vip/lls7y2.png" alt="image-20230614200900819"></p>
+<p><img src="https://p.ipic.vip/2l3cba.png" alt="image-20230614201017533"></p>
+<h3 id="SINGLE"><a href="#SINGLE" class="headerlink" title="SINGLE"></a>SINGLE</h3><ul>
+<li>e.g. I/O, need only one thread to write</li>
+<li>others wait, unless <code>nowait</code> is added after <code>single</code></li>
+<li>so, don’t need to jump out a Parallel region, </li>
+<li>Also code looks more neat!</li>
+</ul>
+<p><img src="https://p.ipic.vip/vm06i1.png" alt="image-20230614201131558"></p>
+<h2 id="Synchronization-Construct"><a href="#Synchronization-Construct" class="headerlink" title="Synchronization Construct"></a>Synchronization Construct</h2><ul>
+<li>Similar to SINGLE</li>
+</ul>
+<p><img src="https://p.ipic.vip/lb1i68.png" alt="image-20230614201535093"></p>
+<ul>
+<li>atomic ~= critical<ul>
+<li>用Java’s SyncMethod &amp; SyncStatement 作類比<ul>
+<li>atomic，fine grain 像是MPI的Java的 SyncStatement，告訴它要保護的share variable，有碰到這些var的ref的會去幫做lock、unlock</li>
+<li>critical, 整段包起來，整個block的statement就是從頭到尾就算沒有sync的問題，也是包起來</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://p.ipic.vip/iev75d.png" alt="image-20230614202014595"></p>
+<h3 id="★Example-amp-Comparison"><a href="#★Example-amp-Comparison" class="headerlink" title="★Example &amp; Comparison!!"></a>★Example &amp; Comparison!!</h3><p><img src="https://p.ipic.vip/ndzm92.png" alt="image-20230614202049037"></p>
+<h2 id="Data-Scope-Attribute-Clauses"><a href="#Data-Scope-Attribute-Clauses" class="headerlink" title="Data Scope Attribute Clauses"></a>Data Scope Attribute Clauses</h2><p><img src="https://p.ipic.vip/grxj03.png" alt="image-20230614202421417"></p>
+<ul>
+<li>SHARED –  global, gened var in global, and apply the address of those vars in sections</li>
+</ul>
+<p><img src="https://p.ipic.vip/48davx.png" alt="image-20230614202810013"></p>
+<p><img src="https://p.ipic.vip/ptfira.png" alt="image-20230614202923366"></p>
+<p><img src="https://p.ipic.vip/7c56g9.png" alt="image-20230614203403943"></p>
+<ul>
+<li>DEFAULT – no need to manually write scop attr for so many vars</li>
+</ul>
+<p><img src="https://p.ipic.vip/zrnpgp.png" alt="image-20230614203451073"></p>
+<ul>
+<li>result within block is the “partial sum” of each thread</li>
+<li>★★ result is a <code>local PRIVATE var</code>, b.c. there’s <code>reduction</code> keyword</li>
+</ul>
+<h2 id="Clause-Summary"><a href="#Clause-Summary" class="headerlink" title="Clause Summary"></a>Clause Summary</h2><p><img src="https://p.ipic.vip/yyswrn.png" alt="image-20230614203910407"></p>
+<h2 id="Run-Time-Lib-Routines"><a href="#Run-Time-Lib-Routines" class="headerlink" title="Run-Time Lib Routines"></a>Run-Time Lib Routines</h2><ul>
+<li>not critical</li>
+<li>知道是哪個thread num 其實意義不大，因為很多時候是internal scheduling 幫弄了調度工作</li>
+</ul>
+<p><img src="https://p.ipic.vip/98njjs.png" alt="image-20230614204138760"></p>
+<ul>
+<li>omp_in_parallel – for IF clause 用</li>
+</ul>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2023/04/22/LC/0_note/">LC/0_note</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-04-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Languages/">Languages</a></span><div class="content"><p>[toc]</p>
+<h1 id="Cross-Language-Table"><a href="#Cross-Language-Table" class="headerlink" title="Cross Language Table"></a>Cross Language Table</h1><table>
+<thead>
+<tr>
+<th></th>
+<th>Python3★</th>
+<th>Cpp</th>
+<th>JS</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>dict</strong></td>
+<td></td>
+<td>include <unordered_map>, //Similar to defaultdict() in python3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>d = {}</td>
+<td>unordered_map&lt;Node*&gt; d;</td>
+<td>d = {}; new Map();</td>
+<td>Map&lt;Node, Node&gt; visited = new HashMap();</td>
+</tr>
+<tr>
+<td></td>
+<td>d[k] = v;</td>
+<td>d[k] = v;</td>
+<td>d[k]=v; map.<strong>set</strong>(0,1)</td>
+<td>visited.<strong>put</strong>(k, v)</td>
+</tr>
+<tr>
+<td></td>
+<td>d[k]; d.get(k,0)</td>
+<td>d[k];</td>
+<td>d[k]; map.get(k)</td>
+<td>visited.get(cur_O)</td>
+</tr>
+<tr>
+<td></td>
+<td>k not in d</td>
+<td>(d.find(k)==d.end())</td>
+<td>!(nbr_O.val in visited)</td>
+<td>!visited.containsKey(nbr_O)</td>
+</tr>
+<tr>
+<td></td>
+<td>k in d</td>
+<td>(d.find(k)!=d.end())</td>
+<td>nbr_O.val in visited; (map.<strong>has</strong>(sum-k))</td>
+<td>visited.<strong>containsKey</strong>(nbr_O)</td>
+</tr>
+<tr>
+<td></td>
+<td>del d[k]</td>
+<td>d.<strong>erase</strong>(key)</td>
+<td>this.d.<strong>delete</strong>(key);</td>
+<td>this.d.<strong>remove</strong>(key);</td>
+</tr>
+<tr>
+<td></td>
+<td>len(d)</td>
+<td>size()</td>
+<td>d.<strong>size</strong></td>
+<td>d.size()</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>d.empty()  //true; false</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>NotOK</td>
+<td></td>
+<td></td>
+<td>{k:v} in Initialization</td>
+<td></td>
+</tr>
+<tr>
+<td>Special APIs</td>
+<td></td>
+<td>reserve(capacity)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Iterate</td>
+<td>for k in d.keys():</td>
+<td>for (auto k: d)</td>
+<td>for (var key in dict){}</td>
+<td>for(char c:  ransomNote.toCharArray()) {</td>
+</tr>
+<tr>
+<td><strong>Ordered_dict</strong></td>
+<td>self.od.popitem(last=False)<br /><a href="https://www.pythonf.cn/read/89970" target="_blank" rel="noopener">https://www.pythonf.cn/read/89970</a><br /><a href="https://gist.github.com/joequery/12332f410a05e6c7c949" target="_blank" rel="noopener">https://gist.github.com/joequery/12332f410a05e6c7c949</a></td>
+<td></td>
+<td>d = new Map(); APIs↑↑ //ref: <a href="https://stackoverflow.com/questions/2798893/ordered-hash-in-javascript" target="_blank" rel="noopener">https://stackoverflow.com/questions/2798893/ordered-hash-in-javascript</a></td>
+<td>LinkedHashMap&lt;Integer, Integer&gt; d;<br />this.d = new LinkedHashMap&lt;&gt;();</td>
+</tr>
+<tr>
+<td></td>
+<td>first = next(iter(self.od))</td>
+<td></td>
+<td></td>
+<td>Integer first = this.d.keySet().iterator().next();</td>
+</tr>
+<tr>
+<td><strong>queue</strong></td>
+<td>from collections import deque</td>
+<td>include<code>&lt;deque&gt;</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>deque();</td>
+<td>deque&lt;Node*&gt;</td>
+<td>let Q = [];</td>
+<td>Queue<code>&lt;Node&gt;</code> Q = new LinkedList(); //LinkedList<code>&lt;Node&gt;</code> Q = new LinkedList<code>&lt;Node&gt;</code>(); //雙向</td>
+</tr>
+<tr>
+<td></td>
+<td>Q.append(cur); v=Q.popleft()</td>
+<td>Q.push_back(cur); v=Q.front(),Q.pop_front()</td>
+<td>Q.push(cur); v=Q.shift(); // O(n)</td>
+<td>Q.add(nbr_O);//Q.push(nbr_O); Q.poll();</td>
+</tr>
+<tr>
+<td></td>
+<td>while d</td>
+<td>while (!Q.empty())</td>
+<td>while (Q.length != 0)</td>
+<td>while (!Q.isEmpty())</td>
+</tr>
+<tr>
+<td><strong>deque</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td>ArrayDeque雙向實現了DEque的interface</td>
+</tr>
+<tr>
+<td><strong>vector</strong></td>
+<td></td>
+<td>include<code>&lt;vector&gt;</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>self.res = []</td>
+<td>vector&lt;vector<code>&lt;int&gt;</code>&gt; result;</td>
+<td>res = [];</td>
+<td>List&lt;List<code>&lt;Integer&gt;</code>&gt; res = new ArrayList&lt;List<code>&lt;Integer&gt;</code>&gt;();</td>
+</tr>
+<tr>
+<td></td>
+<td>item.append(nums[idx])</td>
+<td>item.push_back(nums[idx]);</td>
+<td>item.push(nums[idx]);</td>
+<td>item.add(nums[idx]);</td>
+</tr>
+<tr>
+<td></td>
+<td>item.pop()</td>
+<td>item.pop_back();</td>
+<td>item.pop();</td>
+<td>item.remove(item.size()-1);</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>l.length; // 注意！跟dict不同，這邊是 length</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>for</td>
+<td>for (<strong><em>let</em></strong> i=0; i&lt;l.length; i++)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>l = [False] * 3</td>
+<td>vector<code>&lt;bool&gt;</code> dp(3, false);</td>
+<td>const dp = new Array(3).fill(false);</td>
+<td>List<code>&lt;Boolean&gt;</code> dp = new ArrayList(Collections.nCopies(s.length(), false));</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>int[] nums;, nums.length</td>
+</tr>
+<tr>
+<td><strong>Doublely LinkedList</strong></td>
+<td></td>
+<td><strong>std::list</strong><br /><strong>List</strong> stores elements at non contiguous memory location i.e. it internally uses a doubly linked list i.e.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>back(); front();</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>pop_back(); pop_front();</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>db_ll.erase(d[key])</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>APIs</strong></td>
+<td>from collections import Counter<br />Counter(l)</td>
+<td>X</td>
+<td>_.countBy(l)</td>
+<td>X</td>
+</tr>
+<tr>
+<td></td>
+<td>max</td>
+<td>max</td>
+<td>Math.max</td>
+<td>Math.max</td>
+</tr>
+<tr>
+<td><strong>String</strong></td>
+<td>len(s)</td>
+<td>s.length()</td>
+<td>s.length</td>
+<td>s.length()</td>
+</tr>
+<tr>
+<td></td>
+<td>s[i]</td>
+<td>s[i]</td>
+<td>s[i]</td>
+<td>s.charAt(i)</td>
+</tr>
+<tr>
+<td></td>
+<td>s[3:5]</td>
+<td>token = s.substr(start, i-start+1);</td>
+<td>s.slice(3, 5);</td>
+<td>s.substring(start, i+1);</td>
+</tr>
+<tr>
+<td><strong>Set</strong></td>
+<td>ws = set(wD)</td>
+<td>unordered_set<code>&lt;string&gt;</code> ws;<code></code>        for (auto s: wordDict){<code>ws.insert(s);</code>        }</td>
+<td>let ws = new Set(wD)</td>
+<td>HashSet<code>&lt;String&gt;</code> ws = new HashSet(wordDict);</td>
+</tr>
+<tr>
+<td></td>
+<td>token in ws</td>
+<td>ws.find(token) != ws.end()</td>
+<td>ws.has(token)</td>
+<td>ws.contains(token)</td>
+</tr>
+<tr>
+<td><strong>MAX</strong></td>
+<td>float(‘-inf’)</td>
+<td>INT_MIN;</td>
+<td>-Number.MAX_VALUE;</td>
+<td>Integer.MIN_VALUE;</td>
+</tr>
+<tr>
+<td><strong>2D Init</strong></td>
+<td>[[0 for j in range(n)] for i in range(m)]</td>
+<td></td>
+<td></td>
+<td>[…Array(3)].map(x=&gt;Array(5).fill(0))</td>
+</tr>
+<tr>
+<td><strong>1D sort</strong></td>
+<td>l.sort(reverse=True)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Node</strong></td>
+<td>if not head</td>
+<td>if (!head); if (nullputr == head)</td>
+<td>if (!root); if (head == null)</td>
+<td>if (head == null)</td>
+</tr>
+</tbody></table>
+<h2 id="Special-issues"><a href="#Special-issues" class="headerlink" title="Special issues:"></a>Special issues:</h2><ul>
+<li>Java &amp; js</li>
+<li><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gegmwb46qaj312a0u0qb1.jpg" alt="image-20200504191823941" style="zoom:67%;" />
+
+</li>
+</ul>
+<h2 id="C-Syntax-Review"><a href="#C-Syntax-Review" class="headerlink" title="C++ Syntax Review"></a>C++ Syntax Review</h2><ul>
+<li><p>APIS:</p>
+<ul>
+<li>INT_MIN, isalnum(str[i]), swap(matrix[i][j], matrix[j][i]); reverse(matrix[i].begin(), matrix[i].end());</li>
+<li>int end = upper_bound(nums.begin(), nums.end(), target - x) - nums.begin();</li>
+<li>const size_t n;</li>
+</ul>
+</li>
+<li><p>OVERFLOW:</p>
+<ul>
+<li><p>res += ((long long)pow(2, end_cnt) % M);  <strong>FIX</strong> in ↓</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; p(n, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">  p[i] = p[i - <span class="number">1</span>] * <span class="number">2</span>  % M;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">res += p[end_cnt];</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Hash</p>
+<ul>
+<li><p>unordered_map&lt;int, int&gt; lookup;</p>
+</li>
+<li><p>unordered_map&lt;char, char&gt; m = { {‘(‘, ‘)’}, {‘[‘, ‘]’}, {‘{‘, ‘}’} };</p>
+</li>
+<li><p>if (lookup.find(target - nums[i]) != lookup.end()){</p>
+</li>
+<li><p>for (auto item: m){</p>
+<p>​        res.push_back(item.second);  // 注意！是second, 不是 second()</p>
+<p>}</p>
+</li>
+<li><p>private:</p>
+<p>​        unordered_set<code>&lt;int&gt;</code> s;</p>
+</li>
+<li><p>s.erase(key);</p>
+</li>
+<li><p>unordered_set<code>&lt;string&gt;</code> lookup(wordDict.begin(), wordDict.end());</p>
+</li>
+<li><p>unordered_set&lt;pair&lt;int, int&gt;, #SHOULD PROVIDE HASH HERE…&gt; visited; // so, change to use</p>
+</li>
+<li><p>Map</p>
+<ul>
+<li>```cpp<pre><code>vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt;updates;</code></pre>int idx = upper_bound(updates[index].begin(), updates[index].end(), make_pair(snap_id,INT_MAX)) - updates[index].begin();<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">- DP</span><br><span class="line"></span><br><span class="line">  - vector&#96;&lt;int&gt;&#96; dp &#x3D; &#123;1, 1, 2&#125;;</span><br><span class="line">  - vector&#96;&lt;int&gt;&#96; dp(n + 1);</span><br><span class="line">  - vector&lt;vector&#96;&lt;int&gt;&#96;&gt; dp(n, vector&#96;&lt;int&gt;&#96;(2));</span><br><span class="line">- Bits</span><br><span class="line"></span><br><span class="line">  - uint32_t x &#x3D; n;</span><br><span class="line">  - &#96;&#96;&#96;cpp</span><br><span class="line">    int num &#x3D; 5;</span><br><span class="line">    bool a &#x3D; false;</span><br><span class="line">    cout &lt;&lt; typeid(a).name() &lt;&lt; endl;</span><br><span class="line">    std::bitset&lt;8&gt; binary(num);  &#x2F;&#x2F; 將數字轉換為8位元的二進制</span><br><span class="line">    std::cout &lt;&lt; &quot;Binary representation of &quot; &lt;&lt; num &lt;&lt; &quot;: &quot; &lt;&lt; binary &lt;&lt; std::endl;</span><br><span class="line">    &#x2F;&#x2F; printf(&quot;%s&quot;, binary.to_string());</span><br><span class="line">    for (int i &#x3D; 0; i &lt; binary.size(); i++)&#123;</span><br><span class="line">        if (binary.test(i))</span><br><span class="line">            printf(&quot;i: %d,  \n&quot;, i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    string s &#x3D; binary.to_string();</span><br><span class="line">    for (int i &#x3D; 0; i &lt; s.size(); i++)&#123;</span><br><span class="line">        if (s[i] &#x3D;&#x3D; &#39;1&#39;)</span><br><span class="line">            printf(&quot;i: %d,  \n&quot;, i);</span><br><span class="line">    &#125;  </span><br><span class="line">    </span><br><span class="line">    return 0;</span><br><span class="line">    </span><br><span class="line">    ---------------------------------------------</span><br><span class="line">    Hello world!b</span><br><span class="line">    Binary representation of 5: 00000101</span><br><span class="line">    i: 0,  </span><br><span class="line">    i: 2,  </span><br><span class="line">    i: 5,  </span><br><span class="line">    i: 7,  </span><br><span class="line">    </span><br><span class="line">    int minFlips(int a, int b, int c) &#123;</span><br><span class="line">      bitset&lt;32&gt; bin_a(a), bin_b(b), bin_c(c);</span><br><span class="line">      size_t cnt &#x3D; 0;</span><br><span class="line">      for (int i &#x3D; 0; i &lt; 32; i++)&#123;</span><br><span class="line">        if ((bin_a.test(i) | bin_b.test(i)) !&#x3D; bin_c.test(i))&#123;</span><br><span class="line">          if (bin_c.test(i) &#x3D;&#x3D; 1) cnt +&#x3D; 1;</span><br><span class="line">          else cnt +&#x3D; bin_a.test(i) + bin_b.test(i);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      return cnt;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Matrix</p>
+<ul>
+<li><p>if (matrix.size() == 0 || matrix[0].size() == 0) return {};</p>
+</li>
+<li><p>int m = matrix.size(), n = matrix[0].size();</p>
+</li>
+<li><p>int DIRECTIONS[4][2] = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };</p>
+</li>
+<li><p>seen.insert(i * n + j);</p>
+</li>
+<li><p>seen.find(ni * n + nj) != seen.end()</p>
+</li>
+<li><p>if (grid[i][j] == ‘1’ &amp;&amp; (visited.find(i * n + j) == visited.end())){</p>
+</li>
+<li><p>PII now = q.front(); q.pop();</p>
+<p>int i = now.first, j = now.second;</p>
+<p>// printf(“%d, %d\n”, r, c);</p>
+<p>for (auto dir:DIRECTIONS){</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// int di = dir.first, nj = dir.second;  // WRONG</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> di = dir[<span class="number">0</span>], dj = dir[<span class="number">1</span>];   <span class="comment">// FIX</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>LINEAR – String, or Arr, with Vector as Stack, prefer to just use vector to make API name easier</p>
+<ul>
+<li><p>Vector</p>
+<ul>
+<li><p>v.push_back(x)</p>
+</li>
+<li><p>v.back() // 注意，API 不是top(); v.pop_back() // 注意，不是pop()</p>
+</li>
+<li><p>// vector<code>&lt;int&gt;</code> right(n) = {1}; // WRONG!</p>
+<p>vector<code>&lt;int&gt;</code> left(n, 1);</p>
+</li>
+<li><p>string dfs_and_compare(TreeNode* root, string sub_pat, vector<code>&lt;bool&gt;</code> &amp;res){. // Don’t Forget <code>&amp;</code>!</p>
+</li>
+<li><p>```cpp<br>private:</p>
+<pre><code>vector&lt;int&gt; p;//(3); 宣告不可指定大小</code></pre><p>public:</p>
+<pre><code>ParkingSystem(int big, int medium, int small) {
+    p = {big, medium, small};
+}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">  - vector&#96;&lt;int&gt;&#96;&amp; tail &#x3D; res.back();</span><br><span class="line">    tail[1] &#x3D; max(e, prev_end);</span><br><span class="line">  - private:</span><br><span class="line">    </span><br><span class="line">    ​    vector&lt;map&lt;int, int&gt;&gt; arr;</span><br><span class="line">    </span><br><span class="line">    public:</span><br><span class="line">    </span><br><span class="line">    ​    SnapshotArray(int length) &#123;</span><br><span class="line">    </span><br><span class="line">    ​        &#x2F;&#x2F; arr(length);	&#x2F;&#x2F; WRONG!</span><br><span class="line">    ​		arr.resize(length)  &#x2F;&#x2F; FIX!</span><br><span class="line">- Queue</span><br><span class="line"></span><br><span class="line">  - while (!q.empty())</span><br><span class="line">  - q.push(nbr)</span><br><span class="line">  - q.front() &#x2F;&#x2F; 注意，不是 top() ; q.pop()</span><br><span class="line">  - &#x2F;&#x2F; for(auto &amp;x: q) &#123;    NO trvs queue in CPP!</span><br><span class="line">- String</span><br><span class="line"></span><br><span class="line">  - for (char c: s)&#123;</span><br><span class="line">  - to_string(root-&gt;val)</span><br><span class="line">  - string pat &#x3D; &quot;(&quot; + l + &quot; &quot; + to_string(root-&gt;val) + &quot; &quot; + r + &quot;)&quot;;</span><br><span class="line">  - if (pat &#x3D;&#x3D; sub_pat)&#123;</span><br><span class="line">  </span><br><span class="line">    res[0] &#x3D; true;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">  - string tmp &#x3D; s;  &#x2F;&#x2F; COPY a string</span><br><span class="line">  - isalnum(s[i]);</span><br><span class="line">  - tolower(s[i]) !&#x3D; tolower(s[j])</span><br><span class="line">  - return s.substr(lo, hi - lo+1);</span><br><span class="line">  - const int bi &#x3D; i &lt; b.size() ? b[i] - &#39;0&#39; : 0;</span><br><span class="line">  - result.insert(result.begin(), val + &#39;0&#39;);</span><br><span class="line">  - &#x2F;&#x2F; if (lookup.find(s.substr(i, j)) !&#x3D; lookup.end())&#123;    &#x2F;&#x2F; BUG!! BE CAREFUL!!!</span><br><span class="line">  </span><br><span class="line">    ​	if (lookup.find(s.substr(i, j - i)) !&#x3D; lookup.end())&#123; &#x2F;&#x2F; FIX!</span><br><span class="line">  - &#96;&#96;&#96;cpp</span><br><span class="line">    class Codec &#123;</span><br><span class="line">    public:</span><br><span class="line">    </span><br><span class="line">        &#x2F;&#x2F; Encodes a list of strings to a single string.</span><br><span class="line">        string encode(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        std::string encoded;</span><br><span class="line">        for (const std::string&amp; str : strs) &#123;</span><br><span class="line">          encoded +&#x3D; str + &quot;\n&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        return encoded;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        &#x2F;&#x2F; Decodes a single string to a list of strings.</span><br><span class="line">        vector&lt;string&gt; decode(string s) &#123;</span><br><span class="line">            stringstream ss(s);</span><br><span class="line">            string word;</span><br><span class="line">            vector&lt;string&gt; res;</span><br><span class="line">            &#x2F;&#x2F; while (ss &gt;&gt; word)&#123;</span><br><span class="line">            char delim &#x3D; &#39;\n&#39;;</span><br><span class="line">            while (getline(ss, word, delim))&#123;</span><br><span class="line">                res.push_back(word);</span><br><span class="line">            &#125;</span><br><span class="line">            return res;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>PQ, Top-K &amp; Comparator</p>
+<ul>
+<li><p>// printf(“%d %d\n”, x.first, x.second);</p>
+</li>
+<li><p>private:</p>
+<pre><code>priority_queue`&lt;int&gt;` pq;
+
+int sz;</code></pre></li>
+<li><pre><code class="cpp"><span class="meta">#<span class="meta-keyword">define</span> pii pair<span class="meta-string">&lt;int,int&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">define</span> tii tuple<span class="meta-string">&lt;int,int&gt;</span></span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp; m, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp; n)</span> </span>{
+        <span class="keyword">return</span> m.second &gt; n.second;
+    }  
+    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; topKFrequent(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) {
+        <span class="comment">// return sol_20230523(nums, k);</span>
+        <span class="keyword">return</span> py_20230523(nums, k);
+    }
+
+    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sol_20230523(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) {    <span class="comment">// AC!</span>
+        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; counter;
+        <span class="keyword">for</span> (<span class="keyword">auto</span> x: nums) counter[x]++;
+
+        <span class="keyword">int</span> n = nums.size();
+
+        <span class="comment">// priority_queue&lt;pair&lt;int, int&gt;, vector&lt;pair&lt;int, int&gt;&gt;, decltype(cmp)&gt; pq(cmp);</span>
+        <span class="comment">// auto cmp = [](const pair&lt;int, int&gt;&amp; a, const pair&lt;int, int&gt;&amp; b) {</span>
+        <span class="comment">//     return a.second &gt; b.second; // Sort in descending order of frequency</span>
+        <span class="comment">// };      </span>
+
+        <span class="comment">// priority_queue&lt;pair&lt;int, int&gt;, vector&lt;pair&lt;int, int&gt;&gt;, decltype(&amp;cmp)&gt; pq(cmp);</span>
+          <span class="comment">//auto cmp = [](ListNode * left, ListNode * right){</span>
+                <span class="comment">//        return left-&gt;val &gt; right-&gt;val;</span>
+                <span class="comment">//};</span>
+                <span class="comment">//priority_queue&lt;ListNode *, vector&lt;ListNode*&gt;, decltype(cmp)&gt; heap(cmp);</span>
+
+          priority_queue&lt;pii, <span class="built_in">vector</span>&lt;pii&gt;, <span class="keyword">decltype</span>(&amp;cmp)&gt; pq(cmp);
+        <span class="keyword">for</span> (<span class="keyword">auto</span> x: counter){
+            <span class="comment">// printf("%d %d\n", x.first, x.second);</span>
+            pq.push(x);
+            <span class="keyword">if</span> (pq.size() &gt; k) pq.pop();
+        }
+        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;
+        <span class="keyword">while</span> (!pq.empty()){
+            res.push_back(pq.top().first);
+            pq.pop();
+        }
+
+        <span class="keyword">return</span> res;
+    }
+
+    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; py_20230523(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) {     <span class="comment">// AC!</span>
+        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; counter;
+        <span class="keyword">for</span> (<span class="keyword">auto</span> x: nums) counter[x]++;
+
+        <span class="keyword">int</span> n = nums.size();
+
+        <span class="comment">// priority_queue&lt;pii&gt; pq;</span>
+        priority_queue&lt;tii&gt; pq;
+        <span class="keyword">for</span> (<span class="keyword">auto</span> x: counter){
+            <span class="comment">// printf("%d %d\n", x.first, x.second);</span>
+            <span class="comment">// pq.push(pair(-x.second, x.first));</span>
+            <span class="comment">// if (pq.size() &gt; k) pq.pop();</span>
+            pq.push(tuple(-x.second, x.first));
+            <span class="keyword">if</span> (pq.size() &gt; k) pq.pop();
+        }
+
+        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;
+        <span class="keyword">while</span> (!pq.empty()){
+            <span class="comment">// res.push_back(pq.top().second);</span>
+            res.push_back(get&lt;<span class="number">1</span>&gt;(pq.top()));
+            pq.pop();
+        }
+
+        <span class="keyword">return</span> res;
+    }  
+};
+
+    <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(<span class="built_in">vector</span>&lt;ListNode*&gt;&amp; lists)</span> </span>{
+        <span class="comment">// write your code here</span>
+        <span class="keyword">int</span> n = lists.size();
+        <span class="keyword">if</span> (n == <span class="number">0</span>){
+            <span class="keyword">return</span> <span class="literal">NULL</span>;
+        }
+        <span class="keyword">auto</span> cmp = [](ListNode * left, ListNode * right){
+            <span class="keyword">return</span> left-&gt;val &gt; right-&gt;val;
+        };
+        priority_queue&lt;ListNode *, <span class="built_in">vector</span>&lt;ListNode*&gt;, <span class="keyword">decltype</span>(cmp)&gt; heap(cmp);
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++){
+            <span class="keyword">if</span> (lists[i] != <span class="literal">NULL</span>){
+                heap.push(lists[i]);
+            }
+        }
+        <span class="comment">// ListNode DummyNode(0);</span>
+        ListNode * DummyNode = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
+        ListNode * tail = DummyNode;
+        <span class="keyword">while</span>(!heap.empty()){
+            ListNode * node = heap.top();
+            heap.pop();
+            tail-&gt;next = node;
+            tail = tail-&gt;next;
+            <span class="keyword">if</span> (node-&gt;next){
+                heap.push(node-&gt;next);
+            }
+        }
+        <span class="keyword">return</span> DummyNode-&gt;next;
+    }</code></pre>
+</li>
+<li><p>auto cmp = [](ListNode * left, ListNode * right){</p>
+<p>​        return left-&gt;val &gt; right-&gt;val;</p>
+<p>};</p>
+<p>priority_queue&lt;ListNode <em>, vector&lt;ListNode</em>&gt;, decltype(cmp)&gt; heap(cmp);</p>
+</li>
+</ul>
+</li>
+<li><p>Interval</p>
+<ul>
+<li>int s = interval[0], e = interval[1];</li>
+</ul>
+</li>
+<li><p>LinkedList</p>
+<ul>
+<li><p>printf(“var[%d] = %x\n”, i - 1, ptr);</p>
+</li>
+<li><p>printf(“var[%d] = %d\n”, i - 1, *ptr);</p>
+</li>
+<li><p>if (!head || !head-&gt;next) return head;</p>
+</li>
+<li><p>// ListNode* my_20230520_recursive(ListNode* prev, ListNode* head, vector&lt;ListNode*&gt; res) { // ERROR!</p>
+<p>ListNode* my_20230520_recursive(ListNode* prev, ListNode* head, vector&lt;ListNode*&gt; &amp;res) {   // FIX by adding &amp; for <code>res</code></p>
+</li>
+<li><p>// vector&lt;ListNode*&gt; res; //runtime error: reference binding to null pointer of type ‘ListNode *’ (stl_vector.h)</p>
+<p>vector&lt;ListNode*&gt; res(1);    // FIX</p>
+</li>
+</ul>
+</li>
+<li><p>Tree</p>
+<ul>
+<li>bool ans = dfs(root, LONG_MIN, LONG_MAX);<br>bool dfs(TreeNode* root, long lo, long hi){        // FIX!, 別用 INT_MIN, INT_MAX</li>
+</ul>
+</li>
+<li><p>Graph</p>
+<ul>
+<li>vector&lt;vector<code>&lt;int&gt;</code>&gt; g(numCourses);</li>
+<li>Node* tmp = new Node(node-&gt;val);    // FIX!, dont’ forget <code>new</code> to create the “pointer”</li>
+<li>void dfs(vector&lt;vector<code>&lt;int&gt;</code>&gt; &amp;graph, int node, unordered_set<code>&lt;int&gt;</code> &amp;visited){    // FIX! copy of the graph in every dfs call will lead to TLE!</li>
+<li>vector&lt;vector<code>&lt;int&gt;</code>&gt; graph(n); // WRONG –&gt; vector&lt;vector<code>&lt;int&gt;</code>&gt; graph(n, vector<code>&lt;int&gt;</code>);</li>
+<li><code>&lt;u&gt;</code>to be a tree<code>&lt;/u&gt;</code>, shoud be (edges.size() + 1 != n)</li>
+</ul>
+</li>
+</ul>
+<h1 id="Best-Record"><a href="#Best-Record" class="headerlink" title="Best Record"></a>Best Record</h1><p><img src="https://p.ipic.vip/z75ght.png" alt="image-20230602210901526"></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/2%20%E8%BB%8A%E8%B2%B8/">Loans/2 車貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/4%20%E4%BF%A1%E8%B2%B8/">Loans/4 信貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"><h2 id="What-is-信貸"><a href="#What-is-信貸" class="headerlink" title="What is 信貸"></a>What is 信貸</h2><ul>
 <li><p><strong>沒提供任何擔保品</strong></p>
 </li>
 <li><p>又叫「上班族貸款」，根據個人信用</p>
@@ -248,329 +919,7 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
 </ul>
 </li>
 </ul>
-<h1 id="總流程"><a href="#總流程" class="headerlink" title="總流程"></a>總流程</h1></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/09/12/Algo.%20Ult./SegTree%20Advanced/">Algo. Ult./SegTree Advanced</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-09-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AlgoUlt/">AlgoUlt.</a></span><div class="content"><h2 id="2407-LIS-II"><a href="#2407-LIS-II" class="headerlink" title="2407. LIS II"></a>2407. LIS II</h2><p><em>hard</em></p>
-<p>Find the longest subsequence of <code>nums</code> that meets the following requirements:</p>
-<ul>
-<li>The subsequence is <strong>strictly increasing</strong> and</li>
-<li>The difference between adjacent elements in the subsequence is <strong>at most</strong> <code>k</code>.</li>
-</ul>
-<p>Return <em>the length of the <strong>longest</strong> <strong>subsequence</strong> that meets the requirements.</em></p>
-<p>A <strong>subsequence</strong> is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [4,2,1,4,3,4,5,8,15], k &#x3D; 3</span><br><span class="line">Output: 5</span><br><span class="line">Explanation:</span><br><span class="line">The longest subsequence that meets the requirements is [1,3,4,5,8].</span><br><span class="line">The subsequence has a length of 5, so we return 5.</span><br><span class="line">Note that the subsequence [1,3,4,5,8,15] does not meet the requirements because 15 - 8 &#x3D; 7 is larger than 3.</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [7,4,5,1,8,12,4,7], k &#x3D; 5</span><br><span class="line">Output: 4</span><br><span class="line">Explanation:</span><br><span class="line">The longest subsequence that meets the requirements is [4,5,8,12].</span><br><span class="line">The subsequence has a length of 4, so we return 4.</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [1,5], k &#x3D; 1</span><br><span class="line">Output: 1</span><br><span class="line">Explanation:</span><br><span class="line">The longest subsequence that meets the requirements is [1].</span><br><span class="line">The subsequence has a length of 1, so we return 1.</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 105</code></li>
-<li><code>1 &lt;= nums[i], k &lt;= 105</code></li>
-</ul>
-<h4 id="My-Code"><a href="#My-Code" class="headerlink" title="My Code"></a>My Code</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SegTree</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        self.n = n</span><br><span class="line">        self.tree = [<span class="number">0</span>] * n * <span class="number">2</span>  <span class="comment"># 2 for boundary cases: 0 and n</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, left, right)</span>:</span>   <span class="comment"># on [left, right)</span></span><br><span class="line">        l, r = left + self.n, right + self.n</span><br><span class="line">        res = -sys.maxsize</span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            <span class="keyword">if</span> l &amp; <span class="number">1</span> == <span class="number">1</span>:</span><br><span class="line">                res = max(res, self.tree[l])</span><br><span class="line">                l += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> r &amp; <span class="number">1</span> == <span class="number">1</span>:</span><br><span class="line">                r -= <span class="number">1</span>  <span class="comment"># because it's an open boundary</span></span><br><span class="line">                res = max(res, self.tree[r])</span><br><span class="line">            l &gt;&gt;= <span class="number">1</span></span><br><span class="line">            r &gt;&gt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, i, val)</span>:</span></span><br><span class="line">        idx = i + self.n</span><br><span class="line">        self.tree[idx] = val</span><br><span class="line">        <span class="keyword">while</span> idx &gt; <span class="number">0</span>:</span><br><span class="line">            idx &gt;&gt;= <span class="number">1</span></span><br><span class="line">            <span class="comment"># self.tree[idx] = max([self.tree[idx &gt;&gt; 1], self.tree[idx &gt;&gt; 1 | 1]])  # BUG!</span></span><br><span class="line">            self.tree[idx] = max([self.tree[idx &lt;&lt; <span class="number">1</span>], self.tree[idx &lt;&lt; <span class="number">1</span> | <span class="number">1</span>]])</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLIS</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># return self.my_20220912_numpymax(nums, k)  # AC! with numpy</span></span><br><span class="line">        <span class="keyword">return</span> self.my_20220912_segtree(nums, k)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">my_20220912_segtree</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        seg = SegTree(max(nums) + <span class="number">1</span>) <span class="comment"># max(nums) + 1 means the length of the dp, where dp[i] means LIS end with value </span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            x = nums[i]</span><br><span class="line">            prev_max = seg.query(max(<span class="number">0</span>, x-k), x)  <span class="comment"># prev_max = dp[max(0, x-k):x]</span></span><br><span class="line">            <span class="comment"># print(i, nums[i], prev_max, seg.tree)</span></span><br><span class="line">            seg.update(x, prev_max+<span class="number">1</span>)   <span class="comment"># dp[x] = prev_max + 1</span></span><br><span class="line">            res = max(res, prev_max+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">my_20220912_numpymax</span><span class="params">(self, nums, k)</span>:</span>    <span class="comment"># AC! once AC...</span></span><br><span class="line">        n = len(nums)   </span><br><span class="line">        dp = np.array([<span class="number">0</span>] * (<span class="number">10</span> ** <span class="number">5</span> + <span class="number">2</span>))</span><br><span class="line">        <span class="comment"># dp = np.array([0] * (max(nums) + 1))</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            x = nums[i]</span><br><span class="line">            dp[x] = dp[max(<span class="number">0</span>, x-k):x].max() + <span class="number">1</span></span><br><span class="line">            res = max(dp[x], res)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<p>Ref: </p>
-<p>1 <a href="https://leetcode.com/problems/longest-increasing-subsequence-ii/discuss/2560085/Python-Explanation-with-pictures-Segment-Tree" target="_blank" rel="noopener">https://leetcode.com/problems/longest-increasing-subsequence-ii/discuss/2560085/Python-Explanation-with-pictures-Segment-Tree</a></p>
-<p>2 <a href="https://codeforces.com/blog/entry/18051" target="_blank" rel="noopener">https://codeforces.com/blog/entry/18051</a></p>
-<p>3 <a href="https://omeletwithoutegg.github.io/" target="_blank" rel="noopener">https://omeletwithoutegg.github.io/</a> in 中文</p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/19/ParallelProg/Parallel%20Applications/">ParallelProg/Parallel Applications</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-19</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></span><div class="content"><p>[toc]</p>
-<h1 id="Alg-Embarrassingly-Computations"><a href="#Alg-Embarrassingly-Computations" class="headerlink" title="Alg: Embarrassingly Computations"></a>Alg: Embarrassingly Computations</h1><p><img src="https://p.ipic.vip/csaeeo.png" alt="image-20230614205211835"></p>
-<h3 id="Image-Transformations"><a href="#Image-Transformations" class="headerlink" title="Image Transformations"></a>Image Transformations</h3><ul>
-<li>Low-level image operations</li>
-</ul>
-<p><img src="https://p.ipic.vip/h6pbm0.png" alt="image-20230614205406250"></p>
-<p><img src="https://p.ipic.vip/v93s98.png" alt="image-20230614205510336"></p>
-<ul>
-<li>縱切黑白比較平衡</li>
-<li>鄰居數會affect communication</li>
-</ul>
-<p><img src="https://p.ipic.vip/knofs2.png" alt="image-20230614210714720"></p>
-<h3 id="Monde-Carlo-Methods"><a href="#Monde-Carlo-Methods" class="headerlink" title="Monde Carlo Methods"></a>Monde Carlo Methods</h3><ul>
-<li>Sampling data points,  time samplings are independent</li>
-</ul>
-<p><img src="https://p.ipic.vip/2hhy1y.png" alt="image-20230614211437118"></p>
-<p><img src="https://p.ipic.vip/06us4l.png" alt="image-20230614211737368"></p>
-<p><img src="https://p.ipic.vip/nvz855.png" alt="image-20230614211813740"></p>
-<h3 id="Mandelbrot-Set"><a href="#Mandelbrot-Set" class="headerlink" title="Mandelbrot Set"></a>Mandelbrot Set</h3><h1 id="General-Issues-LB-amp-Termination"><a href="#General-Issues-LB-amp-Termination" class="headerlink" title="General Issues: LB &amp; Termination"></a>General Issues: LB &amp; Termination</h1><h2 id="LB-Load-Balance"><a href="#LB-Load-Balance" class="headerlink" title="LB (Load Balance)"></a>LB (Load Balance)</h2><ul>
-<li>centralize or </li>
-<li>distributed 很難 termination</li>
-</ul>
-<p><img src="https://p.ipic.vip/eop4he.png" alt="image-20230614212600210"></p>
-<h3 id="Why-Static-bad"><a href="#Why-Static-bad" class="headerlink" title="Why Static bad?"></a>Why Static bad?</h3><p><img src="https://p.ipic.vip/146cy6.png" alt="image-20230614220951383"></p>
-<p><img src="https://p.ipic.vip/oby280.png" alt="image-20230614221120487"></p>
-<h3 id="Dynamic-LB-w-MPI-e-g"><a href="#Dynamic-LB-w-MPI-e-g" class="headerlink" title="Dynamic LB, w/ MPI e.g."></a>Dynamic LB, w/ MPI e.g.</h3><ul>
-<li>P.S. OpenMP has</li>
-</ul>
-<p><img src="https://p.ipic.vip/5u3k31.png" alt="image-20230614221213219"></p>
-<h4 id="Centralized-Work-Pool"><a href="#Centralized-Work-Pool" class="headerlink" title="Centralized Work Pool"></a>Centralized Work Pool</h4><p><img src="https://p.ipic.vip/58hthe.png" alt="image-20230614221533768"></p>
-<p><img src="https://p.ipic.vip/1uki3p.png" alt="image-20230614221712638"></p>
-<p><img src="https://p.ipic.vip/w5l5ke.png" alt="image-20230614222147601"></p>
-<h4 id="Decentralized-Work-Pool"><a href="#Decentralized-Work-Pool" class="headerlink" title="Decentralized Work Pool"></a>Decentralized Work Pool</h4><ul>
-<li>many masters, with <em>hierarchical structure</em><img src="https://p.ipic.vip/7wmmfa.png" alt="image-20230615102619627"></li>
-</ul>
-<h4 id="Fully-Distributed-Work-Pool"><a href="#Fully-Distributed-Work-Pool" class="headerlink" title="Fully Distributed Work Pool"></a>Fully Distributed Work Pool</h4><ul>
-<li>though balanced, yet more communications</li>
-</ul>
-<p><img src="https://p.ipic.vip/l6pdem.png" alt="image-20230615102827852"></p>
-<h5 id="How-to-balance-in-Fully-Distrubuted-Work-Pool"><a href="#How-to-balance-in-Fully-Distrubuted-Work-Pool" class="headerlink" title="How to balance in Fully Distrubuted Work Pool?"></a>How to balance in Fully Distrubuted Work Pool?</h5><img src="https://p.ipic.vip/a2p6b2.png" alt="image-20230615102949785" style="zoom: 87%;" />
-
-<ul>
-<li>Reason for Light loadded system – for Sender-initiated method<ul>
-<li>Because even the sender has higher load, its load is still pretty “light”</li>
-<li>vice versa </li>
-</ul>
-</li>
-<li>If no global view, how does a thread know it’s a heavy or light?</li>
-<li>A term: work stealing 很常被討論</li>
-</ul>
-<h5 id="E-g-Shortes-Path-in-a-Weighted-Diagraph"><a href="#E-g-Shortes-Path-in-a-Weighted-Diagraph" class="headerlink" title="E.g. Shortes Path in a Weighted Diagraph"></a>E.g. Shortes Path in a Weighted Diagraph</h5><p><img src="https://p.ipic.vip/j0m6p0.png" alt="image-20230615103708587"></p>
-<p>★平行時候採用的不是Dijkastra, 而是Moore’s </p>
-<p><img src="https://p.ipic.vip/1dj5ac.png" alt="image-20230615103807875"></p>
-<ul>
-<li>Dependency only btw Iterations, NOT btw nodes</li>
-<li>Independent nodes</li>
-</ul>
-<h6 id="Sequential-Proc"><a href="#Sequential-Proc" class="headerlink" title="Sequential Proc"></a>Sequential Proc</h6><ol>
-<li><p><img src="https://p.ipic.vip/pna3pc.png" alt="image-20230615110016415"></p>
-</li>
-<li><p><img src="https://p.ipic.vip/g0a112.png" alt="image-20230615110108163"></p>
-</li>
-<li><p><img src="https://p.ipic.vip/r0i28o.png" alt="image-20230615110139431"></p>
-</li>
-</ol>
-<h6 id="Parallel-Proc"><a href="#Parallel-Proc" class="headerlink" title="Parallel Proc"></a>Parallel Proc</h6><p><img src="https://p.ipic.vip/hfzbj7.png" alt="image-20230615110320944"></p>
-<ul>
-<li><p>Step4 has buffer size issue (depent on outgoing nbrs, but MPI requires buffer size well communicated beforehand) to communicate in advance </p>
-</li>
-<li><p>Master assign tasks</p>
-</li>
-</ul>
-<p><img src="https://p.ipic.vip/7kufdx.png" alt="image-20230615111103268"></p>
-<p><img src="https://p.ipic.vip/e47qnr.png" alt="image-20230615111157912"></p>
-<ul>
-<li>每個人只需要知道自己目前的node</li>
-</ul>
-<h2 id="Termination-Detection"><a href="#Termination-Detection" class="headerlink" title="Termination Detection"></a>Termination Detection</h2><ul>
-<li>重點是分散式時的terminate需要留意!</li>
-</ul>
-<p><img src="https://p.ipic.vip/84ulct.png" alt="image-20230615111859029"></p>
-<p><img src="https://p.ipic.vip/2dfzgp.png" alt="image-20230615111927488"></p>
-<h4 id="Dual-Pass-Ring"><a href="#Dual-Pass-Ring" class="headerlink" title="Dual-Pass Ring"></a>Dual-Pass Ring</h4><p><img src="https://p.ipic.vip/il91pd.png" alt="image-20230615112125900"></p>
-<ul>
-<li>避免往前送了後，但recv已被activate「white」的問題</li>
-</ul>
-<ol>
-<li><img src="https://p.ipic.vip/nz4ni5.png" alt="image-20230615112458015"></li>
-<li><img src="https://p.ipic.vip/a740jc.png" alt="image-20230615112512660"></li>
-<li><img src="https://p.ipic.vip/rid8ji.png" alt="image-20230615112543018"></li>
-</ol>
-<p>Example</p>
-<p>​    <img src="https://p.ipic.vip/3uag02.png" alt="image-20230615112630803"></p>
-<h1 id="Alg-D-amp-C-Computations"><a href="#Alg-D-amp-C-Computations" class="headerlink" title="Alg: D&amp;C Computations"></a>Alg: D&amp;C Computations</h1><ul>
-<li>recursively divided a problem into sub-problems that are of the sam eform as the larger problem</li>
-</ul>
-<h3 id="Sorting-Algs"><a href="#Sorting-Algs" class="headerlink" title="Sorting Algs."></a>Sorting Algs.</h3><p>in Parallel.</p>
-<p><img src="https://p.ipic.vip/mz978l.png" alt="image-20230615113019339"></p>
-<h5 id="BucketSort"><a href="#BucketSort" class="headerlink" title="BucketSort"></a>BucketSort</h5><p><img src="https://p.ipic.vip/nb7vtt.png" alt="image-20230615114142364"></p>
-<p><img src="https://p.ipic.vip/oxcpkm.png" alt="image-20230615115012915"></p>
-<ul>
-<li>Can sampling beforehand to know the distribution!</li>
-<li>partition not yet parallelized</li>
-</ul>
-<p><img src="https://p.ipic.vip/bqhcdn.png" alt="image-20230615114532487"></p>
-<ul>
-<li>solved the partition not parallelized issue!</li>
-<li>分配的平行仰賴於不看值</li>
-</ul>
-<h5 id="MergeSort-it’s-Optimization"><a href="#MergeSort-it’s-Optimization" class="headerlink" title="MergeSort it’s Optimization"></a>MergeSort it’s Optimization</h5><p><img src="https://p.ipic.vip/wjs54z.png" alt="image-20230615114920490"></p>
-<ul>
-<li>bottleneck bounded at the last merging process, with all elems</li>
-</ul>
-<h6 id="Bitonic-MergeSort"><a href="#Bitonic-MergeSort" class="headerlink" title="Bitonic MergeSort"></a>Bitonic MergeSort</h6><p><img src="https://p.ipic.vip/z4rrg1.png" alt="image-20230615153711909"></p>
-<p><img src="https://p.ipic.vip/nhm1x8.png" alt="image-20230615153729891"></p>
-<p><img src="https://p.ipic.vip/moyclk.png" alt="image-20230615153915925"></p>
-<p><img src="https://p.ipic.vip/hl8pgt.png" alt="image-20230615154130420"></p>
-<h5 id="QSort"><a href="#QSort" class="headerlink" title="QSort"></a>QSort</h5><p>tree <strong>not balanced</strong>… so… <strong>not suitable for parallelism</strong></p>
-<p><img src="https://p.ipic.vip/yuapmb.png" alt="image-20230615115212226"></p>
-<h5 id="RankSort"><a href="#RankSort" class="headerlink" title="RankSort"></a>RankSort</h5><ul>
-<li>Very easy for Parallelism </li>
-<li>只需要加一行OpemMP 就平行了！</li>
-<li>data dependency is None!</li>
-</ul>
-<p><img src="https://p.ipic.vip/68xg2u.png" alt="image-20230615154546768"></p>
-<h6 id="LgN-TimeComplexity"><a href="#LgN-TimeComplexity" class="headerlink" title="LgN TimeComplexity!"></a>LgN TimeComplexity!</h6><p><img src="https://p.ipic.vip/04rs7l.png" alt="image-20230615154802371"></p>
-<h5 id="CountingSort"><a href="#CountingSort" class="headerlink" title="CountingSort"></a>CountingSort</h5><ul>
-<li>是跟range有關的… 所以時間複雜度得再想下，下面這是個ideal的case而已</li>
-<li>看每個值重覆出現多少次</li>
-</ul>
-<p><img src="https://p.ipic.vip/vac5vz.png" alt="image-20230615155048145"></p>
-<h5 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h5><p><img src="https://p.ipic.vip/btmasv.png" alt="image-20230615155343588"></p>
-<h3 id="N-Body-Simulation"><a href="#N-Body-Simulation" class="headerlink" title="N-Body Simulation"></a>N-Body Simulation</h3><ul>
-<li>Newtonian laws of Physics</li>
-</ul>
-<h1 id="Alg-Pipelined-Computations"><a href="#Alg-Pipelined-Computations" class="headerlink" title="Alg: Pipelined Computations"></a>Alg: Pipelined Computations</h1><p><img src="https://p.ipic.vip/ofq9kv.png" alt="image-20230615155845442"></p>
-<h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h3><p>Pipelined approach can provide increased speed under three types oif computations</p>
-<ol>
-<li><p>If <strong>more than 1 instance ** of the complete problem is to be executed; or **CPU’s instructions</strong></p>
-</li>
-<li><p>If a <strong>ingle instance</strong> has a series of data items must be processed,. each requiring <strong>multiple oerations</strong></p>
-</li>
-<li><p>像是第2個的加強版；If <strong>information to start the next process can be passed forward</strong> before the process has completed all its internal operations</p>
-</li>
-</ol>
-<p><img src="https://p.ipic.vip/xyejcx.png" alt="image-20230615165326563"></p>
-<p>​        <img src="https://p.ipic.vip/7useax.png" alt="image-20230615165647254">    </p>
-<p>​    <img src="https://p.ipic.vip/wshroy.png" alt="image-20230615170142574"></p>
-<h3 id="Adding-Numbers-Type1"><a href="#Adding-Numbers-Type1" class="headerlink" title="Adding Numbers (Type1)"></a>Adding Numbers (Type1)</h3><p><img src="https://p.ipic.vip/4pc7cc.png" alt="image-20230615170313469"></p>
-<p><img src="https://p.ipic.vip/yclv0e.png" alt="image-20230615170340129"></p>
-<h3 id="Sorting-Type2"><a href="#Sorting-Type2" class="headerlink" title="Sorting (Type2)"></a>Sorting (Type2)</h3><h5 id="Insertion-Sort"><a href="#Insertion-Sort" class="headerlink" title="Insertion Sort"></a>Insertion Sort</h5><h3 id="Linear-Equation-Solver-Type3"><a href="#Linear-Equation-Solver-Type3" class="headerlink" title="Linear Equation Solver (Type3)"></a>Linear Equation Solver (Type3)</h3><h1 id="Alg-Synchronous-Computations"><a href="#Alg-Synchronous-Computations" class="headerlink" title="Alg: Synchronous Computations"></a>Alg: Synchronous Computations</h1><p><img src="https://p.ipic.vip/gm5t9n.png" alt="image-20230615170819710"></p>
-<ul>
-<li>e.g. Odd-Even Sort</li>
-</ul>
-<p><img src="https://p.ipic.vip/s3qm88.png" alt="image-20230615170951174"></p>
-<p><img src="https://p.ipic.vip/2568ls.png" alt="image-20230615171049453"></p>
-<p><img src="https://p.ipic.vip/vite9s.png" alt="image-20230615171127497"></p>
-<p><img src="https://p.ipic.vip/2y5023.png" alt="image-20230615171255882"></p>
-<ul>
-<li>P0、P1 互等… 死了</li>
-</ul>
-<h3 id="PreSum"><a href="#PreSum" class="headerlink" title="PreSum"></a>PreSum</h3><p><img src="https://p.ipic.vip/0k5rsl.png" alt="image-20230615171355250"></p>
-<p><img src="https://p.ipic.vip/thr9a6.png" alt="image-20230615171508521"></p>
-<p><img src="https://p.ipic.vip/z6u5s6.png" alt="image-20230615171532354"></p>
-<p><img src="https://p.ipic.vip/efydyb.png" alt="image-20230615171553368"></p>
-<h3 id="System-of-Linear-Equation"><a href="#System-of-Linear-Equation" class="headerlink" title="System of Linear Equation"></a>System of Linear Equation</h3><p>…</p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/17/ParallelProg/Shared-Memory%20Programming%20-%20OpenMP/">ParallelProg/Shared-Memory Programming - OpenMP</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-17</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></span><div class="content"><p>[toc]</p>
-<h1 id="Shared-memory-Programming-–-OpenMP"><a href="#Shared-memory-Programming-–-OpenMP" class="headerlink" title="Shared-memory Programming – OpenMP"></a>Shared-memory Programming – OpenMP</h1><p>memory’s address the same for all process units</p>
-<p><img src="https://p.ipic.vip/yqkg9g.png" alt="image-20230613204911655"></p>
-<h4 id="Thread-VS-Processes"><a href="#Thread-VS-Processes" class="headerlink" title="Thread VS Processes"></a>Thread VS Processes</h4><p><img src="https://p.ipic.vip/sax3xi.png" alt="image-20230613205233935"></p>
-<p><img src="https://p.ipic.vip/mljwld.png" alt="image-20230613205550640"></p>
-<ul>
-<li><code>MPI</code> also works on only 1 single machine, but since it still at least requires 1 time memcopy (not deep into network layer b.c. lib’s optimization), so still slower than <code>pthread</code></li>
-</ul>
-<h1 id="OpenMP-w-compiler’s-help"><a href="#OpenMP-w-compiler’s-help" class="headerlink" title="OpenMP, w/ compiler’s help"></a>OpenMP, w/ compiler’s help</h1><ul>
-<li>using compiler’s way to generate code</li>
-</ul>
-<p>![image-20230614175006357](/Users/joe/Library/Application Support/typora-user-images/image-20230614175006357.png)</p>
-<ul>
-<li><p>“parallel” is helped by compiler to <strong>gen code</strong><img src="https://p.ipic.vip/o9t8qs.png" alt="image-20230614175103178"></p>
-</li>
-<li><p><code>pragma</code> – means <code>compiler directive</code></p>
-<ul>
-<li><code>#include &lt;omp.h&gt;</code></li>
-<li><code>parallel for</code></li>
-</ul>
-</li>
-</ul>
-<p><img src="https://p.ipic.vip/bo5aay.png" alt="image-20230614180005356"></p>
-<h2 id="Parallel-Region-Construct"><a href="#Parallel-Region-Construct" class="headerlink" title="Parallel Region Construct"></a>Parallel Region Construct</h2><ul>
-<li>create threads</li>
-<li>Fork-join model, so, there’s <strong>a barrier at the end of a parallel section</strong></li>
-<li>a thread crashes –&gt; all thread crash!</li>
-</ul>
-<p><img src="https://p.ipic.vip/pgzvly.png" alt="image-20230614180902762"></p>
-<p>![image-20230614181915982](/Users/joe/Library/Application Support/typora-user-images/image-20230614181915982.png)</p>
-<ul>
-<li>omp_set_num_thread() – so that don’t have to write num_threads in every pragma block</li>
-<li>IF is rarely used in specific case</li>
-</ul>
-<p>![image-20230614182028173](/Users/joe/Library/Application Support/typora-user-images/image-20230614182028173.png)</p>
-<h2 id="Working-Sharing-Construct"><a href="#Working-Sharing-Construct" class="headerlink" title="Working-Sharing Construct"></a>Working-Sharing Construct</h2><p><img src="https://p.ipic.vip/86k5x2.png" alt="image-20230614182135658"></p>
-<p><img src="https://p.ipic.vip/3l3nb2.png" alt="image-20230614182446713"></p>
-<h3 id="DO-for-Directive"><a href="#DO-for-Directive" class="headerlink" title="DO/for Directive"></a>DO/for Directive</h3><ul>
-<li>dup taskk, for <code>data parallelism</code></li>
-<li>最主要: 了解到shceuling 的選擇</li>
-<li>然後有order 、Collpase 這些選擇讓load更balance</li>
-</ul>
-<p><img src="https://p.ipic.vip/in110y.png" alt="image-20230614182741113"></p>
-<h5 id="Schedule"><a href="#Schedule" class="headerlink" title="Schedule"></a>Schedule</h5><ul>
-<li><p>static </p>
-<ul>
-<li><p>Chunk large –  hard to balance among threads</p>
-<p>Chunk small –  need to ask for thread many times</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://p.ipic.vip/5ehpdn.png" alt="image-20230614183623083"></p>
-<p><img src="https://p.ipic.vip/0airrf.png" alt="image-20230614183636163"></p>
-<p><img src="https://p.ipic.vip/4mye55.png" alt="image-20230614183723831"></p>
-<p><img src="https://p.ipic.vip/34i69g.png" alt="image-20230614183800116"></p>
-<p><img src="https://p.ipic.vip/wakood.png" alt="image-20230614183948584"></p>
-<ul>
-<li>兩行 pragma 也可以併到一行去；parallel 、for 有各自的clauses</li>
-</ul>
-<p><img src="https://p.ipic.vip/6crjey.png" alt="image-20230614184718386"></p>
-<h5 id="Collapse"><a href="#Collapse" class="headerlink" title="Collapse!"></a>Collapse!</h5><p><img src="https://p.ipic.vip/pqpuyb.png" alt="image-20230614185548583"></p>
-<ul>
-<li>得要 i == 1 not depent on i == 0</li>
-</ul>
-<h3 id="SECTIONS-Directive"><a href="#SECTIONS-Directive" class="headerlink" title="SECTIONS Directive"></a>SECTIONS Directive</h3><ul>
-<li>no dup</li>
-<li>Diff calls for diff threads</li>
-<li>no schedule </li>
-<li>usually 3~4 sections </li>
-</ul>
-<p><img src="https://p.ipic.vip/lls7y2.png" alt="image-20230614200900819"></p>
-<p><img src="https://p.ipic.vip/2l3cba.png" alt="image-20230614201017533"></p>
-<h3 id="SINGLE"><a href="#SINGLE" class="headerlink" title="SINGLE"></a>SINGLE</h3><ul>
-<li>e.g. I/O, need only one thread to write</li>
-<li>others wait, unless <code>nowait</code> is added after <code>single</code></li>
-<li>so, don’t need to jump out a Parallel region, </li>
-<li>Also code looks more neat!</li>
-</ul>
-<p><img src="https://p.ipic.vip/vm06i1.png" alt="image-20230614201131558"></p>
-<h2 id="Synchronization-Construct"><a href="#Synchronization-Construct" class="headerlink" title="Synchronization Construct"></a>Synchronization Construct</h2><ul>
-<li>Similar to SINGLE</li>
-</ul>
-<p><img src="https://p.ipic.vip/lb1i68.png" alt="image-20230614201535093"></p>
-<ul>
-<li>atomic ~= critical<ul>
-<li>用Java’s SyncMethod &amp; SyncStatement 作類比<ul>
-<li>atomic，fine grain 像是MPI的Java的 SyncStatement，告訴它要保護的share variable，有碰到這些var的ref的會去幫做lock、unlock</li>
-<li>critical, 整段包起來，整個block的statement就是從頭到尾就算沒有sync的問題，也是包起來</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://p.ipic.vip/iev75d.png" alt="image-20230614202014595"></p>
-<h3 id="★Example-amp-Comparison"><a href="#★Example-amp-Comparison" class="headerlink" title="★Example &amp; Comparison!!"></a>★Example &amp; Comparison!!</h3><p><img src="https://p.ipic.vip/ndzm92.png" alt="image-20230614202049037"></p>
-<h2 id="Data-Scope-Attribute-Clauses"><a href="#Data-Scope-Attribute-Clauses" class="headerlink" title="Data Scope Attribute Clauses"></a>Data Scope Attribute Clauses</h2><p><img src="https://p.ipic.vip/grxj03.png" alt="image-20230614202421417"></p>
-<ul>
-<li>SHARED –  global, gened var in global, and apply the address of those vars in sections</li>
-</ul>
-<p><img src="https://p.ipic.vip/48davx.png" alt="image-20230614202810013"></p>
-<p><img src="https://p.ipic.vip/ptfira.png" alt="image-20230614202923366"></p>
-<p><img src="https://p.ipic.vip/7c56g9.png" alt="image-20230614203403943"></p>
-<ul>
-<li>DEFAULT – no need to manually write scop attr for so many vars</li>
-</ul>
-<p><img src="https://p.ipic.vip/zrnpgp.png" alt="image-20230614203451073"></p>
-<ul>
-<li>result within block is the “partial sum” of each thread</li>
-<li>★★ result is a <code>local PRIVATE var</code>, b.c. there’s <code>reduction</code> keyword</li>
-</ul>
-<h2 id="Clause-Summary"><a href="#Clause-Summary" class="headerlink" title="Clause Summary"></a>Clause Summary</h2><p><img src="https://p.ipic.vip/yyswrn.png" alt="image-20230614203910407"></p>
-<h2 id="Run-Time-Lib-Routines"><a href="#Run-Time-Lib-Routines" class="headerlink" title="Run-Time Lib Routines"></a>Run-Time Lib Routines</h2><ul>
-<li>not critical</li>
-<li>知道是哪個thread num 其實意義不大，因為很多時候是internal scheduling 幫弄了調度工作</li>
-</ul>
-<p><img src="https://p.ipic.vip/98njjs.png" alt="image-20230614204138760"></p>
-<ul>
-<li>omp_in_parallel – for IF clause 用</li>
-</ul>
-</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/">79</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+<h1 id="總流程"><a href="#總流程" class="headerlink" title="總流程"></a>總流程</h1></div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/">79</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')
