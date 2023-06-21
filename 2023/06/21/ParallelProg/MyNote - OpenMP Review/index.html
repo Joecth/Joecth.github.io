@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="ParallelProg/MyNote - OpenMP Review"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>ParallelProg/MyNote - OpenMP Review | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Notes"><span class="toc-number">1.</span> <span class="toc-text">Notes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Constructs"><span class="toc-number">2.</span> <span class="toc-text">Constructs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Parallel-Construct"><span class="toc-number">2.1.</span> <span class="toc-text">Parallel Construct</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Work-Distribution-Construct"><span class="toc-number">2.2.</span> <span class="toc-text">Work-Distribution Construct</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Do-For-Directive"><span class="toc-number">2.2.1.</span> <span class="toc-text">1) Do&#x2F;For Directive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-SECTIONS-Directive"><span class="toc-number">2.2.2.</span> <span class="toc-text">2) SECTIONS Directive</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#With-Manual-Call"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">With Manual Call</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Clauses"><span class="toc-number">3.</span> <span class="toc-text">Clauses</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary-Table"><span class="toc-number">3.1.</span> <span class="toc-text">Summary Table</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Routines"><span class="toc-number">4.</span> <span class="toc-text">Routines</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Other-Appendix"><span class="toc-number">5.</span> <span class="toc-text">Other Appendix</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Prof-to-see-Perf"><span class="toc-number">5.1.</span> <span class="toc-text">Prof to see Perf</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">399</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">70</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">ParallelProg/MyNote - OpenMP Review</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-06-21</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>[toc]</p>
+<h1 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h1><p>OpenMP,  is concerned with a single <em>cluster node</em> or <em>motherboard</em> , and getting the most out of the available parallelism available there.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jo@fossa4gb:~/repo/exp_omp$ gcc -fopenmp main.cpp </span><br><span class="line">/usr/bin/ld: /tmp/cccyI4Oq.o:(.data.rel.local.DW.ref.__gxx_personality_v0[DW.ref.__gxx_personality_v0]+0x0): undefined reference to `__gxx_personality_v0<span class="string">'</span></span><br><span class="line"><span class="string">collect2: error: ld returned 1 exit status</span></span><br><span class="line"><span class="string">jo@fossa4gb:~/repo/exp_omp$ mv main.cpp main.c</span></span><br><span class="line"><span class="string">jo@fossa4gb:~/repo/exp_omp$ gcc -fopenmp main.c  &lt;-- Solved!</span></span><br><span class="line"><span class="string">jo@fossa4gb:~/repo/exp_omp$</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>or PGI</p>
+<p>編譯指導語句的格式為：</p>
+<p>pragma omp <directive> [clause[[,] clause]…]</p>
+<p>directive部分是編譯指導語句的主要指令，用來指導多個CPU共享任務或指導多個</p>
+<p>CPU同步；</p>
+<p>clause部分是可選的子句，它給出了相應的指令參數，可以影響到編譯指導語句</p>
+<p>的具體執行；</p>
+<p>注意：換行符是必選項。位於被這個指令包圍的結構塊之前，表示這條編譯指導語向的終止。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp somedirective clause(value,othervalue)</span></span><br><span class="line">  statement;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp somedirective clause(value,othervalue)</span></span><br><span class="line"> &#123;</span><br><span class="line">  statement <span class="number">1</span>;</span><br><span class="line">  statement <span class="number">2</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>with</p>
+<ul>
+<li>the <code>#pragma omp</code> <em>sentinel</em> to indicate that an OpenMP directive is coming;</li>
+<li>a <code>directive</code>, such as <code>parallel</code> ;</li>
+<li>and possibly <code>clauses</code> with values.</li>
+<li>After the directive comes either a single statement or a block in <em>curly braces</em> .</li>
+</ul>
+<p>透過clause去告訴compiler 然後compiler去gen出來的</p>
+<ul>
+<li>might support nested </li>
+</ul>
+<p>原則上只能一個directive，parallel是個特例</p>
+<h1 id="Constructs"><a href="#Constructs" class="headerlink" title="Constructs"></a>Constructs</h1><h2 id="Parallel-Construct"><a href="#Parallel-Construct" class="headerlink" title="Parallel Construct"></a>Parallel Construct</h2><p>clause mainly used to control # of threads</p>
+<p>struct –  包起來 w/ curly brackets</p>
+<p>只有 <strong><em>Parallel 這個 directive</em></strong> 在建thread，其他的directive是在分配事情</p>
+<ul>
+<li>If – 只在true時建thread，false壓成一個線程跑</li>
+<li>常會跟著看num_thread的作設定</li>
+<li>there’s implicit barrier at the end of construct</li>
+</ul>
+<p>e.g. </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line"><span class="comment">// Serial code</span></span><br><span class="line"><span class="keyword">int</span> A[<span class="number">10</span>], B[<span class="number">10</span>], C[<span class="number">10</span>]</span><br><span class="line">  </span><br><span class="line"><span class="comment">// Beginning of parallel section. Fork a team of threads</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel for num_threads(10)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">    A[i] = B[i] + C[i];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;<span class="comment">/* All threads join master thread and terminate */</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Work-Distribution-Construct"><a href="#Work-Distribution-Construct" class="headerlink" title="Work-Distribution Construct"></a>Work-Distribution Construct</h2><ul>
+<li>divides the execution of the enclosed code region among the threads that encounter it</li>
+<li>DO NOT launch new threads</li>
+<li>there’s iimplicit barrier at the end of construct</li>
+</ul>
+<p>3 分配方式![image-20230620220318645](/Users/joe/Library/Application Support/typora-user-images/image-20230620220318645.png)</p>
+<h3 id="1-Do-For-Directive"><a href="#1-Do-For-Directive" class="headerlink" title="1) Do/For Directive"></a>1) Do/For Directive</h3><ul>
+<li><p>shares <strong>iteration</strong> across the team</p>
+</li>
+<li><p>Represents a type of <strong>data parallelism</strong></p>
+</li>
+<li><p>Clauses:</p>
+<ul>
+<li>nowait: don’t wait for other threads </li>
+<li><strong>schedule</strong>: it has built-in scheduleing<ul>
+<li>STATIC:<br>Look divided into <strong>chunks</strong>, Round-Robin, chunk size big, hard to balance</li>
+<li>DYNAMIC:<br>when a thread finishes one chunk(default size:1), its <em>dynamically assigned another</em></li>
+<li><strong>★GUIDED</strong>:<br>~DYNAMIC, except chunk size↓ over time (<em>better load balancing</em>)</li>
+<li>RUNTIME: w/ env: $OMP_SCHEDULE</li>
+<li>AUTO:<br>delegated to the compiler, usually sucks! XD</li>
+</ul>
+</li>
+<li>ordered: Iteration must exec in serial program, usually useless XD</li>
+<li>collapses: flatten nested loops into 1D</li>
+</ul>
+</li>
+<li><p>Examples</p>
+<ul>
+<li><p>General</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#inclue <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUM_THREAD 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHUNKSIZE 100</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 1000</span></span><br><span class="line">main() &#123;</span><br><span class="line">  <span class="keyword">int</span> a[N], b[N], c[N];</span><br><span class="line">  <span class="comment">/*some Inits*/</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) a[i] = b[i] = i;</span><br><span class="line">  <span class="keyword">int</span> chunk = CHUNKSIZE;</span><br><span class="line">  <span class="keyword">int</span> thread = NUM_THREAD;</span><br><span class="line">  </span><br><span class="line">	<span class="meta">#<span class="meta-keyword">pragma</span> omp parallel num_thread(thread) shared(a, b, c) private(i)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp for schedule(dynamic, chunk) nowait</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) c[i] = a[i] + b[i];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Collapse</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel num_thread(6)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp for schedule(dynamic) collapse(2)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"i=%d, j=%d, thread=%d\n"</span>, i, j, omp_get_thread_num());</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>better &amp; balance performance</p>
+</li>
+<li><p>no data dependency among diff layers</p>
+</li>
+<li><p>in <a href="https://www.openmp.org/wp-content/uploads/OpenMPRefCard-5-2-web.pdf" target="_blank" rel="noopener">Manual</a>, there’s <strong>omp_set_max_active_levels</strong> to set</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-SECTIONS-Directive"><a href="#2-SECTIONS-Directive" class="headerlink" title="2) SECTIONS Directive"></a>2) SECTIONS Directive</h3><ul>
+<li><p>a section is a segment of code, which executed by a thread</p>
+</li>
+<li><p>section 不會被重覆做的</p>
+</li>
+<li><p>上面應該已經有講了parallel, already created the threads</p>
+</li>
+<li><p>available thread 會先做，然後看有幾個section就幾個thread被assign過去做事</p>
+</li>
+<li><p>mapping btw thread &amp; section is not able to control</p>
+</li>
+<li><p>Examples</p>
+<ul>
+<li>General<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">int</span> N = <span class="number">1000</span></span><br><span class="line">    <span class="keyword">int</span> a[N], b[N], c[N], d[N]</span><br><span class="line">      </span><br><span class="line">    #pragma omp parallel num_thread(<span class="number">2</span>) shared(a,b,c,d) <span class="keyword">private</span>(i)</span><br><span class="line">    &#123;</span><br><span class="line">      #pragma omp sections	<span class="comment">/*specify sections*/</span></span><br><span class="line">      &#123;</span><br><span class="line">        #pragma omp section	<span class="comment">/* 1st section */</span></span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) c[i] = a[i] + b[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">#<span class="meta-keyword">pragma</span> omp section	<span class="comment">/* 2nd section */</span></span></span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) d[i] = a[i] + b[i];</span><br><span class="line">        &#125;    </span><br><span class="line">      &#125; <span class="comment">/* end of sections */</span></span><br><span class="line">    &#125;	<span class="comment">/* end of parallel section */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### <span class="number">3</span>) SINGLE Directive</span><br><span class="line"></span><br><span class="line">- blocking</span><br><span class="line">- e.g. I/O, only <span class="keyword">requires</span> one thread to write, but I don<span class="number">'</span>t know which thread is assigned the task</span><br><span class="line">- blocking other no-doing threads, unless <span class="string">"`nowait`"</span> is added after <span class="string">"single"</span></span><br><span class="line">- 這樣就不用跳出目前的parallel region 然後再進去到另一個parallel region, 就用個Single 解決，然後code也比較好看</span><br><span class="line"></span><br><span class="line">- Examples</span><br><span class="line"></span><br><span class="line">  - General</span><br><span class="line">    ```cpp</span><br><span class="line">    <span class="keyword">int</span> input;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel num_thread(10) shared(input)</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// computing code that can be processed in parallel</span></span><br><span class="line">      <span class="meta">#<span class="meta-keyword">pragma</span> omp single	<span class="comment">/*specify section*/</span></span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;input);</span><br><span class="line">      &#125;	<span class="comment">/* end of serialized I/O call*/</span></span><br><span class="line">      </span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"input is %d"</span>, input);</span><br><span class="line">    &#125;	<span class="comment">/* end of parallel section */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Synchronization Construct</span><br><span class="line"></span><br><span class="line">pretty similar to Single</span><br><span class="line"></span><br><span class="line">### Directives</span><br><span class="line"></span><br><span class="line">master, barrier, `critical` (gross-grain), `atomic`(fine-grain; which is. like monitor in java, <span class="keyword">using</span> synchornized to a <span class="keyword">protected</span> var)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## LOCK Routines</span><br><span class="line"></span><br><span class="line">void omp_init_lock(), void omp_destroy_lock(), void omp_set_lock(), void tmp_unset_lock()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">omp_test_lock</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span></span><br><span class="line">### Examples Comparison</span><br><span class="line"></span><br><span class="line">The following <span class="number">2</span> segments of code are the same, <span class="keyword">and</span> there<span class="number">'</span>s still advantage of <span class="keyword">using</span> critical over lock:</span><br><span class="line"></span><br><span class="line">- no need to declare, init <span class="keyword">and</span> destroy a lock</span><br><span class="line">- you always have <span class="keyword">explicit</span> control over where your critical section ends</span><br><span class="line">- Less overhead with compiler assist</span><br><span class="line"></span><br><span class="line">#### With OpenMP</span><br><span class="line"></span><br><span class="line">```cpp</span><br><span class="line"><span class="meta">#inlcude <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line">main()&#123;</span><br><span class="line">  <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">  <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel </span></span><br><span class="line">  	<span class="meta">#<span class="meta-keyword">pragma</span> omp critical</span></span><br><span class="line">  		count++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="With-Manual-Call"><a href="#With-Manual-Call" class="headerlink" title="With Manual Call"></a>With Manual Call</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line">main()&#123;</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">omp_lock_t</span> *lock;</span><br><span class="line">  omp_init_lock(lock);</span><br><span class="line">  <span class="meta">#<span class="meta-keyword">pragma</span> omp parallel</span></span><br><span class="line">  &#123;</span><br><span class="line">    omp_set_lock(lock);</span><br><span class="line">    count++;</span><br><span class="line">    omp_unset_lock(lock);</span><br><span class="line">  &#125;</span><br><span class="line">  omp_destroy_lock(lock);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Clauses"><a href="#Clauses" class="headerlink" title="Clauses"></a>Clauses</h1><ul>
+<li><p>因為都是compiler gen的code, 所以openmp所見的code跟實際的差別會在要對data的scope了解</p>
+</li>
+<li><p>for data data scope</p>
+</li>
+<li><p>private variable or shared variable?<br>![image-20230621193839393](/Users/joe/Library/Application Support/typora-user-images/image-20230621193839393.png)</p>
+</li>
+<li><p>by default, a variable is shared-variable(global variable)</p>
+</li>
+<li><p>Types</p>
+<ul>
+<li><p>private, shared, </p>
+</li>
+<li><p>firstprivate: </p>
+<ul>
+<li><p><strong>Inited</strong> according to the value of their original objects prior to entry into the parallel region</p>
+</li>
+<li><p>e.g.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> va1 = <span class="number">10</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel firstprivate(var1)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"var1:%d"</span> var1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>all threads see var1 equals to 10, but different memory references, and are inited to 10</p>
+</li>
+</ul>
+</li>
+<li><p>lastprivate:</p>
+<ul>
+<li><p>with a copy from the <strong>LAST</strong> loop iteration or section to the original variable object</p>
+</li>
+<li><p>e.g.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var1 = <span class="number">10</span></span><br><span class="line">#pragma omp parallel lastprivate(va1) num_thread(<span class="number">10</span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> id = omp_get_thread_num();</span><br><span class="line">  sleep(id);</span><br><span class="line">  var1 = id;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"var1:%d"</span>, var1);</span><br></pre></td></tr></table></figure>
+
+<p>printed out var1 would be the result of the “slowest” thread</p>
+</li>
+</ul>
+</li>
+<li><p>default </p>
+<ul>
+<li>to specify a default scope for ALL variables in the parallel region</li>
+</ul>
+</li>
+<li><p><code>copyin</code>(var_list) VS <code>copyprivate</code>(var_list)</p>
+<ul>
+<li>copyin:<br>assigning the same variable value based on the instance from the master thread; as the “broadcast to worker threads from main thread”</li>
+<li>copyprivate<br><strong>broadcast values</strong> acquired by a single thread directly to all instances in the other threads; Associated with the SINGLE directive</li>
+</ul>
+</li>
+<li><p><code>reduction</code> (operator: var_list)</p>
+<ul>
+<li><p>a private copy for each list variable is created for each thread</p>
+</li>
+<li><p>performs a <strong>reduction on all riable instances</strong></p>
+</li>
+<li><p>Write the <strong>final result to the global shared copy</strong></p>
+</li>
+<li><p>e.g.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;omp.h&gt;</span></span></span><br><span class="line">main()&#123;</span><br><span class="line">  <span class="keyword">int</span> i = <span class="number">0</span>, n = <span class="number">10</span>, chunk = <span class="number">2</span>, result = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> a[<span class="number">100</span>], b[<span class="number">100</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) a[i] = b[i] = i;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> omp parallel default(shared) private(i) schedule(static, chunk) reduction(+:result)</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">      result = result + a[i] * b[i]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Final result = %f\n"</span>, result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>i 定是個local, 因為是for的index，當然是個local</p>
+<p>reduction用了，會把result這個default是share的作overwrite成private 的local variable ；<br>就是說這個for loop的結果要針對result這個值去作累加，也等同第9行 <code>result=result+</code>這個動作；但這個result其實是個private的variable ，是沒有share的。我們這邊是希望不同的thread只要負責某些index的乘法，然後各別有一個”partial sum”，然後離開了這個parallel region時候，再把這些partial sum加在一起，變成外面第12行的這個global的total的sum<br>至於怎麼分配的？就去看 schedule的策略以及那個chunk<br>中間也不需要再加critical section<br>ref <strong><a href="https://youtu.be/xk6xpx8HY6s?t=421" target="_blank" rel="noopener">Video</a></strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Summary-Table"><a href="#Summary-Table" class="headerlink" title="Summary Table"></a>Summary Table</h2><p><img src="https://p.ipic.vip/kw4gra.png" alt="image-20230621190410743"></p>
+<h1 id="Routines"><a href="#Routines" class="headerlink" title="Routines"></a>Routines</h1><p>generally, query infos, 就是一些輔助的fn calls</p>
+<p>e.g.<br><img src="https://p.ipic.vip/gk650m.png" alt="image-20230621191328781"></p>
+<h1 id="Other-Appendix"><a href="#Other-Appendix" class="headerlink" title="Other Appendix"></a>Other Appendix</h1><ul>
+<li><p>when compile scikit-learn</p>
+<p><img src="https://p.ipic.vip/g7j59e.png" alt="image-20230619232207661"></p>
+</li>
+</ul>
+<p>omp編程規範</p>
+<p>開源的多線程處理器</p>
+<p>gcc也是開源的</p>
+<p>編譯指導語句，這些表達示有一定的區別</p>
+<p>![image-20230620112406786](/Users/joe/Library/Application Support/typora-user-images/image-20230620112406786.png)</p>
+<p><img src="https://p.ipic.vip/qn52kg.png" alt="image-20230620112528350"></p>
+<p><img src="https://p.ipic.vip/xexgpx.png" alt="image-20230620112706782"></p>
+<h2 id="Prof-to-see-Perf"><a href="#Prof-to-see-Perf" class="headerlink" title="Prof to see Perf"></a>Prof to see Perf</h2><p>ref: </p>
+<p>1 <a href="https://theartofhpc.com/pcse/index.html" target="_blank" rel="noopener">https://theartofhpc.com/pcse/index.html</a></p>
+<p>2  <a href="https://youtu.be/xk6xpx8HY6s?t=421" target="_blank" rel="noopener">周志遠平行程式 9B</a></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2023/06/21/ParallelProg/MyNote%20-%20OpenMP%20Review/">http://yoursite.com/2023/06/21/ParallelProg/MyNote%20-%20OpenMP%20Review/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="next-post pull-right"><a href="/2023/06/21/ParallelProg/MyNote%20-%20OpenMP%20Cases/"><span>ParallelProg/MyNote - OpenMP Cases</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

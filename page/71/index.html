@@ -13,125 +13,177 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">395</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">69</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/26/AB_Test/RL_AB/Sec4%20Markov%20Decision%20Proccesses/">AB_Test/RL_AB/Sec4 Markov Decision Proccesses</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-26</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RL/">RL</a></span><div class="content"><h1 id="Markov-Decision-Processes-MDPs"><a href="#Markov-Decision-Processes-MDPs" class="headerlink" title="Markov Decision Processes (MDPs)"></a>Markov Decision Processes (MDPs)</h1><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><ul>
-<li>a kind of framework</li>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">399</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">70</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2018/12/03/ML/2018-12-03-File%20Size%20Limitation/">ML/2018-12-03-File Size Limitation</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-03</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/DevOps/">DevOps</a></span><div class="content"><h3 id="File-size-limitation"><a href="#File-size-limitation" class="headerlink" title="File size limitation"></a>File size limitation</h3><h1 id=""><a href="#" class="headerlink" title=""></a></h1></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/30/Math/2018-11-30-Conditional%20Probability/">Math/2018-11-30-Conditional Probability</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-30</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Probability/">Probability</a></span><div class="content"><p>Ref: <a href="https://zhuanlan.zhihu.com/p/35976057" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/35976057</a></p>
+<h2 id="事件的独立性"><a href="#事件的独立性" class="headerlink" title="事件的独立性"></a>事件的独立性</h2><p>根据定义，两个事件<em>A</em>和<em>B</em>是<em>独立的，</em>如果：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-024ebd7be22be3792d0eb85ee51e8453_hd.jpg" alt="img"></p>
+<p>使用条件概率，我们可以提供一个稍微不同的定义。以来：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-92899762e2fa58123284becb28237144_hd.jpg" alt="img"></p>
+<p>并且<em>P（A∩B）</em> = <em>P（A）P（B）</em>：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-3ed71d1794cce026ac70140049e6813e_hd.jpg" alt="img"></p>
+<p>只要<em>P（B）</em> &gt; 0，对于独立的<em>A</em>和<em>B</em>，我们有<em>P（A | B）</em> = <em>P（A）</em> ; 换言之，<em>B</em> 不会以任何方式影响<em>A</em>的概率。同样，我们可以证明对于<em>P（A）</em> &gt; 0，我们有<em>P（B | A）</em> = <em>P（B）</em>。</p>
+<p>独立也延伸到事件的补充。回想一下，<em>P（B ^ C）</em> 是<em>B</em>没有发生的概率，或1 - <em>P（B）</em> ; 由于条件概率服从通常的概率公理，我们有<em>P（B ^ C | A）</em> = 1 - <em>P（B | A）</em>。那么，如果<em>A</em>和<em>B</em>是独立的：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-b1171212d1b5d818d21fb9dda0a70a53_hd.jpg" alt="img"></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/26/AB_Test/RL_AB/Sec1%20BigPic/">AB_Test/RL_AB/Sec1 BigPic</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-26</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RL/">RL</a></span><div class="content"><h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><h2 id="Scenarios"><a href="#Scenarios" class="headerlink" title="Scenarios"></a>Scenarios</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3821hkre7j216u0mwwhm.jpg" alt="image-20201217143845241" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glquhgwd0pj31720juqqb.jpg" alt="image-20201217143902772" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3821icn90j217a0jydic.jpg" alt="image-20201217143913867" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glquhy7q5zj31700lykgu.jpg" alt="image-20201217143930653" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3821n4na1j21400o241m.jpg" alt="image-20201217143952142" style="zoom:50%;" />
+
+<ul>
+<li>Infant needs to walk from scratch, yet AI has no such limitation, since it can just copy the waling program from an other AI who already knows how to walk.</li>
+<li>Follow the law of accelerating returns</li>
 </ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381uf1kxhj20xk0g4myj.jpg" alt="image-20201229205217435" style="zoom:50%;" />
+<h2 id="Big-Pic"><a href="#Big-Pic" class="headerlink" title="Big Pic"></a>Big Pic</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3821pqhwdj20w20f6abf.jpg" alt="image-20201217144308123" style="zoom:50%;" />
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm50uer7jaj30sy0i2n1v.jpg" alt="image-20201229205659381" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm50whswfuj30we0iak02.jpg" alt="image-20201229205859709" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm50yjni88j30w40hc41l.jpg" alt="image-20201229210058158" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm50zz9wlpj30ua0hy0y8.jpg" alt="image-20201229210221158" style="zoom:50%;" />
+<h4 id="MAB"><a href="#MAB" class="headerlink" title="MAB"></a>MAB</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqumhf0o8j313k0o4tiv.jpg" alt="image-20201217144352146" style="zoom:50%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm511p9irej30w00hydrm.jpg" alt="image-20201229210400130" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glquni0b2ej312s0h8dp7.jpg" alt="image-20201217144450643" style="zoom:50%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm512hvnr1j30w20ia7i3.jpg" alt="image-20201229210445704" style="zoom:50%;" />
+<h4 id="MAB-gt-full-RL"><a href="#MAB-gt-full-RL" class="headerlink" title="MAB ==&gt;full  RL"></a>MAB ==&gt;full  RL</h4><h5 id="model-encodes-assumptions-and-relationships-btw-diff-components-of-a-system"><a href="#model-encodes-assumptions-and-relationships-btw-diff-components-of-a-system" class="headerlink" title="model: encodes assumptions and relationships btw diff components of a system"></a>model: encodes assumptions and relationships btw diff components of a system</h5><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqupnald2j312w0logvo.jpg" alt="image-20201217144654280" style="zoom:50%;" />
 
 
 
-<h2 id="Gridworld"><a href="#Gridworld" class="headerlink" title="Gridworld"></a>Gridworld</h2><ul>
-<li>grid world is the perfrct size env to learn about RL!</li>
+<h4 id="Approaches"><a href="#Approaches" class="headerlink" title="Approaches"></a>Approaches</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqurfxuhuj310y0m6q6y.jpg" alt="image-20201217144837964" style="zoom:50%;" />
+
+<ul>
+<li>fr 1 to 3 become more brittle and less robust</li>
+<li>With great power comes great caveats</li>
 </ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm513wq4v6j30xu0jcjz4.jpg" alt="image-20201229210607559" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqwkl1r0vj311g0ha0vu.jpg" alt="image-20201217155114333" style="zoom:50%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm51iv1hloj30yu0hsady.jpg" alt="image-20201229212029049" style="zoom:50%;" />
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3821xs7alj212i0la0vi.jpg" alt="image-20201217155259195" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqwmp55hhj30yw0mktnn.jpg" alt="image-20201217155316874" style="zoom:50%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm51klvqutj30xa0foq5v.jpg" alt="image-20201229212210402" style="zoom:50%;" />
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqwozk1fgj312q0kwafy.jpg" alt="image-20201217155528120" style="zoom:50%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52annhthj30y20iw49k.jpg" alt="image-20201229214711945" style="zoom:50%;" />
+<h2 id="Coding"><a href="#Coding" class="headerlink" title="Coding!"></a>Coding!</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqxdeqw58j30wq060whm.jpg" alt="image-20201217160011900" style="zoom:50%;" />
 
 
 
-<h3 id="Terms"><a href="#Terms" class="headerlink" title="Terms"></a>Terms</h3><h5 id="Episode"><a href="#Episode" class="headerlink" title="Episode"></a>Episode</h5><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52rqwacjj30xu0gydml.jpg" alt="image-20201229220337651" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h382210bsrj20ww0kmwfr.jpg" alt="image-20201217160104084" style="zoom:50%;" />
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52sr29lhj30vg0iaaie.jpg" alt="image-20201229220435948" style="zoom:50%;" />
+<h2 id="Warm-up"><a href="#Warm-up" class="headerlink" title="Warm up!"></a>Warm up!</h2><h3 id="Questions"><a href="#Questions" class="headerlink" title="Questions"></a>Questions</h3><h4 id="Joint-VS-Conditional-dist"><a href="#Joint-VS-Conditional-dist" class="headerlink" title="Joint VS. Conditional dist."></a>Joint VS. Conditional dist.</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqxdrxrvij312g0l0jx3.jpg" alt="image-20201217161917862" style="zoom:50%;" />
 
-
-
-<h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52umyc0tj30ve0hsn16.jpg" alt="image-20201229220624845" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqxe41i3bj30y40i8mzw.jpg" alt="image-20201217161937499" style="zoom:50%;" />
 
 
 
-<h3 id="Policy"><a href="#Policy" class="headerlink" title="Policy"></a>Policy</h3><ul>
-<li>Acts as the agents brain and tells it how to map states to actions</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52wn25hoj30ua0j2whi.jpg" alt="image-20201229220819982" style="zoom:50%;" />
+<h4 id="Marginalization"><a href="#Marginalization" class="headerlink" title="Marginalization"></a>Marginalization</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqxep2qe7j30z00iydjl.jpg" alt="image-20201217162011380" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqxff0dlsj312m0k4dku.jpg" alt="image-20201217162052839" style="zoom:50%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52ypmfvzj30we0hkaf3.jpg" alt="image-20201229221019687" style="zoom:50%;" />
+<h4 id="E-X-expected-value-similar-to-marginalization"><a href="#E-X-expected-value-similar-to-marginalization" class="headerlink" title="E[X] - expected value, similar to marginalization"></a>E[X] - expected value, similar to marginalization</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqxoi013hj30wi0kin2f.jpg" alt="image-20201217162936412" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38224kodkj210a0j63zl.jpg" alt="image-20201217163039697" style="zoom:50%;" />
 
 
 
-<h5 id="Action-Space"><a href="#Action-Space" class="headerlink" title="Action Space"></a>Action Space</h5><ul>
-<li>the set of all possible actions</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52zxmratj30xk0jon13.jpg" alt="image-20201229221129902" style="zoom:50%;" />
+
+
+<h4 id="E-X-Y-Conditional-Expectation"><a href="#E-X-Y-Conditional-Expectation" class="headerlink" title="E(X|Y) - Conditional Expectation"></a>E(X|Y) - Conditional Expectation</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38228hwg9j20r60ecjrr.jpg" alt="image-20201217163106768" style="zoom:33%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqxqmw0e8j312e0m043q.jpg" alt="image-20201217163123244" style="zoom:50%;" />
 
 
 
 <ul>
-<li>92.5% prob to the action stored in the dict; 2.5% to the rest of the actions in the action space <ul>
-<li><strong>action space</strong>: analogous to the state space, is the set of all possible actions</li>
+<li>Analogous to the prev expectation</li>
+<li>the RV is still X, but now we take the integral over x times P of X given Y</li>
+<li>In other words, use the conditional dist. instead of marginal distribution</li>
 </ul>
-</li>
-</ul>
-<h5 id="State-space"><a href="#State-space" class="headerlink" title="State space"></a>State space</h5><ul>
-<li>the set of all possible states</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381uru88gj20om0bmjrz.jpg" alt="image-20201229221826721" style="zoom:50%;" />
+<h4 id="E-g-x-Expected-value-of-a-function"><a href="#E-g-x-Expected-value-of-a-function" class="headerlink" title="E[g(x)] - Expected value of a function"></a>E[g(x)] - Expected value of a function</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr89j3uvwj30x80lsq84.jpg" alt="image-20201217223548078" style="zoom:50%;" />
 
 
 
-
-
-<h2 id="Choosing-Rewards"><a href="#Choosing-Rewards" class="headerlink" title="Choosing Rewards"></a>Choosing Rewards</h2><ul>
-<li>My job: to design the reward in such a way that it results in the behavior that I want from my agent</li>
-<li>get an agent to solve maze</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381uv2u83j20ya0j4adg.jpg" alt="image-20201229222306498" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8a3tdz8j31100kugri.jpg" alt="image-20201217223622091" style="zoom:50%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm53cpsjvlj30xo0jen86.jpg" alt="image-20201229222346858" style="zoom:50%;" />
+<h6 id="For-the-plain-Expected-Value-the-g-x-is-just-the-Identity"><a href="#For-the-plain-Expected-Value-the-g-x-is-just-the-Identity" class="headerlink" title="For the plain Expected Value, the g(x) is just the Identity"></a>For the plain Expected Value, the g(x) is just the Identity</h6><h4 id="E-cX-Y-for-linear-operator"><a href="#E-cX-Y-for-linear-operator" class="headerlink" title="E(cX + Y) = ?  for linear operator"></a>E(cX + Y) = ?  for linear operator</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8cs9y2gj30ug0ek41w.jpg" alt="image-20201217223856211" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8cfs0p7j30zu0f6gpl.jpg" alt="image-20201217223835734" style="zoom:50%;" />
 
 
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h4 id="Expected-value-of-X-–-gt-mean-of-X"><a href="#Expected-value-of-X-–-gt-mean-of-X" class="headerlink" title="Expected value of X –&gt; mean of X"></a>Expected value of X –&gt; mean of X</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3822brw5cj20vk0d8dge.jpg" alt="image-20201217224000073" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8e5z0c6j30ns0ckmyf.jpg" alt="image-20201217224016329" style="zoom:50%;" />
 
 <ul>
-<li>ME: to tructure my rewards in a way that is conducive to the agents solving the env</li>
+<li>The expected value of X refers to the true mean of X</li>
 </ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381v1n35pj20y00iaq66.jpg" alt="image-20201229222616031" style="zoom:50%;" />
+<h4 id="Monte-Carlo-as-estimate-E-x-lt-–-Sample-mean"><a href="#Monte-Carlo-as-estimate-E-x-lt-–-Sample-mean" class="headerlink" title="Monte Carlo as estimate E(x) &lt;– Sample mean"></a>Monte Carlo as estimate E(x) &lt;– Sample mean</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8hxlsrej30zs0lcjyb.jpg" alt="image-20201217224353200" style="zoom:50%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381vkv77lj20wm0jqq4k.jpg" alt="image-20201229222643355" style="zoom:50%;" />
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8kmm1ctj30yc0la0y4.jpg" alt="image-20201217224628993"></p>
+<h3 id="Bayes-Rule"><a href="#Bayes-Rule" class="headerlink" title="Bayes Rule"></a>Bayes Rule</h3><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8rlt97ij30qe0i2tb5.jpg" alt="image-20201217225309928"></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8tos1l1j30zo0lowke.jpg" alt="image-20201217225510620" style="zoom:50%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm53hesbshj30xi0jk0yw.jpg" alt="image-20201229222818176" style="zoom:50%;" />
+<h6 id="Later-can-b-dealt-with-elegantly-without-having-to-resort-to-Monte-Carlo-Methods"><a href="#Later-can-b-dealt-with-elegantly-without-having-to-resort-to-Monte-Carlo-Methods" class="headerlink" title="Later can b dealt with elegantly without having to resort to Monte Carlo Methods"></a>Later can b dealt with elegantly without having to resort to Monte Carlo Methods</h6><h4 id="MSE"><a href="#MSE" class="headerlink" title="MSE"></a>MSE</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8w9n3ogj30zw0lctek.jpg" alt="image-20201217225739679" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8wl0sugj30w20gead7.jpg" alt="image-20201217225757922" style="zoom:50%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm53hok2b2j30x80k2q93.jpg" alt="image-20201229222833511" style="zoom:50%;" />
+<h4 id="Closed-Form-or-Analytical-Solution-and-GD"><a href="#Closed-Form-or-Analytical-Solution-and-GD" class="headerlink" title="Closed Form or Analytical Solution and GD"></a>Closed Form or Analytical Solution and GD</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8x0y5y5j30ym0gc0w6.jpg" alt="image-20201217225823562" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8y6nm3lj310y0igwjh.jpg" alt="image-20201217225930243" style="zoom:50%;" />
 
 
 
-<h2 id="The-Markov-Property"><a href="#The-Markov-Property" class="headerlink" title="The Markov Property"></a>The Markov Property</h2><h2 id="Markov-Decision-Processes-MDPs-1"><a href="#Markov-Decision-Processes-MDPs-1" class="headerlink" title="Markov Decision Processes (MDPs)"></a>Markov Decision Processes (MDPs)</h2><h2 id="Future-Rewards"><a href="#Future-Rewards" class="headerlink" title="Future Rewards"></a>Future Rewards</h2><h2 id="Value-Functions"><a href="#Value-Functions" class="headerlink" title="Value Functions"></a>Value Functions</h2><h2 id="The-Bellman-Equation"><a href="#The-Bellman-Equation" class="headerlink" title="The Bellman Equation"></a>The Bellman Equation</h2><h2 id="Optimal-Policy-amp-Optimal-Function"><a href="#Optimal-Policy-amp-Optimal-Function" class="headerlink" title="Optimal Policy &amp; Optimal Function"></a>Optimal Policy &amp; Optimal Function</h2><h2 id="Summary-of-MDP"><a href="#Summary-of-MDP" class="headerlink" title="Summary of MDP"></a>Summary of MDP</h2></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/26/AB_Test/RL_AB/Sec3%20High%20Level%20Overview%20of%20RL/">AB_Test/RL_AB/Sec3 High Level Overview of RL</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-26</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RL/">RL</a></span><div class="content"><h1 id="High-Level-of-RL"><a href="#High-Level-of-RL" class="headerlink" title="High Level of RL"></a>High Level of RL</h1><h2 id="What’s-RL"><a href="#What’s-RL" class="headerlink" title="What’s RL?"></a>What’s RL?</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr9q2h3ejj30xe07y0ut.jpg" alt="image-20201217232618652" style="zoom:50%;" />
+<h4 id="Descent-VS-Ascent"><a href="#Descent-VS-Ascent" class="headerlink" title="Descent VS. Ascent"></a>Descent VS. Ascent</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr8zljzmnj311g0j4n2a.jpg" alt="image-20201217230051996" style="zoom:50%;" />
+
+
+
+<h4 id="Matrix-Form-instead-of-GD-for-“MSE-w-r-t-W”"><a href="#Matrix-Form-instead-of-GD-for-“MSE-w-r-t-W”" class="headerlink" title="Matrix Form instead of GD for “MSE w.r.t W”"></a>Matrix Form instead of GD for “MSE w.r.t W”</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr90ahfevj30s80iemzf.jpg" alt="image-20201217230131384" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr925c17tj311e0ic0x1.jpg" alt="image-20201217230318749" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3822hv66kj20zy0ji0ux.jpg" alt="image-20201217230507397" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3822fiw54j210u0j2q4k.jpg" alt="image-20201217230659583" style="zoom:50%;" />
+
+
+
+
+
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/26/AB_Test/RL_AB/Sec3%20High%20Level%20Overview%20of%20RL/">AB_Test/RL_AB/Sec3 High Level Overview of RL</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-26</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RL/">RL</a></span><div class="content"><h1 id="High-Level-of-RL"><a href="#High-Level-of-RL" class="headerlink" title="High Level of RL"></a>High Level of RL</h1><h2 id="What’s-RL"><a href="#What’s-RL" class="headerlink" title="What’s RL?"></a>What’s RL?</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glr9q2h3ejj30xe07y0ut.jpg" alt="image-20201217232618652" style="zoom:50%;" />
 
 
 
@@ -252,140 +304,125 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
 <li>Next, the Contextual bandit problem, where instead of just having to choose an action, also have to pay attention to the state, which help us have more fine grained control on which action to choose!</li>
 <li>Finally, some foreshadowing and know sittuation where instead of just random states which are not related to one another in terms of predicting a reward, we can have states which are interdependent!</li>
 </ul>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/23/DevOps/2018-11-23-C++%20ReArrange/">DevOps/2018-11-23-C++ ReArrange</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/C/">C++</a></span><div class="content"><h3 id="1-cout-of-char"><a href="#1-cout-of-char" class="headerlink" title="1.  cout of char*"></a>1.  cout of <code>char*</code></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *str = <span class="string">"hellogogo"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *pstr = str;</span><br><span class="line">  <span class="built_in">cout</span> <span class="string">"The address of pstr is: "</span> &lt;&lt; pstr &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------</span><br><span class="line"> <span class="string">"The address of pstr is: hellogogo"</span></span><br></pre></td></tr></table></figure>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/26/AB_Test/RL_AB/Sec4%20Markov%20Decision%20Proccesses/">AB_Test/RL_AB/Sec4 Markov Decision Proccesses</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-26</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RL/">RL</a></span><div class="content"><h1 id="Markov-Decision-Processes-MDPs"><a href="#Markov-Decision-Processes-MDPs" class="headerlink" title="Markov Decision Processes (MDPs)"></a>Markov Decision Processes (MDPs)</h1><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><ul>
+<li>a kind of framework</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381uf1kxhj20xk0g4myj.jpg" alt="image-20201229205217435" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm50uer7jaj30sy0i2n1v.jpg" alt="image-20201229205659381" style="zoom:50%;" />
 
 
 
-<h3 id="2-compiled-by-c-or-c"><a href="#2-compiled-by-c-or-c" class="headerlink" title="2. compiled by c or c++"></a>2. compiled by c or c++</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cpluscplu</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"cpp"</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	print(<span class="string">"c"</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm50whswfuj30we0iak02.jpg" alt="image-20201229205859709" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm50yjni88j30w40hc41l.jpg" alt="image-20201229210058158" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm50zz9wlpj30ua0hy0y8.jpg" alt="image-20201229210221158" style="zoom:50%;" />
 
 
 
-<h4 id="3-compiled-time-OP-symbol"><a href="#3-compiled-time-OP-symbol" class="headerlink" title="3. compiled time OP symbol"></a>3. compiled time OP symbol</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> id[<span class="keyword">sizeof</span>(<span class="keyword">unsigned</span> <span class="keyword">long</span>)];</span><br><span class="line"></span><br><span class="line"><span class="comment">// Compiled OK, cuz sizeof is COMPILING time symbol, which is determined in compile, regarded as machine-dependent constant.</span></span><br></pre></td></tr></table></figure>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm511p9irej30w00hydrm.jpg" alt="image-20201229210400130" style="zoom:50%;" />
 
 
 
-<h3 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h3></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/23/AB_Test/Bayesian_ML/Sec7%20-%20Conjugate%20Priors%20&amp;%20Using%20Ads%20&amp;%20CPM%20&amp;%20CPC..etc/">AB_Test/Bayesian_ML/Sec7 - Conjugate Priors &amp; Using Ads &amp; CPM &amp; CPC..etc</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BayesianML/">BayesianML</a></span><div class="content"><h1 id="Conjugate-Priors-amp-Using-Ads-amp-CPM-amp-CPC"><a href="#Conjugate-Priors-amp-Using-Ads-amp-CPM-amp-CPC" class="headerlink" title="Conjugate Priors &amp; Using Ads &amp; CPM &amp; CPC"></a>Conjugate Priors &amp; Using Ads &amp; CPM &amp; CPC</h1><h6 id="CPM-Cost-Per-1000-Impression"><a href="#CPM-Cost-Per-1000-Impression" class="headerlink" title="CPM: Cost Per 1000 Impression"></a>CPM: Cost Per 1000 Impression</h6><h6 id="CPC-Cost-Per-Click"><a href="#CPC-Cost-Per-Click" class="headerlink" title="CPC: Cost Per Click"></a>CPC: Cost Per Click</h6><h2 id="Exercises-on-Conjugate-Priors"><a href="#Exercises-on-Conjugate-Priors" class="headerlink" title="Exercises on Conjugate Priors"></a>Exercises on Conjugate Priors</h2><h3 id="GOAL"><a href="#GOAL" class="headerlink" title="GOAL:"></a>GOAL:</h3><blockquote>
-<p>Thompson Sampling / modifying posterior distribution for the params in question in REAL-TIME</p>
-</blockquote>
-<p>–&gt; Every sample I collect, I can update my beliefs and my estimate of the parameter becomes better! </p>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli0r9g229j30zy0jkn1q.jpg" alt="image-20201209232556997"></p>
-<p>==&gt; diff from traditional AB-Testing where I have to run the whole test and only when it’s finished, can I answer questions</p>
-<h3 id="Center-Conjugate-Priors"><a href="#Center-Conjugate-Priors" class="headerlink" title="Center: Conjugate Priors"></a>Center: Conjugate Priors</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381me8qy8j211a0lktbj.jpg" alt="image-20201209232903564" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm512hvnr1j30w20ia7i3.jpg" alt="image-20201229210445704" style="zoom:50%;" />
+
+
+
+<h2 id="Gridworld"><a href="#Gridworld" class="headerlink" title="Gridworld"></a>Gridworld</h2><ul>
+<li>grid world is the perfrct size env to learn about RL!</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm513wq4v6j30xu0jcjz4.jpg" alt="image-20201229210607559" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm51iv1hloj30yu0hsady.jpg" alt="image-20201229212029049" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm51klvqutj30xa0foq5v.jpg" alt="image-20201229212210402" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52annhthj30y20iw49k.jpg" alt="image-20201229214711945" style="zoom:50%;" />
+
+
+
+<h3 id="Terms"><a href="#Terms" class="headerlink" title="Terms"></a>Terms</h3><h5 id="Episode"><a href="#Episode" class="headerlink" title="Episode"></a>Episode</h5><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52rqwacjj30xu0gydml.jpg" alt="image-20201229220337651" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52sr29lhj30vg0iaaie.jpg" alt="image-20201229220435948" style="zoom:50%;" />
+
+
+
+<h3 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52umyc0tj30ve0hsn16.jpg" alt="image-20201229220624845" style="zoom:50%;" />
+
+
+
+<h3 id="Policy"><a href="#Policy" class="headerlink" title="Policy"></a>Policy</h3><ul>
+<li>Acts as the agents brain and tells it how to map states to actions</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52wn25hoj30ua0j2whi.jpg" alt="image-20201229220819982" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52ypmfvzj30we0hkaf3.jpg" alt="image-20201229221019687" style="zoom:50%;" />
+
+
+
+<h5 id="Action-Space"><a href="#Action-Space" class="headerlink" title="Action Space"></a>Action Space</h5><ul>
+<li>the set of all possible actions</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm52zxmratj30xk0jon13.jpg" alt="image-20201229221129902" style="zoom:50%;" />
+
+
 
 <ul>
-<li>This allows me to update the parameters of the posterior in closed form which usually just involves some + and *</li>
-<li>In addition, since AB-Testing on E-commerce, ==&gt; CTR &amp; Conversion Rate<ul>
-<li>Likelihood : Bernoulli</li>
-<li>Conjugate prior: Beta distribution</li>
+<li>92.5% prob to the action stored in the dict; 2.5% to the rest of the actions in the action space <ul>
+<li><strong>action space</strong>: analogous to the state space, is the set of all possible actions</li>
 </ul>
 </li>
 </ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli0wnlj9fj311y0j6n2u.jpg" alt="image-20201209233108686" style="zoom:50%;" />
+<h5 id="State-space"><a href="#State-space" class="headerlink" title="State space"></a>State space</h5><ul>
+<li>the set of all possible states</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381uru88gj20om0bmjrz.jpg" alt="image-20201229221826721" style="zoom:50%;" />
 
 
 
-<h3 id="Categorical-Distribution"><a href="#Categorical-Distribution" class="headerlink" title="Categorical Distribution"></a>Categorical Distribution</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli13cq0rkj30t80jg444.jpg" alt="image-20201209233735492" style="zoom:50%;" />
 
-<h5 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h5><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli2ckekjgj30yc03cjs3.jpg" alt="image-20201210002102375" style="zoom:50%;" />
 
-<h5 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h5><h3 id="Gaussian-Likelihood"><a href="#Gaussian-Likelihood" class="headerlink" title="Gaussian Likelihood"></a>Gaussian Likelihood</h3><p> <strong>★★ If the reward is Gaussian distributed then the likelihood will be Gaussian</strong></p>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli2f5uwv0j31280h2tf9.jpg" alt="image-20201210002333117" style="zoom:50%;" />
+<h2 id="Choosing-Rewards"><a href="#Choosing-Rewards" class="headerlink" title="Choosing Rewards"></a>Choosing Rewards</h2><ul>
+<li>My job: to design the reward in such a way that it results in the behavior that I want from my agent</li>
+<li>get an agent to solve maze</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381uv2u83j20ya0j4adg.jpg" alt="image-20201229222306498" style="zoom:50%;" />
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli2g0o2z4j312a0ik11z.jpg" alt="image-20201210002422044" style="zoom:50%;" />
 
 
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm53cpsjvlj30xo0jen86.jpg" alt="image-20201229222346858" style="zoom:50%;" />
 
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381mhgpp4j20zy0m8mys.jpg" alt="image-20201210002508566" style="zoom:50%;" />
 
 
+<ul>
+<li>ME: to tructure my rewards in a way that is conducive to the agents solving the env</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381v1n35pj20y00iaq66.jpg" alt="image-20201229222616031" style="zoom:50%;" />
 
 
 
-<h2 id="Exercise-Die-Roll"><a href="#Exercise-Die-Roll" class="headerlink" title="Exercise: Die Roll"></a>Exercise: Die Roll</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli303xteqj30t60dcjy6.jpg" alt="image-20201210004339948" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381vkv77lj20wm0jqq4k.jpg" alt="image-20201229222643355" style="zoom:50%;" />
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli33h92nej30wg0kq0wv.jpg" alt="image-20201210004654703" style="zoom:50%;" />
 
 
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm53hesbshj30xi0jk0yw.jpg" alt="image-20201229222818176" style="zoom:50%;" />
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli33s7268j30wc0kk451.jpg" alt="image-20201210004712934" style="zoom:50%;" />
 
 
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm53hok2b2j30x80k2q93.jpg" alt="image-20201229222833511" style="zoom:50%;" />
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli344r6mbj30xw0kotcy.jpg" alt="image-20201210004732610" style="zoom:50%;" />
 
 
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli34co7zjj30xe0kwacv.jpg" alt="image-20201210004745104" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli34knbtcj30x80lawk3.jpg" alt="image-20201210004758298" style="zoom:50%;" />
-
-
-
-
-
-<h2 id="Obtaining-an-infinite-amount-of-practices"><a href="#Obtaining-an-infinite-amount-of-practices" class="headerlink" title="Obtaining an infinite amount of practices"></a>Obtaining an infinite amount of practices</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli35rq3kxj310u0a00vk.jpg" alt="image-20201210004906432" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli363h9o1j30y606yjsz.jpg" alt="image-20201210004925792" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli36mn5xpj310o0kodm0.jpg" alt="image-20201210004956807" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli378m52sj311k0dcdju.jpg" alt="image-20201210005031840" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gli38g9rd7j30wy0l27au.jpg" alt="image-20201210005141584" style="zoom:50%;" />
-
-
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkzj586qvcj30zq0isdmj.jpg" alt="image-20201123233626957" style="zoom:50%;" />
-
-
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkzj5wjes0j310u0lg43y.jpg" alt="image-20201123233705071" style="zoom:50%;" />
-
-
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkzj6ecnppj310o0ecjui.jpg" alt="image-20201123233734442" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkzjd3t9x1j30yg0j846i.jpg" alt="image-20201123234400729" style="zoom:50%;" />
-
-
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381mm36kjj20za06ojs8.jpg" alt="image-20201123234542014" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkzjf9bkckj312a0li7h3.jpg" alt="image-20201123234604809" style="zoom:50%;" />
-
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/11/20/DevOps/2018-11-20-Source-Tree-Error/">DevOps/2018-11-20-Source-Tree-Error</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/DevOps/">DevOps</a></span><div class="content"><p>Error: The following untracked working tree files would be overwritten by checkout:</p>
-<p>Sol:</p>
-<p>​    開啟SourceTree通過命令列，進入本地版本倉庫目錄下，直接執行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean -d -fx</span><br></pre></td></tr></table></figure>
-
-<p>即可。可能很多人都不明白-d，-fx到底是啥意思，其實git clean -d -fx表示：刪除 一些 沒有 git add 的 檔案；</p>
-<p>​    git clean 引數 </p>
-<p>​    -n 顯示將要刪除的檔案和目錄；</p>
-<p>​    -x —–刪除忽略檔案已經對git來說不識別的檔案</p>
-<p>​    -d —–刪除未被新增到git的路徑中的檔案</p>
-<p>​    -f —–強制執行</p>
-<p>​    git clean -n</p>
-<p>​    git clean -df</p>
-<p>​    git clean -f</p>
-</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/70/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/70/">70</a><span class="page-number current">71</span><a class="page-number" href="/page/72/">72</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/">79</a><a class="extend next" rel="next" href="/page/72/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+<h2 id="The-Markov-Property"><a href="#The-Markov-Property" class="headerlink" title="The Markov Property"></a>The Markov Property</h2><h2 id="Markov-Decision-Processes-MDPs-1"><a href="#Markov-Decision-Processes-MDPs-1" class="headerlink" title="Markov Decision Processes (MDPs)"></a>Markov Decision Processes (MDPs)</h2><h2 id="Future-Rewards"><a href="#Future-Rewards" class="headerlink" title="Future Rewards"></a>Future Rewards</h2><h2 id="Value-Functions"><a href="#Value-Functions" class="headerlink" title="Value Functions"></a>Value Functions</h2><h2 id="The-Bellman-Equation"><a href="#The-Bellman-Equation" class="headerlink" title="The Bellman Equation"></a>The Bellman Equation</h2><h2 id="Optimal-Policy-amp-Optimal-Function"><a href="#Optimal-Policy-amp-Optimal-Function" class="headerlink" title="Optimal Policy &amp; Optimal Function"></a>Optimal Policy &amp; Optimal Function</h2><h2 id="Summary-of-MDP"><a href="#Summary-of-MDP" class="headerlink" title="Summary of MDP"></a>Summary of MDP</h2></div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/70/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/70/">70</a><span class="page-number current">71</span><a class="page-number" href="/page/72/">72</a><span class="space">&hellip;</span><a class="page-number" href="/page/80/">80</a><a class="extend next" rel="next" href="/page/72/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')

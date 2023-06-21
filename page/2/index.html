@@ -13,126 +13,71 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">395</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">69</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/17/ParallelProg/Shared-Memory%20Programming%20-%20OpenMP/">ParallelProg/Shared-Memory Programming - OpenMP</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-17</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></span><div class="content"><p>[toc]</p>
-<h1 id="Shared-memory-Programming-–-OpenMP"><a href="#Shared-memory-Programming-–-OpenMP" class="headerlink" title="Shared-memory Programming – OpenMP"></a>Shared-memory Programming – OpenMP</h1><p>memory’s address the same for all process units</p>
-<p><img src="https://p.ipic.vip/yqkg9g.png" alt="image-20230613204911655"></p>
-<h4 id="Thread-VS-Processes"><a href="#Thread-VS-Processes" class="headerlink" title="Thread VS Processes"></a>Thread VS Processes</h4><p><img src="https://p.ipic.vip/sax3xi.png" alt="image-20230613205233935"></p>
-<p><img src="https://p.ipic.vip/mljwld.png" alt="image-20230613205550640"></p>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">399</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">70</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/25/Concurrency/2023-05-25%20HighConcurrency%20VS%20MultiThreading/">Concurrency/2023-05-25 HighConcurrency VS MultiThreading</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-25</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Concurrency/">Concurrency</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Concurrency/">Concurrency</a></span><div class="content"><h1 id="High-Concurrency"><a href="#High-Concurrency" class="headerlink" title="High Concurrency"></a>High Concurrency</h1><p>High concurrency refers to a situation where a system encounters a large number of operation requests in a short period of time, mainly occurring in web systems with concentrated access and receiving a large number of requests (e.g., ticket grabbing on 12306; Second-Kill event). This situation leads to the system performing a large number of operations during a pretty short time, such as requests on services, apps, and database operations.</p>
+<h3 id="Performance-Metrics"><a href="#Performance-Metrics" class="headerlink" title="Performance Metrics"></a>Performance Metrics</h3><p>including: response time, throughput, queries per second (QPS), and concurrent user count.</p>
 <ul>
-<li><code>MPI</code> also works on only 1 single machine, but since it still at least requires 1 time memcopy (not deep into network layer b.c. lib’s optimization), so still slower than <code>pthread</code></li>
+<li><code>Response Time</code><br> The time it takes for the system to respond to a request. For example, if it takes 200ms for the system to process an HTTP request, that 200ms is the system’s response time. </li>
+<li><code>Throughput</code><br> The number of requests processed per unit of time. </li>
+<li><code>Queries Per Second (QPS)</code> The # of requests responded to per second. In the Internet domain, this metric is not as clearly distinguished from throughput. </li>
+<li><code>Concurrent User Count</code> The number of users who can simultaneously use the system’s features normally. E.g., in an instant messaging system, the number of users online at the same time to some extent represents the system’s concurrent user count.</li>
 </ul>
-<h1 id="OpenMP-w-compiler’s-help"><a href="#OpenMP-w-compiler’s-help" class="headerlink" title="OpenMP, w/ compiler’s help"></a>OpenMP, w/ compiler’s help</h1><ul>
-<li>using compiler’s way to generate code</li>
+<h3 id="High-Concurrency-Solutions"><a href="#High-Concurrency-Solutions" class="headerlink" title="High Concurrency Solutions"></a>High Concurrency Solutions</h3><ul>
+<li>Use CDN for static resources to handle image file access.</li>
+<li>Distributed caching: Redis, Memcached, etc.</li>
+<li>Message queue middleware: ActiveMQ, etc., to solve the asynchronous processing capability of a large number of messages.</li>
+<li>Application splitting: A single project is split into multiple projects for deployment, using Dubbo to solve communication between multiple projects.</li>
+<li>Vertical and horizontal database splitting (sharding).</li>
+<li>Database read-write separation to solve large data query problems.</li>
+<li>Use NoSQL, such as MongoDB, in combination with MySQL.</li>
+<li>Establish service degradation and flow control mechanisms under high data access conditions.</li>
 </ul>
-<p>![image-20230614175006357](/Users/joe/Library/Application Support/typora-user-images/image-20230614175006357.png)</p>
+<p>In sum, high concurrency refers to a system’s ability to handle a large number of concurrent requests or transactions simultaneously. It refers to the system’s capability to process multiple user requests or transactions at the same time. High concurrency performance is an important measure of a system’s load capacity and responsiveness. Multithreading is often used as a common technique for achieving high concurrency. By using multithreading, concurrent requests or transactions can be assigned to different threads for processing, thus enhancing the system’s concurrent processing capability.</p>
+<h1 id="Multithreading"><a href="#Multithreading" class="headerlink" title="Multithreading"></a>Multithreading</h1><p>A program can have multiple threads running in parallel internally. The execution of a thread can be considered as a CPU executing the program. When a program runs with multiple threads, it’s as if multiple CPUs are executing the program simultaneously.</p>
+<p>In summary, multithreading can be understood as follows: <u>Multithreading is a programming method for handling high concurrency, meaning that concurrency needs to be implemented using multiple threads,</u> e.g. 1) Stress-tested Aliyun’s audio generation API with C++’s multithread library<br>2) Adopted multithreading &amp; coroutine to build “Automatic Video Generation System” and “Async Web Service for Adobe Application”, from my experiences.</p>
+<p>In sum, multi-threading refers to the execution of multiple threads simultaneously within a program, where each thread can run independently and perform different tasks. The main purpose of multithreading is to improve program performance and resource utilization. By dividing tasks into multiple threads, the parallel computing capabilities of multi-core processors can be fully utilized, enabling tasks to be executed in parallel. Multithreading is commonly used in scenarios involving simultaneous execution of multiple tasks, I/O-intensive operations, and parallel computing.</p>
+<h1 id="Relationship-btw-The-2-Terms"><a href="#Relationship-btw-The-2-Terms" class="headerlink" title="Relationship btw The 2 Terms"></a>Relationship btw The 2 Terms</h1><p>Though they are usually mentioned together and are related, giving the impression that they are equal, but in fact, <code>high concurrency ≠ multithreading</code> ,</p>
+<p>Therefore, it can be said that multithreading is one of the commonly used techniques for achieving high concurrency. <u>However</u>, high concurrency performance is also influenced by other factors such as system architecture, resource management, locking mechanisms, and algorithm design. Hence, multithreading and high concurrency are related but not exactly the same concepts..</p>
+<h3 id="Scenarios"><a href="#Scenarios" class="headerlink" title="Scenarios"></a>Scenarios</h3><ol>
+<li>High concurrency scenarios –  When we have a Java web project, and after it goes live, a large number of users log in to the system, which is considered high concurrency. For the system, there will be <u>a large number of requests coming in</u>, each request corresponding to a thread, and each thread is independent (Tomcat supports 200-300). Although it is the same code, it is executed in different threads without affecting each other.</li>
+<li>Multithreading scenarios – Multithreading is used either for <u>asynchronous tasks</u> or for running <u>subtasks</u>. Each user thread is the main thread. Asynchronous tasks involve opening another thread. The purpose of running subtasks is to handle large data sets. Single-threaded processing would be slow, so the task is split into multiple subtasks, and multiple threads run them, making it faster.</li>
+</ol>
+<p>ref: </p>
+<p><a href="https://cloud.tencent.com/developer/article/1477818" target="_blank" rel="noopener">怎么理解分布式、高并发、多线程？（含面试题和答案解析）-腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
+<p><a href="https://juejin.cn/post/6964748689382326280" target="_blank" rel="noopener">美团面试官：哟！你对高并发与多线程的解决思路了解的还挺深！ - 掘金 (juejin.cn)</a></p>
+<p><a href="https://juejin.cn/post/6947966434748301326#_35" target="_blank" rel="noopener">【多线程与高并发】告诉你二者的区别 - 掘金 (juejin.cn)</a></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/22/ParallelProg/Parallel%20Acceleration%20--%20Laws%20&amp;%20PerfStat%20&amp;%20AVX/">ParallelProg/Parallel Acceleration -- Laws &amp; PerfStat &amp; AVX</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/SIMD/">SIMD</a></span><div class="content"><p>Numerical Algs –&gt; Optimizing for Performance –&gt; Writing Parallel Algs</p>
+<h1 id="Law"><a href="#Law" class="headerlink" title="Law"></a>Law</h1><h2 id="1-Amdahl’s-Law"><a href="#1-Amdahl’s-Law" class="headerlink" title="1. Amdahl’s Law"></a>1. Amdahl’s Law</h2><p>   阿姆达尔定律是一个计算机科学界的经验法则，因IBM公司计算机架构师吉恩·阿姆达尔而得名。吉恩·阿姆达尔在1967年发表的论文中提出了这个重要定律。<br>   阿姆达尔定律主要用于发现仅仅系统的部分得到改进，整体系统可以得到的最大期望改进。它经常用于并行计算领域，用来预测适用多个处理器时理论上的最大加速比。在我们的性能调优领域，我们利用此定律有助于我们解决或者缓解性能瓶颈问题。<br>   阿姆达尔定律的模型阐释了我们现实生产中串行资源争用时候的现象。如下图模型，一个系统中，不可避免有一些资源必须串行访问，这限制了我们的加速比，即使我们增加了并发数（横轴），但取得效果并不理想，难以获得线性扩展能力(图中直线)。</p>
+<h2 id="2-Gustafson’s-Law"><a href="#2-Gustafson’s-Law" class="headerlink" title="2. Gustafson’s Law"></a>2. Gustafson’s Law</h2><p>   Gustafson定律(Gustafson’s law)阐述了数据并行带来的影响。Gustafson 定律是由 John L. Gustafson 在1988年提出的。是并行计算领域除了 Amdahl 定律之后又一个重要定律。Gustafson定律看待加速比的角度会有所不同，其站在对于大量数据流处理过程中，针对重复工作的分布式运算带来的加速特性，而不仅仅局限在一个单一的程序进程&amp;单一的计算机上，串行的部分主要在于数据的分配预处理以及计算结果的收集汇总处理上。</p>
+<p>compiler optimization </p>
+<p>Options: -O1~ -O3, Ofast</p>
+<p><img src="https://p.ipic.vip/qb9bbd.png" alt="image-20230606203406991"></p>
+<p><img src="https://p.ipic.vip/8gn0if.png" alt="image-20230606203539104"></p>
+<p><img src="https://p.ipic.vip/njwuzm.png" alt="Visual representation of latencies"></p>
+<p>Pipeline and HW oriented Design</p>
 <ul>
-<li><p>“parallel” is helped by compiler to <strong>gen code</strong><img src="https://p.ipic.vip/o9t8qs.png" alt="image-20230614175103178"></p>
-</li>
-<li><p><code>pragma</code> – means <code>compiler directive</code></p>
+<li>sudo apt install linux-tools-generic</li>
+</ul>
+<h1 id="Perf-Stat"><a href="#Perf-Stat" class="headerlink" title="Perf Stat"></a>Perf Stat</h1><p>Branch prediction failed if unpredictable pattern in code would make the task-clock longer</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">(venv-py311) jo@fossa4gb:~/repo/V10793_C/Section 3/video2$ sudo perf <span class="built_in">stat</span> ./spec</span><br><span class="line"></span><br><span class="line"> Performance counter stats <span class="keyword">for</span> <span class="string">'./spec'</span>:</span><br><span class="line"></span><br><span class="line">            342.40 msec task-clock                <span class="comment">#    0.996 CPUs utilized          </span></span><br><span class="line">                16      context-switches          <span class="comment">#    0.047 K/sec                  </span></span><br><span class="line">                 0      cpu-migrations            <span class="comment">#    0.000 K/sec                  </span></span><br><span class="line">             19574      page-faults               <span class="comment">#    0.057 M/sec                  </span></span><br><span class="line">   &lt;not supported&gt;      cycles                                                      </span><br><span class="line">   &lt;not supported&gt;      instructions                                                </span><br><span class="line">   &lt;not supported&gt;      branches                                                    </span><br><span class="line">   &lt;not supported&gt;      branch-misses                                               </span><br><span class="line"></span><br><span class="line">       0.343925345 seconds time elapsed</span><br><span class="line"></span><br><span class="line">       0.243236000 seconds user</span><br><span class="line">       0.099686000 seconds sys</span><br><span class="line">       </span><br><span class="line">(venv-py311) jo@fossa4gb:~/repo/V10793_C/Section 3/video2$ sudo perf <span class="built_in">stat</span> ./spec2</span><br><span class="line"></span><br><span class="line"> Performance counter stats <span class="keyword">for</span> <span class="string">'./spec2'</span>:</span><br><span class="line"></span><br><span class="line">            465.56 msec task-clock                <span class="comment">#    0.986 CPUs utilized          </span></span><br><span class="line">                53      context-switches          <span class="comment">#    0.114 K/sec                  </span></span><br><span class="line">                 2      cpu-migrations            <span class="comment">#    0.004 K/sec                  </span></span><br><span class="line">             19574      page-faults               <span class="comment">#    0.042 M/sec                  </span></span><br><span class="line">   &lt;not supported&gt;      cycles                                                      </span><br><span class="line">   &lt;not supported&gt;      instructions                                                </span><br><span class="line">   &lt;not supported&gt;      branches                                                    </span><br><span class="line">   &lt;not supported&gt;      branch-misses                                               </span><br><span class="line"></span><br><span class="line">       0.472287268 seconds time elapsed</span><br><span class="line"></span><br><span class="line">       0.348851000 seconds user</span><br><span class="line">       0.117635000 seconds sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(j=0;j&lt;MAX;j++) &#123;</span><br><span class="line">        // i = rand() % 3;</span><br><span class="line">        i = j % 3;      //spec1</span><br><span class="line">        i = rand() % 3; //spec2</span><br><span class="line">        switch(i) &#123;</span><br></pre></td></tr></table></figure>
+
+
+
 <ul>
-<li><code>#include &lt;omp.h&gt;</code></li>
-<li><code>parallel for</code></li>
+<li>unroll also makes faster</li>
 </ul>
-</li>
-</ul>
-<p><img src="https://p.ipic.vip/bo5aay.png" alt="image-20230614180005356"></p>
-<h2 id="Parallel-Region-Construct"><a href="#Parallel-Region-Construct" class="headerlink" title="Parallel Region Construct"></a>Parallel Region Construct</h2><ul>
-<li>create threads</li>
-<li>Fork-join model, so, there’s <strong>a barrier at the end of a parallel section</strong></li>
-<li>a thread crashes –&gt; all thread crash!</li>
-</ul>
-<p><img src="https://p.ipic.vip/pgzvly.png" alt="image-20230614180902762"></p>
-<p>![image-20230614181915982](/Users/joe/Library/Application Support/typora-user-images/image-20230614181915982.png)</p>
+<h1 id="AVX"><a href="#AVX" class="headerlink" title="AVX"></a>AVX</h1><p><a href="https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html" target="_blank" rel="noopener">Intel® Intrinsics Guide</a></p>
+<p>x86 SIMD History</p>
 <ul>
-<li>omp_set_num_thread() – so that don’t have to write num_threads in every pragma block</li>
-<li>IF is rarely used in specific case</li>
+<li>MMX-SSE4 (1997-2006)<br>O Early SIMD was integer-only, later extended to floating point</li>
+<li>AVX (2008)<br>O 128 and 256 bit SIMD instructions with 16 new registers</li>
+<li>AVX2 (2013)<br>O Introduced with Haswell, extends AVX to 256 bit, adds FMA</li>
+<li>AVX-512 (2015)<br>O Originally in Xeon Phi KNL, extended to Skylake+: 512 bit extensions</li>
 </ul>
-<p>![image-20230614182028173](/Users/joe/Library/Application Support/typora-user-images/image-20230614182028173.png)</p>
-<h2 id="Working-Sharing-Construct"><a href="#Working-Sharing-Construct" class="headerlink" title="Working-Sharing Construct"></a>Working-Sharing Construct</h2><p><img src="https://p.ipic.vip/86k5x2.png" alt="image-20230614182135658"></p>
-<p><img src="https://p.ipic.vip/3l3nb2.png" alt="image-20230614182446713"></p>
-<h3 id="DO-for-Directive"><a href="#DO-for-Directive" class="headerlink" title="DO/for Directive"></a>DO/for Directive</h3><ul>
-<li>dup taskk, for <code>data parallelism</code></li>
-<li>最主要: 了解到shceuling 的選擇</li>
-<li>然後有order 、Collpase 這些選擇讓load更balance</li>
-</ul>
-<p><img src="https://p.ipic.vip/in110y.png" alt="image-20230614182741113"></p>
-<h5 id="Schedule"><a href="#Schedule" class="headerlink" title="Schedule"></a>Schedule</h5><ul>
-<li><p>static </p>
-<ul>
-<li><p>Chunk large –  hard to balance among threads</p>
-<p>Chunk small –  need to ask for thread many times</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://p.ipic.vip/5ehpdn.png" alt="image-20230614183623083"></p>
-<p><img src="https://p.ipic.vip/0airrf.png" alt="image-20230614183636163"></p>
-<p><img src="https://p.ipic.vip/4mye55.png" alt="image-20230614183723831"></p>
-<p><img src="https://p.ipic.vip/34i69g.png" alt="image-20230614183800116"></p>
-<p><img src="https://p.ipic.vip/wakood.png" alt="image-20230614183948584"></p>
-<ul>
-<li>兩行 pragma 也可以併到一行去；parallel 、for 有各自的clauses</li>
-</ul>
-<p><img src="https://p.ipic.vip/6crjey.png" alt="image-20230614184718386"></p>
-<h5 id="Collapse"><a href="#Collapse" class="headerlink" title="Collapse!"></a>Collapse!</h5><p><img src="https://p.ipic.vip/pqpuyb.png" alt="image-20230614185548583"></p>
-<ul>
-<li>得要 i == 1 not depent on i == 0</li>
-</ul>
-<h3 id="SECTIONS-Directive"><a href="#SECTIONS-Directive" class="headerlink" title="SECTIONS Directive"></a>SECTIONS Directive</h3><ul>
-<li>no dup</li>
-<li>Diff calls for diff threads</li>
-<li>no schedule </li>
-<li>usually 3~4 sections </li>
-</ul>
-<p><img src="https://p.ipic.vip/lls7y2.png" alt="image-20230614200900819"></p>
-<p><img src="https://p.ipic.vip/2l3cba.png" alt="image-20230614201017533"></p>
-<h3 id="SINGLE"><a href="#SINGLE" class="headerlink" title="SINGLE"></a>SINGLE</h3><ul>
-<li>e.g. I/O, need only one thread to write</li>
-<li>others wait, unless <code>nowait</code> is added after <code>single</code></li>
-<li>so, don’t need to jump out a Parallel region, </li>
-<li>Also code looks more neat!</li>
-</ul>
-<p><img src="https://p.ipic.vip/vm06i1.png" alt="image-20230614201131558"></p>
-<h2 id="Synchronization-Construct"><a href="#Synchronization-Construct" class="headerlink" title="Synchronization Construct"></a>Synchronization Construct</h2><ul>
-<li>Similar to SINGLE</li>
-</ul>
-<p><img src="https://p.ipic.vip/lb1i68.png" alt="image-20230614201535093"></p>
-<ul>
-<li>atomic ~= critical<ul>
-<li>用Java’s SyncMethod &amp; SyncStatement 作類比<ul>
-<li>atomic，fine grain 像是MPI的Java的 SyncStatement，告訴它要保護的share variable，有碰到這些var的ref的會去幫做lock、unlock</li>
-<li>critical, 整段包起來，整個block的statement就是從頭到尾就算沒有sync的問題，也是包起來</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://p.ipic.vip/iev75d.png" alt="image-20230614202014595"></p>
-<h3 id="★Example-amp-Comparison"><a href="#★Example-amp-Comparison" class="headerlink" title="★Example &amp; Comparison!!"></a>★Example &amp; Comparison!!</h3><p><img src="https://p.ipic.vip/ndzm92.png" alt="image-20230614202049037"></p>
-<h2 id="Data-Scope-Attribute-Clauses"><a href="#Data-Scope-Attribute-Clauses" class="headerlink" title="Data Scope Attribute Clauses"></a>Data Scope Attribute Clauses</h2><p><img src="https://p.ipic.vip/grxj03.png" alt="image-20230614202421417"></p>
-<ul>
-<li>SHARED –  global, gened var in global, and apply the address of those vars in sections</li>
-</ul>
-<p><img src="https://p.ipic.vip/48davx.png" alt="image-20230614202810013"></p>
-<p><img src="https://p.ipic.vip/ptfira.png" alt="image-20230614202923366"></p>
-<p><img src="https://p.ipic.vip/7c56g9.png" alt="image-20230614203403943"></p>
-<ul>
-<li>DEFAULT – no need to manually write scop attr for so many vars</li>
-</ul>
-<p><img src="https://p.ipic.vip/zrnpgp.png" alt="image-20230614203451073"></p>
-<ul>
-<li>result within block is the “partial sum” of each thread</li>
-<li>★★ result is a <code>local PRIVATE var</code>, b.c. there’s <code>reduction</code> keyword</li>
-</ul>
-<h2 id="Clause-Summary"><a href="#Clause-Summary" class="headerlink" title="Clause Summary"></a>Clause Summary</h2><p><img src="https://p.ipic.vip/yyswrn.png" alt="image-20230614203910407"></p>
-<h2 id="Run-Time-Lib-Routines"><a href="#Run-Time-Lib-Routines" class="headerlink" title="Run-Time Lib Routines"></a>Run-Time Lib Routines</h2><ul>
-<li>not critical</li>
-<li>知道是哪個thread num 其實意義不大，因為很多時候是internal scheduling 幫弄了調度工作</li>
-</ul>
-<p><img src="https://p.ipic.vip/98njjs.png" alt="image-20230614204138760"></p>
-<ul>
-<li>omp_in_parallel – for IF clause 用</li>
-</ul>
+<p><img src="https://p.ipic.vip/s60b9d.png" alt="image-20230606211435215"></p>
+<p>Explore caches, branching, and memory speeds</p>
+<p>Superscalar &amp; pipelining</p>
+<p>Staying out of the compiler’s way</p>
+<p>Vectorization code</p>
 </div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2023/04/22/LC/0_note/">LC/0_note</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-04-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Languages/">Languages</a></span><div class="content"><p>[toc]</p>
 <h1 id="Cross-Language-Table"><a href="#Cross-Language-Table" class="headerlink" title="Cross Language Table"></a>Cross Language Table</h1><table>
 <thead>
@@ -746,180 +691,7 @@ int sz;</code></pre></li>
 <li>5w算一般基層人員，利率比黃金人員高可能1%</li>
 <li>小公司，又薪水低，利率可能就4, 5%或6, 7%，所以公司名氣也很重要</li>
 </ul>
-<h2 id="如何貸好"><a href="#如何貸好" class="headerlink" title="如何貸好"></a>如何貸好</h2></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/23/Loans/1%20%E8%B2%B8%E6%AC%BE%E5%95%8F%E9%A1%8C-%E6%88%BF%E8%B2%B8/">Loans/1 貸款問題-房貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"><h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><ul>
-<li>負利率！</li>
-</ul>
-<h1 id="基本原則"><a href="#基本原則" class="headerlink" title="基本原則"></a>基本原則</h1><p>貸款種類</p>
-<ul>
-<li>沒工作的人、未出社會：信用卡預借現金 4~10%</li>
-<li>一般正常的信貸：3-4%, 2-3%</li>
-</ul>
-<p>貸款運用</p>
-<p>房貸、車貸利率都很低，用銀行的資金來購買房產、投資房產、買汽車都是很正常</p>
-<h2 id="為何借"><a href="#為何借" class="headerlink" title="為何借"></a>為何借</h2><p>投資、週轉、紀錄</p>
-<p>要小心，自己的風控</p>
-<h2 id="術語"><a href="#術語" class="headerlink" title="術語"></a>術語</h2><ul>
-<li><p>小白 – 怕是人頭，除非有資產，但也是會打折變5、６成</p>
-</li>
-<li><p>建信用，存款、信用卡</p>
-</li>
-</ul>
-<h2 id="分期付款"><a href="#分期付款" class="headerlink" title="分期付款"></a>分期付款</h2><ul>
-<li>還款對信用有差</li>
-<li>買的時候的沒差，利息是廠商付的 – 即廠商為促銷活動而去付給銀行的錢</li>
-</ul>
-<h2 id="借款不等於負債"><a href="#借款不等於負債" class="headerlink" title="借款不等於負債"></a>借款不等於負債</h2><h4 id="負債"><a href="#負債" class="headerlink" title="負債"></a>負債</h4><p>以債養債或創業失敗</p>
-<h4 id="資產"><a href="#資產" class="headerlink" title="資產"></a>資產</h4><p>房價、股票漲、租金，都是上漲！跟各人投資運氣有關</p>
-<h2 id="貨比三家"><a href="#貨比三家" class="headerlink" title="貨比三家"></a>貨比三家</h2><p>低利率</p>
-<p>高額度</p>
-<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p>主流銀行</p>
-<p><strong><em>不要隨便簽下「個資查詢同意書」！！</em></strong></p>
-<h1 id="房貸"><a href="#房貸" class="headerlink" title="房貸"></a>房貸</h1><h2 id="估價原則"><a href="#估價原則" class="headerlink" title="估價原則"></a>估價原則</h2><p>銀行怎麼估呢？</p>
-<ol>
-<li>自己有的估價師，如台新是有的<ol>
-<li>問建設公司，有往來的建設公司, 問型態，如公寓或華廈etc</li>
-<li>實價登錄作參考</li>
-<li>大型房仲</li>
-</ol>
-</li>
-<li>長期來講價增值、貨幣貶值，薪水↑物價↑，though 人口↓,　所以只要選對區域，長期而言是↑</li>
-</ol>
-<h2 id="貸款種類"><a href="#貸款種類" class="headerlink" title="貸款種類"></a>貸款種類</h2><h4 id="購屋貸款"><a href="#購屋貸款" class="headerlink" title="購屋貸款"></a>購屋貸款</h4><h4 id="原屋融資-中古屋貸款"><a href="#原屋融資-中古屋貸款" class="headerlink" title="原屋融資 (中古屋貸款)"></a>原屋融資 (中古屋貸款)</h4><p>可以享受房地產增值的好處，貸到更多的錢</p>
-<p> Links <a href="https://www.youtube.com/watch?v=AnsMtGUxLXU" target="_blank" rel="noopener">1</a>, </p>
-<h5 id="流程-1"><a href="#流程-1" class="headerlink" title="流程"></a>流程</h5><p>申請估價審核對保設定撥款</p>
-<h3 id="房屋類型影響的貸款成數跟效果"><a href="#房屋類型影響的貸款成數跟效果" class="headerlink" title="房屋類型影響的貸款成數跟效果"></a>房屋類型影響的貸款成數跟效果</h3><h4 id="成數"><a href="#成數" class="headerlink" title="成數"></a>成數</h4><ul>
-<li>一般住宅 7~8成</li>
-<li>小套 10~12.5坪↓, 5成，因為法拍可能要到三、四拍，不易呀！一次就打八折去了，第三拍就是64折了，流動差<ul>
-<li>看權狀，有分公共設施還有室內坪數(含陽台)，小於12p，就叫作小套房</li>
-<li>銀行自己也自行評估當地房產↑或↓，如果成數高代表銀行也覺得增值性↑；要是成數保守，就代表銀行覺得房地產增值性不高；當然也跟個人收入條件有關係</li>
-</ul>
-</li>
-<li>豪宅<ul>
-<li>台北7Kw; 新北6Kw; 其他地4Kw; 央行規定不得超過6成<ul>
-<li>但還是<u>有眉角</u>… 可以去到 7、8成 (噓)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>工業用住宅<ul>
-<li>一定是比較差的，所以比一般低一1, 2成，二手市場去化慢，so 貸6~7成</li>
-<li>另，電費、房屋稅多</li>
-<li>除非真的蓋超好格局環境，不然盡量避開！</li>
-</ul>
-</li>
-<li>店面 &amp; 商辦<ul>
-<li>店面市場只在金字塔頂層的人，所去化不易，成數低！–&gt; 保守</li>
-<li>辦公大樓好些！租金上穩定，也不像店面那麼高單價，投報率都不錯</li>
-</ul>
-</li>
-</ul>
-<h2 id="還款繳息"><a href="#還款繳息" class="headerlink" title="還款繳息"></a>還款繳息</h2><h4 id="單一利率-VS-組合利率-amp-本息攤還-VS-本金攤還"><a href="#單一利率-VS-組合利率-amp-本息攤還-VS-本金攤還" class="headerlink" title="單一利率 VS 組合利率 &amp; 本息攤還 VS 本金攤還"></a>單一利率 VS 組合利率 &amp; 本息攤還 VS 本金攤還</h4><p>Link <a href="https://www.youtube.com/watch?v=9YgnvKp2HFQ" target="_blank" rel="noopener">1</a></p>
-<ul>
-<li><p>利息不是愈低愈好，要看是否是單一或很賤的組合利率</p>
-</li>
-<li><p>還款方式會影響月繳金額跟利息高低</p>
-</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h8ff6c8rnij30u010awiw.jpg" alt="image-20221123221547111"></p>
-<ul>
-<li>減低壓力的方式<ol>
-<li>頭款多些</li>
-<li>年數拉長</li>
-<li>善用寬限期, 前三年只付利息不付本金</li>
-</ol>
-</li>
-</ul>
-<h4 id="純繳息"><a href="#純繳息" class="headerlink" title="純繳息"></a>純繳息</h4><ul>
-<li>一般銀行只壓在7成以內適用</li>
-<li>可能每年要換單，可能一次打7年的合約，7年內只要繳息正常，它都給我純繳息 <ul>
-<li>我不還本金，對銀行來講利息是比較多的呀！</li>
-</ul>
-</li>
-<li>但它也考慮到房子萬一貶值…，我還沒還到本金<ul>
-<li>所以它成數不像本利攤還</li>
-</ul>
-</li>
-<li>可能就是給個7年的時間，7或3年換一次單…</li>
-</ul>
-<h4 id="本息平均攤還-階段式還款"><a href="#本息平均攤還-階段式還款" class="headerlink" title="本息平均攤還/階段式還款"></a>本息平均攤還/階段式還款</h4><ul>
-<li>15~30年<ul>
-<li>可能還3年的本金已還款10%</li>
-<li>ps. 貸的時間長如到40年對銀行不划算，因為它的資金都是來自定存最長就兩、三年而已的，跟壽險保單持續20年都會有資金進來不一樣</li>
-<li>前三年可以要寬限期，第四年開始以剩下的17年作「本利攤還」<ul>
-<li>理由一般是裝潢，自備款不夠，還需累積收入</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>３年內還掉要賠違約金1% (1kw就是8w), 但還是<u>有眉角</u>變 0.5%之類 (即4w)…<ul>
-<li>它吸存款是0.8，放貸是1.8，只賺了1%</li>
-<li>裡面還有租金、折舊、成本人力，銀行前三年貸出來都是虧的，要提存款準備、呆帳準備 (目前金管會定是1%)</li>
-</ul>
-</li>
-</ul>
-<h2 id="原屋融資的目的"><a href="#原屋融資的目的" class="headerlink" title="原屋融資的目的"></a>原屋融資的目的</h2><ul>
-<li>投資、周轉需求、增額度(增貸)、降息(但現在比價都差個0.1而已很少，而且還要搬家費違約金、貸入、設抵押權轉換的費用、地政事務所費)</li>
-<li><code>平轉</code>, 目的：我想要 1增貸(通常都是) 2寬限期(即純繳息) 3降息<ul>
-<li>!=搬家；平轉就純粹只是為了降低利率、省掉利息，我額度不增加</li>
-<li>如在台銀不隨中央降0.1%，要是貸3kw，一年差3w，5年就15w，第一年把手續費用攤平了，後面四年可以省下利息，這就叫作平轉</li>
-<li>還可能能再多要到兩好處<ul>
-<li>寬限期，可能我的第二家信用卡的銀行願意「再給」<ul>
-<li>btw, 1kw的純繳息如果2%一個月大概就20w/12=1.6w; 加要是加上本金可能就共5w, 其中本金占了3.?w</li>
-</ul>
-</li>
-<li>利率再降低</li>
-</ul>
-</li>
-<li>可如此施壓給原銀行降利率</li>
-<li>但不能讓銀行覺得是我沒能力繳本利攤 … <u>有眉角</u>…，讓銀行再給一次寬限期，這樣我就不用再浪費移轉的手續費，這個要好幾萬的</li>
-<li>增貸: 生意、周轉、斷頭、創業…</li>
-</ul>
-</li>
-</ul>
-<h2 id="以房養老"><a href="#以房養老" class="headerlink" title="以房養老"></a>以房養老</h2><ul>
-<li>利用房子來增加他的生活費用</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h8gau5ja8vj315c0ho40v.jpg" alt="image-20221124163114121"></p>
-<ul>
-<li>當退休後，除了基本的退休金以外，可以跟銀行申悄以方養老這種類型的房貸，利息也不用付，就是從額度裡面去扣，然後再給後代覺得這個房子要出售還是轉換成原屋融資</li>
-<li>保守型的退休人員，錢留著自己用</li>
-</ul>
-<h2 id="二胎-amp-地下金融"><a href="#二胎-amp-地下金融" class="headerlink" title="二胎 &amp; 地下金融"></a>二胎 &amp; 地下金融</h2><h4 id="二胎"><a href="#二胎" class="headerlink" title="二胎"></a>二胎</h4><ul>
-<li>第一順位的抵押權是在A銀行，想增貸又不想離開A銀行，不想搬家，只想增40, 50w，很少就是100w內，所以想想是否能以房子作第二順位的抵押</li>
-<li>3%~6％，比較高一點，一般金額都不給高都是小額</li>
-<li>一、兩家銀行有作，看扣掉第一順位銀行的貸款後還有多少殘值，再貸給我這樣的錢</li>
-</ul>
-<h4 id="地下金融"><a href="#地下金融" class="headerlink" title="地下金融"></a>地下金融</h4><ul>
-<li>有很多也是提供給這個二順位的貸款</li>
-<li>額度可能高些，但可能利率就是高高高，因為也不受民法上利率20%的上限管制</li>
-<li>要36%, 就是一個月3w了，相對銀行一年也才2%! 是18倍</li>
-</ul>
-<h4 id="整債–打交道的經驗"><a href="#整債–打交道的經驗" class="headerlink" title="整債–打交道的經驗"></a>整債–打交道的經驗</h4><p>可跟很好的金額跟利率，<u>有眉角</u>…</p>
-<h2 id="授信準則及標準"><a href="#授信準則及標準" class="headerlink" title="授信準則及標準"></a>授信準則及標準</h2><p>物＆人的財力存款股票房地產</p>
-<h2 id="如何申請最有利的房貸"><a href="#如何申請最有利的房貸" class="headerlink" title="如何申請最有利的房貸"></a>如何申請最有利的房貸</h2><p>ABC客戶</p>
-<ul>
-<li>A黃金職業</li>
-<li>B受薪基層<ul>
-<li>二等親，看後台實力</li>
-<li>非六都比較低</li>
-</ul>
-</li>
-</ul>
-<p>利率、額度、還款期限/金額、還款彈性、撥款速度</p>
-<ul>
-<li>彈性<ul>
-<li>往來一年後，我想增貸，可談</li>
-<li>中央如果降</li>
-<li>延長寬限期，就是搬家啦，就是技巧，但人家也會看你中間的繳的方式判斷，談判，<u>有眉角</u>…</li>
-</ul>
-</li>
-<li>撥款速度<ul>
-<li>權狀交給銀行要辦理設定，徵信到結束，差不多7~10工作天</li>
-<li>依金額，要審到高階看還款能力</li>
-</ul>
-</li>
-</ul>
-<h1 id="總流程"><a href="#總流程" class="headerlink" title="總流程"></a>總流程</h1></div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/">79</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+<h2 id="如何貸好"><a href="#如何貸好" class="headerlink" title="如何貸好"></a>如何貸好</h2></div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/80/">80</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')
