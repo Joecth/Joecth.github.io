@@ -2,7 +2,7 @@
 layout: post
 categories: ParallelProg
 tag: [] 
-date: 2022-6-17
+date: 2022-5-17
 ---
 
 
@@ -33,7 +33,7 @@ memory's address the same for all process units
 
 - using compiler's way to generate code
 
-![image-20230614175006357](/Users/joe/Library/Application Support/typora-user-images/image-20230614175006357.png)
+![image-20230614175006357](https://p.ipic.vip/aszlg3.png)
 
 
 
@@ -57,14 +57,14 @@ memory's address the same for all process units
 
 
 
-![image-20230614181915982](/Users/joe/Library/Application Support/typora-user-images/image-20230614181915982.png)
+![image-20230614181915982l](https://p.ipic.vip/nio6ba.png)
 
 - omp_set_num_thread() -- so that don't have to write num_threads in every pragma block
 - IF is rarely used in specific case
 
 
 
-![image-20230614182028173](/Users/joe/Library/Application Support/typora-user-images/image-20230614182028173.png)
+![image-20230614182028173](https://p.ipic.vip/ttwj3i.png)
 
 
 
@@ -84,7 +84,7 @@ memory's address the same for all process units
 
 ![image-20230614182741113](https://p.ipic.vip/in110y.png)
 
-##### Schedule
+#### Schedule
 
 - static 
 
@@ -114,7 +114,7 @@ memory's address the same for all process units
 
 
 
-##### Collapse! 
+#### Collapse! 
 
 ![image-20230614185548583](https://p.ipic.vip/pqpuyb.png)
 
