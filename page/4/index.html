@@ -13,7 +13,173 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">399</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">70</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/14/ParallelProg/Shared-Memory%20Programming%20-%20Pthread/">ParallelProg/Shared-Memory Programming - Pthread</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-14</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></span><div class="content"><p>[toc]</p>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">400</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">70</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/19/ParallelProg/Parallel%20Applications/">ParallelProg/Parallel Applications</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-19</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></span><div class="content"><p>[toc]</p>
+<h1 id="Alg-Embarrassingly-Computations"><a href="#Alg-Embarrassingly-Computations" class="headerlink" title="Alg: Embarrassingly Computations"></a>Alg: Embarrassingly Computations</h1><p><img src="https://p.ipic.vip/csaeeo.png" alt="image-20230614205211835"></p>
+<h3 id="Image-Transformations"><a href="#Image-Transformations" class="headerlink" title="Image Transformations"></a>Image Transformations</h3><ul>
+<li>Low-level image operations</li>
+</ul>
+<p><img src="https://p.ipic.vip/h6pbm0.png" alt="image-20230614205406250"></p>
+<p><img src="https://p.ipic.vip/v93s98.png" alt="image-20230614205510336"></p>
+<ul>
+<li>縱切黑白比較平衡</li>
+<li>鄰居數會affect communication</li>
+</ul>
+<p><img src="https://p.ipic.vip/knofs2.png" alt="image-20230614210714720"></p>
+<h3 id="Monde-Carlo-Methods"><a href="#Monde-Carlo-Methods" class="headerlink" title="Monde Carlo Methods"></a>Monde Carlo Methods</h3><ul>
+<li>Sampling data points,  time samplings are independent</li>
+</ul>
+<p><img src="https://p.ipic.vip/2hhy1y.png" alt="image-20230614211437118"></p>
+<p><img src="https://p.ipic.vip/06us4l.png" alt="image-20230614211737368"></p>
+<p><img src="https://p.ipic.vip/nvz855.png" alt="image-20230614211813740"></p>
+<h3 id="Mandelbrot-Set"><a href="#Mandelbrot-Set" class="headerlink" title="Mandelbrot Set"></a>Mandelbrot Set</h3><h1 id="General-Issues-LB-amp-Termination"><a href="#General-Issues-LB-amp-Termination" class="headerlink" title="General Issues: LB &amp; Termination"></a>General Issues: LB &amp; Termination</h1><h2 id="LB-Load-Balance"><a href="#LB-Load-Balance" class="headerlink" title="LB (Load Balance)"></a>LB (Load Balance)</h2><ul>
+<li>centralize or </li>
+<li>distributed 很難 termination</li>
+</ul>
+<p><img src="https://p.ipic.vip/eop4he.png" alt="image-20230614212600210"></p>
+<h3 id="Why-Static-bad"><a href="#Why-Static-bad" class="headerlink" title="Why Static bad?"></a>Why Static bad?</h3><p><img src="https://p.ipic.vip/146cy6.png" alt="image-20230614220951383"></p>
+<p><img src="https://p.ipic.vip/oby280.png" alt="image-20230614221120487"></p>
+<h3 id="Dynamic-LB-w-MPI-e-g"><a href="#Dynamic-LB-w-MPI-e-g" class="headerlink" title="Dynamic LB, w/ MPI e.g."></a>Dynamic LB, w/ MPI e.g.</h3><ul>
+<li>P.S. OpenMP has</li>
+</ul>
+<p><img src="https://p.ipic.vip/5u3k31.png" alt="image-20230614221213219"></p>
+<h4 id="Centralized-Work-Pool"><a href="#Centralized-Work-Pool" class="headerlink" title="Centralized Work Pool"></a>Centralized Work Pool</h4><p><img src="https://p.ipic.vip/58hthe.png" alt="image-20230614221533768"></p>
+<p><img src="https://p.ipic.vip/1uki3p.png" alt="image-20230614221712638"></p>
+<p><img src="https://p.ipic.vip/w5l5ke.png" alt="image-20230614222147601"></p>
+<h4 id="Decentralized-Work-Pool"><a href="#Decentralized-Work-Pool" class="headerlink" title="Decentralized Work Pool"></a>Decentralized Work Pool</h4><ul>
+<li>many masters, with <em>hierarchical structure</em><img src="https://p.ipic.vip/7wmmfa.png" alt="image-20230615102619627"></li>
+</ul>
+<h4 id="Fully-Distributed-Work-Pool"><a href="#Fully-Distributed-Work-Pool" class="headerlink" title="Fully Distributed Work Pool"></a>Fully Distributed Work Pool</h4><ul>
+<li>though balanced, yet more communications</li>
+</ul>
+<p><img src="https://p.ipic.vip/l6pdem.png" alt="image-20230615102827852"></p>
+<h5 id="How-to-balance-in-Fully-Distrubuted-Work-Pool"><a href="#How-to-balance-in-Fully-Distrubuted-Work-Pool" class="headerlink" title="How to balance in Fully Distrubuted Work Pool?"></a>How to balance in Fully Distrubuted Work Pool?</h5><img src="https://p.ipic.vip/a2p6b2.png" alt="image-20230615102949785" style="zoom: 87%;" />
+
+<ul>
+<li>Reason for Light loadded system – for Sender-initiated method<ul>
+<li>Because even the sender has higher load, its load is still pretty “light”</li>
+<li>vice versa </li>
+</ul>
+</li>
+<li>If no global view, how does a thread know it’s a heavy or light?</li>
+<li>A term: work stealing 很常被討論</li>
+</ul>
+<h5 id="E-g-Shortes-Path-in-a-Weighted-Diagraph"><a href="#E-g-Shortes-Path-in-a-Weighted-Diagraph" class="headerlink" title="E.g. Shortes Path in a Weighted Diagraph"></a>E.g. Shortes Path in a Weighted Diagraph</h5><p><img src="https://p.ipic.vip/j0m6p0.png" alt="image-20230615103708587"></p>
+<p>★平行時候採用的不是Dijkastra, 而是Moore’s </p>
+<p><img src="https://p.ipic.vip/1dj5ac.png" alt="image-20230615103807875"></p>
+<ul>
+<li>Dependency only btw Iterations, NOT btw nodes</li>
+<li>Independent nodes</li>
+</ul>
+<h6 id="Sequential-Proc"><a href="#Sequential-Proc" class="headerlink" title="Sequential Proc"></a>Sequential Proc</h6><ol>
+<li><p><img src="https://p.ipic.vip/pna3pc.png" alt="image-20230615110016415"></p>
+</li>
+<li><p><img src="https://p.ipic.vip/g0a112.png" alt="image-20230615110108163"></p>
+</li>
+<li><p><img src="https://p.ipic.vip/r0i28o.png" alt="image-20230615110139431"></p>
+</li>
+</ol>
+<h6 id="Parallel-Proc"><a href="#Parallel-Proc" class="headerlink" title="Parallel Proc"></a>Parallel Proc</h6><p><img src="https://p.ipic.vip/hfzbj7.png" alt="image-20230615110320944"></p>
+<ul>
+<li><p>Step4 has buffer size issue (depent on outgoing nbrs, but MPI requires buffer size well communicated beforehand) to communicate in advance </p>
+</li>
+<li><p>Master assign tasks</p>
+</li>
+</ul>
+<p><img src="https://p.ipic.vip/7kufdx.png" alt="image-20230615111103268"></p>
+<p><img src="https://p.ipic.vip/e47qnr.png" alt="image-20230615111157912"></p>
+<ul>
+<li>每個人只需要知道自己目前的node</li>
+</ul>
+<h2 id="Termination-Detection"><a href="#Termination-Detection" class="headerlink" title="Termination Detection"></a>Termination Detection</h2><ul>
+<li>重點是分散式時的terminate需要留意!</li>
+</ul>
+<p><img src="https://p.ipic.vip/84ulct.png" alt="image-20230615111859029"></p>
+<p><img src="https://p.ipic.vip/2dfzgp.png" alt="image-20230615111927488"></p>
+<h4 id="Dual-Pass-Ring"><a href="#Dual-Pass-Ring" class="headerlink" title="Dual-Pass Ring"></a>Dual-Pass Ring</h4><p><img src="https://p.ipic.vip/il91pd.png" alt="image-20230615112125900"></p>
+<ul>
+<li>避免往前送了後，但recv已被activate「white」的問題</li>
+</ul>
+<ol>
+<li><img src="https://p.ipic.vip/nz4ni5.png" alt="image-20230615112458015"></li>
+<li><img src="https://p.ipic.vip/a740jc.png" alt="image-20230615112512660"></li>
+<li><img src="https://p.ipic.vip/rid8ji.png" alt="image-20230615112543018"></li>
+</ol>
+<p>Example</p>
+<p>​    <img src="https://p.ipic.vip/3uag02.png" alt="image-20230615112630803"></p>
+<h1 id="Alg-D-amp-C-Computations"><a href="#Alg-D-amp-C-Computations" class="headerlink" title="Alg: D&amp;C Computations"></a>Alg: D&amp;C Computations</h1><ul>
+<li>recursively divided a problem into sub-problems that are of the sam eform as the larger problem</li>
+</ul>
+<h3 id="Sorting-Algs"><a href="#Sorting-Algs" class="headerlink" title="Sorting Algs."></a>Sorting Algs.</h3><p>in Parallel.</p>
+<p><img src="https://p.ipic.vip/mz978l.png" alt="image-20230615113019339"></p>
+<h5 id="BucketSort"><a href="#BucketSort" class="headerlink" title="BucketSort"></a>BucketSort</h5><p><img src="https://p.ipic.vip/nb7vtt.png" alt="image-20230615114142364"></p>
+<p><img src="https://p.ipic.vip/oxcpkm.png" alt="image-20230615115012915"></p>
+<ul>
+<li>Can sampling beforehand to know the distribution!</li>
+<li>partition not yet parallelized</li>
+</ul>
+<p><img src="https://p.ipic.vip/bqhcdn.png" alt="image-20230615114532487"></p>
+<ul>
+<li>solved the partition not parallelized issue!</li>
+<li>分配的平行仰賴於不看值</li>
+</ul>
+<h5 id="MergeSort-it’s-Optimization"><a href="#MergeSort-it’s-Optimization" class="headerlink" title="MergeSort it’s Optimization"></a>MergeSort it’s Optimization</h5><p><img src="https://p.ipic.vip/wjs54z.png" alt="image-20230615114920490"></p>
+<ul>
+<li>bottleneck bounded at the last merging process, with all elems</li>
+</ul>
+<h6 id="Bitonic-MergeSort"><a href="#Bitonic-MergeSort" class="headerlink" title="Bitonic MergeSort"></a>Bitonic MergeSort</h6><p><img src="https://p.ipic.vip/z4rrg1.png" alt="image-20230615153711909"></p>
+<p><img src="https://p.ipic.vip/nhm1x8.png" alt="image-20230615153729891"></p>
+<p><img src="https://p.ipic.vip/moyclk.png" alt="image-20230615153915925"></p>
+<p><img src="https://p.ipic.vip/hl8pgt.png" alt="image-20230615154130420"></p>
+<h5 id="QSort"><a href="#QSort" class="headerlink" title="QSort"></a>QSort</h5><p>tree <strong>not balanced</strong>… so… <strong>not suitable for parallelism</strong></p>
+<p><img src="https://p.ipic.vip/yuapmb.png" alt="image-20230615115212226"></p>
+<h5 id="RankSort"><a href="#RankSort" class="headerlink" title="RankSort"></a>RankSort</h5><ul>
+<li>Very easy for Parallelism </li>
+<li>只需要加一行OpemMP 就平行了！</li>
+<li>data dependency is None!</li>
+</ul>
+<p><img src="https://p.ipic.vip/68xg2u.png" alt="image-20230615154546768"></p>
+<h6 id="LgN-TimeComplexity"><a href="#LgN-TimeComplexity" class="headerlink" title="LgN TimeComplexity!"></a>LgN TimeComplexity!</h6><p><img src="https://p.ipic.vip/04rs7l.png" alt="image-20230615154802371"></p>
+<h5 id="CountingSort"><a href="#CountingSort" class="headerlink" title="CountingSort"></a>CountingSort</h5><ul>
+<li>是跟range有關的… 所以時間複雜度得再想下，下面這是個ideal的case而已</li>
+<li>看每個值重覆出現多少次</li>
+</ul>
+<p><img src="https://p.ipic.vip/vac5vz.png" alt="image-20230615155048145"></p>
+<h5 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h5><p><img src="https://p.ipic.vip/btmasv.png" alt="image-20230615155343588"></p>
+<h3 id="N-Body-Simulation"><a href="#N-Body-Simulation" class="headerlink" title="N-Body Simulation"></a>N-Body Simulation</h3><ul>
+<li>Newtonian laws of Physics</li>
+</ul>
+<h1 id="Alg-Pipelined-Computations"><a href="#Alg-Pipelined-Computations" class="headerlink" title="Alg: Pipelined Computations"></a>Alg: Pipelined Computations</h1><p><img src="https://p.ipic.vip/ofq9kv.png" alt="image-20230615155845442"></p>
+<h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h3><p>Pipelined approach can provide increased speed under three types oif computations</p>
+<ol>
+<li><p>If <strong>more than 1 instance ** of the complete problem is to be executed; or **CPU’s instructions</strong></p>
+</li>
+<li><p>If a <strong>ingle instance</strong> has a series of data items must be processed,. each requiring <strong>multiple oerations</strong></p>
+</li>
+<li><p>像是第2個的加強版；If <strong>information to start the next process can be passed forward</strong> before the process has completed all its internal operations</p>
+</li>
+</ol>
+<p><img src="https://p.ipic.vip/xyejcx.png" alt="image-20230615165326563"></p>
+<p>​        <img src="https://p.ipic.vip/7useax.png" alt="image-20230615165647254">    </p>
+<p>​    <img src="https://p.ipic.vip/wshroy.png" alt="image-20230615170142574"></p>
+<h3 id="Adding-Numbers-Type1"><a href="#Adding-Numbers-Type1" class="headerlink" title="Adding Numbers (Type1)"></a>Adding Numbers (Type1)</h3><p><img src="https://p.ipic.vip/4pc7cc.png" alt="image-20230615170313469"></p>
+<p><img src="https://p.ipic.vip/yclv0e.png" alt="image-20230615170340129"></p>
+<h3 id="Sorting-Type2"><a href="#Sorting-Type2" class="headerlink" title="Sorting (Type2)"></a>Sorting (Type2)</h3><h5 id="Insertion-Sort"><a href="#Insertion-Sort" class="headerlink" title="Insertion Sort"></a>Insertion Sort</h5><h3 id="Linear-Equation-Solver-Type3"><a href="#Linear-Equation-Solver-Type3" class="headerlink" title="Linear Equation Solver (Type3)"></a>Linear Equation Solver (Type3)</h3><h1 id="Alg-Synchronous-Computations"><a href="#Alg-Synchronous-Computations" class="headerlink" title="Alg: Synchronous Computations"></a>Alg: Synchronous Computations</h1><p><img src="https://p.ipic.vip/gm5t9n.png" alt="image-20230615170819710"></p>
+<ul>
+<li>e.g. Odd-Even Sort</li>
+</ul>
+<p><img src="https://p.ipic.vip/s3qm88.png" alt="image-20230615170951174"></p>
+<p><img src="https://p.ipic.vip/2568ls.png" alt="image-20230615171049453"></p>
+<p><img src="https://p.ipic.vip/vite9s.png" alt="image-20230615171127497"></p>
+<p><img src="https://p.ipic.vip/2y5023.png" alt="image-20230615171255882"></p>
+<ul>
+<li>P0、P1 互等… 死了</li>
+</ul>
+<h3 id="PreSum"><a href="#PreSum" class="headerlink" title="PreSum"></a>PreSum</h3><p><img src="https://p.ipic.vip/0k5rsl.png" alt="image-20230615171355250"></p>
+<p><img src="https://p.ipic.vip/thr9a6.png" alt="image-20230615171508521"></p>
+<p><img src="https://p.ipic.vip/z6u5s6.png" alt="image-20230615171532354"></p>
+<p><img src="https://p.ipic.vip/efydyb.png" alt="image-20230615171553368"></p>
+<h3 id="System-of-Linear-Equation"><a href="#System-of-Linear-Equation" class="headerlink" title="System of Linear Equation"></a>System of Linear Equation</h3><p>…</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/14/ParallelProg/Shared-Memory%20Programming%20-%20Pthread/">ParallelProg/Shared-Memory Programming - Pthread</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-14</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></span><div class="content"><p>[toc]</p>
 <h1 id="Shared-memory-Programming-–-Pthread"><a href="#Shared-memory-Programming-–-Pthread" class="headerlink" title="Shared-memory Programming – Pthread"></a>Shared-memory Programming – Pthread</h1><p>memory’s address the same for all process units</p>
 <p><img src="https://p.ipic.vip/yqkg9g.png" alt="image-20230613204911655"></p>
 <h4 id="Thread-VS-Processes"><a href="#Thread-VS-Processes" class="headerlink" title="Thread VS Processes"></a>Thread VS Processes</h4><p><img src="https://p.ipic.vip/sax3xi.png" alt="image-20230613205233935"></p>
@@ -429,36 +595,6 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
 <li>People start re-thinking what should be the right objective and benchmark for designing the next generation of supercomputers</li>
 </ul>
 <p>ref: <a href="https://ocw.nthu.edu.tw/ocw/index.php?page=course&cid=231" target="_blank" rel="noopener">國立清華大學開放式課程OpenCourseWare(NTHU, OCW) - 平行程式</a></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/04/Contests/weekly296/">Contests/weekly296</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-04</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Contests/">Contests</a></span><div class="content"><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h380owzc0ej20w00fwabf.jpg" alt="image-20220614195405622" style="zoom:67%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h380pp44x7j21cu0eiq4q.jpg" alt="image-20220614195450915" style="zoom:50%;" />
-
-
-
-<h1 id="Weekly296-–-2293-2296"><a href="#Weekly296-–-2293-2296" class="headerlink" title="Weekly296 – 2293~2296"></a>Weekly296 – 2293~2296</h1><p>Specially discuss 2294</p>
-<h2 id="2294-Partition-Array-Such-That-Maximum-Difference-Is-K"><a href="#2294-Partition-Array-Such-That-Maximum-Difference-Is-K" class="headerlink" title="2294  Partition Array Such That Maximum Difference Is K"></a>2294  Partition Array Such That Maximum Difference Is K</h2><p>You are given an integer array <code>nums</code> and an integer <code>k</code>. You may partition <code>nums</code> into one or more <strong>subsequences</strong> such that each element in <code>nums</code> appears in <strong>exactly</strong> one of the subsequences.</p>
-<p>Return <em>the <strong>minimum</strong> number of subsequences needed such that the difference between the maximum and minimum values in each subsequence is <strong>at most*</strong> <code>k</code></em>.*</p>
-<p>A <strong>subsequence</strong> is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [3,6,1,2,5], k &#x3D; 2</span><br><span class="line">Output: 2</span><br><span class="line">Explanation:</span><br><span class="line">We can partition nums into the two subsequences [3,1,2] and [6,5].</span><br><span class="line">The difference between the maximum and minimum value in the first subsequence is 3 - 1 &#x3D; 2.</span><br><span class="line">The difference between the maximum and minimum value in the second subsequence is 6 - 5 &#x3D; 1.</span><br><span class="line">Since two subsequences were created, we return 2. It can be shown that 2 is the minimum number of subsequences needed.</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [1,2,3], k &#x3D; 1</span><br><span class="line">Output: 2</span><br><span class="line">Explanation:</span><br><span class="line">We can partition nums into the two subsequences [1,2] and [3].</span><br><span class="line">The difference between the maximum and minimum value in the first subsequence is 2 - 1 &#x3D; 1.</span><br><span class="line">The difference between the maximum and minimum value in the second subsequence is 3 - 3 &#x3D; 0.</span><br><span class="line">Since two subsequences were created, we return 2. Note that another optimal solution is to partition nums into the two subsequences [1] and [2,3].</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [2,2,4,5], k &#x3D; 0</span><br><span class="line">Output: 3</span><br><span class="line">Explanation:</span><br><span class="line">We can partition nums into the three subsequences [2,2], [4], and [5].</span><br><span class="line">The difference between the maximum and minimum value in the first subsequences is 2 - 2 &#x3D; 0.</span><br><span class="line">The difference between the maximum and minimum value in the second subsequences is 4 - 4 &#x3D; 0.</span><br><span class="line">The difference between the maximum and minimum value in the third subsequences is 5 - 5 &#x3D; 0.</span><br><span class="line">Since three subsequences were created, we return 3. It can be shown that 3 is the minimum number of subsequences needed.</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 105</code></li>
-<li><code>0 &lt;= nums[i] &lt;= 105</code></li>
-<li><code>0 &lt;= k &lt;= 105</code></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partitionArray</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># return self.inContest(nums, k)	# ALSO AC</span></span><br><span class="line">        nums.sort(key=<span class="keyword">lambda</span> x: x)</span><br><span class="line">        accu_diff = <span class="number">0</span></span><br><span class="line">        cut = <span class="number">0</span></span><br><span class="line">        seq_min = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            now_diff = nums[i] - seq_min</span><br><span class="line">            <span class="keyword">if</span> now_diff &gt; k:</span><br><span class="line">                cut += <span class="number">1</span></span><br><span class="line">                seq_min = nums[i]</span><br><span class="line">                </span><br><span class="line">        <span class="comment"># if now_diff &gt; 0:</span></span><br><span class="line">        cut += <span class="number">1</span></span><br><span class="line">        <span class="comment"># print(max_cnt, cut)</span></span><br><span class="line">        <span class="keyword">return</span> cut        </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inContest</span><span class="params">(self, nums)</span>:</span>	<span class="comment"># ALSO AC</span></span><br><span class="line">        n = len(nums)   </span><br><span class="line">        lo, hi = <span class="number">1</span>, n</span><br><span class="line">        <span class="comment"># print(nums)</span></span><br><span class="line">        <span class="keyword">while</span> lo + <span class="number">1</span> &lt; hi:</span><br><span class="line">            mid = lo + (hi - lo) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> self.isMaxDiffLessThanK(nums, k, mid):</span><br><span class="line">                hi = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                lo = mid</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">if</span> self.isMaxDiffLessThanK(nums, k, lo):</span><br><span class="line">            <span class="keyword">return</span> lo</span><br><span class="line">        <span class="keyword">return</span> hi</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isMaxDiffLessThanK</span><span class="params">(self, nums, k, max_cnt)</span>:</span></span><br><span class="line">        accu_diff = <span class="number">0</span></span><br><span class="line">        cut = <span class="number">0</span></span><br><span class="line">        seq_min = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            now_diff = nums[i] - seq_min</span><br><span class="line">            <span class="keyword">if</span> now_diff &gt; k:</span><br><span class="line">                cut += <span class="number">1</span></span><br><span class="line">                seq_min = nums[i]</span><br><span class="line">                </span><br><span class="line">        <span class="comment"># if now_diff &gt; 0:</span></span><br><span class="line">        cut += <span class="number">1</span></span><br><span class="line">        <span class="comment"># print(max_cnt, cut)</span></span><br><span class="line">        <span class="keyword">return</span> cut &lt;= max_cnt</span><br></pre></td></tr></table></figure>
 </div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/80/">80</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
