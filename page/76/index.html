@@ -13,7 +13,48 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">400</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">70</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2018/06/15/Deeplearning.ai/2018-06-15-Deeplearning.ai_Course1/">Deeplearning.ai/2018-06-15-Deeplearning.ai_Course1</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-06-15</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Deep-Learning/">Deep-Learning</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Deep-Learning/AI/">AI</a></span><div class="content"><h3 id="Course1"><a href="#Course1" class="headerlink" title="Course1"></a>Course1</h3><h4 id="Week1"><a href="#Week1" class="headerlink" title="Week1"></a>Week1</h4><p>Would structured or unstructured data have features such as pixel values or individual words?</p>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">401</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">70</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2018/06/20/CVs/2018-06-20-ISP(ImageSignalProcessor)_and_3A/">CVs/2018-06-20-ISP(ImageSignalProcessor)_and_3A</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-06-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/CV/">CV</a></span><div class="content"><p> Camera! Let’s go!</p>
+<h1 id="ISP-Architecture-Image-Signal-Processor"><a href="#ISP-Architecture-Image-Signal-Processor" class="headerlink" title="ISP Architecture (Image Signal Processor)"></a>ISP Architecture (Image Signal Processor)</h1><p><strong>Important features in Camera Principle</strong></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a>Notes:</h3><p>isp晶片 會有個sensor 會裝個 len，會有rgb的pixels e.g.1920 1080 的方格，每一個都是一個r、g、b</p>
+<p>接收不同光的是不同的像素格，在光進來後再做處理，進isp，isp再去處理，變成了後制成圖片</p>
+<p>廣角、distortion重，</p>
+<p>影像邊邊是彎彎的，魚眼鏡頭180度(水平最大的視角)，通常會有鏡頭到120、130就算很廣了</p>
+<p>這種鏡頭的邊邊的distortion就很重</p>
+<p>Isp就是可以校正這種畸變</p>
+<p>針對鏡頭就算同型號畸變還是會有差</p>
+<p>生產時會校正</p>
+<p>同組參用在同型號的鏡頭</p>
+<p>Isp的好壞會影響校出來的結果 </p>
+<p>校出來的是另一個</p>
+<p>sensor的光會進isp (pipeline)，</p>
+<p>​    isp做distortion、還有像lens shading 邊邊入光量比較小就比較暗，邊邊的gain就要拉高一點，gain拉高，noise就會也一起高了</p>
+<p>​    isp也要做noise reduction，noice太大，鏡頭光圈小入光就小，得用sensor 的gain拉大，這樣noise也大，就得靠isp去降噪</p>
+<p>​    先mosaiac 還原，各個有各自的功能</p>
+<p>​    3a只是其中的功能 aito white</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3es8d1qs4j20ug0j6abd.jpg" alt="img"></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3es9u7fkhj20ny0cyt9u.jpg" alt="img"></p>
+<p>ref: <a href="https://zhuanlan.zhihu.com/p/98820927" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/98820927</a></p>
+<h1 id="3A-in-Camera"><a href="#3A-in-Camera" class="headerlink" title="3A in Camera"></a>3A in Camera</h1><h3 id="Auto-focus"><a href="#Auto-focus" class="headerlink" title="Auto focus"></a>Auto focus</h3><p>​    isp 會吐個focus value看銳俐度 —&gt; isp有硬體可以偵測影像的銳俐度，在算pixel的微分</p>
+<p>​    </p>
+<p>​    會拿到focus value，會去動鏡頭，即對焦，再得到下一個focus value</p>
+<p>​    很快推到最高點，鏡頭有個焦距，它原理就是看不同鏡頭對焦，</p>
+<p>​    有個壓電效應在做的</p>
+<p>​    <strong>壓電效應 (Piezoelectricity)</strong>，電流愈大，壓力就愈大，裡面有液體，壓力大，鏡頭就被會壓然後被推</p>
+<p>​    就是電流去控焦距</p>
+<p>​    input 就是focus value，output就是我要送多大的電流，也要判斷場景是不是有變</p>
+<p>​    拿手機去對焦也會發現自動對焦會對錯或是不對，是代表演算法沒有很精準</p>
+<h3 id="Auto-White-Balance"><a href="#Auto-White-Balance" class="headerlink" title="Auto White-Balance"></a>Auto White-Balance</h3><p>白平衡難! 色彩學!</p>
+<p>​    假設室內是黃光，我們台灣喜歡白光，黃光的室內的話就會把畫面變白，他會希望你看到的畫面是白的</p>
+<p>​    人眼就是有自動白平衡的功能</p>
+<p>​    假設我們看一個apple，有人打藍光，我還是知道apple是紅色，我人眼還是可以分得出原色，不會被黃光給影響到覺得是黃apple</p>
+<p>​    當他偵測到r比較多，r的gain就得要小一點，b的gain就得要大一點，讓畫面沒有那麼紅!</p>
+<p>​    光源 or 原色造成? 不知道</p>
+<p>​    偶有過白! </p>
+<h3 id="Auto-Exposure"><a href="#Auto-Exposure" class="headerlink" title="Auto Exposure"></a>Auto Exposure</h3><p>​    光源不希望太亮或太暗</p>
+<p>​    eg 行車紀錄器，我要進出tunnel，光會突然變暗，使用者會希望亮度馬上可以調到看得到裡面的東西</p>
+<p>​    所以一sense到變暗，gain就要拉起來，過頭就會太亮，所以「怎麼拉」很重要</p>
+<p>​    不可以給感覺一下子太亮或太暗</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/06/15/Deeplearning.ai/2018-06-15-Deeplearning.ai_Course1/">Deeplearning.ai/2018-06-15-Deeplearning.ai_Course1</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-06-15</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Deep-Learning/">Deep-Learning</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Deep-Learning/AI/">AI</a></span><div class="content"><h3 id="Course1"><a href="#Course1" class="headerlink" title="Course1"></a>Course1</h3><h4 id="Week1"><a href="#Week1" class="headerlink" title="Week1"></a>Week1</h4><p>Would structured or unstructured data have features such as pixel values or individual words?</p>
 <p>Ans: Unstructured data</p>
 <h4 id="Week2"><a href="#Week2" class="headerlink" title="Week2"></a>Week2</h4><p>![image-20190906215336217](/Users/joe/Library/Application Support/typora-user-images/image-20190906215336217.png)</p>
 <p>![image-20190906215454393](/Users/joe/Library/Application Support/typora-user-images/image-20190906215454393.png)</p>
@@ -198,102 +239,7 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
 
 <h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源:"></a>參考資源:</h3><p><a href="https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/" target="_blank" rel="noopener">A Quick and Easy Guide to tmux</a></p>
 <p><a href="https://andyyou.github.io/2017/11/27/tmux-notes/" target="_blank" rel="noopener">tmux 快速入門筆記</a></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/04/05/AB_Test/Bayesian_ML/Sec2%20-%20High%20Level%20Picture!/">AB_Test/Bayesian_ML/Sec2 - High Level Picture!</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-05</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BayesianML/">BayesianML</a></span><div class="content"><h1 id="Real-World-E-G-of-A-B-Testing"><a href="#Real-World-E-G-of-A-B-Testing" class="headerlink" title="Real-World E.G. of A/B Testing"></a>Real-World E.G. of A/B Testing</h1><h3 id="Drug"><a href="#Drug" class="headerlink" title="Drug"></a>Drug</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3811fwlk6j210i0jo76y.jpg" alt="image-20201022162224014" style="zoom:50%;" />
-
-<h3 id="Website"><a href="#Website" class="headerlink" title="Website"></a>Website</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjus6uqvswj31200najy9.jpg" alt="image-20201019174113739" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjus7uutbwj311y0lkqa2.jpg" alt="image-20201019174212598" style="zoom: 50%;" />
-
-
-
-<h3 id="Biz-Flyers"><a href="#Biz-Flyers" class="headerlink" title="Biz Flyers"></a>Biz Flyers</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjus96lyu7j311u0lk4c4.jpg" alt="image-20201019174328806" style="zoom:50%;" />
-
-
-
-<h3 id="Cloud-Storage"><a href="#Cloud-Storage" class="headerlink" title="Cloud Storage"></a>Cloud Storage</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjusa2wqt8j30zw0lkala.jpg" alt="image-20201019174420871" style="zoom:50%;" />
-
-
-
-
-
-<h2 id="Pattern"><a href="#Pattern" class="headerlink" title="Pattern"></a>Pattern</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjuscv6owxj30z60k0wke.jpg" alt="image-20201019174701794"></p>
-<h1 id="Bayesian-ML"><a href="#Bayesian-ML" class="headerlink" title="Bayesian ML"></a>Bayesian ML</h1><ul>
-<li>Bayes rule is not BML per se, but rather just basic probability!</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381752ai0j21140hutcg.jpg" alt="image-20201019175324972" style="zoom:50%;" />
-
-
-
-<h3 id="In-this-Lecture"><a href="#In-this-Lecture" class="headerlink" title="In this Lecture!"></a>In this Lecture!</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjuslglrm0j30yg0cedlg.jpg" alt="image-20201019175517025" style="zoom:50%;" />
-
-
-
-<h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p><strong><em>Want to model the height of all the students of our class using a Gaussian</em></strong></p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjusms8i5kj30z60jejv9.jpg" alt="image-20201019175633724" style="zoom:50%;" />
-
-
-
-<h4 id="Way-1-–-Freq"><a href="#Way-1-–-Freq" class="headerlink" title="Way 1 – Freq."></a>Way 1 – Freq.</h4><ul>
-<li><p>collect data</p>
-</li>
-<li><p>using maximum likelihood estimation, we would inf the mean and variance to do this!</p>
-</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3817lz9nfj20w80jm0u8.jpg" alt="image-20201019180138139" style="zoom: 50%;" />
-
-
-
-
-
-<h4 id="Way-2-–-Baysian"><a href="#Way-2-–-Baysian" class="headerlink" title="Way 2 – Baysian"></a>Way 2 – Baysian</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjustzb9pjj30rs0bon06.jpg" alt="image-20201019180328594" style="zoom:50%;" />
-
-<h3 id="Sampling"><a href="#Sampling" class="headerlink" title="Sampling"></a>Sampling</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3817oadz7j210g0jyad5.jpg" alt="image-20201019180541609" style="zoom:50%;" />
-
-
-
-<h3 id="ML-Models"><a href="#ML-Models" class="headerlink" title="ML Models"></a>ML Models</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjusxw6u5tj30z20iin1m.jpg" alt="image-20201019180714117" style="zoom:33%;" />
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjusyvky65j30xc0jen11.jpg" alt="image-20201019180810406" style="zoom:50%;" />
-
-<ul>
-<li>Not Interested in findingthe vector W! <strong>BUT the distribution</strong> of the random vector !<ul>
-<li>we want to find P of W given X &amp; Y where X &amp; Y is our training data</li>
-</ul>
-</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjut0z2lrej30xi0kw7aj.jpg" alt="image-20201019181011767" style="zoom:50%;" />
-
-
-
-
-
-<h3 id="Bayesian-Networks"><a href="#Bayesian-Networks" class="headerlink" title="Bayesian Networks"></a>Bayesian Networks</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjut2ojxvaj30zi0iwdkq.jpg" alt="image-20201019181150246" style="zoom:50%;" />
-
-
-
-
-
-<h4 id="Non-Bayesian-Example"><a href="#Non-Bayesian-Example" class="headerlink" title="Non-Bayesian Example"></a>Non-Bayesian Example</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjut3kuk5xj30zs0j8jxv.jpg" alt="image-20201019181241715" style="zoom:50%;" />
-
-
-
-<h4 id="Bayesian-Network"><a href="#Bayesian-Network" class="headerlink" title="Bayesian Network"></a>Bayesian Network</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3817xhrx9j20x80l2jsh.jpg" alt="image-20201019181342225" style="zoom:50%;" />
-
-<ul>
-<li>So! with base that, we can model these dependencies explicitly!<ul>
-<li>Whereas, when using NN, we usually use the same model and let the NN figure out what the weights should be.</li>
-</ul>
-</li>
-</ul>
-<h4 id="LDA"><a href="#LDA" class="headerlink" title="LDA"></a>LDA</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjut7itzkuj30xq0kggr0.jpg" alt="image-20201019181628953" style="zoom:50%;" />
-
-
-
-<h1 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h1><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjutcgncymj30yo0mu10z.jpg" alt="image-20201019182113813" style="zoom: 50%;" />
-
-</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/75/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/75/">75</a><span class="page-number current">76</span><a class="page-number" href="/page/77/">77</a><span class="space">&hellip;</span><a class="page-number" href="/page/80/">80</a><a class="extend next" rel="next" href="/page/77/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/75/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/75/">75</a><span class="page-number current">76</span><a class="page-number" href="/page/77/">77</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/77/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')
