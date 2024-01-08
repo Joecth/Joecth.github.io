@@ -3,9 +3,6 @@ layout: post
 categories: C++
 date: 2018-02-14
 tag: [] 
-
-
-
 ---
 
 Ref: http://notes.maxwi.com/3516/08/19/static-dynamic-binding/

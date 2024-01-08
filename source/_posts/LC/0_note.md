@@ -34,6 +34,7 @@ Author: Jo
 |                               | Q.append(cur); v=Q.popleft()                                                                                                  | Q.push_back(cur); v=Q.front(),Q.pop_front()                                                                                                 | Q.push(cur); v=Q.shift(); // O(n)                                                                     | Q.add(nbr_O);//Q.push(nbr_O); Q.poll();                                                             |
 |                               | while d                                                                                                                       | while (!Q.empty())                                                                                                                          | while (Q.length != 0)                                                                                 | while (!Q.isEmpty())                                                                                |
 | **deque**               |                                                                                                                               |                                                                                                                                             |                                                                                                       | ArrayDeque雙向實現了DEque的interface                                                                |
+| **pq** | heapq.heappush() | | |  |
 | **vector**              |                                                                                                                               | include`<vector>`                                                                                                                         |                                                                                                       |                                                                                                     |
 |                               | self.res = []                                                                                                                 | vector<vector`<int>`> result;                                                                                                             | res = [];                                                                                             | List<List`<Integer>`> res = new ArrayList<List`<Integer>`>();                                   |
 |                               | item.append(nums[idx])                                                                                                        | item.push_back(nums[idx]);                                                                                                                  | item.push(nums[idx]);                                                                                 | item.add(nums[idx]);                                                                                |
@@ -61,15 +62,29 @@ Author: Jo
 ## Special issues:
 
 - Java & js
-- <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gegmwb46qaj312a0u0qb1.jpg" alt="image-20200504191823941" style="zoom:67%;" />
+
+
 
 ## C++ Syntax Review
 
 - APIS:
 
+  - isalnum(s[i])
+  
+  - ```cpp
+    if (board[i][j] == '.') continue;
+    
+    // int val = int(board[i][j]); 		// WRONG
+    int val = int(board[i][j] - '0');	
+    
+    // if (used & (1 << val) > 0) return false;	// WRONG
+    if ((used & (1 << val)) > 0) return false;
+  
   - INT_MIN, isalnum(str\[i\]), swap(matrix[i][j], matrix[j][i]); reverse(matrix[i].begin(), matrix[i].end());
   - int end = upper_bound(nums.begin(), nums.end(), target - x) - nums.begin();
   - const size_t n;
+  - auto max_num = *max_element(candies.begin(), candies.end())
+  
 - OVERFLOW:
 
   - res += ((long long)pow(2, end_cnt) % M);  **FIX** in ↓
@@ -82,33 +97,58 @@ Author: Jo
     
     res += p[end_cnt];
     ```
+  
 - Hash
 
   - unordered_map<int, int> lookup;
-  - unordered_map<char, char> m = { {'(', ')'}, {'[', ']'}, {'{', '}'} };
+  
+  - unordered_map<char, char> m = { {'(', ')'}, {'[', ']'}, {'{', '}'} }; // 注意用的是逗號不是冒號!
+  
   - if (lookup.find(target - nums[i]) != lookup.end()){
+  
   - for (auto item: m){
-
+  
     ​		res.push_back(item.second);  // 注意！是second, 不是 second()
 
     }
+  
   - private:
-
+  
     ​		unordered_set`<int>` s;
+  
   - s.erase(key);
+  
   - unordered_set`<string>` lookup(wordDict.begin(), wordDict.end());
+  
   - unordered_set<pair<int, int>, #SHOULD PROVIDE HASH HERE...> visited; // so, change to use
+  
   - Map
   
     - ```cpp
           vector<vector<pair<int, int>>>updates;
       int idx = upper_bound(updates[index].begin(), updates[index].end(), make_pair(snap_id,INT_MAX)) - updates[index].begin();
       ```
+  
+    - for (auto &[k, v]: m){
+  
+    - map<char, int, less<char>> m;
+  
+    - ※ 可怕的bug! 會讓 map裡的key沒被traverse到 
+  
+      ```cpp
+      // if (seen.find(diff) == seen.end()) {
+      if (seen.count(diff) == 0) {
+      // res += min(m[diff], m[key]); // BUGGGG!!!! 這會自己幫map新加key為diff的elements … 然後就會打亂本來有的key的traverse的節奏；像這邊，就是6最後沒被traverse到…
+      ```
+  
+      
+  
 - DP
 
   - vector`<int>` dp = {1, 1, 2};
   - vector`<int>` dp(n + 1);
   - vector<vector`<int>`> dp(n, vector`<int>`(2));
+  
 - Bits
 
   - uint32_t x = n;
@@ -152,6 +192,7 @@ Author: Jo
       return cnt;
     }
     ```
+  
 - Matrix
 
   - if (matrix.size() == 0 || matrix[0].size() == 0) return {};
@@ -173,6 +214,7 @@ Author: Jo
     
     int di = dir[0], dj = dir[1];   // FIX
     ```
+  
 - LINEAR -- String, or Arr, with Vector as Stack, prefer to just use vector to make API name easier
 
   - Vector
@@ -211,6 +253,7 @@ Author: Jo
     - // for(auto &x: q) {    NO trvs queue in CPP!
   - String
   
+    - item.pop_back();
     - for (char c: s){
     - to_string(root->val)
     - string pat = "(" + l + " " + to_string(root->val) + " " + r + ")";
@@ -256,6 +299,7 @@ Author: Jo
       };
       
       ```
+  
 - PQ, Top-K & Comparator
 
   - // printf("%d %d\n", x.first, x.second);
@@ -374,9 +418,11 @@ Author: Jo
     };
   
     priority_queue<ListNode *, vector<ListNode*>, decltype(cmp)> heap(cmp);
+  
 - Interval
 
   - int s = interval[0], e = interval[1];
+  
 - LinkedList
 
   - printf("var[%d] = %x\n", i - 1, ptr);
@@ -388,10 +434,12 @@ Author: Jo
   - // vector<ListNode*> res; //runtime error: reference binding to null pointer of type 'ListNode *' (stl_vector.h)
 
     vector<ListNode*> res(1);	// FIX
+  
 - Tree
 
   - bool ans = dfs(root, LONG_MIN, LONG_MAX);
     bool dfs(TreeNode* root, long lo, long hi){        // FIX!, 別用 INT_MIN, INT_MAX
+  
 - Graph
 
   - vector<vector`<int>`> g(numCourses);

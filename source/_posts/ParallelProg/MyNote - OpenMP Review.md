@@ -5,7 +5,7 @@ tag: []
 date: 2023-06-21
 ---
 
-
+[toc]
 
 # Notes
 
@@ -111,7 +111,7 @@ int A[10], B[10], C[10]
 - DO NOT launch new threads
 - there's iimplicit barrier at the end of construct
 
-3 分配方式![image-20230620220318645](/Users/joe/Library/Application Support/typora-user-images/image-20230620220318645.png)
+3 分配方式![image-20230620220318645](https://p.ipic.vip/we83v0.png)
 
 ### 1) Do/For Directive
 
@@ -304,7 +304,7 @@ main(){
 - for data data scope
 
 - private variable or shared variable?
-  ![image-20230621193839393](/Users/joe/Library/Application Support/typora-user-images/image-20230621193839393.png)
+  ![image-20230621193839393](https://p.ipic.vip/zp98n7.png)
 
 - by default, a variable is shared-variable(global variable)
 
@@ -424,7 +424,7 @@ gcc也是開源的
 
 編譯指導語句，這些表達示有一定的區別
 
-![image-20230620112406786](/Users/joe/Library/Application Support/typora-user-images/image-20230620112406786.png)
+![image-20230620112406786](https://p.ipic.vip/dwj1f7.png)
 
 ![image-20230620112528350](https://p.ipic.vip/qn52kg.png)
 
@@ -445,3 +445,5 @@ ref:
 1 https://theartofhpc.com/pcse/index.html
 
 2  [周志遠平行程式 9B](https://youtu.be/xk6xpx8HY6s?t=421)
+
+3 https://curc.readthedocs.io/en/latest/programming/coding-best-practices.html
