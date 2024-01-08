@@ -13,239 +13,934 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">401</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">70</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/2%20%E8%BB%8A%E8%B2%B8/">Loans/2 車貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/23/Loans/1%20%E8%B2%B8%E6%AC%BE%E5%95%8F%E9%A1%8C-%E6%88%BF%E8%B2%B8/">Loans/1 貸款問題-房貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"><h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><ul>
-<li>負利率！</li>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">406</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">73</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/29/AI-System/2%20AI%20Compiler/">AI-System/2 AI Compiler</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-29</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AI-System/">AI-System</a></span><div class="content"><h1 id="Why-we-need-AI-Compiler"><a href="#Why-we-need-AI-Compiler" class="headerlink" title="Why we need AI Compiler"></a>Why we need AI Compiler</h1><ul>
+<li>OPs ↑</li>
+<li>HW vendors release similar libs, e.g. CuDNN, MKL-DNN for their own chips</li>
+<li>Transplanation issue, e.g. CPU &amp; GPU’s existing  Pass hard to be transplanted to NPU</li>
 </ul>
-<h1 id="基本原則"><a href="#基本原則" class="headerlink" title="基本原則"></a>基本原則</h1><p>貸款種類</p>
+<h1 id="AI-Compiler"><a href="#AI-Compiler" class="headerlink" title="AI Compiler"></a>AI Compiler</h1><ul>
+<li>auto optimize the process/code</li>
+<li>Introduce Pass</li>
+<li>FE -&gt; Opt -&gt; BE</li>
+<li>Main purpose –&gt; Optiize the performance, and then make coding easier</li>
+</ul>
+<img src="https://p.ipic.vip/hvdjk2.png" alt="image-20230602171205297" style="zoom:33%;" />
+
+
+
+<h3 id="Difference-from-Traditional-Compiler"><a href="#Difference-from-Traditional-Compiler" class="headerlink" title="Difference from Traditional Compiler"></a>Difference from Traditional Compiler</h3><p><img src="https://p.ipic.vip/vsjbeo.png" alt="image-20230602171410674"></p>
 <ul>
-<li>沒工作的人、未出社會：信用卡預借現金 4~10%</li>
-<li>一般正常的信貸：3-4%, 2-3%</li>
+<li>IR <ul>
+<li>for AI<ul>
+<li>High-level IR, to describe the computational graph</li>
 </ul>
-<p>貸款運用</p>
-<p>房貸、車貸利率都很低，用銀行的資金來購買房產、投資房產、買汽車都是很正常</p>
-<h2 id="為何借"><a href="#為何借" class="headerlink" title="為何借"></a>為何借</h2><p>投資、週轉、紀錄</p>
-<p>要小心，自己的風控</p>
-<h2 id="術語"><a href="#術語" class="headerlink" title="術語"></a>術語</h2><ul>
-<li><p>小白 – 怕是人頭，除非有資產，但也是會打折變5、６成</p>
 </li>
-<li><p>建信用，存款、信用卡</p>
+<li>for Traditional IR<ul>
+<li>Low-level IR, e.g. load, store</li>
+</ul>
 </li>
 </ul>
-<h2 id="分期付款"><a href="#分期付款" class="headerlink" title="分期付款"></a>分期付款</h2><ul>
-<li>還款對信用有差</li>
-<li>買的時候的沒差，利息是廠商付的 – 即廠商為促銷活動而去付給銀行的錢</li>
+</li>
+<li>Pass<ul>
+<li>for AI<ul>
+<li>OPs fusion</li>
+<li>able for Quantization</li>
 </ul>
-<h2 id="借款不等於負債"><a href="#借款不等於負債" class="headerlink" title="借款不等於負債"></a>借款不等於負債</h2><h4 id="負債"><a href="#負債" class="headerlink" title="負債"></a>負債</h4><p>以債養債或創業失敗</p>
-<h4 id="資產"><a href="#資產" class="headerlink" title="資產"></a>資產</h4><p>房價、股票漲、租金，都是上漲！跟各人投資運氣有關</p>
-<h2 id="貨比三家"><a href="#貨比三家" class="headerlink" title="貨比三家"></a>貨比三家</h2><p>低利率</p>
-<p>高額度</p>
-<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p>主流銀行</p>
-<p><strong><em>不要隨便簽下「個資查詢同意書」！！</em></strong></p>
-<h1 id="房貸"><a href="#房貸" class="headerlink" title="房貸"></a>房貸</h1><h2 id="估價原則"><a href="#估價原則" class="headerlink" title="估價原則"></a>估價原則</h2><p>銀行怎麼估呢？</p>
+</li>
+<li>for Traditional <ul>
+<li>no Quantization</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="AI-Compiler-Architecture"><a href="#AI-Compiler-Architecture" class="headerlink" title="AI Compiler Architecture"></a>AI Compiler Architecture</h1><p>Purposes: Inference or Train?!</p>
+<ul>
+<li>Python as FE interpreter</li>
+<li>Multilevel IR, including graph-compilzation, OP compilation, code-gen</li>
+<li>for NN</li>
+<li>DSA for chips</li>
+</ul>
+<h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><p><img src="https://p.ipic.vip/o4kzrn.png" alt="image-20230602171958136"></p>
+<p>I had experiences in Stage I in 2017~early2019</p>
+<p>and now being involved in Stage II</p>
+<h4 id="Stage-II"><a href="#Stage-II" class="headerlink" title="Stage II"></a>Stage II</h4><img src="https://p.ipic.vip/6y3qzh.png" alt="image-20230602172529020" style="zoom:67%;" />
+
+
+
+<h4 id="Stage-III"><a href="#Stage-III" class="headerlink" title="Stage III"></a>Stage III</h4><p><img src="https://p.ipic.vip/vgjo4j.png" alt="image-20230602172708408"></p>
+<p>ref: <a href="https://youtu.be/bW3gsz9AjPY" target="_blank" rel="noopener">AI videos series</a> on YT  </p>
+<h3 id="General-Architecture"><a href="#General-Architecture" class="headerlink" title="General Architecture"></a>General Architecture</h3><p><img src="https://p.ipic.vip/gr6gg4.png" alt="image-20230602190537524"></p>
+<p>From paper – <u><em>The Deep LearningCompiler: A Comprehensive Survey</em></u></p>
+<ul>
+<li><p>IR - </p>
 <ol>
-<li>自己有的估價師，如台新是有的<ol>
-<li>問建設公司，有往來的建設公司, 問型態，如公寓或華廈etc</li>
-<li>實價登錄作參考</li>
-<li>大型房仲</li>
+<li><p>High-level</p>
+</li>
+<li><p>Low-level</p>
+</li>
 </ol>
 </li>
-<li>長期來講價增值、貨幣貶值，薪水↑物價↑，though 人口↓,　所以只要選對區域，長期而言是↑</li>
+<li><p>FE Opti.</p>
+<p>compose graph with python language</p>
+<ol>
+<li>Nodes level –  zero-dim-tensor elimination, Nop elimination</li>
+<li>Block level – algebraic simplify, constant folding ,op fusion</li>
+<li>Data Stream level –  Common sub-expression elimination, DCE(data communcation equip.)</li>
 </ol>
-<h2 id="貸款種類"><a href="#貸款種類" class="headerlink" title="貸款種類"></a>貸款種類</h2><h4 id="購屋貸款"><a href="#購屋貸款" class="headerlink" title="購屋貸款"></a>購屋貸款</h4><h4 id="原屋融資-中古屋貸款"><a href="#原屋融資-中古屋貸款" class="headerlink" title="原屋融資 (中古屋貸款)"></a>原屋融資 (中古屋貸款)</h4><p>可以享受房地產增值的好處，貸到更多的錢</p>
-<p> Links <a href="https://www.youtube.com/watch?v=AnsMtGUxLXU" target="_blank" rel="noopener">1</a>, </p>
-<h5 id="流程-1"><a href="#流程-1" class="headerlink" title="流程"></a>流程</h5><p>申請估價審核對保設定撥款</p>
-<h3 id="房屋類型影響的貸款成數跟效果"><a href="#房屋類型影響的貸款成數跟效果" class="headerlink" title="房屋類型影響的貸款成數跟效果"></a>房屋類型影響的貸款成數跟效果</h3><h4 id="成數"><a href="#成數" class="headerlink" title="成數"></a>成數</h4><ul>
-<li>一般住宅 7~8成</li>
-<li>小套 10~12.5坪↓, 5成，因為法拍可能要到三、四拍，不易呀！一次就打八折去了，第三拍就是64折了，流動差<ul>
-<li>看權狀，有分公共設施還有室內坪數(含陽台)，小於12p，就叫作小套房</li>
-<li>銀行自己也自行評估當地房產↑或↓，如果成數高代表銀行也覺得增值性↑；要是成數保守，就代表銀行覺得房地產增值性不高；當然也跟個人收入條件有關係</li>
+</li>
+<li><p>BE Opti.</p>
+<ol>
+<li>Spefific hardware<ul>
+<li>low-level IR –&gt; LLVM IR –&gt; GPU/CPU codegen</li>
+<li>Domain knowhow</li>
 </ul>
 </li>
-<li>豪宅<ul>
-<li>台北7Kw; 新北6Kw; 其他地4Kw; 央行規定不得超過6成<ul>
-<li>但還是<u>有眉角</u>… 可以去到 7、8成 (噓)</li>
+<li>Auto-adjustment<ul>
+<li>Halide/TVM allows the <strong>Separatino of Scheduleing and Compute</strong></li>
+<li><u>Polyhedral model</u> for param adjustment</li>
 </ul>
 </li>
+<li>Kernel libs<ul>
+<li>from libs, e.g. NVidia’s lib</li>
 </ul>
 </li>
-<li>工業用住宅<ul>
-<li>一定是比較差的，所以比一般低一1, 2成，二手市場去化慢，so 貸6~7成</li>
-<li>另，電費、房屋稅多</li>
-<li>除非真的蓋超好格局環境，不然盡量避開！</li>
-</ul>
-</li>
-<li>店面 &amp; 商辦<ul>
-<li>店面市場只在金字塔頂層的人，所去化不易，成數低！–&gt; 保守</li>
-<li>辦公大樓好些！租金上穩定，也不像店面那麼高單價，投報率都不錯</li>
-</ul>
-</li>
-</ul>
-<h2 id="還款繳息"><a href="#還款繳息" class="headerlink" title="還款繳息"></a>還款繳息</h2><h4 id="單一利率-VS-組合利率-amp-本息攤還-VS-本金攤還"><a href="#單一利率-VS-組合利率-amp-本息攤還-VS-本金攤還" class="headerlink" title="單一利率 VS 組合利率 &amp; 本息攤還 VS 本金攤還"></a>單一利率 VS 組合利率 &amp; 本息攤還 VS 本金攤還</h4><p>Link <a href="https://www.youtube.com/watch?v=9YgnvKp2HFQ" target="_blank" rel="noopener">1</a></p>
-<ul>
-<li><p>利息不是愈低愈好，要看是否是單一或很賤的組合利率</p>
-</li>
-<li><p>還款方式會影響月繳金額跟利息高低</p>
-</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h8ff6c8rnij30u010awiw.jpg" alt="image-20221123221547111"></p>
-<ul>
-<li>減低壓力的方式<ol>
-<li>頭款多些</li>
-<li>年數拉長</li>
-<li>善用寬限期, 前三年只付利息不付本金</li>
 </ol>
 </li>
 </ul>
-<h4 id="純繳息"><a href="#純繳息" class="headerlink" title="純繳息"></a>純繳息</h4><ul>
-<li>一般銀行只壓在7成以內適用</li>
-<li>可能每年要換單，可能一次打7年的合約，7年內只要繳息正常，它都給我純繳息 <ul>
-<li>我不還本金，對銀行來講利息是比較多的呀！</li>
-</ul>
+<p><img src="https://p.ipic.vip/3orvbk.png" alt="image-20230602191320979"></p>
+<h1 id="Challenges-amp-Future"><a href="#Challenges-amp-Future" class="headerlink" title="Challenges &amp; Future"></a>Challenges &amp; Future</h1><ol>
+<li><p>Dynamic Shape problems</p>
 </li>
-<li>但它也考慮到房子萬一貶值…，我還沒還到本金<ul>
-<li>所以它成數不像本利攤還</li>
-</ul>
+<li><p>Python Static<br><img src="https://p.ipic.vip/j07i81.png" alt="image-20230602192507040"></p>
+<p><img src="https://p.ipic.vip/agcvp6.png" alt="image-20230602192610709"></p>
 </li>
-<li>可能就是給個7年的時間，7或3年換一次單…</li>
-</ul>
-<h4 id="本息平均攤還-階段式還款"><a href="#本息平均攤還-階段式還款" class="headerlink" title="本息平均攤還/階段式還款"></a>本息平均攤還/階段式還款</h4><ul>
-<li>15~30年<ul>
-<li>可能還3年的本金已還款10%</li>
-<li>ps. 貸的時間長如到40年對銀行不划算，因為它的資金都是來自定存最長就兩、三年而已的，跟壽險保單持續20年都會有資金進來不一樣</li>
-<li>前三年可以要寬限期，第四年開始以剩下的17年作「本利攤還」<ul>
-<li>理由一般是裝潢，自備款不夠，還需累積收入</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>３年內還掉要賠違約金1% (1kw就是8w), 但還是<u>有眉角</u>變 0.5%之類 (即4w)…<ul>
-<li>它吸存款是0.8，放貸是1.8，只賺了1%</li>
-<li>裡面還有租金、折舊、成本人力，銀行前三年貸出來都是虧的，要提存款準備、呆帳準備 (目前金管會定是1%)</li>
-</ul>
-</li>
-</ul>
-<h2 id="原屋融資的目的"><a href="#原屋融資的目的" class="headerlink" title="原屋融資的目的"></a>原屋融資的目的</h2><ul>
-<li>投資、周轉需求、增額度(增貸)、降息(但現在比價都差個0.1而已很少，而且還要搬家費違約金、貸入、設抵押權轉換的費用、地政事務所費)</li>
-<li><code>平轉</code>, 目的：我想要 1增貸(通常都是) 2寬限期(即純繳息) 3降息<ul>
-<li>!=搬家；平轉就純粹只是為了降低利率、省掉利息，我額度不增加</li>
-<li>如在台銀不隨中央降0.1%，要是貸3kw，一年差3w，5年就15w，第一年把手續費用攤平了，後面四年可以省下利息，這就叫作平轉</li>
-<li>還可能能再多要到兩好處<ul>
-<li>寬限期，可能我的第二家信用卡的銀行願意「再給」<ul>
-<li>btw, 1kw的純繳息如果2%一個月大概就20w/12=1.6w; 加要是加上本金可能就共5w, 其中本金占了3.?w</li>
-</ul>
-</li>
-<li>利率再降低</li>
-</ul>
-</li>
-<li>可如此施壓給原銀行降利率</li>
-<li>但不能讓銀行覺得是我沒能力繳本利攤 … <u>有眉角</u>…，讓銀行再給一次寬限期，這樣我就不用再浪費移轉的手續費，這個要好幾萬的</li>
-<li>增貸: 生意、周轉、斷頭、創業…</li>
-</ul>
-</li>
-</ul>
-<h2 id="以房養老"><a href="#以房養老" class="headerlink" title="以房養老"></a>以房養老</h2><ul>
-<li>利用房子來增加他的生活費用</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h8gau5ja8vj315c0ho40v.jpg" alt="image-20221124163114121"></p>
+<li><p>Specific Optimization </p>
 <ul>
-<li>當退休後，除了基本的退休金以外，可以跟銀行申悄以方養老這種類型的房貸，利息也不用付，就是從額度裡面去扣，然後再給後代覺得這個房子要出售還是轉換成原屋融資</li>
-<li>保守型的退休人員，錢留著自己用</li>
-</ul>
-<h2 id="二胎-amp-地下金融"><a href="#二胎-amp-地下金融" class="headerlink" title="二胎 &amp; 地下金融"></a>二胎 &amp; 地下金融</h2><h4 id="二胎"><a href="#二胎" class="headerlink" title="二胎"></a>二胎</h4><ul>
-<li>第一順位的抵押權是在A銀行，想增貸又不想離開A銀行，不想搬家，只想增40, 50w，很少就是100w內，所以想想是否能以房子作第二順位的抵押</li>
-<li>3%~6％，比較高一點，一般金額都不給高都是小額</li>
-<li>一、兩家銀行有作，看扣掉第一順位銀行的貸款後還有多少殘值，再貸給我這樣的錢</li>
-</ul>
-<h4 id="地下金融"><a href="#地下金融" class="headerlink" title="地下金融"></a>地下金融</h4><ul>
-<li>有很多也是提供給這個二順位的貸款</li>
-<li>額度可能高些，但可能利率就是高高高，因為也不受民法上利率20%的上限管制</li>
-<li>要36%, 就是一個月3w了，相對銀行一年也才2%! 是18倍</li>
-</ul>
-<h4 id="整債–打交道的經驗"><a href="#整債–打交道的經驗" class="headerlink" title="整債–打交道的經驗"></a>整債–打交道的經驗</h4><p>可跟很好的金額跟利率，<u>有眉角</u>…</p>
-<h2 id="授信準則及標準"><a href="#授信準則及標準" class="headerlink" title="授信準則及標準"></a>授信準則及標準</h2><p>物＆人的財力存款股票房地產</p>
-<h2 id="如何申請最有利的房貸"><a href="#如何申請最有利的房貸" class="headerlink" title="如何申請最有利的房貸"></a>如何申請最有利的房貸</h2><p>ABC客戶</p>
-<ul>
-<li>A黃金職業</li>
-<li>B受薪基層<ul>
-<li>二等親，看後台實力</li>
-<li>非六都比較低</li>
+<li>auto parallel<ul>
+<li>Scale out </li>
+<li>Scale up</li>
 </ul>
 </li>
-</ul>
-<p>利率、額度、還款期限/金額、還款彈性、撥款速度</p>
-<ul>
-<li>彈性<ul>
-<li>往來一年後，我想增貸，可談</li>
-<li>中央如果降</li>
-<li>延長寬限期，就是搬家啦，就是技巧，但人家也會看你中間的繳的方式判斷，談判，<u>有眉角</u>…</li>
+<li>HPC for Jacobian matrix, for Hessian matrix</li>
 </ul>
 </li>
-<li>撥款速度<ul>
-<li>權狀交給銀行要辦理設定，徵信到結束，差不多7~10工作天</li>
-<li>依金額，要審到高階看還款能力</li>
+<li><p>Transparency </p>
+</li>
+<li><p>Compiling cost、Overhead</p>
+</li>
+</ol>
+<ul>
+<li>Umifying representation of graph?</li>
+<li>Umifying optimization for compilation?</li>
 </ul>
+<p><img src="https://p.ipic.vip/ypwr0w.png" alt="image-20230602193127645"></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/27/AI-System/1%20Traditional%20Compilers%20/">AI-System/1 Traditional Compilers </a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-27</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AI-System/">AI-System</a></span><div class="content"><p>Interpreter VS Compiler</p>
+<p>JIT vs AOT</p>
+<p>Pass &amp; IR</p>
+<h2 id="History-of-Compilers-–-GCC-VS-LLVM"><a href="#History-of-Compilers-–-GCC-VS-LLVM" class="headerlink" title="History of Compilers – GCC VS LLVM"></a>History of Compilers – GCC VS LLVM</h2><p><img src="https://p.ipic.vip/wjd955.png" alt="image-20230602161322366"></p>
+<p>Compiler –  e.g. turn hello.c to hello.o(binary)</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Sourcecode --&gt; 		Compiler --&gt; 		exe binary</span><br><span class="line">​						(FE, IR Optimizer, BE)</span><br><span class="line">(to AST)												(MachineCode)</span><br><span class="line">Abstract Syntax Tree</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>GCC 1.0 @ 1987</p>
+<img src="https://p.ipic.vip/5y76rq.png" alt="image-20230602160844823" style="zoom:50%;" />
+
+<p>​                        Free the Free!</p>
+<p>(Richard Matthew Stallman)</p>
+<p>Apple – Free! but OS kernel pretty closed</p>
+<p><img src="https://p.ipic.vip/mxxzdg.png" alt="image-20230602161010238"></p>
+<h3 id="Apple-met-LLVM"><a href="#Apple-met-LLVM" class="headerlink" title="Apple met LLVM"></a>Apple met LLVM</h3><img src="https://p.ipic.vip/lm33h3.png" alt="image-20230602161146709" style="zoom: 25%;" />
+
+
+
+
+
+<h3 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h3><img src="https://p.ipic.vip/bcso75.png" alt="image-20230602161456787" style="zoom: 50%;" />
+
+<img src="https://p.ipic.vip/eht8wd.png" alt="image-20230602161738949" style="zoom:67%;" />
+
+
+
+
+
+<h3 id="LLVM"><a href="#LLVM" class="headerlink" title="LLVM"></a>LLVM</h3><p>low level VM</p>
+<p>Compiler Toolchain</p>
+<img src="https://p.ipic.vip/wwjwth.png" alt="image-20230602161604175" style="zoom: 67%;" />
+
+
+
+
+
+<p>Introduced IR! bettern than GCC</p>
+<img src="https://p.ipic.vip/4jgjjm.png" alt="image-20230602161815300" style="zoom:67%;" />
+
+
+
+
+
+<h2 id="CLANG-VS-GCC"><a href="#CLANG-VS-GCC" class="headerlink" title="CLANG VS GCC"></a>CLANG VS GCC</h2><p><img src="https://p.ipic.vip/cqugk4.png" alt="image-20230602162331702"></p>
+<p><img src="https://p.ipic.vip/304pgi.png" alt="image-20230602162406871"></p>
+<p><img src="https://p.ipic.vip/n0rsd7.png" alt="image-20230602162448009"></p>
+<p><img src="https://p.ipic.vip/rtj8ia.png" alt="image-20230602162529839"></p>
+<p>​    - *.ll  – huan readable</p>
+<ul>
+<li><pre><code class="bash">&gt; clang -emit-llvm hello.i -c -o hello.bc
+&gt; code hello.bc
+&gt; od -b hello.bc
+
+$ clang -ccc-print-phases hello.cpp
+               +- 0: input, <span class="string">"hello.cpp"</span>, c++
+            +- 1: preprocessor, {0}, c++-cpp-output
+         +- 2: compiler, {1}, ir
+      +- 3: backend, {2}, assembler
+   +- 4: assembler, {3}, object
++- 5: linker, {4}, image
+6: <span class="built_in">bind</span>-arch, <span class="string">"arm64"</span>, {5}, image
+
+(base)
+<span class="comment"># joe @ J-M1-Pro-16 in ~/exp [16:35:49]</span>
+$ cat hello.s | less
+    .cfi_endproc
+                                        ; -- End <span class="keyword">function</span>
+    .p2align    2                               ; -- Begin <span class="keyword">function</span> _ZNSt3__18ios_base8setstateEj
+__ZNSt3__18ios_base8setstateEj:         ; @_ZNSt3__18ios_base8setstateEj
+    .cfi_startproc
+; %bb.0:
+    sub    sp, sp, <span class="comment">#32</span>
+    stp    x29, x30, [sp, <span class="comment">#16]             ; 16-byte Folded Spill</span>
+        .section        __TEXT,__text,regular,pure_instructions
+        .build_version macos, 12, 0     sdk_version 12, 3
+        .globl  _main                           ; -- Begin <span class="keyword">function</span> main
+        .p2align        2
+_main:                                  ; @main
+        .cfi_startproc
+; %bb.0:
+        stp     x29, x30, [sp, <span class="comment">#-16]!           ; 16-byte Folded Spill</span>
+        mov     x29, sp
+        .cfi_def_cfa w29, 16
+        .cfi_offset w30, -8
+        .cfi_offset w29, -16
+        adrp    x0, l_.str@PAGE
+        add     x0, x0, l_.str@PAGEOFF
+        bl      _printf
+        adrp    x0, __ZNSt3__14coutE@GOTPAGE
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### LLVM IR★</span><br><span class="line"></span><br><span class="line">![image-20230602163418928](https:&#x2F;&#x2F;p.ipic.vip&#x2F;e85fsn.png)</span><br><span class="line"></span><br><span class="line">- SSA - Static Single Assignment </span><br><span class="line">  - ~  RISC ISA</span><br><span class="line">  - 3-address-code</span><br><span class="line">    - &lt;img src&#x3D;&quot;https:&#x2F;&#x2F;p.ipic.vip&#x2F;jwvvo5.png&quot; alt&#x3D;&quot;image-20230602163826992&quot; style&#x3D;&quot;zoom:33%;&quot; &#x2F;&gt;</span><br><span class="line">  - inf registers</span><br><span class="line">- Structure</span><br><span class="line">  - Module -&gt; Function -&gt; Basicblock -&gt; Instruction</span><br><span class="line">- Concepts</span><br><span class="line">  - Value, Use, User, </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### LLVM FE</span><br><span class="line"></span><br><span class="line">&lt;img src&#x3D;&quot;https:&#x2F;&#x2F;p.ipic.vip&#x2F;qtr860.png&quot; alt&#x3D;&quot;image-20230602164519532&quot; style&#x3D;&quot;zoom: 50%;&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">- Lexical Analysis --&gt; Syntatical Analysis --&gt; Semantic Analysis</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;&#96;bash</span><br><span class="line">    10018  clang -cc1 -dump-tokens hello.cpp</span><br><span class="line">    10019  clang -fsyntax-only -Xclang -ast-dump hello.cpp</span><br><span class="line">    10020  clang -c hello.cpp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### LLVM Optimizer</span><br><span class="line"></span><br><span class="line">- Finding PASS</span><br><span class="line"></span><br><span class="line">  - Analysis Pass</span><br><span class="line"></span><br><span class="line">  - Transform pass</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;	bash</span><br><span class="line">    &gt; opt hello.bc -instcount -time-passes -domtree -o hello-tmp.bc -stats</span><br></pre></td></tr></table></figure>
+
+- [LLVM’s Analysis and Transform Passes — LLVM 17.0.0git documentation](https://llvm.org/docs/Passes.html)
+
+  - e.g. -adce: Aggressive Dead Code Elimination
+  - e.g.  -constmerge: Merge Duplicate Global Constants
+
+- ModulePass, FunctionPass, BasicBlockPass
+
+
+</code></pre>
 </li>
 </ul>
-<h1 id="總流程"><a href="#總流程" class="headerlink" title="總流程"></a>總流程</h1></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/09/12/Algo.%20Ult./SegTree%20Advanced/">Algo. Ult./SegTree Advanced</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-09-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AlgoUlt/">AlgoUlt.</a></span><div class="content"><h2 id="2407-LIS-II"><a href="#2407-LIS-II" class="headerlink" title="2407. LIS II"></a>2407. LIS II</h2><p><em>hard</em></p>
-<p>Find the longest subsequence of <code>nums</code> that meets the following requirements:</p>
+<h3 id="LLVM-BE"><a href="#LLVM-BE" class="headerlink" title="LLVM BE"></a>LLVM BE</h3><img src="/Users/joe/Library/Application Support/typora-user-images/image-20230602165508513.png" alt="image-20230602165508513" style="zoom: 40%;" />
+
+
+
+<h4 id="SelectionDAG-gt-Scheduling"><a href="#SelectionDAG-gt-Scheduling" class="headerlink" title="SelectionDAG -&gt; Scheduling"></a>SelectionDAG -&gt; Scheduling</h4><p><img src="https://p.ipic.vip/3r23t5.png" alt="image-20230602165708989"></p>
+<p>Topological sort to know nodes that are able to run parallelly</p>
+<h4 id="MCInst-gt-Code-Emission"><a href="#MCInst-gt-Code-Emission" class="headerlink" title="MCInst -&gt; Code Emission"></a>MCInst -&gt; Code Emission</h4><h4 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h4><p><img src="https://p.ipic.vip/gtnep5.png" alt="image-20230602165926323"></p>
+<h2 id="OnGoing-History"><a href="#OnGoing-History" class="headerlink" title="OnGoing History"></a>OnGoing History</h2><p>Chris start his bizness at “Modular”</p>
+<h2 id="LLVM-Related-AI-Compilers"><a href="#LLVM-Related-AI-Compilers" class="headerlink" title="LLVM Related AI Compilers"></a>LLVM Related AI Compilers</h2><p>built on LLVM, including</p>
 <ul>
-<li>The subsequence is <strong>strictly increasing</strong> and</li>
-<li>The difference between adjacent elements in the subsequence is <strong>at most</strong> <code>k</code>.</li>
+<li>XLA in TF,  by Google</li>
+<li>JAX, autograd + XLA, by Google</li>
+<li>TensorFlow, on XLA, then on LLVM</li>
+<li>TVM for different hardwares</li>
+<li>Julia, for HPC, using LLVM JIT</li>
 </ul>
-<p>Return <em>the length of the <strong>longest</strong> <strong>subsequence</strong> that meets the requirements.</em></p>
-<p>A <strong>subsequence</strong> is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [4,2,1,4,3,4,5,8,15], k &#x3D; 3</span><br><span class="line">Output: 5</span><br><span class="line">Explanation:</span><br><span class="line">The longest subsequence that meets the requirements is [1,3,4,5,8].</span><br><span class="line">The subsequence has a length of 5, so we return 5.</span><br><span class="line">Note that the subsequence [1,3,4,5,8,15] does not meet the requirements because 15 - 8 &#x3D; 7 is larger than 3.</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [7,4,5,1,8,12,4,7], k &#x3D; 5</span><br><span class="line">Output: 4</span><br><span class="line">Explanation:</span><br><span class="line">The longest subsequence that meets the requirements is [4,5,8,12].</span><br><span class="line">The subsequence has a length of 4, so we return 4.</span><br></pre></td></tr></table></figure>
-
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [1,5], k &#x3D; 1</span><br><span class="line">Output: 1</span><br><span class="line">Explanation:</span><br><span class="line">The longest subsequence that meets the requirements is [1].</span><br><span class="line">The subsequence has a length of 1, so we return 1.</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>Constraints:</strong></p>
+<p>ref to </p>
 <ul>
-<li><code>1 &lt;= nums.length &lt;= 105</code></li>
-<li><code>1 &lt;= nums[i], k &lt;= 105</code></li>
+<li>series of <a href="https://youtu.be/i5_BptwCBHA" target="_blank" rel="noopener">AI videos</a> on YT</li>
 </ul>
-<h4 id="My-Code"><a href="#My-Code" class="headerlink" title="My Code"></a>My Code</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SegTree</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        self.n = n</span><br><span class="line">        self.tree = [<span class="number">0</span>] * n * <span class="number">2</span>  <span class="comment"># 2 for boundary cases: 0 and n</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, left, right)</span>:</span>   <span class="comment"># on [left, right)</span></span><br><span class="line">        l, r = left + self.n, right + self.n</span><br><span class="line">        res = -sys.maxsize</span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            <span class="keyword">if</span> l &amp; <span class="number">1</span> == <span class="number">1</span>:</span><br><span class="line">                res = max(res, self.tree[l])</span><br><span class="line">                l += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> r &amp; <span class="number">1</span> == <span class="number">1</span>:</span><br><span class="line">                r -= <span class="number">1</span>  <span class="comment"># because it's an open boundary</span></span><br><span class="line">                res = max(res, self.tree[r])</span><br><span class="line">            l &gt;&gt;= <span class="number">1</span></span><br><span class="line">            r &gt;&gt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, i, val)</span>:</span></span><br><span class="line">        idx = i + self.n</span><br><span class="line">        self.tree[idx] = val</span><br><span class="line">        <span class="keyword">while</span> idx &gt; <span class="number">0</span>:</span><br><span class="line">            idx &gt;&gt;= <span class="number">1</span></span><br><span class="line">            <span class="comment"># self.tree[idx] = max([self.tree[idx &gt;&gt; 1], self.tree[idx &gt;&gt; 1 | 1]])  # BUG!</span></span><br><span class="line">            self.tree[idx] = max([self.tree[idx &lt;&lt; <span class="number">1</span>], self.tree[idx &lt;&lt; <span class="number">1</span> | <span class="number">1</span>]])</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLIS</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># return self.my_20220912_numpymax(nums, k)  # AC! with numpy</span></span><br><span class="line">        <span class="keyword">return</span> self.my_20220912_segtree(nums, k)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">my_20220912_segtree</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        seg = SegTree(max(nums) + <span class="number">1</span>) <span class="comment"># max(nums) + 1 means the length of the dp, where dp[i] means LIS end with value </span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            x = nums[i]</span><br><span class="line">            prev_max = seg.query(max(<span class="number">0</span>, x-k), x)  <span class="comment"># prev_max = dp[max(0, x-k):x]</span></span><br><span class="line">            <span class="comment"># print(i, nums[i], prev_max, seg.tree)</span></span><br><span class="line">            seg.update(x, prev_max+<span class="number">1</span>)   <span class="comment"># dp[x] = prev_max + 1</span></span><br><span class="line">            res = max(res, prev_max+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">my_20220912_numpymax</span><span class="params">(self, nums, k)</span>:</span>    <span class="comment"># AC! once AC...</span></span><br><span class="line">        n = len(nums)   </span><br><span class="line">        dp = np.array([<span class="number">0</span>] * (<span class="number">10</span> ** <span class="number">5</span> + <span class="number">2</span>))</span><br><span class="line">        <span class="comment"># dp = np.array([0] * (max(nums) + 1))</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            x = nums[i]</span><br><span class="line">            dp[x] = dp[max(<span class="number">0</span>, x-k):x].max() + <span class="number">1</span></span><br><span class="line">            res = max(dp[x], res)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<p>Ref: </p>
-<p>1 <a href="https://leetcode.com/problems/longest-increasing-subsequence-ii/discuss/2560085/Python-Explanation-with-pictures-Segment-Tree" target="_blank" rel="noopener">https://leetcode.com/problems/longest-increasing-subsequence-ii/discuss/2560085/Python-Explanation-with-pictures-Segment-Tree</a></p>
-<p>2 <a href="https://codeforces.com/blog/entry/18051" target="_blank" rel="noopener">https://codeforces.com/blog/entry/18051</a></p>
-<p>3 <a href="https://omeletwithoutegg.github.io/" target="_blank" rel="noopener">https://omeletwithoutegg.github.io/</a> in 中文</p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/08/02/ParallelProg/Java_Parallel_101/">ParallelProg/Java_Parallel_101</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-08-02</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/JavaParallel/">JavaParallel</a></span><div class="content"><p><img src="https://p.ipic.vip/iuf9uu.png" alt="image-20230616163425948"></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/25/Concurrency/2023-05-25%20HighConcurrency%20VS%20MultiThreading/">Concurrency/2023-05-25 HighConcurrency VS MultiThreading</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-25</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Concurrency/">Concurrency</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Concurrency/">Concurrency</a></span><div class="content"><h1 id="High-Concurrency"><a href="#High-Concurrency" class="headerlink" title="High Concurrency"></a>High Concurrency</h1><p>High concurrency refers to a situation where a system encounters a large number of operation requests in a short period of time, mainly occurring in web systems with concentrated access and receiving a large number of requests (e.g., ticket grabbing on 12306; Second-Kill event). This situation leads to the system performing a large number of operations during a pretty short time, such as requests on services, apps, and database operations.</p>
+<h3 id="Performance-Metrics"><a href="#Performance-Metrics" class="headerlink" title="Performance Metrics"></a>Performance Metrics</h3><p>including: response time, throughput, queries per second (QPS), and concurrent user count.</p>
+<ul>
+<li><code>Response Time</code><br> The time it takes for the system to respond to a request. For example, if it takes 200ms for the system to process an HTTP request, that 200ms is the system’s response time. </li>
+<li><code>Throughput</code><br> The number of requests processed per unit of time. </li>
+<li><code>Queries Per Second (QPS)</code> The # of requests responded to per second. In the Internet domain, this metric is not as clearly distinguished from throughput. </li>
+<li><code>Concurrent User Count</code> The number of users who can simultaneously use the system’s features normally. E.g., in an instant messaging system, the number of users online at the same time to some extent represents the system’s concurrent user count.</li>
+</ul>
+<h3 id="High-Concurrency-Solutions"><a href="#High-Concurrency-Solutions" class="headerlink" title="High Concurrency Solutions"></a>High Concurrency Solutions</h3><ul>
+<li>Use CDN for static resources to handle image file access.</li>
+<li>Distributed caching: Redis, Memcached, etc.</li>
+<li>Message queue middleware: ActiveMQ, etc., to solve the asynchronous processing capability of a large number of messages.</li>
+<li>Application splitting: A single project is split into multiple projects for deployment, using Dubbo to solve communication between multiple projects.</li>
+<li>Vertical and horizontal database splitting (sharding).</li>
+<li>Database read-write separation to solve large data query problems.</li>
+<li>Use NoSQL, such as MongoDB, in combination with MySQL.</li>
+<li>Establish service degradation and flow control mechanisms under high data access conditions.</li>
+</ul>
+<p>In sum, high concurrency refers to a system’s ability to handle a large number of concurrent requests or transactions simultaneously. It refers to the system’s capability to process multiple user requests or transactions at the same time. High concurrency performance is an important measure of a system’s load capacity and responsiveness. Multithreading is often used as a common technique for achieving high concurrency. By using multithreading, concurrent requests or transactions can be assigned to different threads for processing, thus enhancing the system’s concurrent processing capability.</p>
+<h1 id="Multithreading"><a href="#Multithreading" class="headerlink" title="Multithreading"></a>Multithreading</h1><p>A program can have multiple threads running in parallel internally. The execution of a thread can be considered as a CPU executing the program. When a program runs with multiple threads, it’s as if multiple CPUs are executing the program simultaneously.</p>
+<p>In summary, multithreading can be understood as follows: <u>Multithreading is a programming method for handling high concurrency, meaning that concurrency needs to be implemented using multiple threads,</u> e.g. 1) Stress-tested Aliyun’s audio generation API with C++’s multithread library<br>2) Adopted multithreading &amp; coroutine to build “Automatic Video Generation System” and “Async Web Service for Adobe Application”, from my experiences.</p>
+<p>In sum, multi-threading refers to the execution of multiple threads simultaneously within a program, where each thread can run independently and perform different tasks. The main purpose of multithreading is to improve program performance and resource utilization. By dividing tasks into multiple threads, the parallel computing capabilities of multi-core processors can be fully utilized, enabling tasks to be executed in parallel. Multithreading is commonly used in scenarios involving simultaneous execution of multiple tasks, I/O-intensive operations, and parallel computing.</p>
+<h1 id="Relationship-btw-The-2-Terms"><a href="#Relationship-btw-The-2-Terms" class="headerlink" title="Relationship btw The 2 Terms"></a>Relationship btw The 2 Terms</h1><p>Though they are usually mentioned together and are related, giving the impression that they are equal, but in fact, <code>high concurrency ≠ multithreading</code> ,</p>
+<p>Therefore, it can be said that multithreading is one of the commonly used techniques for achieving high concurrency. <u>However</u>, high concurrency performance is also influenced by other factors such as system architecture, resource management, locking mechanisms, and algorithm design. Hence, multithreading and high concurrency are related but not exactly the same concepts..</p>
+<h3 id="Scenarios"><a href="#Scenarios" class="headerlink" title="Scenarios"></a>Scenarios</h3><ol>
+<li>High concurrency scenarios –  When we have a Java web project, and after it goes live, a large number of users log in to the system, which is considered high concurrency. For the system, there will be <u>a large number of requests coming in</u>, each request corresponding to a thread, and each thread is independent (Tomcat supports 200-300). Although it is the same code, it is executed in different threads without affecting each other.</li>
+<li>Multithreading scenarios – Multithreading is used either for <u>asynchronous tasks</u> or for running <u>subtasks</u>. Each user thread is the main thread. Asynchronous tasks involve opening another thread. The purpose of running subtasks is to handle large data sets. Single-threaded processing would be slow, so the task is split into multiple subtasks, and multiple threads run them, making it faster.</li>
+</ol>
 <p>ref: </p>
-<p>1 <a href="https://pdai.tech/md/java/thread/java-thread-x-key-volatile.html" target="_blank" rel="noopener">https://pdai.tech/md/java/thread/java-thread-x-key-volatile.html</a></p>
-<p>2 <a href="https://www.cnblogs.com/dolphin0520/p/3932934.html" target="_blank" rel="noopener">https://www.cnblogs.com/dolphin0520/p/3932934.html</a></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/07/20/Projects/SNS%20Proj%20-%201/">Projects/SNS Proj - 1</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-07-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Languages/">Languages</a></span><div class="content"><ul>
-<li>docker, as the process</li>
-</ul>
-<p>http parsing, auth, DB<br><img src="https://p.ipic.vip/yhi6ta.png" alt="image-20230619103530935"></p>
-<p><img src="https://p.ipic.vip/hiqhie.png" alt="image-20230619110528920"></p>
-<p>REST </p>
-<p>url統一用複數</p>
-<p><img src="https://p.ipic.vip/qf8cay.png" alt="image-20230619110924451"></p>
+<p><a href="https://cloud.tencent.com/developer/article/1477818" target="_blank" rel="noopener">怎么理解分布式、高并发、多线程？（含面试题和答案解析）-腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
+<p><a href="https://juejin.cn/post/6964748689382326280" target="_blank" rel="noopener">美团面试官：哟！你对高并发与多线程的解决思路了解的还挺深！ - 掘金 (juejin.cn)</a></p>
+<p><a href="https://juejin.cn/post/6947966434748301326#_35" target="_blank" rel="noopener">【多线程与高并发】告诉你二者的区别 - 掘金 (juejin.cn)</a></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2023/05/22/ParallelProg/Parallel%20Acceleration%20--%20Laws%20&amp;%20PerfStat%20&amp;%20AVX/">ParallelProg/Parallel Acceleration -- Laws &amp; PerfStat &amp; AVX</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-05-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/SIMD/">SIMD</a></span><div class="content"><p>Numerical Algs –&gt; Optimizing for Performance –&gt; Writing Parallel Algs</p>
+<h1 id="Law"><a href="#Law" class="headerlink" title="Law"></a>Law</h1><h2 id="1-Amdahl’s-Law"><a href="#1-Amdahl’s-Law" class="headerlink" title="1. Amdahl’s Law"></a>1. Amdahl’s Law</h2><p>   阿姆达尔定律是一个计算机科学界的经验法则，因IBM公司计算机架构师吉恩·阿姆达尔而得名。吉恩·阿姆达尔在1967年发表的论文中提出了这个重要定律。<br>   阿姆达尔定律主要用于发现仅仅系统的部分得到改进，整体系统可以得到的最大期望改进。它经常用于并行计算领域，用来预测适用多个处理器时理论上的最大加速比。在我们的性能调优领域，我们利用此定律有助于我们解决或者缓解性能瓶颈问题。<br>   阿姆达尔定律的模型阐释了我们现实生产中串行资源争用时候的现象。如下图模型，一个系统中，不可避免有一些资源必须串行访问，这限制了我们的加速比，即使我们增加了并发数（横轴），但取得效果并不理想，难以获得线性扩展能力(图中直线)。</p>
+<h2 id="2-Gustafson’s-Law"><a href="#2-Gustafson’s-Law" class="headerlink" title="2. Gustafson’s Law"></a>2. Gustafson’s Law</h2><p>   Gustafson定律(Gustafson’s law)阐述了数据并行带来的影响。Gustafson 定律是由 John L. Gustafson 在1988年提出的。是并行计算领域除了 Amdahl 定律之后又一个重要定律。Gustafson定律看待加速比的角度会有所不同，其站在对于大量数据流处理过程中，针对重复工作的分布式运算带来的加速特性，而不仅仅局限在一个单一的程序进程&amp;单一的计算机上，串行的部分主要在于数据的分配预处理以及计算结果的收集汇总处理上。</p>
+<p>compiler optimization </p>
+<p>Options: -O1~ -O3, Ofast</p>
+<p><img src="https://p.ipic.vip/qb9bbd.png" alt="image-20230606203406991"></p>
+<p><img src="https://p.ipic.vip/8gn0if.png" alt="image-20230606203539104"></p>
+<p><img src="https://p.ipic.vip/njwuzm.png" alt="Visual representation of latencies"></p>
+<p>Pipeline and HW oriented Design</p>
 <ul>
-<li>實作上用的是PUT，但全當PATH用，習慣性人還是作部份修改而已</li>
+<li>sudo apt install linux-tools-generic</li>
 </ul>
-<p>xml只剩android用，data 傳輸都用json</p>
-<p><img src="https://p.ipic.vip/yu1ll1.png" alt="image-20230619111521736"></p>
+<h1 id="Perf-Stat"><a href="#Perf-Stat" class="headerlink" title="Perf Stat"></a>Perf Stat</h1><p>Branch prediction failed if unpredictable pattern in code would make the task-clock longer</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">(venv-py311) jo@fossa4gb:~/repo/V10793_C/Section 3/video2$ sudo perf <span class="built_in">stat</span> ./spec</span><br><span class="line"></span><br><span class="line"> Performance counter stats <span class="keyword">for</span> <span class="string">'./spec'</span>:</span><br><span class="line"></span><br><span class="line">            342.40 msec task-clock                <span class="comment">#    0.996 CPUs utilized          </span></span><br><span class="line">                16      context-switches          <span class="comment">#    0.047 K/sec                  </span></span><br><span class="line">                 0      cpu-migrations            <span class="comment">#    0.000 K/sec                  </span></span><br><span class="line">             19574      page-faults               <span class="comment">#    0.057 M/sec                  </span></span><br><span class="line">   &lt;not supported&gt;      cycles                                                      </span><br><span class="line">   &lt;not supported&gt;      instructions                                                </span><br><span class="line">   &lt;not supported&gt;      branches                                                    </span><br><span class="line">   &lt;not supported&gt;      branch-misses                                               </span><br><span class="line"></span><br><span class="line">       0.343925345 seconds time elapsed</span><br><span class="line"></span><br><span class="line">       0.243236000 seconds user</span><br><span class="line">       0.099686000 seconds sys</span><br><span class="line">       </span><br><span class="line">(venv-py311) jo@fossa4gb:~/repo/V10793_C/Section 3/video2$ sudo perf <span class="built_in">stat</span> ./spec2</span><br><span class="line"></span><br><span class="line"> Performance counter stats <span class="keyword">for</span> <span class="string">'./spec2'</span>:</span><br><span class="line"></span><br><span class="line">            465.56 msec task-clock                <span class="comment">#    0.986 CPUs utilized          </span></span><br><span class="line">                53      context-switches          <span class="comment">#    0.114 K/sec                  </span></span><br><span class="line">                 2      cpu-migrations            <span class="comment">#    0.004 K/sec                  </span></span><br><span class="line">             19574      page-faults               <span class="comment">#    0.042 M/sec                  </span></span><br><span class="line">   &lt;not supported&gt;      cycles                                                      </span><br><span class="line">   &lt;not supported&gt;      instructions                                                </span><br><span class="line">   &lt;not supported&gt;      branches                                                    </span><br><span class="line">   &lt;not supported&gt;      branch-misses                                               </span><br><span class="line"></span><br><span class="line">       0.472287268 seconds time elapsed</span><br><span class="line"></span><br><span class="line">       0.348851000 seconds user</span><br><span class="line">       0.117635000 seconds sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(j=0;j&lt;MAX;j++) &#123;</span><br><span class="line">        // i = rand() % 3;</span><br><span class="line">        i = j % 3;      //spec1</span><br><span class="line">        i = rand() % 3; //spec2</span><br><span class="line">        switch(i) &#123;</span><br></pre></td></tr></table></figure>
+
+
+
 <ul>
-<li>該是要複數</li>
-<li>資源該是在url一部份</li>
+<li>unroll also makes faster</li>
 </ul>
-<p>Django 不 RESTUL 處，signup是個具體的操作</p>
-<p><img src="https://p.ipic.vip/ocfy1w.png" alt="image-20230619112848913"></p>
-</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+<h1 id="AVX"><a href="#AVX" class="headerlink" title="AVX"></a>AVX</h1><p><a href="https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html" target="_blank" rel="noopener">Intel® Intrinsics Guide</a></p>
+<p>x86 SIMD History</p>
+<ul>
+<li>MMX-SSE4 (1997-2006)<br>O Early SIMD was integer-only, later extended to floating point</li>
+<li>AVX (2008)<br>O 128 and 256 bit SIMD instructions with 16 new registers</li>
+<li>AVX2 (2013)<br>O Introduced with Haswell, extends AVX to 256 bit, adds FMA</li>
+<li>AVX-512 (2015)<br>O Originally in Xeon Phi KNL, extended to Skylake+: 512 bit extensions</li>
+</ul>
+<p><img src="https://p.ipic.vip/s60b9d.png" alt="image-20230606211435215"></p>
+<p>Explore caches, branching, and memory speeds</p>
+<p>Superscalar &amp; pipelining</p>
+<p>Staying out of the compiler’s way</p>
+<p>Vectorization code</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2023/04/22/LC/0_note/">LC/0_note</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-04-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Languages/">Languages</a></span><div class="content"><p>[toc]</p>
+<h1 id="Cross-Language-Table"><a href="#Cross-Language-Table" class="headerlink" title="Cross Language Table"></a>Cross Language Table</h1><table>
+<thead>
+<tr>
+<th></th>
+<th>Python3★</th>
+<th>Cpp</th>
+<th>JS</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>dict</strong></td>
+<td></td>
+<td>include <unordered_map>, //Similar to defaultdict() in python3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>d = {}</td>
+<td>unordered_map&lt;Node*&gt; d;</td>
+<td>d = {}; new Map();</td>
+<td>Map&lt;Node, Node&gt; visited = new HashMap();</td>
+</tr>
+<tr>
+<td></td>
+<td>d[k] = v;</td>
+<td>d[k] = v;</td>
+<td>d[k]=v; map.<strong>set</strong>(0,1)</td>
+<td>visited.<strong>put</strong>(k, v)</td>
+</tr>
+<tr>
+<td></td>
+<td>d[k]; d.get(k,0)</td>
+<td>d[k];</td>
+<td>d[k]; map.get(k)</td>
+<td>visited.get(cur_O)</td>
+</tr>
+<tr>
+<td></td>
+<td>k not in d</td>
+<td>(d.find(k)==d.end())</td>
+<td>!(nbr_O.val in visited)</td>
+<td>!visited.containsKey(nbr_O)</td>
+</tr>
+<tr>
+<td></td>
+<td>k in d</td>
+<td>(d.find(k)!=d.end())</td>
+<td>nbr_O.val in visited; (map.<strong>has</strong>(sum-k))</td>
+<td>visited.<strong>containsKey</strong>(nbr_O)</td>
+</tr>
+<tr>
+<td></td>
+<td>del d[k]</td>
+<td>d.<strong>erase</strong>(key)</td>
+<td>this.d.<strong>delete</strong>(key);</td>
+<td>this.d.<strong>remove</strong>(key);</td>
+</tr>
+<tr>
+<td></td>
+<td>len(d)</td>
+<td>size()</td>
+<td>d.<strong>size</strong></td>
+<td>d.size()</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>d.empty()  //true; false</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>NotOK</td>
+<td></td>
+<td></td>
+<td>{k:v} in Initialization</td>
+<td></td>
+</tr>
+<tr>
+<td>Special APIs</td>
+<td></td>
+<td>reserve(capacity)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Iterate</td>
+<td>for k in d.keys():</td>
+<td>for (auto k: d)</td>
+<td>for (var key in dict){}</td>
+<td>for(char c:  ransomNote.toCharArray()) {</td>
+</tr>
+<tr>
+<td><strong>Ordered_dict</strong></td>
+<td>self.od.popitem(last=False)<br /><a href="https://www.pythonf.cn/read/89970" target="_blank" rel="noopener">https://www.pythonf.cn/read/89970</a><br /><a href="https://gist.github.com/joequery/12332f410a05e6c7c949" target="_blank" rel="noopener">https://gist.github.com/joequery/12332f410a05e6c7c949</a></td>
+<td></td>
+<td>d = new Map(); APIs↑↑ //ref: <a href="https://stackoverflow.com/questions/2798893/ordered-hash-in-javascript" target="_blank" rel="noopener">https://stackoverflow.com/questions/2798893/ordered-hash-in-javascript</a></td>
+<td>LinkedHashMap&lt;Integer, Integer&gt; d;<br />this.d = new LinkedHashMap&lt;&gt;();</td>
+</tr>
+<tr>
+<td></td>
+<td>first = next(iter(self.od))</td>
+<td></td>
+<td></td>
+<td>Integer first = this.d.keySet().iterator().next();</td>
+</tr>
+<tr>
+<td><strong>queue</strong></td>
+<td>from collections import deque</td>
+<td>include<code>&lt;deque&gt;</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>deque();</td>
+<td>deque&lt;Node*&gt;</td>
+<td>let Q = [];</td>
+<td>Queue<code>&lt;Node&gt;</code> Q = new LinkedList(); //LinkedList<code>&lt;Node&gt;</code> Q = new LinkedList<code>&lt;Node&gt;</code>(); //雙向</td>
+</tr>
+<tr>
+<td></td>
+<td>Q.append(cur); v=Q.popleft()</td>
+<td>Q.push_back(cur); v=Q.front(),Q.pop_front()</td>
+<td>Q.push(cur); v=Q.shift(); // O(n)</td>
+<td>Q.add(nbr_O);//Q.push(nbr_O); Q.poll();</td>
+</tr>
+<tr>
+<td></td>
+<td>while d</td>
+<td>while (!Q.empty())</td>
+<td>while (Q.length != 0)</td>
+<td>while (!Q.isEmpty())</td>
+</tr>
+<tr>
+<td><strong>deque</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td>ArrayDeque雙向實現了DEque的interface</td>
+</tr>
+<tr>
+<td><strong>pq</strong></td>
+<td>heapq.heappush()</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>vector</strong></td>
+<td></td>
+<td>include<code>&lt;vector&gt;</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>self.res = []</td>
+<td>vector&lt;vector<code>&lt;int&gt;</code>&gt; result;</td>
+<td>res = [];</td>
+<td>List&lt;List<code>&lt;Integer&gt;</code>&gt; res = new ArrayList&lt;List<code>&lt;Integer&gt;</code>&gt;();</td>
+</tr>
+<tr>
+<td></td>
+<td>item.append(nums[idx])</td>
+<td>item.push_back(nums[idx]);</td>
+<td>item.push(nums[idx]);</td>
+<td>item.add(nums[idx]);</td>
+</tr>
+<tr>
+<td></td>
+<td>item.pop()</td>
+<td>item.pop_back();</td>
+<td>item.pop();</td>
+<td>item.remove(item.size()-1);</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>l.length; // 注意！跟dict不同，這邊是 length</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>for</td>
+<td>for (<strong><em>let</em></strong> i=0; i&lt;l.length; i++)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>l = [False] * 3</td>
+<td>vector<code>&lt;bool&gt;</code> dp(3, false);</td>
+<td>const dp = new Array(3).fill(false);</td>
+<td>List<code>&lt;Boolean&gt;</code> dp = new ArrayList(Collections.nCopies(s.length(), false));</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>int[] nums;, nums.length</td>
+</tr>
+<tr>
+<td><strong>Doublely LinkedList</strong></td>
+<td></td>
+<td><strong>std::list</strong><br /><strong>List</strong> stores elements at non contiguous memory location i.e. it internally uses a doubly linked list i.e.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>back(); front();</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>pop_back(); pop_front();</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>db_ll.erase(d[key])</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>APIs</strong></td>
+<td>from collections import Counter<br />Counter(l)</td>
+<td>X</td>
+<td>_.countBy(l)</td>
+<td>X</td>
+</tr>
+<tr>
+<td></td>
+<td>max</td>
+<td>max</td>
+<td>Math.max</td>
+<td>Math.max</td>
+</tr>
+<tr>
+<td><strong>String</strong></td>
+<td>len(s)</td>
+<td>s.length()</td>
+<td>s.length</td>
+<td>s.length()</td>
+</tr>
+<tr>
+<td></td>
+<td>s[i]</td>
+<td>s[i]</td>
+<td>s[i]</td>
+<td>s.charAt(i)</td>
+</tr>
+<tr>
+<td></td>
+<td>s[3:5]</td>
+<td>token = s.substr(start, i-start+1);</td>
+<td>s.slice(3, 5);</td>
+<td>s.substring(start, i+1);</td>
+</tr>
+<tr>
+<td><strong>Set</strong></td>
+<td>ws = set(wD)</td>
+<td>unordered_set<code>&lt;string&gt;</code> ws;<code></code>        for (auto s: wordDict){<code>ws.insert(s);</code>        }</td>
+<td>let ws = new Set(wD)</td>
+<td>HashSet<code>&lt;String&gt;</code> ws = new HashSet(wordDict);</td>
+</tr>
+<tr>
+<td></td>
+<td>token in ws</td>
+<td>ws.find(token) != ws.end()</td>
+<td>ws.has(token)</td>
+<td>ws.contains(token)</td>
+</tr>
+<tr>
+<td><strong>MAX</strong></td>
+<td>float(‘-inf’)</td>
+<td>INT_MIN;</td>
+<td>-Number.MAX_VALUE;</td>
+<td>Integer.MIN_VALUE;</td>
+</tr>
+<tr>
+<td><strong>2D Init</strong></td>
+<td>[[0 for j in range(n)] for i in range(m)]</td>
+<td></td>
+<td></td>
+<td>[…Array(3)].map(x=&gt;Array(5).fill(0))</td>
+</tr>
+<tr>
+<td><strong>1D sort</strong></td>
+<td>l.sort(reverse=True)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Node</strong></td>
+<td>if not head</td>
+<td>if (!head); if (nullputr == head)</td>
+<td>if (!root); if (head == null)</td>
+<td>if (head == null)</td>
+</tr>
+</tbody></table>
+<h2 id="Special-issues"><a href="#Special-issues" class="headerlink" title="Special issues:"></a>Special issues:</h2><ul>
+<li>Java &amp; js</li>
+</ul>
+<h2 id="C-Syntax-Review"><a href="#C-Syntax-Review" class="headerlink" title="C++ Syntax Review"></a>C++ Syntax Review</h2><ul>
+<li><p>APIS:</p>
+<ul>
+<li><p>isalnum(s[i])</p>
+</li>
+<li><pre><code class="cpp"><span class="keyword">if</span> (board[i][j] == <span class="string">'.'</span>) <span class="keyword">continue</span>;
+
+<span class="comment">// int val = int(board[i][j]);         // WRONG</span>
+<span class="keyword">int</span> val = <span class="keyword">int</span>(board[i][j] - <span class="string">'0'</span>);    
+
+<span class="comment">// if (used &amp; (1 &lt;&lt; val) &gt; 0) return false;    // WRONG</span>
+<span class="keyword">if</span> ((used &amp; (<span class="number">1</span> &lt;&lt; val)) &gt; <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</code></pre>
+</li>
+<li><p>INT_MIN, isalnum(str[i]), swap(matrix[i][j], matrix[j][i]); reverse(matrix[i].begin(), matrix[i].end());</p>
+</li>
+<li><p>int end = upper_bound(nums.begin(), nums.end(), target - x) - nums.begin();</p>
+</li>
+<li><p>const size_t n;</p>
+</li>
+<li><p>auto max_num = *max_element(candies.begin(), candies.end())</p>
+</li>
+</ul>
+</li>
+<li><p>OVERFLOW:</p>
+<ul>
+<li><p>res += ((long long)pow(2, end_cnt) % M);  <strong>FIX</strong> in ↓</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; p(n, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">  p[i] = p[i - <span class="number">1</span>] * <span class="number">2</span>  % M;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">res += p[end_cnt];</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Hash</p>
+<ul>
+<li><p>unordered_map&lt;int, int&gt; lookup;</p>
+</li>
+<li><p>unordered_map&lt;char, char&gt; m = { {‘(‘, ‘)’}, {‘[‘, ‘]’}, {‘{‘, ‘}’} }; // 注意用的是逗號不是冒號!</p>
+</li>
+<li><p>if (lookup.find(target - nums[i]) != lookup.end()){</p>
+</li>
+<li><p>for (auto item: m){</p>
+<p>​        res.push_back(item.second);  // 注意！是second, 不是 second()</p>
+<p>}</p>
+</li>
+<li><p>private:</p>
+<p>​        unordered_set<code>&lt;int&gt;</code> s;</p>
+</li>
+<li><p>s.erase(key);</p>
+</li>
+<li><p>unordered_set<code>&lt;string&gt;</code> lookup(wordDict.begin(), wordDict.end());</p>
+</li>
+<li><p>unordered_set&lt;pair&lt;int, int&gt;, #SHOULD PROVIDE HASH HERE…&gt; visited; // so, change to use</p>
+</li>
+<li><p>Map</p>
+<ul>
+<li><pre><code class="cpp">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&gt;updates;
+<span class="keyword">int</span> idx = upper_bound(updates[index].begin(), updates[index].end(), make_pair(snap_id,INT_MAX)) - updates[index].begin();
+&lt;!--￼<span class="number">1</span>--&gt;
+
+
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>DP</p>
+<ul>
+<li>vector<code>&lt;int&gt;</code> dp = {1, 1, 2};</li>
+<li>vector<code>&lt;int&gt;</code> dp(n + 1);</li>
+<li>vector&lt;vector<code>&lt;int&gt;</code>&gt; dp(n, vector<code>&lt;int&gt;</code>(2));</li>
+</ul>
+</li>
+<li><p>Bits</p>
+<ul>
+<li><p>uint32_t x = n;</p>
+</li>
+<li><pre><code class="cpp"><span class="keyword">int</span> num = <span class="number">5</span>;
+<span class="keyword">bool</span> a = <span class="literal">false</span>;
+<span class="built_in">cout</span> &lt;&lt; <span class="keyword">typeid</span>(a).name() &lt;&lt; <span class="built_in">endl</span>;
+<span class="built_in">std</span>::<span class="built_in">bitset</span>&lt;8&gt; binary(num);  <span class="comment">// 將數字轉換為8位元的二進制</span>
+<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Binary representation of "</span> &lt;&lt; num &lt;&lt; <span class="string">": "</span> &lt;&lt; binary &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;
+<span class="comment">// printf("%s", binary.to_string());</span>
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; binary.size(); i++){
+    <span class="keyword">if</span> (binary.test(i))
+        <span class="built_in">printf</span>(<span class="string">"i: %d,  \n"</span>, i);
+}
+
+<span class="built_in">string</span> s = binary.to_string();
+<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i++){
+    <span class="keyword">if</span> (s[i] == <span class="string">'1'</span>)
+        <span class="built_in">printf</span>(<span class="string">"i: %d,  \n"</span>, i);
+}  
+
+<span class="keyword">return</span> <span class="number">0</span>;
+
+---------------------------------------------
+Hello world!b
+Binary representation of <span class="number">5</span>: <span class="number">00000101</span>
+i: <span class="number">0</span>,  
+i: <span class="number">2</span>,  
+i: <span class="number">5</span>,  
+i: <span class="number">7</span>,  
+
+<span class="function"><span class="keyword">int</span> <span class="title">minFlips</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span> </span>{
+  <span class="built_in">bitset</span>&lt;32&gt; bin_a(a), bin_b(b), bin_c(c);
+  <span class="keyword">size_t</span> cnt = <span class="number">0</span>;
+  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++){
+    <span class="keyword">if</span> ((bin_a.test(i) | bin_b.test(i)) != bin_c.test(i)){
+      <span class="keyword">if</span> (bin_c.test(i) == <span class="number">1</span>) cnt += <span class="number">1</span>;
+      <span class="keyword">else</span> cnt += bin_a.test(i) + bin_b.test(i);
+    }
+  }
+  <span class="keyword">return</span> cnt;
+}
+&lt;!--￼<span class="number">2</span>--&gt;</code></pre>
+</li>
+</ul>
+</li>
+<li><p>LINEAR – String, or Arr, with Vector as Stack, prefer to just use vector to make API name easier</p>
+<ul>
+<li><p>Vector</p>
+<ul>
+<li><p>v.push_back(x)</p>
+</li>
+<li><p>v.back() // 注意，API 不是top(); v.pop_back() // 注意，不是pop()</p>
+</li>
+<li><p>// vector<code>&lt;int&gt;</code> right(n) = {1}; // WRONG!</p>
+<p>vector<code>&lt;int&gt;</code> left(n, 1);</p>
+</li>
+<li><p>string dfs_and_compare(TreeNode* root, string sub_pat, vector<code>&lt;bool&gt;</code> &amp;res){. // Don’t Forget <code>&amp;</code>!</p>
+</li>
+<li><pre><code class="cpp"><span class="keyword">private</span>:
+    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; p;<span class="comment">//(3); 宣告不可指定大小</span>
+<span class="keyword">public</span>:
+    ParkingSystem(<span class="keyword">int</span> big, <span class="keyword">int</span> medium, <span class="keyword">int</span> small) {
+        p = {big, medium, small};
+    }
+&lt;!--￼<span class="number">3</span>--&gt;</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>PQ, Top-K &amp; Comparator</p>
+<ul>
+<li><p>// printf(“%d %d\n”, x.first, x.second);</p>
+</li>
+<li><p>private:</p>
+<pre><code>priority_queue`&lt;int&gt;` pq;
+
+int sz;</code></pre></li>
+<li><pre><code class="cpp"><span class="meta">#<span class="meta-keyword">define</span> pii pair<span class="meta-string">&lt;int,int&gt;</span></span>
+<span class="meta">#<span class="meta-keyword">define</span> tii tuple<span class="meta-string">&lt;int,int&gt;</span></span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span>
+<span class="keyword">public</span>:
+    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp; m, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp; n)</span> </span>{
+        <span class="keyword">return</span> m.second &gt; n.second;
+    }  
+    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; topKFrequent(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) {
+        <span class="comment">// return sol_20230523(nums, k);</span>
+        <span class="keyword">return</span> py_20230523(nums, k);
+    }
+
+    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sol_20230523(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) {    <span class="comment">// AC!</span>
+        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; counter;
+        <span class="keyword">for</span> (<span class="keyword">auto</span> x: nums) counter[x]++;
+
+        <span class="keyword">int</span> n = nums.size();
+
+        <span class="comment">// priority_queue&lt;pair&lt;int, int&gt;, vector&lt;pair&lt;int, int&gt;&gt;, decltype(cmp)&gt; pq(cmp);</span>
+        <span class="comment">// auto cmp = [](const pair&lt;int, int&gt;&amp; a, const pair&lt;int, int&gt;&amp; b) {</span>
+        <span class="comment">//     return a.second &gt; b.second; // Sort in descending order of frequency</span>
+        <span class="comment">// };      </span>
+
+        <span class="comment">// priority_queue&lt;pair&lt;int, int&gt;, vector&lt;pair&lt;int, int&gt;&gt;, decltype(&amp;cmp)&gt; pq(cmp);</span>
+          <span class="comment">//auto cmp = [](ListNode * left, ListNode * right){</span>
+                <span class="comment">//        return left-&gt;val &gt; right-&gt;val;</span>
+                <span class="comment">//};</span>
+                <span class="comment">//priority_queue&lt;ListNode *, vector&lt;ListNode*&gt;, decltype(cmp)&gt; heap(cmp);</span>
+
+          priority_queue&lt;pii, <span class="built_in">vector</span>&lt;pii&gt;, <span class="keyword">decltype</span>(&amp;cmp)&gt; pq(cmp);
+        <span class="keyword">for</span> (<span class="keyword">auto</span> x: counter){
+            <span class="comment">// printf("%d %d\n", x.first, x.second);</span>
+            pq.push(x);
+            <span class="keyword">if</span> (pq.size() &gt; k) pq.pop();
+        }
+        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;
+        <span class="keyword">while</span> (!pq.empty()){
+            res.push_back(pq.top().first);
+            pq.pop();
+        }
+
+        <span class="keyword">return</span> res;
+    }
+
+    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; py_20230523(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) {     <span class="comment">// AC!</span>
+        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; counter;
+        <span class="keyword">for</span> (<span class="keyword">auto</span> x: nums) counter[x]++;
+
+        <span class="keyword">int</span> n = nums.size();
+
+        <span class="comment">// priority_queue&lt;pii&gt; pq;</span>
+        priority_queue&lt;tii&gt; pq;
+        <span class="keyword">for</span> (<span class="keyword">auto</span> x: counter){
+            <span class="comment">// printf("%d %d\n", x.first, x.second);</span>
+            <span class="comment">// pq.push(pair(-x.second, x.first));</span>
+            <span class="comment">// if (pq.size() &gt; k) pq.pop();</span>
+            pq.push(tuple(-x.second, x.first));
+            <span class="keyword">if</span> (pq.size() &gt; k) pq.pop();
+        }
+
+        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;
+        <span class="keyword">while</span> (!pq.empty()){
+            <span class="comment">// res.push_back(pq.top().second);</span>
+            res.push_back(get&lt;<span class="number">1</span>&gt;(pq.top()));
+            pq.pop();
+        }
+
+        <span class="keyword">return</span> res;
+    }  
+};
+
+    <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(<span class="built_in">vector</span>&lt;ListNode*&gt;&amp; lists)</span> </span>{
+        <span class="comment">// write your code here</span>
+        <span class="keyword">int</span> n = lists.size();
+        <span class="keyword">if</span> (n == <span class="number">0</span>){
+            <span class="keyword">return</span> <span class="literal">NULL</span>;
+        }
+        <span class="keyword">auto</span> cmp = [](ListNode * left, ListNode * right){
+            <span class="keyword">return</span> left-&gt;val &gt; right-&gt;val;
+        };
+        priority_queue&lt;ListNode *, <span class="built_in">vector</span>&lt;ListNode*&gt;, <span class="keyword">decltype</span>(cmp)&gt; heap(cmp);
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++){
+            <span class="keyword">if</span> (lists[i] != <span class="literal">NULL</span>){
+                heap.push(lists[i]);
+            }
+        }
+        <span class="comment">// ListNode DummyNode(0);</span>
+        ListNode * DummyNode = <span class="keyword">new</span> ListNode(<span class="number">0</span>);
+        ListNode * tail = DummyNode;
+        <span class="keyword">while</span>(!heap.empty()){
+            ListNode * node = heap.top();
+            heap.pop();
+            tail-&gt;next = node;
+            tail = tail-&gt;next;
+            <span class="keyword">if</span> (node-&gt;next){
+                heap.push(node-&gt;next);
+            }
+        }
+        <span class="keyword">return</span> DummyNode-&gt;next;
+    }</code></pre>
+</li>
+<li><p>auto cmp = [](ListNode * left, ListNode * right){</p>
+<p>​        return left-&gt;val &gt; right-&gt;val;</p>
+<p>};</p>
+<p>priority_queue&lt;ListNode <em>, vector&lt;ListNode</em>&gt;, decltype(cmp)&gt; heap(cmp);</p>
+</li>
+</ul>
+</li>
+<li><p>Interval</p>
+<ul>
+<li>int s = interval[0], e = interval[1];</li>
+</ul>
+</li>
+<li><p>LinkedList</p>
+<ul>
+<li><p>printf(“var[%d] = %x\n”, i - 1, ptr);</p>
+</li>
+<li><p>printf(“var[%d] = %d\n”, i - 1, *ptr);</p>
+</li>
+<li><p>if (!head || !head-&gt;next) return head;</p>
+</li>
+<li><p>// ListNode* my_20230520_recursive(ListNode* prev, ListNode* head, vector&lt;ListNode*&gt; res) { // ERROR!</p>
+<p>ListNode* my_20230520_recursive(ListNode* prev, ListNode* head, vector&lt;ListNode*&gt; &amp;res) {   // FIX by adding &amp; for <code>res</code></p>
+</li>
+<li><p>// vector&lt;ListNode*&gt; res; //runtime error: reference binding to null pointer of type ‘ListNode *’ (stl_vector.h)</p>
+<p>vector&lt;ListNode*&gt; res(1);    // FIX</p>
+</li>
+</ul>
+</li>
+<li><p>Tree</p>
+<ul>
+<li>bool ans = dfs(root, LONG_MIN, LONG_MAX);<br>bool dfs(TreeNode* root, long lo, long hi){        // FIX!, 別用 INT_MIN, INT_MAX</li>
+</ul>
+</li>
+<li><p>Graph</p>
+<ul>
+<li>vector&lt;vector<code>&lt;int&gt;</code>&gt; g(numCourses);</li>
+<li>Node* tmp = new Node(node-&gt;val);    // FIX!, dont’ forget <code>new</code> to create the “pointer”</li>
+<li>void dfs(vector&lt;vector<code>&lt;int&gt;</code>&gt; &amp;graph, int node, unordered_set<code>&lt;int&gt;</code> &amp;visited){    // FIX! copy of the graph in every dfs call will lead to TLE!</li>
+<li>vector&lt;vector<code>&lt;int&gt;</code>&gt; graph(n); // WRONG –&gt; vector&lt;vector<code>&lt;int&gt;</code>&gt; graph(n, vector<code>&lt;int&gt;</code>);</li>
+<li><code>&lt;u&gt;</code>to be a tree<code>&lt;/u&gt;</code>, shoud be (edges.size() + 1 != n)</li>
+</ul>
+</li>
+</ul>
+<h1 id="Best-Record"><a href="#Best-Record" class="headerlink" title="Best Record"></a>Best Record</h1><p><img src="https://p.ipic.vip/z75ght.png" alt="image-20230602210901526"></p>
+</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/82/">82</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2024 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')

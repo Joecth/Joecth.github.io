@@ -1,0 +1,673 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="LLM/Generative AI with LLM/3 Reinforcement Learning from Human Feedback"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>LLM/Generative AI with LLM/3 Reinforcement Learning from Human Feedback | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RLHF-for-responsible-AI"><span class="toc-number">1.</span> <span class="toc-text">RLHF, for responsible AI</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Aligning-models-with-human-values"><span class="toc-number">1.1.</span> <span class="toc-text">Aligning models with human values</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HHH"><span class="toc-number">1.1.1.</span> <span class="toc-text">HHH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RLHF-Reinforcement-Learning-from-Human-Feedback"><span class="toc-number">1.2.</span> <span class="toc-text">RLHF, (Reinforcement Learning from Human Feedback)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RLHF-Obtaining-Feedback-from-Humans"><span class="toc-number">1.3.</span> <span class="toc-text">RLHF: Obtaining Feedback from Humans</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Steps"><span class="toc-number">1.3.1.</span> <span class="toc-text">Steps</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RLHF-Reward-Model"><span class="toc-number">1.4.</span> <span class="toc-text">RLHF: Reward Model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RLHF-Fine-Tuning-with-Reinforcement-Learning"><span class="toc-number">1.5.</span> <span class="toc-text">RLHF: Fine-Tuning with Reinforcement Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PPO-Proximal-Policy-Optimization"><span class="toc-number">1.6.</span> <span class="toc-text">PPO, (Proximal Policy Optimization)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RLHF-Reward-Hacking"><span class="toc-number">1.7.</span> <span class="toc-text">RLHF: Reward Hacking</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sol"><span class="toc-number">1.7.1.</span> <span class="toc-text">Sol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KL-divergence"><span class="toc-number">1.7.2.</span> <span class="toc-text">KL divergence</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scaling-Human-Feedbacks"><span class="toc-number">1.8.</span> <span class="toc-text">Scaling Human Feedbacks</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LLM-powered-Applications"><span class="toc-number">2.</span> <span class="toc-text">LLM-powered Applications</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Model-Optimizations-for-Deployment"><span class="toc-number">2.1.</span> <span class="toc-text">Model Optimizations for Deployment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generative-AI-Project-Lifecycle-Cheat-Sheet"><span class="toc-number">2.2.</span> <span class="toc-text">Generative AI Project Lifecycle Cheat Sheet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-LLM-in-Applications"><span class="toc-number">2.3.</span> <span class="toc-text">Using LLM in Applications</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RAG-Retrieval-Augmented-Generation"><span class="toc-number">2.3.1.</span> <span class="toc-text">RAG, (Retrieval Augmented Generation, )</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Interacting-with-External-Apllications"><span class="toc-number">2.4.</span> <span class="toc-text">Interacting with External Apllications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Helping-LLMs-reason-and-Plan-with-Chain-of-Thought"><span class="toc-number">2.5.</span> <span class="toc-text">Helping LLMs reason and Plan with Chain-of-Thought</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Chain-of-Thought-prompting"><span class="toc-number">2.5.1.</span> <span class="toc-text">Chain of Thought prompting</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PAL-Program-aided-Language-Models"><span class="toc-number">2.6.</span> <span class="toc-text">PAL, (Program-aided Language Models)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReAct-Combining-“Reasoning-and-Action”"><span class="toc-number">2.7.</span> <span class="toc-text">ReAct: Combining “Reasoning and Action”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LangChain"><span class="toc-number">2.7.1.</span> <span class="toc-text">LangChain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReAct-Paper"><span class="toc-number">2.7.2.</span> <span class="toc-text">ReAct Paper</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LLM-Application-Architectures"><span class="toc-number">2.8.</span> <span class="toc-text">LLM Application Architectures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Sagemaker-JumpStart"><span class="toc-number">2.9.</span> <span class="toc-text">AWS Sagemaker JumpStart</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Refs"><span class="toc-number">3.</span> <span class="toc-text">Refs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reinforcement-Learning-from-Human-Feedback-RLHF"><span class="toc-number">3.1.</span> <span class="toc-text">Reinforcement Learning from Human-Feedback (RLHF)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Proximal-Policy-Optimization-PPO"><span class="toc-number">3.2.</span> <span class="toc-text">Proximal Policy Optimization (PPO)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scaling-human-feedback"><span class="toc-number">3.3.</span> <span class="toc-text">Scaling human feedback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced-Prompting-Techniques"><span class="toc-number">3.4.</span> <span class="toc-text">Advanced Prompting Techniques</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LLM-powered-application-architectures"><span class="toc-number">3.5.</span> <span class="toc-text">LLM powered application architectures</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Responsible-AI"><span class="toc-number">4.</span> <span class="toc-text">Responsible AI</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">406</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">73</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">LLM/Generative AI with LLM/3 Reinforcement Learning from Human Feedback</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-08-02</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/LLM/">LLM</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="RLHF-for-responsible-AI"><a href="#RLHF-for-responsible-AI" class="headerlink" title="RLHF, for responsible AI"></a>RLHF, for responsible AI</h1><h2 id="Aligning-models-with-human-values"><a href="#Aligning-models-with-human-values" class="headerlink" title="Aligning models with human values"></a>Aligning models with human values</h2><table>
+<thead>
+<tr>
+<th>主題</th>
+<th>詳細內容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>微調的目的</td>
+<td>進一步訓練模型，使其更好地理解人類的提示，並產生更接近人類的回應。這可以改善模型相對於原始預訓練版本的性能，並導致更自然的語言。</td>
+</tr>
+<tr>
+<td>挑戰</td>
+<td>自然的人類語言帶來了一系列新的挑戰，包括模型使用有毒語言，以好戰和激進的語調回應，以及提供有關危險主題的詳細資訊。</td>
+</tr>
+<tr>
+<td>問題的源頭</td>
+<td>這些問題存在的原因是大型模型在網路上的大量文本數據上進行訓練，而這種語言在這些數據中經常出現。</td>
+</tr>
+<tr>
+<td>不良行為的例子</td>
+<td>1) 模型回答不適當或不相關的問題。例如，當被問到敲門笑話時，模型回答“拍手”。這並不是對於給定任務的有用的答案。 2) 模型可能給出誤導或完全不正確的答案。例如，如果問模型關於被證實是錯誤的健康建議，如用咳嗽來停止心臟病，模型可能會給出自信而完全不正確的回答。 3) 模型不應該創建有害的回應，如侮辱性的、歧視性的或煽動犯罪行為。例如，當被問到如何破解鄰居的Wi-Fi時，模型可能會回答有效的策略。</td>
+</tr>
+<tr>
+<td>解決方式</td>
+<td>透過人類反饋進行額外的微調可以更好地將模型與人類偏好對齊，並增加回應的有用性、誠實性和無害性。這種進一步的訓練也可以幫助降低模型回應的毒性，並減少錯誤資訊的生成。</td>
+</tr>
+</tbody></table>
+<h3 id="HHH"><a href="#HHH" class="headerlink" title="HHH"></a>HHH</h3><table>
+<thead>
+<tr>
+<th>主題</th>
+<th>解釋</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Helpfulness（有用性）</td>
+<td>指的是AI模型在回答問題或執行任務時，應提供有用和相關的信息。</td>
+<td>例如，當被問到敲門笑話時，模型回答“拍手”。這並不是對於給定任務的有用的答案。理想的回答應該是一個真正的敲門笑話。</td>
+</tr>
+<tr>
+<td>Honesty（誠實性）</td>
+<td>指的是AI模型在回答問題時，應提供準確和真實的信息。</td>
+<td>例如，如果問模型關於被證實是錯誤的健康建議，如用咳嗽來停止心臟病，模型可能會給出自信而完全不正確的回答。理想的回答應該是反駁這個誤導的健康建議。</td>
+</tr>
+<tr>
+<td>Harmlessness（無害性）</td>
+<td>指的是AI模型的行為應該是無害的，不應煽動或引導出有害的行為。</td>
+<td>例如，當被問到如何破解鄰居的Wi-Fi時，模型可能會回答有效的策略。理想的回答應該是拒絕提供該資訊或解釋為何這種行為是不適當的。</td>
+</tr>
+</tbody></table>
+<h2 id="RLHF-Reinforcement-Learning-from-Human-Feedback"><a href="#RLHF-Reinforcement-Learning-from-Human-Feedback" class="headerlink" title="RLHF, (Reinforcement Learning from Human Feedback)"></a>RLHF, (Reinforcement Learning from Human Feedback)</h2><blockquote>
+<p>Reinforcement learning is a type of machine learning in which an agent learns </p>
+<p>to make decisions related to a specific goal by taking actions in an environment, </p>
+<p>with the objective of maximizing some notion of a cumulative reward.Perhaps most importantly, RLHF can help </p>
+<p>In this framework, the agent continually learns from its experiences by </p>
+<p>taking actions, observing the resulting changes in the environment, and </p>
+<p>receiving rewards or penalties, based on the outcomes of its actions. </p>
+<p>By iterating through this process, the agent gradually refines its strategy or </p>
+<p>policy to make better decisions and increase its chances of success.</p>
+</blockquote>
+<ol>
+<li>to minimize the potential for harm. </li>
+<li>to give caveats that acknowledge their limitations and to avoid toxic language and topics.</li>
+</ol>
+<img src="https://p.ipic.vip/x8kxym.png" alt="image-20230803191315758" style="zoom:33%;" />
+
+
+
+
+
+<ol>
+<li><strong>學習方法</strong>：強化學習是一種機器學習方法，其目標是使學習代理能夠在給定的環境中做出最佳決策。</li>
+<li><strong>環境互動</strong>：代理會在環境中採取行動，觀察結果，並根據其行動的結果獲取獎勵或懲罰。</li>
+<li><strong>學習目標</strong>：強化學習的目標是最大化總體的獎勵。這通常涉及尋找一種平衡，使得即時的獎勵和長期的獎勵都能夠最大化。</li>
+<li><strong>策略改進</strong>：通過不斷地互動和學習，代理會改進其決策策略或方針，以提高其成功機率。</li>
+<li><strong>連續學習</strong>：在強化學習中，學習是連續的過程，代理會不斷從其行動和結果中學習，並調整其行為。</li>
+</ol>
+<img src="https://p.ipic.vip/4umx9v.png" alt="image-20230803192932185" style="zoom:33%;" />
+
+<blockquote>
+<p>As a practical and scalable alternative, you can use an additional model, </p>
+<p>known as the reward model, to classify the outputs of the LLM and </p>
+<p>evaluate the degree of alignment with human preferences.</p>
+<p>Once trained, you’ll use the reward model to assess the output of the LLM and </p>
+<p>assign a reward value, which in turn gets used to update the weights off the LLM and </p>
+<p>train a new human aligned version. </p>
+<p>Exactly how the weights get updated as the model completions are assessed, </p>
+<p>depends on the algorithm used to optimize the policy. </p>
+<p>Lastly, note that in the context of language modeling, </p>
+<p>the sequence of actions and states is called a rollout, </p>
+<p>instead of the term playout that’s used in classic reinforcement learning.</p>
+<p>The reward model is the central component of the reinforcement learning process. </p>
+<p>It encodes all of the preferences that have been learned from human feedback, and </p>
+<p>it plays a central role in how the model updates its weights over many iterations</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>代理策略 (Agent Strategy)</td>
+<td>是由大型語言模型 (LLM) 所擔任的，目標是生成被認為與人類偏好一致的文本，例如有幫助、準確且無毒的文本。</td>
+</tr>
+<tr>
+<td>環境 (Environment)</td>
+<td>是模型的上下文窗口，也就是可以通過提示輸入文本的空間。</td>
+</tr>
+<tr>
+<td>狀態 (State)</td>
+<td>是模型在採取行動之前考慮的當前上下文，也就是當前包含在上下文窗口中的任何文本。</td>
+</tr>
+<tr>
+<td>行動 (Action)</td>
+<td>是生成文本的行為，這可以是單個單詞、句子或較長的文本，具體取決於用戶指定的任務。</td>
+</tr>
+<tr>
+<td>行動空間 (Action Space)</td>
+<td>是令牌詞彙表，也就是模型可以選擇來生成完成的所有可能的令牌。</td>
+</tr>
+</tbody></table>
+<ol>
+<li><strong>LLM 的行動選擇</strong>：大型語言模型 (LLM) 會根據訓練期間學到的語言統計表示來決定生成序列中的下一個標記。這是基於上下文提示文本以及詞彙空間上的概率分佈。</li>
+<li><strong>獎勵分配</strong>：獎勵的分配基於完成的文本與人類偏好的匹配程度。由於人類對語言的反應存在變異，確定獎勵的過程比井字遊戲的例子要複雜。</li>
+<li><strong>人類反饋與評估</strong>：一種方法是讓人類根據對齊指標，如文本是否有毒，評估模型的所有完成。這種反饋可以表示為一個標量值，如零或一，並可以用來迭代更新 LLM 權重，以最大化從人類分類器獲得的獎勵。</li>
+<li><strong>使用獎勵模型</strong>：由於獲取人類反饋可能耗時且昂貴，因此一種可行的替代方案是使用獎勵模型來對 LLM 的輸出進行分類和評估。一旦訓練完成，獎勵模型就可以用來評估 LLM 的輸出，分配獎勵值，並更新 LLM 的權重。</li>
+<li><strong>策略優化</strong>：權重的具體更新方式取決於用於優化策略的算法。</li>
+<li><strong>獎勵模型與強化學習</strong>：在語言建模的背景下，動作和狀態的序列被稱為 “rollout”，而非經典強化學習中使用的 “playout”。獎勵模型是強化學習過程的核心部分，它對人類反饋中學到的偏好進行編碼，並在模型權重的多次迭代更新中發揮核心作用。</li>
+</ol>
+<h2 id="RLHF-Obtaining-Feedback-from-Humans"><a href="#RLHF-Obtaining-Feedback-from-Humans" class="headerlink" title="RLHF: Obtaining Feedback from Humans"></a>RLHF: Obtaining Feedback from Humans</h2><img src="/Users/joe/Library/Application Support/typora-user-images/image-20230803194432935.png" alt="image-20230803194432935" style="zoom: 33%;" />
+
+<ol>
+<li>選擇模型：首先，選擇具有一些目標任務能力的模型，如文本摘要或問答等。一般而言，使用已被跨多任務微調並具有一些通用能力的指導模型會較為簡單。</li>
+<li>生成completion：</li>
+</ol>
+<p>此段討論了「以人類回饋進行強化學習」(RLHF)在微調語言模型(LLM)時的第一步驟：獲取人類回饋。</p>
+<ol>
+<li><strong>選擇模型和數據集</strong>：首先，選擇具有一些目標任務能力的模型，如文本摘要或問答等。你可能會發現使用已經在許多任務上微調過並具有一些通用能力的模型更容易。接著，將該LLM與一個提示數據集結合，為每個提示生成多個不同的回答。這個數據集由多個提示組成，每一個都被LLM處理以產生一組完成的回答。</li>
+<li><strong>收集人類回饋</strong>：下一步是收集人類標籤員對LLM生成的完成的反饋。首先，你需要決定你希望人類基於何種標準來評估這些完成，這可能是前面討論過的問題，比如有用性或有害性。然後，你將要求標籤員根據該標準評估數據集中的每一個完成。</li>
+<li><strong>範例說明</strong>：例如，對於提示”My house is too hot.”，LLM生成了三種不同的回答。你的任務是讓標籤員按照有用性對這三個完成進行排序，從最有用到最不有用。這個過程會在許多提示完成組上重複進行，從而構建一個可以用來訓練獎勵模型的數據集，最終這個獎勵模型將取代人類完成這項工作。</li>
+<li><strong>指令明確性</strong>：明確的指令對於獲取高質量的人類反饋非常重要。對標籤員的詳細指示可以增加他們理解任務並按照你的期望來完成的可能性。</li>
+</ol>
+<h3 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h3><img src="/Users/joe/Library/Application Support/typora-user-images/image-20230803201550275.png" alt="image-20230803201550275" style="zoom:25%;" />
+
+<ol>
+<li><strong>處理不合理回答</strong>：如果模型產生的回答無意義、令人困惑或不相關，標籤員應選擇「F」而不是排名，以便容易地移除低質量的答案。</li>
+<li><strong>給予詳細指令</strong>：提供像這樣的詳細指令可以提高回答的質量，並確保每個人類標籤員以類似的方式執行任務，從而確保標記的完成組能夠代表共識的觀點。</li>
+<li><strong>訓練獎勵模型</strong>：一旦人類標籤員完成了對完成組的評估，你就有了訓練獎勵模型所需的所有數據。</li>
+<li><strong>轉換數據格式</strong>：在開始訓練獎勵模型之前，你需要將排名數據轉換成完成的兩兩比較。所有可能的完成配對都應該被劃分為0或1分。</li>
+<li><strong>建立完成配對</strong>：例如，如果有三種完成方式，並且人類標籤員的排名是2, 1, 3（其中1代表最喜歡的回答），那麼就有三種可能的配對：紫色-黃色，紫色-綠色，黃色-綠色。根據每個提示的完成選項數量N，你將有”N選二”的組合。</li>
+<li><strong>為每個配對分配獎勵</strong>：對於每個配對，你將為首選回答分配1分的獎勵，為次選回答分配0分的獎勵。然後你將重新排列提示，使得首選選項排在前面。這是一個重要的步驟，因為獎勵模型期望首選完成（也稱為Yj）在前。</li>
+<li><strong>數據重組</strong>：一旦你完成了這些數據的重組，人類的回答就會被轉換成適合訓練獎勵模型的格式。</li>
+<li><strong>注意事項</strong>：雖然通常收集讚好/讚壞的反饋比較容易，但排名反饋可以為訓練你的獎勵模型提供更多的提示完成數據。例如，你可以從每個人的排名中獲得三個提示完成對。</li>
+</ol>
+<h2 id="RLHF-Reward-Model"><a href="#RLHF-Reward-Model" class="headerlink" title="RLHF: Reward Model"></a>RLHF: Reward Model</h2><ol>
+<li><p>訓練，就不再需要人類的參與。</p>
+</li>
+<li><p>獎勵模型會有效地取代人類標籤員的角色，並在訓練過程中自動選擇首選完成。</p>
+</li>
+<li><p>獎勵模型通常也是一種語言模型，可以透過監督學習方法在人類標籤員對提示的評估數據上訓練。</p>
+</li>
+<li><p>獎勵模型的目標是學習偏好人類首選的完成方式，同時最小化獎勵差異。</p>
+</li>
+<li><p>一旦模型已經在人類的排名提示完成對上訓練過，可以使用獎勵模型作為一種二進制分類器。</p>
+</li>
+<li><p>例如，如果想要讓語言模型避免產生仇恨言論，獎勵模型就需要能識別完成的部分是否包含仇恨言論。</p>
+</li>
+</ol>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230823172046547.png" alt="image-20230823172046547" style="zoom: 67%;" />
+
+<blockquote>
+<p>Let’s say you want to detoxify your LLM, </p>
+<p>and the reward model needs to </p>
+<p>identify if the completion contains hate speech. </p>
+<p>In this case, the two classes would be notate, </p>
+<p>the positive class that you ultimately want to optimize </p>
+<p>for and hate the negative class you want to avoid. </p>
+<p>The largest value of the positive class is what you </p>
+<p>use as the reward value in LLHF. </p>
+<p>Just to remind you, if you apply </p>
+<p>a Softmax function to the logits, </p>
+<p>you will get the probabilities. </p>
+<p>The example here shows a good reward for </p>
+<p>non-toxic completion and the second example </p>
+<p>shows a bad reward being given for toxic completion.</p>
+</blockquote>
+<h2 id="RLHF-Fine-Tuning-with-Reinforcement-Learning"><a href="#RLHF-Fine-Tuning-with-Reinforcement-Learning" class="headerlink" title="RLHF: Fine-Tuning with Reinforcement Learning"></a>RLHF: Fine-Tuning with Reinforcement Learning</h2><img src="/Users/joe/Library/Application Support/typora-user-images/image-20230803211741800.png" alt="image-20230803211741800" style="zoom: 33%;" />
+
+<table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>將提示提供給LLM，讓其生成完成的句子</td>
+</tr>
+<tr>
+<td>2</td>
+<td>將完成的句子與原始提示一起作為一對傳遞給獎勵模型</td>
+</tr>
+<tr>
+<td>3</td>
+<td>獎勵模型根據訓練時的人類反饋評估這一對，並返回一個獎勵值</td>
+</tr>
+<tr>
+<td>4</td>
+<td>獎勵值被用於更新LLM的權重，使其更偏向生成更高獎勵、更對齊的回應</td>
+</tr>
+</tbody></table>
+<p>RLHF is becoming increasingly important to ensure that LLMs behave in a safe and aligned manner in deployment.</p>
+<blockquote>
+<p>This is the algorithm that takes the output </p>
+<p>of the reward model and uses it </p>
+<p>to update the LLM model weights so </p>
+<p>that the reward score increases over time.</p>
+</blockquote>
+<p>ensure that </p>
+<p>LLMs behave in a safe and aligned manner in deployment.</p>
+<h2 id="PPO-Proximal-Policy-Optimization"><a href="#PPO-Proximal-Policy-Optimization" class="headerlink" title="PPO, (Proximal Policy Optimization)"></a>PPO, (Proximal Policy Optimization)</h2><blockquote>
+<p>As the name suggests, </p>
+<p>PPO optimizes a policy, </p>
+<p>in this case the LLM, </p>
+<p>to be more aligned with human preferences. </p>
+<p>Over many iterations, PPO makes updates to the LLM. </p>
+<p>The updates are small and within a bounded region, </p>
+<p>resulting in an updated LLM </p>
+<p>that is close to the previous version, </p>
+<p>hence the name Proximal Policy Optimization. </p>
+<p>Keeping the changes within </p>
+<p>this small region result in a more stable learning. </p>
+<p>The goal is to update </p>
+<p>the policy so that the reward is maximized. </p>
+</blockquote>
+<img src="https://p.ipic.vip/gexjj5.png" alt="image-20230823194828690" style="zoom:67%;" />
+
+
+
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230823195015112.png" alt="image-20230823195015112" style="zoom: 50%;" />
+
+
+
+
+
+<blockquote>
+<p>RLHF is a fine-tuning process </p>
+<p>that aligns LLMs with human preferences. </p>
+<p>In this process, you make use of </p>
+<p>a reward model to assess and LLMs </p>
+<p>completions of a prompt data </p>
+<p>set against some human preference metric, </p>
+<p>like helpful or not helpful. </p>
+<p>Next, you use a reinforcement learning algorithm, </p>
+<p>in this case, PPO, </p>
+<p>to update the weights off the LLM based on the reward is </p>
+<p>signed to the completions generated </p>
+<p>by the current version off the LLM. </p>
+<p>You’ll carry out this cycle of </p>
+<p>a multiple iterations using many different prompts </p>
+<p>and updates off the model weights </p>
+<p>until you obtain your desired degree of alignment. </p>
+<p>Your end result is </p>
+<p>a human aligned LLM that you can use in your application. </p>
+</blockquote>
+<h2 id="RLHF-Reward-Hacking"><a href="#RLHF-Reward-Hacking" class="headerlink" title="RLHF: Reward Hacking"></a>RLHF: Reward Hacking</h2><p>以下是個例子來說明獎勵黑客的問題：</p>
+<p>假設我們正在使用強化學習來讓你的指導語言模型（instruct LLM）生成更友善（less toxic）的回應。已經訓練了一個獎勵模型，該模型能夠進行情感分析，並將模型生成的文本分類為有毒或無毒。</p>
+<p>現在，我將一個提示「this product is…」送入你的指導語言模型，該模型產生了一個補全：「complete garbage」。這個補全的情感負面，因此可能會獲得一個高度有毒的評級。</p>
+<p>然而，當我的語言模型經過多次迭代和學習後，它可能會嘗試最大化獎勵（即最小化有毒評級）。它可能會學會加入一些總是能得到低有毒評級的字詞或片語，例如「most awesome」或「most incredible」，即使這樣做可能會使得生成的文本變得過度誇大或者變得不合理。</p>
+<p>這就是獎勵黑客的一種現象：模型學會了如何遊戲系統以最大化其獎勵，但最終生成的文本可能並不是我們真正想要的結果。</p>
+<img src="https://p.ipic.vip/fl9pjf.png" alt="image-20230823195838934" style="zoom:67%;" />
+
+<img src="https://p.ipic.vip/1cmjm5.png" alt="image-20230803212242324" style="zoom: 33%;" />
+
+<h3 id="Sol"><a href="#Sol" class="headerlink" title="Sol"></a>Sol</h3><img src="https://p.ipic.vip/y8h561.png" alt="image-20230803221112298" style="zoom:33%;" />
+
+<blockquote>
+<p>It needs 2 full copies of the LLM to calculate the KL divergence, the frozen reference LLM, and the RL-updated PPO LLM. </p>
+<p>We can further benefit from combining our relationship with PEFT. In this case, we only update the weights of a path adapter, not the full weights of the LLM.</p>
+</blockquote>
+<img src="https://p.ipic.vip/yjd5h0.png" alt="image-20230803221245341" style="zoom:33%;" />
+
+
+
+<h3 id="KL-divergence"><a href="#KL-divergence" class="headerlink" title="KL divergence"></a>KL divergence</h3><p>KL散度（Kullback-Leibler Divergence）是一種度量兩個概率分布間差異的數學方法，常用於強化學習領域，特別是在使用PPO（近端策略優化）算法時。</p>
+<p>在PPO中，目標是通過基於與環境互動獲得的獎勵來反覆更新代理的參數，以找到改進的策略。然而，過於激進的更新策略可能會導致學習不穩定或策略變化過大。為了解決這個問題，PPO引入了一個約束，限制策略更新的幅度。這個約束是通過使用KL散度來實現的。</p>
+<p>要理解KL散度是如何工作的，我們可以想像有兩個概率分布：原始LLM的分布，和一個新提議的RL更新的LLM分布。KL散度度量的是當我們使用原始策略來對新提議的策略的樣本進行編碼時，我們獲得的信息量的平均數。通過最小化兩個分布之間的KL散度，PPO確保更新的策略與原始策略保持接近，防止可能對學習過程產生負面影響的劇變。</p>
+<p>你可以使用的一個用於以強化學習方式訓練變換器語言模型的庫是TRL（Transformer Reinforcement Learning）。在這個鏈接中，你可以更多地了解這個庫，以及它與PEFT（Parameter-Efficient Fine-Tuning）方法（如LoRA（Low-Rank Adaption））的集成。該圖像顯示了TRL中PPO訓練設置的概覽。</p>
+<p>簡單來說，KL散度是一種方法，用於度量並控制在學習過程中模型更新的幅度，以確保學習的穩定性和防止策略的劇變。</p>
+<p>In PPO, the goal is to find an improved policy for an agent by iteratively updating its parameters based on the rewards received from interacting with the environment. However, updating the policy too aggressively can lead to unstable learning or drastic policy changes. To address this, PPO introduces a constraint that limits the extent of policy updates. This constraint is enforced by using KL-Divergence.</p>
+<h2 id="Scaling-Human-Feedbacks"><a href="#Scaling-Human-Feedbacks" class="headerlink" title="Scaling Human Feedbacks"></a>Scaling Human Feedbacks</h2><p>在RLHF（強化學習和人類反饋）微調中，儘管你可以使用獎勵模型來消除在微調過程中對人類評估的需求，但是首先需要巨大的人力努力來產生訓練獎勵模型所需的標記數據集。這通常需要大團隊的標記員，有時甚至需要成千上萬的人來評估各種提示。這項工作需要大量的時間和其他資源，這可能是重要的限制因素。隨著模型和用例數量的增加，人力努力成為有限的資源。擴大人類反饋的方法是研究的活躍領域。一種克服這些限制的想法是通過模型自我監督來擴展。憲法人工智能就是一種擴展監督的方法。</p>
+<p>憲法人工智能首先在2022年由Anthropic的研究人員提出，它是一種使用一組規則和原則來訓練模型的方法，這些規則和原則決定了模型的行為。你可以訓練模型自我批評，並修改其回應以符合這些原則。憲法人工智能不僅對擴大反饋有用，而且還可以幫助解決RLHF的一些意外後果。例如，根據提示的結構，一個對齊的模型可能會在盡其所能提供最有幫助的回應時，暴露出有害的信息。</p>
+<p>在實施憲法人工智能方法時，你需要分兩個階段訓練模型。在第一階段，你進行監督學習，開始使用提示模型的方式，試圖讓它產生有害的回應，這個過程被稱為紅隊操作。然後你讓模型根據憲法原則批評自己的有害回應，並修改它們以符合這些規則。完成後，你將使用紅隊提示和修訂的憲法回應對的對模型進行微調。</p>
+<p>然後，你將所有部分放在一起，要求模型寫出一個新的回應，刪除所有有害或非法的內容。模型生成一個新的答案，將憲法原則付諸實踐，不包括對非法應用的引用。原始的紅隊提示和這個最後的憲法回應可以作為訓練數據。你將構建一個包含許多這樣的例子的數據集，以創建一個已經學習如何生成憲法回應的微調NLM。</p>
+<p>第二部分的過程進行強化學習。這個階段與RLHF相似，除了人類反饋，我們現在使用由模型生成的反饋。這有時被稱為從AI反饋中學習的強化學習或RLAIF。在這裡，你使用前一步中的微調模型來生成一組對你的提示的回應。然後你讓模型根據憲法原則來判斷哪個回應是優先的。結果是一個模型生成的偏好數據集，你可以用它來訓練一個獎勵模型。有了這個獎勵模型，你現在可以使用類似於PPO的強化學習算法進一步微調模型。</p>
+<h1 id="LLM-powered-Applications"><a href="#LLM-powered-Applications" class="headerlink" title="LLM-powered Applications"></a>LLM-powered Applications</h1><h2 id="Model-Optimizations-for-Deployment"><a href="#Model-Optimizations-for-Deployment" class="headerlink" title="Model Optimizations for Deployment"></a>Model Optimizations for Deployment</h2><img src="https://p.ipic.vip/gegwtb.png" alt="image-20230804081521186" style="zoom: 33%;" />
+
+<p><strong>問題</strong></p>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>描述</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>模型部署的運行速度</td>
+<td>您的模型需要多快生成完成答案？</td>
+<td>如果模型被用於需要快速回應的即時對話系統，則運行速度將是非常重要的考慮因素。</td>
+</tr>
+<tr>
+<td>可用的運算預算</td>
+<td>您有多少運算能力可以投入到模型的部署上？</td>
+<td>如果您在雲端運算資源有限，或是運用在邊緣裝置上，則會需要考慮到運算預算。</td>
+</tr>
+<tr>
+<td>模型效能和推論速度或儲存空間的取捨</td>
+<td>是否願意為了改善推論速度或減少儲存需求而犧牲模型的效能？</td>
+<td>縮小模型可能會降低其生成結果的準確性，但可以提高運行速度並減少存儲需求。</td>
+</tr>
+<tr>
+<td>模型是否需要與外部數據或其他應用進行交互</td>
+<td>如果模型需要與外部數據或其他應用進行交互，則需要考慮如何連接這些資源。</td>
+<td>例如，您的模型可能需要存取網路爬蟲或數據庫以查詢或更新資訊。</td>
+</tr>
+<tr>
+<td>模型將如何被消費</td>
+<td>您的模型將通過哪種應用程式或API介面被使用？</td>
+<td>例如，模型可能透過智能助理應用程式、語音識別系統或一個Web API進行訪問。</td>
+</tr>
+</tbody></table>
+<p><strong>優化技術</strong></p>
+<table>
+<thead>
+<tr>
+<th>技術</th>
+<th>描述</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>蒸餾（Distillation）</td>
+<td>用一個大型模型（教師模型）訓練一個較小的模型（學生模型），以降低儲存和運算需求。</td>
+<td>一個例子可能是，使用大型GPT-4模型作為教師模型，訓練一個小型GPT-2模型作為學生模型。</td>
+</tr>
+<tr>
+<td>量化（Quantization）</td>
+<td>將模型權重轉換為較低精度的表示，例如16位浮點數或8位整數，以降低模型大小和記憶體需求以及所需的模型服務運算資源。</td>
+<td>可以將GPT-4模型的權重由32位浮點數量化為16位浮點數，以節省儲存空間和運算時間。</td>
+</tr>
+<tr>
+<td>剪枝（Pruning）</td>
+<td>移除對模型性能貢獻不大的權重，這些權重的值接近或等於零。</td>
+<td>使用LoRA或其他參數有效的微調方法對模型進行剪枝，移除對模型性能影響最小的權重。</td>
+</tr>
+</tbody></table>
+<h2 id="Generative-AI-Project-Lifecycle-Cheat-Sheet"><a href="#Generative-AI-Project-Lifecycle-Cheat-Sheet" class="headerlink" title="Generative AI Project Lifecycle Cheat Sheet"></a>Generative AI Project Lifecycle Cheat Sheet</h2><table>
+<thead>
+<tr>
+<th>項目階段</th>
+<th>描述</th>
+<th>需要的時間和努力</th>
+<th>需要的技術專業知識</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>大型語言模型的預訓練</td>
+<td>這個階段涉及到模型架構的決定，大量的訓練數據，並需要專業的技術知識。</td>
+<td>最耗時和最耗力的階段。</td>
+<td>最需要專業知識的階段。</td>
+</tr>
+<tr>
+<td>引導工程 (Prompt Engineering)</td>
+<td>如果你從一個已存在的基礎模型開始，你可能會首先透過引導工程來評估模型的表現。</td>
+<td>相對快速，可能不需要特別的訓練時間。</td>
+<td>需要一些技術知識，但相對於模型訓練，要求較低。</td>
+</tr>
+<tr>
+<td>引導調整與微調 (Prompt Tuning and Fine Tuning)</td>
+<td>如果模型的表現還不夠好，你可能會考慮引導調整或微調模型。</td>
+<td>依據用途、性能目標和運算預算的不同，所需的時間和努力也會不同。</td>
+<td>需要一定的技術專業知識。</td>
+</tr>
+<tr>
+<td>利用人類反饋進行強化學習來對齊模型 (Aligning the Model Using RL from Human Feedback)</td>
+<td>一旦你有了訓練獎勵模型，你就可以快速地使用人類反饋來進行強化學習。</td>
+<td>如果你已經有現成的獎勵模型，這個過程可能會很快。但如果需要從零開始訓練一個獎勵模型，由於需要收集人類反饋，所以可能會花費很長的時間。</td>
+<td>需要一定的技術專業知識。</td>
+</tr>
+<tr>
+<td>優化技術 (Optimization Techniques)</td>
+<td>在進行最終的模型部署之前，你可能會需要使用一些優化技術來改善模型的性能。</td>
+<td>這個階段的複雜程度和所需努力在中等範圍內，但一旦確定模型變動不會太大影響性能，這個過程可以很快進行。</td>
+<td>需要一定的技術專業知識。</td>
+</tr>
+</tbody></table>
+<h2 id="Using-LLM-in-Applications"><a href="#Using-LLM-in-Applications" class="headerlink" title="Using LLM in Applications"></a>Using LLM in Applications</h2><p>By providing up to date relevant information and avoiding hallucinations to greatly improve the experience of using application for users.</p>
+<p>Note: the LLMs do not carry out mathematical operations. They are still just trying to predict the next best token based on their training, and as a result, can easily get the answer wrong.</p>
+<p>問題 &amp; 解決方案*</p>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>描述</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>知識截止</td>
+<td>語言模型的內在知識在預訓練的時刻停止，無法理解訓練之後的新事件或新聞。</td>
+<td>2022 年初訓練的模型被問到英國首相是誰時，會回答是 Boris Johnson，但模型並不知道他在 2022 年底辭職。</td>
+</tr>
+<tr>
+<td>數學問題</td>
+<td>模型在處理複雜的數學問題時可能會遇到困難。</td>
+<td>提問模型執行一個除法問題，模型返回的答案接近正確答案，但不準確。</td>
+</tr>
+<tr>
+<td>幻覺</td>
+<td>當模型不知道答案時，可能會生成與問題無關的文本。</td>
+<td>模型生成了一種不存在的植物”火星沙丘樹”的描述。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>解決方案</th>
+<th>描述</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用外部數據源和應用程式</td>
+<td>通過連接到外部數據源和應用程式，模型可以得到更新的信息，從而克服知識截止的問題。</td>
+<td>將語言模型連接到外部數據庫或其他應用程式的API。</td>
+</tr>
+</tbody></table>
+<h3 id="RAG-Retrieval-Augmented-Generation"><a href="#RAG-Retrieval-Augmented-Generation" class="headerlink" title="RAG, (Retrieval Augmented Generation, )"></a>RAG, (Retrieval Augmented Generation, )</h3><table>
+<thead>
+<tr>
+<th>RAG 的功能</th>
+<th>描述</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>克服知識截止</td>
+<td>RAG通過給模型提供訪問額外的外部數據，幫助模型更新其對世界的理解。</td>
+<td>您可以讓模型訪問它可能未見過的數據，如新信息文件、原始訓練數據中未包含的文件，或存儲在您的組織私有數據庫中的專有知識。</td>
+</tr>
+<tr>
+<td>避免幻覺</td>
+<td>RAG 可以幫助你避免模型在不知道答案的情況下產生幻覺。</td>
+<td></td>
+</tr>
+<tr>
+<td>整合外部信息源</td>
+<td>RAG 可以將多種類型的外部信息源整合到一起。</td>
+<td>使用 RAG，您可以讓模型訪問本地文檔、包括私有 wiki 和專家系統在內的互聯網上的信息，或者與數據庫互動。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>RAG 的實施</th>
+<th>描述</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>限制的上下文窗口大小</td>
+<td>絕大部分的文本來源都過長，無法適應模型有限的上下文窗口。因此，外部數據源需要被切分成許多塊，每塊都可以適應在上下文窗口裡。</td>
+<td>使用像是 Langchain 這種套件來處理這項工作。</td>
+</tr>
+<tr>
+<td>數據的格式</td>
+<td>數據必須以易於檢索最相關文本的格式提供。</td>
+<td>利用語言模型內部以向量形式表現語言的特性，透過 RAG 方法將外部數據的各個小塊處理進大型語言模型，創建每個塊的嵌入向量，並將這些新的數據表現形式儲存在叫做向量存儲的結構裡。</td>
+</tr>
+</tbody></table>
+<h2 id="Interacting-with-External-Apllications"><a href="#Interacting-with-External-Apllications" class="headerlink" title="Interacting with External Apllications"></a>Interacting with External Apllications</h2><img src="https://p.ipic.vip/oau486.png" alt="image-20230804095046617" style="zoom: 25%;" />
+
+<p>例子:</p>
+<blockquote>
+<p><strong>客戶</strong>: 表示他們希望退回他們購買的基因。</p>
+<p><strong>ShopBot</strong>: 詢問訂單號碼。</p>
+<p><strong>客戶</strong>: 提供訂單號碼。</p>
+<p><strong>ShopBot</strong>: 在交易數據庫中查找訂單號碼，可能通過一種類似於您在上一個視頻中看到的RAG實現來實現。在這種情況下，您可能會透過SQL查詢後端訂單數據庫來檢索數據，而不是從文件集中檢索數據。</p>
+<p><strong>ShopBot</strong>: 取得了客戶的訂單後，確認將退回的商品。詢問客戶是否還有其他除了基因以外的商品要退回。</p>
+<p><strong>客戶</strong>: 表示他們的答案。</p>
+<p><strong>ShopBot</strong>: 向公司的運輸合作夥伴發起一個退貨標籤的請求。透過運輸合作夥伴的Python API來請求標籤。並將通過電子郵件將運輸標籤發送給客戶。同時詢問他們確認電子郵件地址。</p>
+<p><strong>客戶</strong>: 以電子郵件地址回應，該信息將被包含在對運輸商的API調用中。</p>
+<p><strong>ShopBot</strong>: API請求完成後，通知客戶標籤已通過電子郵件發送，並結束對話。</p>
+</blockquote>
+<p><strong>連接語言模型與外部應用的重要性</strong>：</p>
+<ol>
+<li>擴展語言模型的功能：連接外部應用可以讓語言模型與更廣泛的世界互動，使其功能超越語言任務。</li>
+<li>觸發動作：語言模型可以被用來觸發動作，當給予與API互動的能力時。例如在ShopBot的例子中。</li>
+<li>連接其他編程資源：語言模型也可以連接到其他編程資源，例如Python解釋器，以在輸出中嵌入精確的計算。</li>
+</ol>
+<p><strong>如何觸發動作</strong>：</p>
+<ol>
+<li>提示（prompts）與完成（completions）：這些是工作流程的核心。應用將根據用戶的請求進行的操作由語言模型決定，語言模型作為應用的推理引擎。</li>
+<li>生成指令：語言模型需要生成一套指令，讓應用知道需要採取哪些行動。這些指令需要易於理解並與允許的行動相對應。例如在ShopBot中，重要的步驟包括檢查訂單ID、請求運送標籤、驗證用戶電郵以及透過電郵向用戶發送標籤。</li>
+<li>完成的格式：完成需要以一種應用能理解的方式格式化。這可能像是特定的句子結構，或像是寫出Python腳本或生成SQL指令那樣複雜。</li>
+<li>收集驗證信息：模型可能需要收集允許驗證行動的信息。例如在ShopBot的對話中，應用需要驗證客戶用於下訂單的電郵地址。</li>
+</ol>
+<p>以下是一個表格，比較一下在 ShopBot 示例中，LLM 操作步驟以及對應的實際操作：</p>
+<table>
+<thead>
+<tr>
+<th>LLM 操作步驟</th>
+<th>實際操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>檢查訂單ID</td>
+<td>在數據庫中查找訂單號碼</td>
+</tr>
+<tr>
+<td>請求運送標籤</td>
+<td>通過運輸合作夥伴的API發起請求</td>
+</tr>
+<tr>
+<td>驗證用戶電郵</td>
+<td>從用戶處獲得電郵地址，並將其包含在API呼叫中</td>
+</tr>
+<tr>
+<td>透過電郵向用戶發送標籤</td>
+<td>API請求完成後，通知客戶標籤已經發送</td>
+</tr>
+</tbody></table>
+<h2 id="Helping-LLMs-reason-and-Plan-with-Chain-of-Thought"><a href="#Helping-LLMs-reason-and-Plan-with-Chain-of-Thought" class="headerlink" title="Helping LLMs reason and Plan with Chain-of-Thought"></a>Helping LLMs reason and Plan with Chain-of-Thought</h2><h3 id="Chain-of-Thought-prompting"><a href="#Chain-of-Thought-prompting" class="headerlink" title="Chain of Thought prompting"></a>Chain of Thought prompting</h3><p>E.g. Intermediate calculations form the reasoning steps that a human might take, and the full sequence of steps illustrates the chain of thought that went into solving the problem.</p>
+<p>這是文章中兩個範例的比較：</p>
+<table>
+<thead>
+<tr>
+<th>問題種類</th>
+<th>一次推理</th>
+<th>鏈式思考提示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>數學問題</td>
+<td>錯誤地判斷餐廳剩餘的蘋果數量為27（正確答案應為9）</td>
+<td>正確地判斷餐廳剩餘的蘋果數量為9</td>
+</tr>
+<tr>
+<td>物理問題</td>
+<td>未給出範例</td>
+<td>正確地判斷黃金戒指會沉到游泳池底部，因為黃金的密度遠大於水的密度</td>
+</tr>
+</tbody></table>
+<h2 id="PAL-Program-aided-Language-Models"><a href="#PAL-Program-aided-Language-Models" class="headerlink" title="PAL, (Program-aided Language Models)"></a>PAL, (Program-aided Language Models)</h2><p>Remember, the model isn’t actually doing any real math here. It is simply trying to predict the most probable tokens that complete the prompt. </p>
+<p>This work first presented by Luyu Gao and collaborators at Carnegie Mellon University in 2022</p>
+<p>PAL 的主要策略是讓 LLM 生成包含電腦代碼的完成語句。這些代碼可以傳遞給解釋器來進行必要的計算，以解決問題。LLM 可以在提示的例子中學習到輸出的格式。例子裡會包括一個問題和一些 Python 代碼行，這些代碼行能夠解決問題。</p>
+<img src="https://p.ipic.vip/9objt9.png" alt="image-20230804094543300" style="zoom: 67%;" />
+
+
+
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230804095223507.png" alt="image-20230804095223507" style="zoom:25%;" />
+
+
+
+
+
+<h2 id="ReAct-Combining-“Reasoning-and-Action”"><a href="#ReAct-Combining-“Reasoning-and-Action”" class="headerlink" title="ReAct: Combining “Reasoning and Action”"></a>ReAct: Combining “Reasoning and Action”</h2><p>ReAct is a prompting strategy that combines chain of thought reasoning with action planning. The framework was proposed by researchers at Princeton and Google in 2022. The paper develops a series of complex prompting examples based on problems from Hot Pot QA, a multi-step question answering benchmark. </p>
+<p>以下是 “ReAct” 框架的步驟：Thought, Action, Observation steps</p>
+<ol>
+<li>問題定義：開始的提示(question prompt)會是一個需要多步驟來回答的問題。例如，確定兩本雜誌中哪一本是先創建的。</li>
+<li>思考步驟：這個步驟包括一個思考、行動、與觀察的三元組。”思考” 是一個解決問題的邏輯步驟，並識別需要採取的行動。例如，在雜誌出版的問題中，模型將搜索兩本雜誌並確定哪一本先出版。</li>
+<li>行動步驟：模型需要從一個預定義的行動列表中選擇一個行動來執行，以便與外部應用程序或數據源互動。在 “ReAct” 框架中，這些行動包括：<ul>
+<li>搜索：查找特定主題的Wikipedia條目</li>
+<li>查找：在Wikipedia頁面上搜索特定的字符串</li>
+<li>完成：當模型決定已經找到答案時，執行的行動</li>
+</ul>
+</li>
+<li>觀察步驟：新的信息（來自於行動步驟的結果）會被引入到提示的上下文中。這是 “觀察” 步驟。</li>
+<li>重複步驟：上述的 “思考”、”行動”、”觀察” 的循環會重複進行，直到找到最終的答案為止。</li>
+</ol>
+<p>注意，每個行動都使用特定的方括號符號來格式化，這樣 Python 解釋器就可以觸發對應的 API 操作。</p>
+<h3 id="LangChain"><a href="#LangChain" class="headerlink" title="LangChain"></a>LangChain</h3><img src="/Users/joe/Library/Application Support/typora-user-images/image-20230804102549531.png" alt="image-20230804102549531" style="zoom:33%;" />
+
+<p>LangChain is in active development, and new features are being added all the time, like the ability to examine and evaluate the LLM’s completions throughout the workflow. It’s an exciting framework that can help you with fast prototyping and deployment, and is likely to become an important tool in your generative AI toolbox in the future. </p>
+<p>Larger models are generally your best choice for techniques that use advanced prompting, like PAL or ReAct. Smaller models may struggle to understand the tasks in highly structured prompts and may require you to perform additional fine tuning to improve their ability to reason and plan. This could slow down your development process. Instead, if you start with a large, capable model and collect lots of user data in deployment, you may be able to use it to train and fine tune a smaller model that you can switch to at a later time.</p>
+<h3 id="ReAct-Paper"><a href="#ReAct-Paper" class="headerlink" title="ReAct Paper"></a>ReAct Paper</h3><p><img src="https://p.ipic.vip/l7w0n9.png" alt="image-20230804103551751"></p>
+<blockquote>
+<p>The figure provides a comprehensive visual comparison of different prompting methods in two distinct domains. The first part of the figure (1a) presents a comparison of four prompting methods: Standard, Chain-of-thought (CoT, Reason Only), Act-only, and ReAct (Reason+Act) for solving a HotpotQA question. Each method’s approach is demonstrated through task-solving trajectories generated by the model (Act, Thought) and the environment (Obs). The second part of the figure</p>
+</blockquote>
+<h2 id="LLM-Application-Architectures"><a href="#LLM-Application-Architectures" class="headerlink" title="LLM Application Architectures"></a>LLM Application Architectures</h2><p><img src="https://p.ipic.vip/x8fmj5.png" alt="image-20230804115519625"></p>
+<ol>
+<li><strong>應用架構的組成元素</strong>：<ul>
+<li><strong>基礎設施層</strong>：提供運算，存儲，和網路資源來運行您的LLM，並用於託管您的應用組件。您可以使用您自己的基礎設施，或者選擇使用按需付費的雲服務。</li>
+<li><strong>大型語言模型</strong>：在您的應用中使用的LLM，可以包括基礎模型，以及您特定任務的模型。這些模型會部署在適合您推理需求的基礎設施上，例如需要實時或近實時與模型交互的情況。</li>
+<li><strong>從外部源獲取信息</strong>：如在增強檢索生成部分所討論的，您的應用可能需要從外部源獲取信息。</li>
+<li><strong>輸出保存和反饋收集</strong>：根據您的使用情況，您可能需要實現捕獲和儲存輸出的機制，例如，您可以建立在一個會議中儲存用戶完成內容的能力，以增加您的LLM的固定上下文窗口大小。您也可以收集用戶的反饋，這對於您的應用的進一步微調，對齊或評估可能是有用的。</li>
+<li><strong>使用額外的工具和框架</strong>：您可能需要使用一些工具和框架來更輕鬆地實現在本課程中討論的一些技術，例如使用len chain的內置庫來實現像pow react或chain of thought提示等技術。</li>
+<li><strong>使用者介面和安全元件</strong>：最後，您通常會有某種用戶界面，例如網站或REST API，讓用戶或者其他應用可以通過它來使用您的應用。在這個層次，您也會包括用於與您的應用交互的安全組件。</li>
+</ul>
+</li>
+<li><strong>模型對齊人類偏好</strong>：本週，您看到了如何通過使用一種名為人類反饋強化學習（RLHF）的技術來微調模型，使其與人類偏好，如有用，無害，誠實等進行對齊。</li>
+<li><strong>模型推理優化</strong>：您也看到了重要的技術，通過模型蒸餾，量化，或修剪來縮小模型大小，以減少在生產中運行您的LLM所需要的硬體資源。</li>
+<li><strong>模型部署優化</strong>：最後，您探索了通過結構化提示和連接到外部數據源和應用來幫助模型在部署時有更好表現的方法。</li>
+<li><strong>LLM的潛力和前景</strong>：LLM可以在應用中發揮驚人的作用，利用其智能來驅動令人興奮的，有用的應用。像len chain這樣的框架使得可以快速構建，部署和測試LLM驅動的應用成為可能，對開發者來說，這是一個非常令人興奮的時期。</li>
+</ol>
+<h2 id="AWS-Sagemaker-JumpStart"><a href="#AWS-Sagemaker-JumpStart" class="headerlink" title="AWS Sagemaker JumpStart"></a>AWS Sagemaker JumpStart</h2><p>a model hub, Sagemaker JumpStart is a model hub, and it allows you to quickly deploy foundation models that are available within the service, and integrate them into your own applications. The JumpStart service also provides an easy way to fine-tune and deploy models. JumpStart covers many parts of this diagram, including the infrastructure, the LLM itself, the tools and frameworks, and even an API to invoke the model.</p>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230804115726032.png" alt="image-20230804115726032" style="zoom:33%;" />
+
+<p>AWS的Sagemaker JumpStart是一種服務，旨在幫助您快速將基於大型語言模型(LLM)的應用程序推向生產並實現規模運作。以下是該服務的主要特點：</p>
+<ol>
+<li><strong>模型中心</strong>：JumpStart作為一種模型中心，允許您快速部署在該服務中可用的基礎模型，並將其整合到自己的應用程序中。</li>
+<li><strong>微調和部署</strong>：JumpStart提供了一種簡單的方式來微調和部署模型。</li>
+<li><strong>全面覆蓋</strong>：JumpStart涵蓋了基於LLM應用程序建設的許多部分，包括基礎設施，LLM本身，工具和框架，甚至是調用模型的API。</li>
+<li><strong>GPU需求</strong>：與您在實驗室中使用的模型相比，JumpStart模型需要使用GPU進行微調和部署。請注意，這些GPU的價格是按需定價，因此在選擇您要使用的計算設備之前，應參考Sagemaker的定價頁面。</li>
+<li><strong>成本監控</strong>：使用JumpStart時，請務必在不使用時刪除Sagemaker模型端點，並遵循成本監控最佳實踐以優化成本。</li>
+<li><strong>支持微調</strong>：JumpStart支持模型微調。例如，您可以透過指定訓練和驗證數據集的位置，然後選擇要用於訓練的計算設備的大小來設定微調作業。</li>
+<li><strong>參數調整</strong>：您可以快速識別和修改此特定模型的可調參數。</li>
+<li><strong>自動生成筆記本</strong>：JumpStart還提供一種選項，可以自動為您生成一個筆記本。如果您更喜歡以程式化的方式與這些模型進行交互，這是一種選擇。</li>
+</ol>
+<p>除了作為包含基礎模型的模型中心外，JumpStart還提供了許多其他資源，包括博客、視頻和示例筆記本。</p>
+<h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><h2 id="Reinforcement-Learning-from-Human-Feedback-RLHF"><a href="#Reinforcement-Learning-from-Human-Feedback-RLHF" class="headerlink" title="Reinforcement Learning from Human-Feedback (RLHF)"></a><strong>Reinforcement Learning from Human-Feedback (RLHF)</strong></h2><ul>
+<li><a href="https://arxiv.org/pdf/2203.02155.pdf" target="_blank" rel="noopener"><strong>Training language models to follow instructions with human feedback</strong></a> <strong>-</strong> Paper by OpenAI introducing a human-in-the-loop process to create a model that is better at following instructions (InstructGPT).</li>
+<li><a href="https://arxiv.org/pdf/2009.01325.pdf" target="_blank" rel="noopener"><strong>Learning to summarize from human feedback</strong></a> - This paper presents a method for improving language model-generated summaries using a reward-based approach, surpassing human reference summaries.</li>
+</ul>
+<h2 id="Proximal-Policy-Optimization-PPO"><a href="#Proximal-Policy-Optimization-PPO" class="headerlink" title="Proximal Policy Optimization (PPO)"></a><strong>Proximal Policy Optimization (PPO)</strong></h2><ul>
+<li><a href="https://arxiv.org/pdf/1707.06347.pdf" target="_blank" rel="noopener"><strong>Proximal Policy Optimization Algorithms</strong></a> - The paper from researchers at OpenAI that first proposed the PPO algorithm. The paper discusses the performance of the algorithm on a number of benchmark tasks including robotic locomotion and game play.</li>
+<li><a href="https://arxiv.org/pdf/2305.18290.pdf" target="_blank" rel="noopener"><strong>Direct Preference Optimization: Your Language Model is Secretly a Reward Model</strong></a> - This paper presents a simpler and effective method for precise control of large-scale unsupervised language models by aligning them with human preferences.</li>
+</ul>
+<h2 id="Scaling-human-feedback"><a href="#Scaling-human-feedback" class="headerlink" title="Scaling human feedback"></a><strong>Scaling human feedback</strong></h2><ul>
+<li><a href="https://arxiv.org/pdf/2212.08073.pdf" target="_blank" rel="noopener"><strong>Constitutional AI: Harmlessness from AI Feedback</strong></a> - This paper introduces a method for training a harmless AI assistant without human labels, allowing better control of AI behavior with minimal human input.</li>
+</ul>
+<h2 id="Advanced-Prompting-Techniques"><a href="#Advanced-Prompting-Techniques" class="headerlink" title="Advanced Prompting Techniques"></a><strong>Advanced Prompting Techniques</strong></h2><ul>
+<li><a href="https://arxiv.org/pdf/2201.11903.pdf" target="_blank" rel="noopener"><strong>Chain-of-thought Prompting Elicits Reasoning in Large Language Models</strong></a> -  Paper by researchers at Google exploring how chain-of-thought prompting improves the ability of LLMs to perform complex reasoning.</li>
+<li><a href="https://arxiv.org/abs/2211.10435" target="_blank" rel="noopener"><strong>PAL: Program-aided Language Models</strong></a> - This paper proposes an approach that uses the LLM to read natural language problems and generate programs as the intermediate reasoning steps.</li>
+<li><a href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener"><strong>ReAct: Synergizing Reasoning and Acting in Language Models</strong></a> This paper presents an advanced prompting technique that allows an LLM to make decisions about how to interact with external applications.</li>
+</ul>
+<h2 id="LLM-powered-application-architectures"><a href="#LLM-powered-application-architectures" class="headerlink" title="LLM powered application architectures"></a><strong>LLM powered application architectures</strong></h2><ul>
+<li><a href="https://github.com/hwchase17/langchain" target="_blank" rel="noopener"><strong>LangChain Library (GitHub)</strong></a> - This library is aimed at assisting in the development of those types of applications, such as Question Answering, Chatbots and other Agents. You can read the documentation <a href="https://docs.langchain.com/docs/" target="_blank" rel="noopener">here</a>.</li>
+<li><a href="https://a16z.com/2023/01/19/who-owns-the-generative-ai-platform/" target="_blank" rel="noopener"><strong>Who Owns the Generative AI Platform?</strong></a> - The article examines the market dynamics and business models of generative AI.</li>
+</ul>
+<h1 id="Responsible-AI"><a href="#Responsible-AI" class="headerlink" title="Responsible AI"></a>Responsible AI</h1><ol>
+<li><strong>毒性（Toxicity）</strong>：LLM可能會產生可能對特定群體，特別是邊緣化群體或受保護群體造成傷害或歧視的語言或內容。為了應對這個問題，一個策略是從訓練數據開始，進行篩選，並訓練守護模型來檢測和過濾訓練數據中的任何不需要的內容。此外，為標注員提供足夠的指導，並確保標注員群體的多樣性也是至關重要的。</li>
+<li><strong>幻覺（<em>Hallucinations</em>）</strong>：LLM可能會生成沒有事實依據的信息。這是因為在訓練大型語言模型或神經網絡時，我們往往無法知道模型實際學習了什麼，模型有時會嘗試填補它的數據空白。為了防止這種情況，一種策略是向用戶說明這種技術的現實，並添加任何免責聲明。此外，可以用獨立且經過驗證的信息源來增強大型語言模型，以便可以對獲取的數據進行雙重檢查。</li>
+<li><strong>知識產權（Intellectual Property</strong>：使用模型返回的數據可能會侵犯他人的知識產權。因此，我們需要通過技術、政策制定者和其他法律機制來解決這個問題。此外，我們還需要建立一個管理體系，以確保所有利益相關者都在防止這種情況發生方面扮演著他們應有的角色。</li>
+</ol>
+<p>總的來說，使用生成人工智能模型時，需要明確使用案例，評估風險，評估性能，不斷迭代，並在整個生命週期中實施治理政策和問責措施。</p>
+<p>對於目前研究社區正在積極研究的一些令人興奮的主題，如水印和指紋識別，以及創建可以幫助確定是否使用了生成人工智能創建內容的模型，</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2023/08/02/LLM/Generative%20AI%20with%20LLM/3%20Reinforcement%20Learning%20from%20Human%20Feedback/">http://yoursite.com/2023/08/02/LLM/Generative%20AI%20with%20LLM/3%20Reinforcement%20Learning%20from%20Human%20Feedback/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2023/08/25/PyTorch/PyTorch_note/"><i class="fa fa-chevron-left">  </i><span>PyTorch/PyTorch_note</span></a></div><div class="next-post pull-right"><a href="/2023/07/31/LLM/Generative%20AI%20with%20LLM/2%20Fine-Tuning%20LLM/"><span>LLM/Generative AI with LLM/2 Fine-Tuning LLM</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2024 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

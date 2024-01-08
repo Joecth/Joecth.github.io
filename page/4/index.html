@@ -13,460 +13,300 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">401</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">70</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2022/07/17/Risc-V/RVOS/">Risc-V/RVOS</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-07-17</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/RISC-V/">RISC-V</a></span><div class="content"><p><img src="https://p.ipic.vip/r3k6o1.png" alt="undefined"></p>
-<p><img src="https://p.ipic.vip/7ej3ja.png" alt="image-20230623214104151"></p>
-<p>A chip</p>
-<p><img src="https://p.ipic.vip/t6s26s.png" alt="image-20230623214510711"></p>
-<img src="https://p.ipic.vip/fve31l.png" alt="image-20230623214606726" style="zoom:33%;" />
-
-<p><img src="https://p.ipic.vip/5wgbet.png" alt="image-20230623214757418"></p>
-<p>上電時，從0x0000開始跪 </p>
-<p><img src="https://p.ipic.vip/mrueld.png" alt="image-20230623214958655"></p>
-<img src="https://p.ipic.vip/bgc82f.png" alt="image-20230623215512741" style="zoom:50%;" />
-
-
-
-<p>ref: </p>
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">406</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">73</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2023/03/02/ParallelProg/HighPerf%20UTA%204%20OMP%20&amp;%20Parallel%20Loops/">ParallelProg/HighPerf UTA 4 OMP &amp; Parallel Loops</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-03-02</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/HighPerf/">HighPerf</a></span><div class="content"><p><img src="https://p.ipic.vip/wcsp4h.png" alt="image-20230625191321163"></p>
+<p>for (int i = tid; i&lt;m; i+=nthreads) 在加了 pragma 後就是用 i++就可</p>
+<blockquote>
+<p>rom Wikipedia:</p>
+<p>“A multi-core processor is a single computing component with two or more independent processing units called cores, which read and execute program instructions.”</p>
+<p>A thread is a thread of execution.</p>
 <ul>
-<li><a href="https://zh.wikipedia.org/zh-tw/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F" target="_blank" rel="noopener">OS on Wiki</a></li>
+<li>It is an stream of program instructions and associated data. All these instructions may execute on a single core, multiple cores, or they may move from core to core.</li>
+<li>Multiple threads can execute on different cores or on the same core.</li>
 </ul>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/19/ParallelProg/Parallel%20Applications/">ParallelProg/Parallel Applications</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-19</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></span><div class="content"><p>[toc]</p>
-<h1 id="Alg-Embarrassingly-Computations"><a href="#Alg-Embarrassingly-Computations" class="headerlink" title="Alg: Embarrassingly Computations"></a>Alg: Embarrassingly Computations</h1><p><img src="https://p.ipic.vip/csaeeo.png" alt="image-20230614205211835"></p>
-<h3 id="Image-Transformations"><a href="#Image-Transformations" class="headerlink" title="Image Transformations"></a>Image Transformations</h3><ul>
-<li>Low-level image operations</li>
-</ul>
-<p><img src="https://p.ipic.vip/h6pbm0.png" alt="image-20230614205406250"></p>
-<p><img src="https://p.ipic.vip/v93s98.png" alt="image-20230614205510336"></p>
+<p>In other words:</p>
 <ul>
-<li>縱切黑白比較平衡</li>
-<li>鄰居數會affect communication</li>
+<li>Cores are hardware components that can compute simultaneously.</li>
+<li>Threads are streams of execution that can compute simultaneously.</li>
 </ul>
-<p><img src="https://p.ipic.vip/knofs2.png" alt="image-20230614210714720"></p>
-<h3 id="Monde-Carlo-Methods"><a href="#Monde-Carlo-Methods" class="headerlink" title="Monde Carlo Methods"></a>Monde Carlo Methods</h3><ul>
-<li>Sampling data points,  time samplings are independent</li>
-</ul>
-<p><img src="https://p.ipic.vip/2hhy1y.png" alt="image-20230614211437118"></p>
-<p><img src="https://p.ipic.vip/06us4l.png" alt="image-20230614211737368"></p>
-<p><img src="https://p.ipic.vip/nvz855.png" alt="image-20230614211813740"></p>
-<h3 id="Mandelbrot-Set"><a href="#Mandelbrot-Set" class="headerlink" title="Mandelbrot Set"></a>Mandelbrot Set</h3><h1 id="General-Issues-LB-amp-Termination"><a href="#General-Issues-LB-amp-Termination" class="headerlink" title="General Issues: LB &amp; Termination"></a>General Issues: LB &amp; Termination</h1><h2 id="LB-Load-Balance"><a href="#LB-Load-Balance" class="headerlink" title="LB (Load Balance)"></a>LB (Load Balance)</h2><ul>
-<li>centralize or </li>
-<li>distributed 很難 termination</li>
-</ul>
-<p><img src="https://p.ipic.vip/eop4he.png" alt="image-20230614212600210"></p>
-<h3 id="Why-Static-bad"><a href="#Why-Static-bad" class="headerlink" title="Why Static bad?"></a>Why Static bad?</h3><p><img src="https://p.ipic.vip/146cy6.png" alt="image-20230614220951383"></p>
-<p><img src="https://p.ipic.vip/oby280.png" alt="image-20230614221120487"></p>
-<h3 id="Dynamic-LB-w-MPI-e-g"><a href="#Dynamic-LB-w-MPI-e-g" class="headerlink" title="Dynamic LB, w/ MPI e.g."></a>Dynamic LB, w/ MPI e.g.</h3><ul>
-<li>P.S. OpenMP has</li>
-</ul>
-<p><img src="https://p.ipic.vip/5u3k31.png" alt="image-20230614221213219"></p>
-<h4 id="Centralized-Work-Pool"><a href="#Centralized-Work-Pool" class="headerlink" title="Centralized Work Pool"></a>Centralized Work Pool</h4><p><img src="https://p.ipic.vip/58hthe.png" alt="image-20230614221533768"></p>
-<p><img src="https://p.ipic.vip/1uki3p.png" alt="image-20230614221712638"></p>
-<p><img src="https://p.ipic.vip/w5l5ke.png" alt="image-20230614222147601"></p>
-<h4 id="Decentralized-Work-Pool"><a href="#Decentralized-Work-Pool" class="headerlink" title="Decentralized Work Pool"></a>Decentralized Work Pool</h4><ul>
-<li>many masters, with <em>hierarchical structure</em><img src="https://p.ipic.vip/7wmmfa.png" alt="image-20230615102619627"></li>
-</ul>
-<h4 id="Fully-Distributed-Work-Pool"><a href="#Fully-Distributed-Work-Pool" class="headerlink" title="Fully Distributed Work Pool"></a>Fully Distributed Work Pool</h4><ul>
-<li>though balanced, yet more communications</li>
-</ul>
-<p><img src="https://p.ipic.vip/l6pdem.png" alt="image-20230615102827852"></p>
-<h5 id="How-to-balance-in-Fully-Distrubuted-Work-Pool"><a href="#How-to-balance-in-Fully-Distrubuted-Work-Pool" class="headerlink" title="How to balance in Fully Distrubuted Work Pool?"></a>How to balance in Fully Distrubuted Work Pool?</h5><img src="https://p.ipic.vip/a2p6b2.png" alt="image-20230615102949785" style="zoom: 87%;" />
-
+</blockquote>
+<p>ref:<br>1 <a href="https://www.cs.utexas.edu/users/flame/laff/pfhp/week4-of-cores-and-threads.html#p-1288-part2" target="_blank" rel="noopener">PfHP</a></p>
+<p>2 Tim Mattson’s (Intel) <a href="https://www.youtube.com/playlist?list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG" target="_blank" rel="noopener">“Introduction to OpenMP”</a> (2013) on YouTube.</p>
 <ul>
-<li>Reason for Light loadded system – for Sender-initiated method<ul>
-<li>Because even the sender has higher load, its load is still pretty “light”</li>
-<li>vice versa </li>
+<li>Slides: <a href="https://www.openmp.org/wp-content/uploads/Intro_To_OpenMP_Mattson.pdf" target="_blank" rel="noopener">Intro_To_OpenMP_Mattson.pdf</a></li>
+<li>Exercise files: <a href="https://www.openmp.org/wp-content/uploads/Mattson_OMP_exercises.zip" target="_blank" rel="noopener">Mattson_OMP_exercises.zip</a></li>
+</ul>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/4%20%E4%BF%A1%E8%B2%B8/">Loans/4 信貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"><h2 id="What-is-信貸"><a href="#What-is-信貸" class="headerlink" title="What is 信貸"></a>What is 信貸</h2><ul>
+<li><p><strong>沒提供任何擔保品</strong></p>
+</li>
+<li><p>又叫「上班族貸款」，根據個人信用</p>
+</li>
+<li><p>平均月薪的22倍，不看我的其他產權</p>
+<ul>
+<li>這個是「台灣所有的銀行加總起來給我的額度」</li>
 </ul>
 </li>
-<li>If no global view, how does a thread know it’s a heavy or light?</li>
-<li>A term: work stealing 很常被討論</li>
+<li><p>非針對雇主</p>
+</li>
+<li><p>一般上限都是7年，一年內還清會有違約金要罰</p>
+</li>
+<li><p>利率隨央行調整</p>
+</li>
 </ul>
-<h5 id="E-g-Shortes-Path-in-a-Weighted-Diagraph"><a href="#E-g-Shortes-Path-in-a-Weighted-Diagraph" class="headerlink" title="E.g. Shortes Path in a Weighted Diagraph"></a>E.g. Shortes Path in a Weighted Diagraph</h5><p><img src="https://p.ipic.vip/j0m6p0.png" alt="image-20230615103708587"></p>
-<p>★平行時候採用的不是Dijkastra, 而是Moore’s </p>
-<p><img src="https://p.ipic.vip/1dj5ac.png" alt="image-20230615103807875"></p>
+<h2 id="還款方式"><a href="#還款方式" class="headerlink" title="還款方式"></a>還款方式</h2><ul>
+<li><p>本利攤還</p>
+</li>
+<li><p>循環的額度</p>
 <ul>
-<li>Dependency only btw Iterations, NOT btw nodes</li>
-<li>Independent nodes</li>
+<li>e.g. 申請100萬，可以給張金融卡去提款，按日計息，如果今天用了50萬，過兩天放回去，在額度裡盡量用；利率比本利攤還高兩碼0.5</li>
 </ul>
-<h6 id="Sequential-Proc"><a href="#Sequential-Proc" class="headerlink" title="Sequential Proc"></a>Sequential Proc</h6><ol>
-<li><p><img src="https://p.ipic.vip/pna3pc.png" alt="image-20230615110016415"></p>
 </li>
-<li><p><img src="https://p.ipic.vip/g0a112.png" alt="image-20230615110108163"></p>
+</ul>
+<h2 id="哪些類別算信貸"><a href="#哪些類別算信貸" class="headerlink" title="哪些類別算信貸"></a>哪些類別算信貸</h2><ul>
+<li>預借現金<ul>
+<li>一定是低於額度，一般學生2w是上限</li>
+</ul>
 </li>
-<li><p><img src="https://p.ipic.vip/r0i28o.png" alt="image-20230615110139431"></p>
+<li>P2p (鄉民貸) 就是無擔保貸款，用的是個人的信用<ul>
+<li>像傳統私人貸</li>
+<li>資金的借貸的仲介商，透過一個平台的仲介，撮合兩者</li>
+<li>民間的借貸平台</li>
+<li>30幾年前英國人創的</li>
+<li>歐美投資銀行現在也把這個就包裝成證券化賣出！</li>
+<li>台灣金管會限制20%；中國可到40, 50%, 當時2007年資金提供者有被匡錢，現掛了</li>
+<li>對資金需求者要作一連串的徵信…！</li>
+<li>所以對於個人來說，錢放那邊，利息可能到10%, 而銀行就不到1%! 前提是做好徵信的工作… <u>有眉角</u>…</li>
+</ul>
 </li>
-</ol>
-<h6 id="Parallel-Proc"><a href="#Parallel-Proc" class="headerlink" title="Parallel Proc"></a>Parallel Proc</h6><p><img src="https://p.ipic.vip/hfzbj7.png" alt="image-20230615110320944"></p>
+</ul>
+<h2 id="上班族貸款-非上班族貸款"><a href="#上班族貸款-非上班族貸款" class="headerlink" title="上班族貸款/非上班族貸款"></a>上班族貸款/非上班族貸款</h2><ul>
+<li>五師</li>
+<li>月收入來源<ul>
+<li>上班族還有扣繳憑單</li>
+<li>非上班族主要看資產所產生的月收入變化，讓銀行提供額度<ul>
+<li>租金開證明</li>
+<li>存款的利息</li>
+<li>股票在集保</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="預借現金"><a href="#預借現金" class="headerlink" title="預借現金"></a>預借現金</h3><ul>
+<li>年限短，一般２年</li>
+<li>10%利率；相較一般信貸2~3% (黃金人員) 高不少</li>
+<li>5w算一般基層人員，利率比黃金人員高可能1%</li>
+<li>小公司，又薪水低，利率可能就4, 5%或6, 7%，所以公司名氣也很重要</li>
+</ul>
+<h2 id="如何貸好"><a href="#如何貸好" class="headerlink" title="如何貸好"></a>如何貸好</h2></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/24/Loans/2%20%E8%BB%8A%E8%B2%B8/">Loans/2 車貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/11/23/Loans/1%20%E8%B2%B8%E6%AC%BE%E5%95%8F%E9%A1%8C-%E6%88%BF%E8%B2%B8/">Loans/1 貸款問題-房貸</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-11-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Loans/">Loans</a></span><div class="content"><h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><ul>
+<li>負利率！</li>
+</ul>
+<h1 id="基本原則"><a href="#基本原則" class="headerlink" title="基本原則"></a>基本原則</h1><p>貸款種類</p>
 <ul>
-<li><p>Step4 has buffer size issue (depent on outgoing nbrs, but MPI requires buffer size well communicated beforehand) to communicate in advance </p>
+<li>沒工作的人、未出社會：信用卡預借現金 4~10%</li>
+<li>一般正常的信貸：3-4%, 2-3%</li>
+</ul>
+<p>貸款運用</p>
+<p>房貸、車貸利率都很低，用銀行的資金來購買房產、投資房產、買汽車都是很正常</p>
+<h2 id="為何借"><a href="#為何借" class="headerlink" title="為何借"></a>為何借</h2><p>投資、週轉、紀錄</p>
+<p>要小心，自己的風控</p>
+<h2 id="術語"><a href="#術語" class="headerlink" title="術語"></a>術語</h2><ul>
+<li><p>小白 – 怕是人頭，除非有資產，但也是會打折變5、６成</p>
 </li>
-<li><p>Master assign tasks</p>
+<li><p>建信用，存款、信用卡</p>
 </li>
 </ul>
-<p><img src="https://p.ipic.vip/7kufdx.png" alt="image-20230615111103268"></p>
-<p><img src="https://p.ipic.vip/e47qnr.png" alt="image-20230615111157912"></p>
-<ul>
-<li>每個人只需要知道自己目前的node</li>
+<h2 id="分期付款"><a href="#分期付款" class="headerlink" title="分期付款"></a>分期付款</h2><ul>
+<li>還款對信用有差</li>
+<li>買的時候的沒差，利息是廠商付的 – 即廠商為促銷活動而去付給銀行的錢</li>
 </ul>
-<h2 id="Termination-Detection"><a href="#Termination-Detection" class="headerlink" title="Termination Detection"></a>Termination Detection</h2><ul>
-<li>重點是分散式時的terminate需要留意!</li>
-</ul>
-<p><img src="https://p.ipic.vip/84ulct.png" alt="image-20230615111859029"></p>
-<p><img src="https://p.ipic.vip/2dfzgp.png" alt="image-20230615111927488"></p>
-<h4 id="Dual-Pass-Ring"><a href="#Dual-Pass-Ring" class="headerlink" title="Dual-Pass Ring"></a>Dual-Pass Ring</h4><p><img src="https://p.ipic.vip/il91pd.png" alt="image-20230615112125900"></p>
-<ul>
-<li>避免往前送了後，但recv已被activate「white」的問題</li>
-</ul>
+<h2 id="借款不等於負債"><a href="#借款不等於負債" class="headerlink" title="借款不等於負債"></a>借款不等於負債</h2><h4 id="負債"><a href="#負債" class="headerlink" title="負債"></a>負債</h4><p>以債養債或創業失敗</p>
+<h4 id="資產"><a href="#資產" class="headerlink" title="資產"></a>資產</h4><p>房價、股票漲、租金，都是上漲！跟各人投資運氣有關</p>
+<h2 id="貨比三家"><a href="#貨比三家" class="headerlink" title="貨比三家"></a>貨比三家</h2><p>低利率</p>
+<p>高額度</p>
+<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p>主流銀行</p>
+<p><strong><em>不要隨便簽下「個資查詢同意書」！！</em></strong></p>
+<h1 id="房貸"><a href="#房貸" class="headerlink" title="房貸"></a>房貸</h1><h2 id="估價原則"><a href="#估價原則" class="headerlink" title="估價原則"></a>估價原則</h2><p>銀行怎麼估呢？</p>
 <ol>
-<li><img src="https://p.ipic.vip/nz4ni5.png" alt="image-20230615112458015"></li>
-<li><img src="https://p.ipic.vip/a740jc.png" alt="image-20230615112512660"></li>
-<li><img src="https://p.ipic.vip/rid8ji.png" alt="image-20230615112543018"></li>
+<li>自己有的估價師，如台新是有的<ol>
+<li>問建設公司，有往來的建設公司, 問型態，如公寓或華廈etc</li>
+<li>實價登錄作參考</li>
+<li>大型房仲</li>
 </ol>
-<p>Example</p>
-<p>​    <img src="https://p.ipic.vip/3uag02.png" alt="image-20230615112630803"></p>
-<h1 id="Alg-D-amp-C-Computations"><a href="#Alg-D-amp-C-Computations" class="headerlink" title="Alg: D&amp;C Computations"></a>Alg: D&amp;C Computations</h1><ul>
-<li>recursively divided a problem into sub-problems that are of the sam eform as the larger problem</li>
-</ul>
-<h3 id="Sorting-Algs"><a href="#Sorting-Algs" class="headerlink" title="Sorting Algs."></a>Sorting Algs.</h3><p>in Parallel.</p>
-<p><img src="https://p.ipic.vip/mz978l.png" alt="image-20230615113019339"></p>
-<h5 id="BucketSort"><a href="#BucketSort" class="headerlink" title="BucketSort"></a>BucketSort</h5><p><img src="https://p.ipic.vip/nb7vtt.png" alt="image-20230615114142364"></p>
-<p><img src="https://p.ipic.vip/oxcpkm.png" alt="image-20230615115012915"></p>
-<ul>
-<li>Can sampling beforehand to know the distribution!</li>
-<li>partition not yet parallelized</li>
-</ul>
-<p><img src="https://p.ipic.vip/bqhcdn.png" alt="image-20230615114532487"></p>
-<ul>
-<li>solved the partition not parallelized issue!</li>
-<li>分配的平行仰賴於不看值</li>
-</ul>
-<h5 id="MergeSort-it’s-Optimization"><a href="#MergeSort-it’s-Optimization" class="headerlink" title="MergeSort it’s Optimization"></a>MergeSort it’s Optimization</h5><p><img src="https://p.ipic.vip/wjs54z.png" alt="image-20230615114920490"></p>
-<ul>
-<li>bottleneck bounded at the last merging process, with all elems</li>
-</ul>
-<h6 id="Bitonic-MergeSort"><a href="#Bitonic-MergeSort" class="headerlink" title="Bitonic MergeSort"></a>Bitonic MergeSort</h6><p><img src="https://p.ipic.vip/z4rrg1.png" alt="image-20230615153711909"></p>
-<p><img src="https://p.ipic.vip/nhm1x8.png" alt="image-20230615153729891"></p>
-<p><img src="https://p.ipic.vip/moyclk.png" alt="image-20230615153915925"></p>
-<p><img src="https://p.ipic.vip/hl8pgt.png" alt="image-20230615154130420"></p>
-<h5 id="QSort"><a href="#QSort" class="headerlink" title="QSort"></a>QSort</h5><p>tree <strong>not balanced</strong>… so… <strong>not suitable for parallelism</strong></p>
-<p><img src="https://p.ipic.vip/yuapmb.png" alt="image-20230615115212226"></p>
-<h5 id="RankSort"><a href="#RankSort" class="headerlink" title="RankSort"></a>RankSort</h5><ul>
-<li>Very easy for Parallelism </li>
-<li>只需要加一行OpemMP 就平行了！</li>
-<li>data dependency is None!</li>
-</ul>
-<p><img src="https://p.ipic.vip/68xg2u.png" alt="image-20230615154546768"></p>
-<h6 id="LgN-TimeComplexity"><a href="#LgN-TimeComplexity" class="headerlink" title="LgN TimeComplexity!"></a>LgN TimeComplexity!</h6><p><img src="https://p.ipic.vip/04rs7l.png" alt="image-20230615154802371"></p>
-<h5 id="CountingSort"><a href="#CountingSort" class="headerlink" title="CountingSort"></a>CountingSort</h5><ul>
-<li>是跟range有關的… 所以時間複雜度得再想下，下面這是個ideal的case而已</li>
-<li>看每個值重覆出現多少次</li>
-</ul>
-<p><img src="https://p.ipic.vip/vac5vz.png" alt="image-20230615155048145"></p>
-<h5 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h5><p><img src="https://p.ipic.vip/btmasv.png" alt="image-20230615155343588"></p>
-<h3 id="N-Body-Simulation"><a href="#N-Body-Simulation" class="headerlink" title="N-Body Simulation"></a>N-Body Simulation</h3><ul>
-<li>Newtonian laws of Physics</li>
-</ul>
-<h1 id="Alg-Pipelined-Computations"><a href="#Alg-Pipelined-Computations" class="headerlink" title="Alg: Pipelined Computations"></a>Alg: Pipelined Computations</h1><p><img src="https://p.ipic.vip/ofq9kv.png" alt="image-20230615155845442"></p>
-<h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h3><p>Pipelined approach can provide increased speed under three types oif computations</p>
-<ol>
-<li><p>If <strong>more than 1 instance ** of the complete problem is to be executed; or **CPU’s instructions</strong></p>
 </li>
-<li><p>If a <strong>ingle instance</strong> has a series of data items must be processed,. each requiring <strong>multiple oerations</strong></p>
-</li>
-<li><p>像是第2個的加強版；If <strong>information to start the next process can be passed forward</strong> before the process has completed all its internal operations</p>
-</li>
+<li>長期來講價增值、貨幣貶值，薪水↑物價↑，though 人口↓,　所以只要選對區域，長期而言是↑</li>
 </ol>
-<p><img src="https://p.ipic.vip/xyejcx.png" alt="image-20230615165326563"></p>
-<p>​        <img src="https://p.ipic.vip/7useax.png" alt="image-20230615165647254">    </p>
-<p>​    <img src="https://p.ipic.vip/wshroy.png" alt="image-20230615170142574"></p>
-<h3 id="Adding-Numbers-Type1"><a href="#Adding-Numbers-Type1" class="headerlink" title="Adding Numbers (Type1)"></a>Adding Numbers (Type1)</h3><p><img src="https://p.ipic.vip/4pc7cc.png" alt="image-20230615170313469"></p>
-<p><img src="https://p.ipic.vip/yclv0e.png" alt="image-20230615170340129"></p>
-<h3 id="Sorting-Type2"><a href="#Sorting-Type2" class="headerlink" title="Sorting (Type2)"></a>Sorting (Type2)</h3><h5 id="Insertion-Sort"><a href="#Insertion-Sort" class="headerlink" title="Insertion Sort"></a>Insertion Sort</h5><h3 id="Linear-Equation-Solver-Type3"><a href="#Linear-Equation-Solver-Type3" class="headerlink" title="Linear Equation Solver (Type3)"></a>Linear Equation Solver (Type3)</h3><h1 id="Alg-Synchronous-Computations"><a href="#Alg-Synchronous-Computations" class="headerlink" title="Alg: Synchronous Computations"></a>Alg: Synchronous Computations</h1><p><img src="https://p.ipic.vip/gm5t9n.png" alt="image-20230615170819710"></p>
-<ul>
-<li>e.g. Odd-Even Sort</li>
+<h2 id="貸款種類"><a href="#貸款種類" class="headerlink" title="貸款種類"></a>貸款種類</h2><h4 id="購屋貸款"><a href="#購屋貸款" class="headerlink" title="購屋貸款"></a>購屋貸款</h4><h4 id="原屋融資-中古屋貸款"><a href="#原屋融資-中古屋貸款" class="headerlink" title="原屋融資 (中古屋貸款)"></a>原屋融資 (中古屋貸款)</h4><p>可以享受房地產增值的好處，貸到更多的錢</p>
+<p> Links <a href="https://www.youtube.com/watch?v=AnsMtGUxLXU" target="_blank" rel="noopener">1</a>, </p>
+<h5 id="流程-1"><a href="#流程-1" class="headerlink" title="流程"></a>流程</h5><p>申請估價審核對保設定撥款</p>
+<h3 id="房屋類型影響的貸款成數跟效果"><a href="#房屋類型影響的貸款成數跟效果" class="headerlink" title="房屋類型影響的貸款成數跟效果"></a>房屋類型影響的貸款成數跟效果</h3><h4 id="成數"><a href="#成數" class="headerlink" title="成數"></a>成數</h4><ul>
+<li>一般住宅 7~8成</li>
+<li>小套 10~12.5坪↓, 5成，因為法拍可能要到三、四拍，不易呀！一次就打八折去了，第三拍就是64折了，流動差<ul>
+<li>看權狀，有分公共設施還有室內坪數(含陽台)，小於12p，就叫作小套房</li>
+<li>銀行自己也自行評估當地房產↑或↓，如果成數高代表銀行也覺得增值性↑；要是成數保守，就代表銀行覺得房地產增值性不高；當然也跟個人收入條件有關係</li>
 </ul>
-<p><img src="https://p.ipic.vip/s3qm88.png" alt="image-20230615170951174"></p>
-<p><img src="https://p.ipic.vip/2568ls.png" alt="image-20230615171049453"></p>
-<p><img src="https://p.ipic.vip/vite9s.png" alt="image-20230615171127497"></p>
-<p><img src="https://p.ipic.vip/2y5023.png" alt="image-20230615171255882"></p>
-<ul>
-<li>P0、P1 互等… 死了</li>
-</ul>
-<h3 id="PreSum"><a href="#PreSum" class="headerlink" title="PreSum"></a>PreSum</h3><p><img src="https://p.ipic.vip/0k5rsl.png" alt="image-20230615171355250"></p>
-<p><img src="https://p.ipic.vip/thr9a6.png" alt="image-20230615171508521"></p>
-<p><img src="https://p.ipic.vip/z6u5s6.png" alt="image-20230615171532354"></p>
-<p><img src="https://p.ipic.vip/efydyb.png" alt="image-20230615171553368"></p>
-<h3 id="System-of-Linear-Equation"><a href="#System-of-Linear-Equation" class="headerlink" title="System of Linear Equation"></a>System of Linear Equation</h3><p>…</p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/14/ParallelProg/Shared-Memory%20Programming%20-%20Pthread/">ParallelProg/Shared-Memory Programming - Pthread</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-14</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></span><div class="content"><p>[toc]</p>
-<h1 id="Shared-memory-Programming-–-Pthread"><a href="#Shared-memory-Programming-–-Pthread" class="headerlink" title="Shared-memory Programming – Pthread"></a>Shared-memory Programming – Pthread</h1><p>memory’s address the same for all process units</p>
-<p><img src="https://p.ipic.vip/yqkg9g.png" alt="image-20230613204911655"></p>
-<h4 id="Thread-VS-Processes"><a href="#Thread-VS-Processes" class="headerlink" title="Thread VS Processes"></a>Thread VS Processes</h4><p><img src="https://p.ipic.vip/sax3xi.png" alt="image-20230613205233935"></p>
-<p><img src="https://p.ipic.vip/mljwld.png" alt="image-20230613205550640"></p>
-<ul>
-<li><code>MPI</code> also works on only 1 single machine, but since it still at least requires 1 time memcopy (not deep into network layer b.c. lib’s optimization), so still slower than <code>pthread</code></li>
-</ul>
-<h1 id="Pthread"><a href="#Pthread" class="headerlink" title="Pthread"></a>Pthread</h1><ul>
-<li>low-level APIs</li>
-</ul>
-<p><img src="https://p.ipic.vip/ylaa0z.png" alt="image-20230613205740988"></p>
-<h3 id="Creation-amp-Join"><a href="#Creation-amp-Join" class="headerlink" title="Creation &amp; Join"></a>Creation &amp; Join</h3><ul>
-<li>communicate via <code>global</code> or <code>return</code></li>
-<li>Join –  get back</li>
-<li>attr – e.g. bind thread to a specific core</li>
-</ul>
-<p><img src="https://p.ipic.vip/gc9s9z.png" alt="image-20230613205900839"></p>
-<p><img src="https://p.ipic.vip/wkxgd7.png" alt="image-20230613210526466"></p>
-<ul>
-<li><p>not yet using global variable for access and for sync the accesses</p>
 </li>
-<li><p>back to main thread – with join</p>
-</li>
-<li><p>no common communication btw <code>main thread</code> and <code>worker</code>, diff tasks, which is different from MPI (with same one code)</p>
-</li>
-<li><p><img src="https://p.ipic.vip/eispqw.png" alt="image-20230613210825653"></p>
-<ul>
-<li>二選一，必call</li>
+<li>豪宅<ul>
+<li>台北7Kw; 新北6Kw; 其他地4Kw; 央行規定不得超過6成<ul>
+<li>但還是<u>有眉角</u>… 可以去到 7、8成 (噓)</li>
 </ul>
 </li>
 </ul>
-<h2 id="Sync-problems-amp-Tools"><a href="#Sync-problems-amp-Tools" class="headerlink" title="Sync. problems &amp; Tools"></a>Sync. problems &amp; Tools</h2><h4 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h4><p>when many thread access a single memory</p>
-<img src="https://p.ipic.vip/anjrj1.png" alt="image-20230613211632884" style="zoom:67%;" />
-
-
-
-<p><img src="https://p.ipic.vip/dsmfqm.png" alt="image-20230613211801639"></p>
-<ul>
-<li>multicore 或 可以access 到shared memory就會有這種問題</li>
-</ul>
-<p><img src="https://p.ipic.vip/tt707d.png" alt="image-20230613212019334"></p>
-<ul>
-<li>to ensure, for this block, only one thread can modify the critical section one time</li>
-</ul>
-<p><img src="https://p.ipic.vip/7907js.png" alt="image-20230613212147907"></p>
-<ul>
-<li>Mutex – a token to solve  <code>critical section</code> for this problem</li>
-</ul>
-<p><img src="https://p.ipic.vip/czdvg1.png" alt="image-20230613212420533"></p>
-<ul>
-<li>must be a global variable for thread to share the lock to prevent sync issue</li>
-</ul>
-<p><img src="https://p.ipic.vip/2b9ug7.png" alt="image-20230613212614632"></p>
-<p><img src="https://p.ipic.vip/w5w9fc.png" alt="image-20230613215210184"></p>
-<ul>
-<li>sacrifice one item to distinguish empty vs full</li>
-</ul>
-<h4 id="Shared-Memory"><a href="#Shared-Memory" class="headerlink" title="Shared Memory"></a>Shared Memory</h4><p><img src="https://p.ipic.vip/mcuxo7.png" alt="image-20230613215410271"></p>
-<ul>
-<li>in/out no sync problem as only modified by one side at one time</li>
-</ul>
-<img src="https://p.ipic.vip/86qjiy.png" alt="image-20230613215543076"  />
-
-
-
-<h4 id="Condiction-Variables-CV-–-Event-Driven"><a href="#Condiction-Variables-CV-–-Event-Driven" class="headerlink" title="Condiction Variables (CV) – Event Driven"></a>Condiction Variables (CV) – Event Driven</h4><ul>
-<li>signal</li>
-</ul>
-<p><img src="https://p.ipic.vip/zwoomx.png" alt="image-20230613215931198"></p>
-<p><img src="https://p.ipic.vip/eyk4cc.png" alt="image-20230613220948392"></p>
-<img src="https://p.ipic.vip/21kpqn.png" alt="image-20230613221108729" style="zoom:77%;" />
-
-<p><img src="https://p.ipic.vip/e8rryg.png" alt="image-20230613221826754"></p>
-<ul>
-<li>needs lock token</li>
-<li>take_action() 放進去 critical section也ok能保證他執行時 x== 0</li>
-</ul>
-<h4 id="Thread-Pools"><a href="#Thread-Pools" class="headerlink" title="Thread Pools"></a>Thread Pools</h4><p><img src="https://p.ipic.vip/bcmev4.png" alt="image-20230613222005541"></p>
-<p><img src="https://p.ipic.vip/irg1wm.png" alt="image-20230613222157683"></p>
-<p><img src="https://p.ipic.vip/u9lrtp.png" alt="image-20230613222252838"></p>
-<p><img src="https://p.ipic.vip/kgmhg2.png" alt="image-20230613222359328"></p>
-<ul>
-<li><p>execute after de-que, and then back to sleep (pthread_cond_wait)</p>
 </li>
-<li><p>implemented with </p>
-<ul>
-<li>Condition Variable</li>
-<li>Thread</li>
-<li>Lock (Mutex)</li>
+<li>工業用住宅<ul>
+<li>一定是比較差的，所以比一般低一1, 2成，二手市場去化慢，so 貸6~7成</li>
+<li>另，電費、房屋稅多</li>
+<li>除非真的蓋超好格局環境，不然盡量避開！</li>
+</ul>
+</li>
+<li>店面 &amp; 商辦<ul>
+<li>店面市場只在金字塔頂層的人，所去化不易，成數低！–&gt; 保守</li>
+<li>辦公大樓好些！租金上穩定，也不像店面那麼高單價，投報率都不錯</li>
 </ul>
 </li>
 </ul>
-<h3 id="Other-tool-–-Semaphore"><a href="#Other-tool-–-Semaphore" class="headerlink" title="Other tool – Semaphore"></a>Other tool – Semaphore</h3><p><img src="https://p.ipic.vip/7l3qwk.png" alt="image-20230613223202556"></p>
-<p><img src="https://p.ipic.vip/7x2i9u.png" alt="image-20230613223300567"></p>
+<h2 id="還款繳息"><a href="#還款繳息" class="headerlink" title="還款繳息"></a>還款繳息</h2><h4 id="單一利率-VS-組合利率-amp-本息攤還-VS-本金攤還"><a href="#單一利率-VS-組合利率-amp-本息攤還-VS-本金攤還" class="headerlink" title="單一利率 VS 組合利率 &amp; 本息攤還 VS 本金攤還"></a>單一利率 VS 組合利率 &amp; 本息攤還 VS 本金攤還</h4><p>Link <a href="https://www.youtube.com/watch?v=9YgnvKp2HFQ" target="_blank" rel="noopener">1</a></p>
 <ul>
-<li><code>sem_post()</code> means <code>signal()</code></li>
-</ul>
-<p><img src="https://p.ipic.vip/7f5gzj.png" alt="image-20230613223522224"></p>
-<h3 id="Other-tool-–-Monitor"><a href="#Other-tool-–-Monitor" class="headerlink" title="Other tool – Monitor"></a>Other tool – Monitor</h3><ul>
-<li>a class by default wrapped in “critical section”!<ul>
-<li>class already implement the lock &amp; unlock </li>
-</ul>
+<li><p>利息不是愈低愈好，要看是否是單一或很賤的組合利率</p>
 </li>
-<li>user don’t need to manual write lock &amp; unlock</li>
-</ul>
-<p><img src="https://p.ipic.vip/mi32el.png" alt="image-20230613223654203"></p>
-<p>Example of Monitor in Java</p>
-<p><img src="https://p.ipic.vip/8hmi3h.png" alt="image-20230613223907205"></p>
-<p><img src="https://p.ipic.vip/ov1rdk.png" alt="image-20230613224017776"></p>
-<p><img src="https://p.ipic.vip/4019ie.png" alt="image-20230613224316842"></p>
-<p><img src="https://p.ipic.vip/t97cd5.png" alt="image-20230613224416696"></p>
-<h1 id="OpenMP-w-compiler’s-help"><a href="#OpenMP-w-compiler’s-help" class="headerlink" title="OpenMP, w/ compiler’s help"></a>OpenMP, w/ compiler’s help</h1><ul>
-<li>using compiler’s way to generate code</li>
-</ul>
-<p>![image-20230614175006357](/Users/joe/Library/Application Support/typora-user-images/image-20230614175006357.png)</p>
-<ul>
-<li><p>“parallel” is helped by compiler to <strong>gen code</strong><img src="https://p.ipic.vip/o9t8qs.png" alt="image-20230614175103178"></p>
-</li>
-<li><p><code>pragma</code> – means <code>compiler directive</code></p>
-<ul>
-<li><code>#include &lt;omp.h&gt;</code></li>
-<li><code>parallel for</code></li>
-</ul>
+<li><p>還款方式會影響月繳金額跟利息高低</p>
 </li>
 </ul>
-<p><img src="https://p.ipic.vip/bo5aay.png" alt="image-20230614180005356"></p>
-<h2 id="Parallel-Region-Construct"><a href="#Parallel-Region-Construct" class="headerlink" title="Parallel Region Construct"></a>Parallel Region Construct</h2><h2 id="Working-Sharing-Construct"><a href="#Working-Sharing-Construct" class="headerlink" title="Working-Sharing Construct"></a>Working-Sharing Construct</h2><h2 id="Sync-Construct"><a href="#Sync-Construct" class="headerlink" title="Sync. Construct"></a>Sync. Construct</h2><h2 id="Data-Scope-Attribute-Clauses"><a href="#Data-Scope-Attribute-Clauses" class="headerlink" title="Data Scope Attribute Clauses"></a>Data Scope Attribute Clauses</h2><h2 id="Run-Time-Lib-Routines"><a href="#Run-Time-Lib-Routines" class="headerlink" title="Run-Time Lib Routines"></a>Run-Time Lib Routines</h2></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/13/ParallelProg/Parallel%20Programming%20-%20Analysis/">ParallelProg/Parallel Programming - Analysis</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-13</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></span><div class="content"><p>[toc]</p>
-<h1 id="Parallel-Prog-Analysis"><a href="#Parallel-Prog-Analysis" class="headerlink" title="Parallel Prog Analysis"></a>Parallel Prog Analysis</h1><h3 id="Speedup-amp-Efficiency"><a href="#Speedup-amp-Efficiency" class="headerlink" title="Speedup &amp; Efficiency"></a>Speedup &amp; Efficiency</h3><ul>
-<li>communnication1!! where overhead and bottleneck from<ul>
-<li><img src="https://p.ipic.vip/yqgq97.png" alt="image-20230613013303011"></li>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h8ff6c8rnij30u010awiw.jpg" alt="image-20221123221547111"></p>
+<ul>
+<li>減低壓力的方式<ol>
+<li>頭款多些</li>
+<li>年數拉長</li>
+<li>善用寬限期, 前三年只付利息不付本金</li>
+</ol>
+</li>
+</ul>
+<h4 id="純繳息"><a href="#純繳息" class="headerlink" title="純繳息"></a>純繳息</h4><ul>
+<li>一般銀行只壓在7成以內適用</li>
+<li>可能每年要換單，可能一次打7年的合約，7年內只要繳息正常，它都給我純繳息 <ul>
+<li>我不還本金，對銀行來講利息是比較多的呀！</li>
+</ul>
+</li>
+<li>但它也考慮到房子萬一貶值…，我還沒還到本金<ul>
+<li>所以它成數不像本利攤還</li>
+</ul>
+</li>
+<li>可能就是給個7年的時間，7或3年換一次單…</li>
+</ul>
+<h4 id="本息平均攤還-階段式還款"><a href="#本息平均攤還-階段式還款" class="headerlink" title="本息平均攤還/階段式還款"></a>本息平均攤還/階段式還款</h4><ul>
+<li>15~30年<ul>
+<li>可能還3年的本金已還款10%</li>
+<li>ps. 貸的時間長如到40年對銀行不划算，因為它的資金都是來自定存最長就兩、三年而已的，跟壽險保單持續20年都會有資金進來不一樣</li>
+<li>前三年可以要寬限期，第四年開始以剩下的17年作「本利攤還」<ul>
+<li>理由一般是裝潢，自備款不夠，還需累積收入</li>
 </ul>
 </li>
 </ul>
-<h4 id="Max-Speedup"><a href="#Max-Speedup" class="headerlink" title="Max Speedup"></a>Max Speedup</h4><p><img src="https://p.ipic.vip/0qacr0.png" alt="image-20230613105540459"></p>
-<p><img src="https://p.ipic.vip/9dmjtm.png" alt="image-20230613105641557"></p>
-<ul>
-<li>f: a factor</li>
-</ul>
-<p><img src="https://p.ipic.vip/912sjn.png" alt="image-20230613105801451"></p>
-<h3 id="Strong-Scalability-VS-Weak-Scalability"><a href="#Strong-Scalability-VS-Weak-Scalability" class="headerlink" title="Strong Scalability VS Weak Scalability"></a>Strong Scalability VS Weak Scalability</h3><h4 id="Strong-Scaling"><a href="#Strong-Scaling" class="headerlink" title="Strong Scaling"></a>Strong Scaling</h4><ul>
-<li><p>Ideal</p>
 </li>
-<li><p>to know “how many machines I should use to solve this problem?”</p>
+<li>３年內還掉要賠違約金1% (1kw就是8w), 但還是<u>有眉角</u>變 0.5%之類 (即4w)…<ul>
+<li>它吸存款是0.8，放貸是1.8，只賺了1%</li>
+<li>裡面還有租金、折舊、成本人力，銀行前三年貸出來都是虧的，要提存款準備、呆帳準備 (目前金管會定是1%)</li>
+</ul>
 </li>
 </ul>
-<p><img src="https://p.ipic.vip/vken5x.png" alt="image-20230613110239466"></p>
-<ul>
-<li><p>花費在communication的 time ↑，as nodes ↑, so hard to get a linear scaleup</p>
-</li>
-<li><p>畫不出，因為「resource is too few」</p>
-</li>
-<li><p>as data partition↓  external communication↑</p>
-</li>
-</ul>
-<h4 id="Weak-Scaling"><a href="#Weak-Scaling" class="headerlink" title="Weak Scaling"></a>Weak Scaling</h4><p>e.g., 2 nodes, but the arrays size to solve becomes 2 times</p>
-<p>相對<em>容易得到</em>這樣的結果 – 因為computation也多了，不只有communication的overhead多</p>
-<p><img src="https://p.ipic.vip/74wl5d.png" alt="image-20230613110425965"></p>
-<h4 id="vs"><a href="#vs" class="headerlink" title="vs"></a>vs</h4><p><img src="https://p.ipic.vip/ik96q7.png" alt="image-20230613113259366"></p>
-<h3 id="Time-Complexity-amp-Cost-optimality"><a href="#Time-Complexity-amp-Cost-optimality" class="headerlink" title="Time Complexity &amp; Cost optimality"></a>Time Complexity &amp; Cost optimality</h3><p>should also take into <code>communication cost</code></p>
-<p><img src="https://p.ipic.vip/n20xf5.png" alt="image-20230613114309137"></p>
-<h4 id="e-g-1"><a href="#e-g-1" class="headerlink" title="e.g. 1"></a>e.g. 1</h4><p><img src="https://p.ipic.vip/pfld9e.png" alt="image-20230613114633053"></p>
-<h4 id="e-g-2"><a href="#e-g-2" class="headerlink" title="e.g. 2"></a>e.g. 2</h4><p><img src="https://p.ipic.vip/252uvg.png" alt="image-20230613114704506"></p>
-<p><img src="https://p.ipic.vip/qkmdkd.png" alt="image-20230613114855791"></p>
-<h3 id="Cost-Optimal-Alg"><a href="#Cost-Optimal-Alg" class="headerlink" title="Cost-Optimal Alg."></a>Cost-Optimal Alg.</h3><p><img src="https://p.ipic.vip/zblaps.png" alt="image-20230613115039542"></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/06/11/ParallelProg/Message%20Passing%20Programming%20-%20MPI/">ParallelProg/Message Passing Programming - MPI</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-06-11</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/ParallelProg/">ParallelProg</a></span><div class="content"><p>[toc]</p>
-<h1 id="MPI-Message-Passing-Interface"><a href="#MPI-Message-Passing-Interface" class="headerlink" title="MPI (Message-Passing Interface)"></a>MPI (Message-Passing Interface)</h1><ul>
-<li><p>a spec for devs and users of msg passing libraries</p>
-<ul>
-<li>by itself, it’s an interface NOT a library</li>
+<h2 id="原屋融資的目的"><a href="#原屋融資的目的" class="headerlink" title="原屋融資的目的"></a>原屋融資的目的</h2><ul>
+<li>投資、周轉需求、增額度(增貸)、降息(但現在比價都差個0.1而已很少，而且還要搬家費違約金、貸入、設抵押權轉換的費用、地政事務所費)</li>
+<li><code>平轉</code>, 目的：我想要 1增貸(通常都是) 2寬限期(即純繳息) 3降息<ul>
+<li>!=搬家；平轉就純粹只是為了降低利率、省掉利息，我額度不增加</li>
+<li>如在台銀不隨中央降0.1%，要是貸3kw，一年差3w，5年就15w，第一年把手續費用攤平了，後面四年可以省下利息，這就叫作平轉</li>
+<li>還可能能再多要到兩好處<ul>
+<li>寬限期，可能我的第二家信用卡的銀行願意「再給」<ul>
+<li>btw, 1kw的純繳息如果2%一個月大概就20w/12=1.6w; 加要是加上本金可能就共5w, 其中本金占了3.?w</li>
 </ul>
 </li>
-<li><p>opposite term: shared-memory</p>
+<li>利率再降低</li>
+</ul>
+</li>
+<li>可如此施壓給原銀行降利率</li>
+<li>但不能讓銀行覺得是我沒能力繳本利攤 … <u>有眉角</u>…，讓銀行再給一次寬限期，這樣我就不用再浪費移轉的手續費，這個要好幾萬的</li>
+<li>增貸: 生意、周轉、斷頭、創業…</li>
+</ul>
 </li>
 </ul>
-<h2 id="History-amp-Evolution"><a href="#History-amp-Evolution" class="headerlink" title="History &amp; Evolution"></a>History &amp; Evolution</h2><h1 id="MPI-API"><a href="#MPI-API" class="headerlink" title="MPI API"></a>MPI API</h1><img src="https://p.ipic.vip/fn72j1.png" alt="image-20230613122604220" style="zoom:67%;" />
-
-<ul>
-<li>easy for scalable compared to shared-memory</li>
+<h2 id="以房養老"><a href="#以房養老" class="headerlink" title="以房養老"></a>以房養老</h2><ul>
+<li>利用房子來增加他的生活費用</li>
 </ul>
-<img src="https://p.ipic.vip/01znja.png" alt="image-20230613161341091" style="zoom:80%;" />
-
-
-
-<p>Supercomputing conference!</p>
-<p><img src="https://p.ipic.vip/hdajuz.png" alt="image-20230613161707907"></p>
-<h4 id="SPMD"><a href="#SPMD" class="headerlink" title="SPMD"></a>SPMD</h4><img src="https://p.ipic.vip/gzc3x2.png" alt="image-20230613172432877" style="zoom:50%;" />
-
-
-
-
-
-<h2 id="Communication-Methods"><a href="#Communication-Methods" class="headerlink" title="Communication Methods"></a>Communication Methods</h2><h3 id="Env"><a href="#Env" class="headerlink" title="Env"></a>Env</h3><img src="https://p.ipic.vip/99otsf.png" alt="image-20230613172646088" style="zoom:67%;" />
-
-<img src="https://p.ipic.vip/4p5cmk.png" alt="image-20230613172858188" style="zoom:67%;" />
-
-
-
-<p><img src="https://p.ipic.vip/8cl546.png" alt="image-20230613173033146"></p>
-<p><img src="https://p.ipic.vip/24hcfj.png" alt="image-20230613173058617"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h8gau5ja8vj315c0ho40v.jpg" alt="image-20221124163114121"></p>
 <ul>
-<li>if recv() calls first, it’s value will be false since no data sent yet, so, need to check!</li>
+<li>當退休後，除了基本的退休金以外，可以跟銀行申悄以方養老這種類型的房貸，利息也不用付，就是從額度裡面去扣，然後再給後代覺得這個房子要出售還是轉換成原屋融資</li>
+<li>保守型的退休人員，錢留著自己用</li>
 </ul>
-<img src="https://p.ipic.vip/hsvy1a.png" alt="image-20230613173427769" style="zoom:80%;" />
-
+<h2 id="二胎-amp-地下金融"><a href="#二胎-amp-地下金融" class="headerlink" title="二胎 &amp; 地下金融"></a>二胎 &amp; 地下金融</h2><h4 id="二胎"><a href="#二胎" class="headerlink" title="二胎"></a>二胎</h4><ul>
+<li>第一順位的抵押權是在A銀行，想增貸又不想離開A銀行，不想搬家，只想增40, 50w，很少就是100w內，所以想想是否能以房子作第二順位的抵押</li>
+<li>3%~6％，比較高一點，一般金額都不給高都是小額</li>
+<li>一、兩家銀行有作，看扣掉第一順位銀行的貸款後還有多少殘值，再貸給我這樣的錢</li>
+</ul>
+<h4 id="地下金融"><a href="#地下金融" class="headerlink" title="地下金融"></a>地下金融</h4><ul>
+<li>有很多也是提供給這個二順位的貸款</li>
+<li>額度可能高些，但可能利率就是高高高，因為也不受民法上利率20%的上限管制</li>
+<li>要36%, 就是一個月3w了，相對銀行一年也才2%! 是18倍</li>
+</ul>
+<h4 id="整債–打交道的經驗"><a href="#整債–打交道的經驗" class="headerlink" title="整債–打交道的經驗"></a>整債–打交道的經驗</h4><p>可跟很好的金額跟利率，<u>有眉角</u>…</p>
+<h2 id="授信準則及標準"><a href="#授信準則及標準" class="headerlink" title="授信準則及標準"></a>授信準則及標準</h2><p>物＆人的財力存款股票房地產</p>
+<h2 id="如何申請最有利的房貸"><a href="#如何申請最有利的房貸" class="headerlink" title="如何申請最有利的房貸"></a>如何申請最有利的房貸</h2><p>ABC客戶</p>
 <ul>
-<li>SPMD, each program still executes itself’s code, but only communication in MPI call()</li>
+<li>A黃金職業</li>
+<li>B受薪基層<ul>
+<li>二等親，看後台實力</li>
+<li>非六都比較低</li>
 </ul>
-<p><img src="https://p.ipic.vip/pa6drb.png" alt="image-20230613174115721"></p>
-<ul>
-<li>Group Communicator – symbolizes the group</li>
-<li>predefined communicator – MPI_COMM_WORLD</li>
-</ul>
-<img src="https://p.ipic.vip/9xd8vu.png" alt="image-20230613174240148" style="zoom:80%;" />
-
-<ul>
-<li>each process get itsown rank_id</li>
-</ul>
-<p><img src="https://p.ipic.vip/jkgoap.png" alt="image-20230613174421144"></p>
-<h3 id="P2P-Communication-Routines"><a href="#P2P-Communication-Routines" class="headerlink" title="P2P Communication Routines"></a>P2P Communication Routines</h3><p>mainly send &amp; recv</p>
-<p><img src="https://p.ipic.vip/s6xm9t.png" alt="image-20230613185929392"></p>
-<p><img src="https://p.ipic.vip/j2tlr4.png" alt="image-20230613190000830"></p>
-<p>★ send &amp; recv一定要接在一起，要是沒對在一起就是會hang! 都要有人去call，要是有人沒call就難debug了；只有在switch時會有branches</p>
-<p>★這兩個x會是在不同machines 上的，要注意, so, independent memories</p>
-<p><img src="https://p.ipic.vip/vvast6.png" alt="image-20230613190500434"></p>
-<ul>
-<li>效能通常比較好，就是解決communication problems</li>
-<li>only recv cares about MPI_Wait, which can be moved to myrank==1 branch</li>
-<li>Test() 不會去等</li>
-</ul>
-<h3 id="Collective-communication-Routines"><a href="#Collective-communication-Routines" class="headerlink" title="Collective communication Routines"></a>Collective communication Routines</h3><ul>
-<li>everyone have to call, and blocking till everyone finishes!</li>
-</ul>
-<h5 id="Barrier-amp-Bcast"><a href="#Barrier-amp-Bcast" class="headerlink" title="Barrier &amp; Bcast"></a>Barrier &amp; Bcast</h5><p><img src="https://p.ipic.vip/wkh9zh.png" alt="image-20230613182929995"></p>
-<h5 id="Scatter-amp-Gather"><a href="#Scatter-amp-Gather" class="headerlink" title="Scatter &amp; Gather"></a>Scatter &amp; Gather</h5><p><img src="https://p.ipic.vip/hpvo6b.png" alt="image-20230613183415583"></p>
-<ul>
-<li>recv buffer 不需要allocate sendbuffer space</li>
-</ul>
-<h5 id="Reduce"><a href="#Reduce" class="headerlink" title="Reduce"></a>Reduce</h5><p><img src="https://p.ipic.vip/x7oc0a.png" alt="image-20230613183542689"></p>
-<h5 id="Allxxx-–"><a href="#Allxxx-–" class="headerlink" title="Allxxx –"></a>Allxxx –</h5><p>Allgather: Gather + Bcast</p>
-<p><img src="https://p.ipic.vip/6ke6p8.png" alt="image-20230613183720841"></p>
-<h5 id="Other-APIs"><a href="#Other-APIs" class="headerlink" title="Other APIs"></a>Other APIs</h5><p>e.g. e-gather –  senders’ sendcount are not the same</p>
-<h3 id="Group-amp-Communicator-Mngment-Routines"><a href="#Group-amp-Communicator-Mngment-Routines" class="headerlink" title="Group &amp; Communicator Mngment Routines"></a>Group &amp; Communicator Mngment Routines</h3><p><img src="https://p.ipic.vip/ufm9x4.png" alt="image-20230613184531520"></p>
-<ul>
-<li>All are “Collective (Blocking) call”</li>
-</ul>
-<p><img src="https://p.ipic.vip/v969hh.png" alt="image-20230613184740990"></p>
-<ul>
-<li>PS all nodes need to call MPI_Group_incl, since it’s a blocking-call</li>
-</ul>
-<h1 id="MPI-IO"><a href="#MPI-IO" class="headerlink" title="MPI-IO"></a>MPI-IO</h1><img src="https://p.ipic.vip/prt2d4.png" alt="image-20230613191153074" style="zoom:67%;" />
-
-
-
-<p><img src="https://p.ipic.vip/viiuvm.png" alt="image-20230613191303068"></p>
-<ul>
-<li><p>split file into small ones – amount of files is a pressure to FS</p>
-</li>
-<li><p>hard to manage!</p>
 </li>
 </ul>
-<p><img src="https://p.ipic.vip/vd7roi.png" alt="image-20230613191641979"></p>
+<p>利率、額度、還款期限/金額、還款彈性、撥款速度</p>
 <ul>
-<li>again, a collective call(), MPI Lib help sync help manage the tokens</li>
+<li>彈性<ul>
+<li>往來一年後，我想增貸，可談</li>
+<li>中央如果降</li>
+<li>延長寬限期，就是搬家啦，就是技巧，但人家也會看你中間的繳的方式判斷，談判，<u>有眉角</u>…</li>
 </ul>
-<p><img src="https://p.ipic.vip/3nj63w.png" alt="image-20230613191746053"></p>
-<p><img src="https://p.ipic.vip/2sbt1s.png" alt="image-20230613192227639"></p>
-<h4 id="Odd-Even-Sort"><a href="#Odd-Even-Sort" class="headerlink" title="Odd-Even Sort"></a>Odd-Even Sort</h4><p><img src="https://p.ipic.vip/i6a2fz.png" alt="image-20230613202013245"></p>
-<p><img src="https://p.ipic.vip/rnoqij.png" alt="image-20230613202152804"></p>
-<p><img src="https://p.ipic.vip/mj9ut5.png" alt="image-20230613202139671"></p>
-</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+</li>
+<li>撥款速度<ul>
+<li>權狀交給銀行要辦理設定，徵信到結束，差不多7~10工作天</li>
+<li>依金額，要審到高階看還款能力</li>
+</ul>
+</li>
+</ul>
+<h1 id="總流程"><a href="#總流程" class="headerlink" title="總流程"></a>總流程</h1></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2022/09/12/Algo.%20Ult./SegTree%20Advanced/">Algo. Ult./SegTree Advanced</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2022-09-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/AlgoUlt/">AlgoUlt.</a></span><div class="content"><h2 id="2407-LIS-II"><a href="#2407-LIS-II" class="headerlink" title="2407. LIS II"></a>2407. LIS II</h2><p><em>hard</em></p>
+<p>Find the longest subsequence of <code>nums</code> that meets the following requirements:</p>
+<ul>
+<li>The subsequence is <strong>strictly increasing</strong> and</li>
+<li>The difference between adjacent elements in the subsequence is <strong>at most</strong> <code>k</code>.</li>
+</ul>
+<p>Return <em>the length of the <strong>longest</strong> <strong>subsequence</strong> that meets the requirements.</em></p>
+<p>A <strong>subsequence</strong> is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [4,2,1,4,3,4,5,8,15], k &#x3D; 3</span><br><span class="line">Output: 5</span><br><span class="line">Explanation:</span><br><span class="line">The longest subsequence that meets the requirements is [1,3,4,5,8].</span><br><span class="line">The subsequence has a length of 5, so we return 5.</span><br><span class="line">Note that the subsequence [1,3,4,5,8,15] does not meet the requirements because 15 - 8 &#x3D; 7 is larger than 3.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [7,4,5,1,8,12,4,7], k &#x3D; 5</span><br><span class="line">Output: 4</span><br><span class="line">Explanation:</span><br><span class="line">The longest subsequence that meets the requirements is [4,5,8,12].</span><br><span class="line">The subsequence has a length of 4, so we return 4.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [1,5], k &#x3D; 1</span><br><span class="line">Output: 1</span><br><span class="line">Explanation:</span><br><span class="line">The longest subsequence that meets the requirements is [1].</span><br><span class="line">The subsequence has a length of 1, so we return 1.</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i], k &lt;= 105</code></li>
+</ul>
+<h4 id="My-Code"><a href="#My-Code" class="headerlink" title="My Code"></a>My Code</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SegTree</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        self.n = n</span><br><span class="line">        self.tree = [<span class="number">0</span>] * n * <span class="number">2</span>  <span class="comment"># 2 for boundary cases: 0 and n</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query</span><span class="params">(self, left, right)</span>:</span>   <span class="comment"># on [left, right)</span></span><br><span class="line">        l, r = left + self.n, right + self.n</span><br><span class="line">        res = -sys.maxsize</span><br><span class="line">        <span class="keyword">while</span> l &lt; r:</span><br><span class="line">            <span class="keyword">if</span> l &amp; <span class="number">1</span> == <span class="number">1</span>:</span><br><span class="line">                res = max(res, self.tree[l])</span><br><span class="line">                l += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> r &amp; <span class="number">1</span> == <span class="number">1</span>:</span><br><span class="line">                r -= <span class="number">1</span>  <span class="comment"># because it's an open boundary</span></span><br><span class="line">                res = max(res, self.tree[r])</span><br><span class="line">            l &gt;&gt;= <span class="number">1</span></span><br><span class="line">            r &gt;&gt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, i, val)</span>:</span></span><br><span class="line">        idx = i + self.n</span><br><span class="line">        self.tree[idx] = val</span><br><span class="line">        <span class="keyword">while</span> idx &gt; <span class="number">0</span>:</span><br><span class="line">            idx &gt;&gt;= <span class="number">1</span></span><br><span class="line">            <span class="comment"># self.tree[idx] = max([self.tree[idx &gt;&gt; 1], self.tree[idx &gt;&gt; 1 | 1]])  # BUG!</span></span><br><span class="line">            self.tree[idx] = max([self.tree[idx &lt;&lt; <span class="number">1</span>], self.tree[idx &lt;&lt; <span class="number">1</span> | <span class="number">1</span>]])</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLIS</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># return self.my_20220912_numpymax(nums, k)  # AC! with numpy</span></span><br><span class="line">        <span class="keyword">return</span> self.my_20220912_segtree(nums, k)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">my_20220912_segtree</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        seg = SegTree(max(nums) + <span class="number">1</span>) <span class="comment"># max(nums) + 1 means the length of the dp, where dp[i] means LIS end with value </span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            x = nums[i]</span><br><span class="line">            prev_max = seg.query(max(<span class="number">0</span>, x-k), x)  <span class="comment"># prev_max = dp[max(0, x-k):x]</span></span><br><span class="line">            <span class="comment"># print(i, nums[i], prev_max, seg.tree)</span></span><br><span class="line">            seg.update(x, prev_max+<span class="number">1</span>)   <span class="comment"># dp[x] = prev_max + 1</span></span><br><span class="line">            res = max(res, prev_max+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">my_20220912_numpymax</span><span class="params">(self, nums, k)</span>:</span>    <span class="comment"># AC! once AC...</span></span><br><span class="line">        n = len(nums)   </span><br><span class="line">        dp = np.array([<span class="number">0</span>] * (<span class="number">10</span> ** <span class="number">5</span> + <span class="number">2</span>))</span><br><span class="line">        <span class="comment"># dp = np.array([0] * (max(nums) + 1))</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            x = nums[i]</span><br><span class="line">            dp[x] = dp[max(<span class="number">0</span>, x-k):x].max() + <span class="number">1</span></span><br><span class="line">            res = max(dp[x], res)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>Ref: </p>
+<p>1 <a href="https://leetcode.com/problems/longest-increasing-subsequence-ii/discuss/2560085/Python-Explanation-with-pictures-Segment-Tree" target="_blank" rel="noopener">https://leetcode.com/problems/longest-increasing-subsequence-ii/discuss/2560085/Python-Explanation-with-pictures-Segment-Tree</a></p>
+<p>2 <a href="https://codeforces.com/blog/entry/18051" target="_blank" rel="noopener">https://codeforces.com/blog/entry/18051</a></p>
+<p>3 <a href="https://omeletwithoutegg.github.io/" target="_blank" rel="noopener">https://omeletwithoutegg.github.io/</a> in 中文</p>
+</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/82/">82</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2024 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')

@@ -13,899 +13,293 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">401</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">70</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2020/11/13/BigData_java/2020-11-13%20Pokemon%20Go!%20in%20Spark/">BigData_java/2020-11-13 Pokemon Go! in Spark</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-11-13</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BigData-java/">BigData_java</a></span><div class="content"><h2 id="前情"><a href="#前情" class="headerlink" title="前情"></a>前情</h2><ul>
-<li>Spark VS. Flync, 阿里promote、ckin</li>
-<li>Spark’s RDD<ul>
-<li>partitioning</li>
-<li>lazy evaluation<ul>
-<li>不需直接全塞進 memory</li>
-</ul>
-</li>
-<li>lazy initilization 讀檔</li>
-</ul>
-</li>
-<li>Persistence – 因為知道它會被多次利用，所以不要殺了</li>
-<li>Immutability - 不能修改，只能被重創建</li>
-<li>Failure recovery – 不需要多設置</li>
-<li>Transformation<ul>
-<li>Narrow</li>
-<li>Wide – 多個分區間的data轉移跟交換<ul>
-<li>RDD往回找dependency 之間的關係</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="Pokemon-Go"><a href="#Pokemon-Go" class="headerlink" title="Pokemon Go!"></a>Pokemon Go!</h1><h2 id="RDD-vs-Dataset-vs-DataFrame"><a href="#RDD-vs-Dataset-vs-DataFrame" class="headerlink" title="RDD vs. Dataset vs. DataFrame"></a>RDD vs. Dataset vs. DataFrame</h2><h3 id="RDD"><a href="#RDD" class="headerlink" title="RDD"></a>RDD</h3><ul>
-<li>data每一row是個黑盒，具體的row裡的schema的info是被藏起來的<ul>
-<li>對於Spark也是個黑盒，不只對我而言</li>
-<li>Spark 讀RDD只能按位置讀data, 性能、可讀性都不好</li>
-<li>當想get col時只能row.get()然後用index去看</li>
-</ul>
-</li>
-</ul>
-<h3 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h3><ul>
-<li>Catalyst可以捨棄data, spark內部執行分析的method，去優化query、filter掉 col 之類</li>
-<li>有schema，可以更好優化</li>
-<li>Partition 一定以row作劃分，十萬row分到三個機器上去<ul>
-<li>col 的概念，分叫sharding或schema也可以</li>
-</ul>
-</li>
-<li>當type錯時，因為非強關係型的full structural data, 所以讀進來時dataframe無法去辨認的，問題會在read、iterate時<ul>
-<li>在 foreach每一個row時，在parse long時，要是讀到個string，會RE</li>
-</ul>
-</li>
-<li>半結構化的數據，允許只在精靈第一代存在，第二代卻不存在了的問題</li>
-<li>支持 SparkSQL 的訪問</li>
-<li>in memory當data很大很大時，很占資源, job就跑得慢</li>
-</ul>
-<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a6ojgvqj20xe0k0tdl.jpg" alt="image-20201114095137792" style="zoom:50%;" />
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">406</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">73</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2021/01/02/BigData_java/2021-1-2%20LAB4:%20/">BigData_java/2021-1-2 LAB4: </a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-01-02</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BigData-java/">BigData_java</a></span><div class="content"><h1 id="LAB-4"><a href="#LAB-4" class="headerlink" title="LAB 4"></a>LAB 4</h1><p>EMR就是，就是說所有的hadoop相關的服務，Amazon都是透過EMR cluster來提供的，而Spark也是hadoop的一個組成元素，所以Spark-streaming job也是由EMR cluster所提供的; </p>
+<p>Streaming-job會實時從kafka讀取data，然後實時處理data，例子還是一樣，sent analyais對tweet作情感分析，只不過現在是實時處理，而不是靜態處理文件，</p>
+<p>最後是兩種展現方式: 1)Console printout, 2)data實時input放去Kafka，好處是第一、我也可以把KFK的內容一直打印在屏幕上，用戶也是可以實時看到 kfk的topics有什麼data；但如果直接打在console上，最終downstream還是用不了當前的data，需要有kfk去蒐集，讓downstream最終可以直接 consume analysis results 的 topic。這是個非常 re-usable的選項。</p>
+<p>我只需重複使用EMR的clusters，去跟kfk溝通的一定是master機器，所以需要要讓它跟kfk可以通訊。所以所有從EMR master發出跟requests，都可以去向kfk。</p>
+<pre><code>1. INBOUND: allow EMR
+2. OUTBOUND: allow EMR</code></pre><p>OUTBOUND 就得選去向EMR master的。</p>
+<p>EMR：也需要對我的電腦開放: – INBOUND: add MyIP</p>
+<h2 id="Privileges-inbound-outbound-of-clusters"><a href="#Privileges-inbound-outbound-of-clusters" class="headerlink" title="Privileges (inbound/outbound) of clusters"></a>Privileges (inbound/outbound) of clusters</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9nmazassj31ma0s2k3i.jpg" alt="image-20210102210705550" style="zoom:50%;" />
+
+
+
+<p>好煩呀，為什 EC2要上去就是</p>
+<p>ssh -i xxx.pem <a href="mailto:ec2-user@ec2xxxx.com">ec2-user@ec2xxxx.com</a>pute.amazonaws.com 就連上去了</p>
+<p>要上去EMR的cluster還得自己手動去設個inboound然後點個 My IP？</p>
+<p>連上EMR的方式是？</p>
+<h2 id="Coniguration-on-EMR-Cluster"><a href="#Coniguration-on-EMR-Cluster" class="headerlink" title="Coniguration on EMR Cluster"></a>Coniguration on EMR Cluster</h2><p>在EMR機器上配置，然後主要run streaming job; 其次相當是個kfk的client機器，要去發data 跟pull data</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9nxfqmm1j31420nk4pd.jpg" alt="image-20210102211755069" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9nz0rqekj319e04m44j.jpg" alt="image-20210102211927901" style="zoom:50%;" />
 
 
 
 
 
-<h5 id="Type-issue-when-Error-–-Semi-Structural"><a href="#Type-issue-when-Error-–-Semi-Structural" class="headerlink" title="Type issue when Error – Semi-Structural"></a>Type issue when Error – Semi-Structural</h5><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkoh4qznu9j313i0jetn9.jpg" alt="image-20201114100533902"></p>
-<h4 id="DF"><a href="#DF" class="headerlink" title="DF"></a>DF</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkohau8ub1j315g0mo1av.jpg" alt="image-20201114101124260" style="zoom:50%;" />
-
-<ul>
-<li>Catalyst 幫處理了DAG上的路徑、DF裡的議題</li>
-</ul>
-<h4 id="DF-VS-RDD"><a href="#DF-VS-RDD" class="headerlink" title="DF VS. RDD"></a>DF VS. RDD</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkohd0z53mj30si09s41x.jpg" alt="image-20201114101332175" style="zoom:50%;" />
-
-
-
-<ul>
-<li>★★ DF裡的info 我們可以直接去select某一個column，因為它知道這個table裡有幾個Column; 但是，當我去select這個table的如第一row當下，想去得到這個row的某個value也只能用index 了，就是也還是得去解析了。。</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkohj1l8amj30d803m74u.jpg" alt="image-20201114101918675" style="zoom: 50%;" />。</p>
-<h5 id="Delimiter-的-‘-’-在讀進來時已經分好了"><a href="#Delimiter-的-‘-’-在讀進來時已經分好了" class="headerlink" title="Delimiter 的 ‘,’ 在讀進來時已經分好了"></a>Delimiter 的 ‘,’ 在讀進來時已經分好了</h5><h4 id="SQL-Table-其實更像-View"><a href="#SQL-Table-其實更像-View" class="headerlink" title="SQL Table, 其實更像 View"></a>SQL Table, 其實更像 View</h4><ul>
-<li><p>因為只有abstraction layer of view, 讓別人在access時覺得是個table, 只是data都存成了schema的database的型式</p>
-</li>
-<li><p>String of query much EASIER than cascade of APIs</p>
-</li>
-<li><p>易有人為失誤</p>
-</li>
-</ul>
-<h4 id="DF-VS-Dataset"><a href="#DF-VS-Dataset" class="headerlink" title="DF VS. Dataset"></a>DF VS. Dataset</h4><ul>
-<li>Dataset讀進來時已經是個Pokemon class 的obj了；DF讀進來時是個Row class 的obj</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a6thisuj20s40go0u6.jpg" alt="image-20201114103553415" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a6vt75hj20vk0ao759.jpg" alt="image-20201114104120385" style="zoom:50%;" />
-
-
-
-<h5 id="DF-RE-vs-Dataset-Compiling-Error"><a href="#DF-RE-vs-Dataset-Compiling-Error" class="headerlink" title="DF RE vs. Dataset Compiling Error"></a>DF RE vs. Dataset Compiling Error</h5><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkoi7nfn3jj313e0e2ds9.jpg" alt="image-20201114104257475" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkoi8du8f2j30hm03igm5.jpg" alt="image-20201114104340363" style="zoom: 50%;" />
-
-<ul>
-<li>方法名錯就叫不了，因為class裡沒定義</li>
-<li>但readability 強</li>
-</ul>
-<h3 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h3><ul>
-<li>RDD for 完全沒結構化時的好工具</li>
-<li>DSet 缺點 不希望code base存幾十種不同的class且還要去跟遠程access</li>
-<li>DF 可能比較平均<ul>
-<li>如果data不是很raw，已被先處理過了有很強的schema的了，已sanitize了的schema存儲，那read-in的data就不用去擔心型態問題，只是這個col對應到的val可能是個NA的問題，DF既不用自定義一堆class 又有Catalyst的優化</li>
-</ul>
-</li>
-</ul>
-<h2 id="DF-APIs"><a href="#DF-APIs" class="headerlink" title="DF APIs"></a>DF APIs</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a70hh71j20xy0iw411.jpg" alt="image-20201114105806698" style="zoom:50%;" />
-
-
-
-<h6 id="Bug"><a href="#Bug" class="headerlink" title="Bug"></a>Bug</h6><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkoips6ol5j30xk04otaj.jpg" alt="image-20201114110022848" style="zoom:50%;" />
-
-
-
-<h3 id="Union-vs-Join"><a href="#Union-vs-Join" class="headerlink" title="Union vs Join"></a>Union vs Join</h3><h4 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h4><ul>
-<li>when identical schema btw diff tables</li>
-<li>append tableB to the tail of tableA</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkoj13vebwj30w007kwhp.jpg" alt="image-20201114111115758" style="zoom:50%;" />
-
-
-
-<h6 id="先-filter-or-先-sort"><a href="#先-filter-or-先-sort" class="headerlink" title="先 filter or 先 sort()?"></a>先 filter or 先 sort()?</h6><ul>
-<li>Spark 會做優化，先filter了後好，所以就算我寫反，也沒差</li>
-</ul>
-<h4 id="Intersection"><a href="#Intersection" class="headerlink" title="Intersection"></a>Intersection</h4><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkq6ht80x9j317g0bwgs3.jpg" alt="image-20201115212831583"></p>
-<h3 id="Shuffle"><a href="#Shuffle" class="headerlink" title="Shuffle"></a>Shuffle</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkq78xf644j311s0jygt7.jpg" alt="image-20201115215442243" style="zoom:50%;" />
+<h4 id="Upload-structure-streaming-from-local"><a href="#Upload-structure-streaming-from-local" class="headerlink" title="Upload structure-streaming, from local"></a>Upload structure-streaming, from local</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9o0sibggj319u088gvk.jpg" alt="image-20210102212109957" style="zoom:50%;" />
 
 
 
 
 
-<h3 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h3><h4 id="Coalesce"><a href="#Coalesce" class="headerlink" title="Coalesce"></a>Coalesce</h4><ul>
-<li>寫出時候變少</li>
-<li>以挪動最小的數據為代價，幫把partition個數降低，會以平均的方式挪過去</li>
-</ul>
-<h4 id="Repartition"><a href="#Repartition" class="headerlink" title="Repartition"></a>Repartition</h4><ul>
-<li>會嘗試以平均分配的方式，把當前的partition全部進行重新分配</li>
-</ul>
-<h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/11/06/BigData_java/2020-11-6%20Spark%20Architecture%20&amp;%20Exercise%20on%20AWS/">BigData_java/2020-11-6 Spark Architecture &amp; Exercise on AWS</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-11-06</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BigData-java/">BigData_java</a></span><div class="content"><h1 id="Spark-Architecture"><a href="#Spark-Architecture" class="headerlink" title="Spark Architecture"></a>Spark Architecture</h1><h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><ul>
-<li>Data processing, <strong>distributed (多台圍毆)</strong> framework(工具包)</li>
-<li>framework vs computation model(單台)</li>
-<li>Batch processing (offline)全存去hdfs or hive, or Hive, VS. real-time</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a59ewfjj20o20icq4v.jpg" alt="image-20201107102121833" style="zoom: 33%;" />
 
 
-
-<ul>
-<li><p>LinkedIn – java</p>
-</li>
-<li><p>FB – php</p>
-</li>
-<li><p>Scala 特性方便 compiling &amp; runtime就是較快</p>
-</li>
-</ul>
-<h4 id="Q-Hadoop-MR-計算框架存在什麼問題？"><a href="#Q-Hadoop-MR-計算框架存在什麼問題？" class="headerlink" title="Q: Hadoop MR 計算框架存在什麼問題？"></a>Q: Hadoop MR 計算框架存在什麼問題？</h4><ul>
-<li><p>太多硬盤讀寫 –&gt; I/O 太多時間，每次data的讀寫。。。所以速度慢</p>
-<ul>
-<li>多開機器超浪費，才幾10個GB又要我多開。。</li>
-</ul>
-</li>
-<li><p>所以 Spark 出現了 –&gt; 省了很多錢</p>
-<ul>
-<li>好的computation engine 可省很多錢</li>
-<li>分布式內存</li>
-</ul>
-</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkges06cu8j30qe09mdib.jpg" alt="image-20201107103936335" style="zoom: 33%;" />
-
-
-
-<h4 id="Q-出現的第一個原因-Spark處理大數據很快，實時性很高"><a href="#Q-出現的第一個原因-Spark處理大數據很快，實時性很高" class="headerlink" title="Q: 出現的第一個原因: Spark處理大數據很快，實時性很高"></a>Q: 出現的第一個原因: Spark處理大數據很快，實時性很高</h4><h4 id="Q-第二個原因-幫助管理分布式機器和流程"><a href="#Q-第二個原因-幫助管理分布式機器和流程" class="headerlink" title="Q: 第二個原因: 幫助管理分布式機器和流程"></a>Q: 第二個原因: 幫助管理分布式機器和流程</h4><h2 id="Data-pipelin-in-Spark"><a href="#Data-pipelin-in-Spark" class="headerlink" title="Data pipelin in Spark"></a>Data pipelin in Spark</h2><ol>
-<li>1 如讀了國家公園的data，讀入後，對於spark生成的不是 list of string,<br>而是 RDD, 就是個集合，包含源頭的所有數據。</li>
-<li>2 RDD會被partition了後的；分區的標準非常明確</li>
-<li>3 不可變的, immutable</li>
+<h2 id="Run-Streaming-job-它可乾等-並打印在-Console"><a href="#Run-Streaming-job-它可乾等-並打印在-Console" class="headerlink" title="Run Streaming job (它可乾等) 並打印在 Console"></a>Run Streaming job (它可乾等) 並打印在 Console</h2><p>現在的kfk是剛建的，裡面沒有任何東西，我現在想先把我的structured-streaming job 跑起來，讓它一直查去pull Kafka、waiting for the data feeding into kafka, 以前要是靜態data, 要是沒有data生成，就會說沒生成，但現在是一直在等data 來trigger 我的computation。</p>
+<h4 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h4><ol>
+<li>要有jar包，裡面有要main class給run；當前的job有很多的dependency，去看pom文件！本地</li>
 </ol>
-<ul>
-<li>對於數據的操作行為的當時狀態的copy；非內存地址的延用，而是真實<br>數據的操作</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgg18ccvsj30sq0b2dme.jpg" alt="image-20201107112304043" style="zoom:50%;" />
+<h4 id="第一條指令-準備要運行streaming-job"><a href="#第一條指令-準備要運行streaming-job" class="headerlink" title="第一條指令 準備要運行streaming job"></a>第一條指令 準備要運行streaming job</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9o3832axj319m0hcx3a.jpg" alt="image-20210102212329913" style="zoom:50%;" />
+
+<h6 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h6><h4 id="第二條指令-讓-structure-streaming，讓-streaming-job-保持在running"><a href="#第二條指令-讓-structure-streaming，讓-streaming-job-保持在running" class="headerlink" title="第二條指令　讓 structure-streaming，讓 streaming job 保持在running"></a>第二條指令　讓 structure-streaming，讓 streaming job 保持在running</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a989lddj21a60goajm.jpg" alt="image-20210102212532018" style="zoom:50%;" />
+
+<h6 id="結果-1"><a href="#結果-1" class="headerlink" title="結果"></a>結果</h6><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a9bi2swj219w0i0tfu.jpg" alt="image-20210102212612811" style="zoom:50%;" />
+
+<p>一直在找</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a9dg6jjj219u0h012a.jpg" alt="image-20210102212627019" style="zoom:50%;" />
 
 
 
-
-
-<h2 id="Basics-in-Spark"><a href="#Basics-in-Spark" class="headerlink" title="Basics in Spark"></a>Basics in Spark</h2><ul>
-<li>更快</li>
-<li>可realtime, 是map-reduce做不了的</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a5fbkucj20t40d80tk.jpg" alt="image-20201108210653409" style="zoom: 33%;" />
-
-
+<h4 id="第三條指令-–-讓producer出場了"><a href="#第三條指令-–-讓producer出場了" class="headerlink" title="第三條指令 – 讓producer出場了"></a>第三條指令 – 讓producer出場了</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a9e5ufsj219w0gawk1.jpg" alt="image-20210102212720955" style="zoom:50%;" />
 
 <ul>
-<li>當新的RDD被生成，過程就是一條數據被讀進來，filter操作後，看這條data是不是contain California<ul>
-<li>Narrow - 未涉及別的RDD的變形<ul>
-<li>這row不會依賴別row</li>
+<li>去遠程的twitter api pull tweets</li>
+</ul>
+<h6 id="結果-2"><a href="#結果-2" class="headerlink" title="結果"></a>結果</h6><p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a9j0d5nj21a20qiqm4.jpg" alt="image-20210102212826013" style="zoom:50%;" /><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9o8to8w6j318w0osqv5.jpg" alt="image-20210102212852435"></p>
+<ul>
+<li><p>Structrued-streaming job 的角度: 實時處理！</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38aavvdirj21480pcgye.jpg" alt="image-20210102212914766" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9o9g68qkj319k0q27wh.jpg" alt="image-20210102212928672" style="zoom:50%;" />
+
+
+
+</li>
+</ul>
+<h2 id="改變-streaming-job-發送data去kafka-–-存出"><a href="#改變-streaming-job-發送data去kafka-–-存出" class="headerlink" title="改變 streaming job 發送data去kafka – 存出!"></a>改變 streaming job 發送data去kafka – 存出!</h2><p><strong>讓結果以比較永久的方式存起來，而不只是打印出到 Console</strong></p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9oe88u1kj30ya0ba0vo.jpg" alt="image-20210102213403650" style="zoom:50%;" />
+
+<p>↓    ↓    ↓</p>
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9oehohsqj311q0d0tf5.jpg" alt="image-20210102213419496" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a9oy4l2j218803cq3e.jpg" alt="image-20210102215646934" style="zoom:50%;" />
+
+
+
+<h5 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h5><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9p48c8w1j31b20o2hdt.jpg" alt="image-20210102215903890" style="zoom:50%;" />
+
+
+
+<h4 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9p4pgxsmj31a008cdoc.jpg" alt="image-20210102215931799" style="zoom:50%;" />
+
+<h5 id="監聽中"><a href="#監聽中" class="headerlink" title="監聽中"></a>監聽中</h5><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9p5aw00sj31ae06s7bm.jpg" alt="image-20210102220005633" style="zoom:50%;" />
+
+
+
+<h5 id="Structured-Streaming-job寫出到Kafka"><a href="#Structured-Streaming-job寫出到Kafka" class="headerlink" title="Structured-Streaming job寫出到Kafka"></a>Structured-Streaming job寫出到Kafka</h5><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a9xcqx4j219k04sgn7.jpg" alt="image-20210102220057867" style="zoom:50%;" />
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9p76pjjlj31ae04y0z1.jpg" alt="image-20210102220153132"></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gm9p81rjggj31a40aiguw.jpg" alt="image-20210102220243440"></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/12/30/BigData_java/Spark/Spark%20APIs%20Note/">BigData_java/Spark/Spark APIs Note</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-12-30</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Spark/">Spark</a></span><div class="content"><h2 id="RDD"><a href="#RDD" class="headerlink" title="RDD"></a>RDD</h2><h4 id="GetRDD"><a href="#GetRDD" class="headerlink" title="GetRDD"></a>GetRDD</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">JavaRDD&lt;Row&gt; rdd = spark</span><br><span class="line">        .read()</span><br><span class="line">        .format(<span class="string">"csv"</span>)</span><br><span class="line">        .option(<span class="string">"inferSchema"</span>, <span class="keyword">true</span>)</span><br><span class="line">        .option(<span class="string">"header"</span>, <span class="keyword">true</span>)</span><br><span class="line">        .csv(path)</span><br><span class="line">        .toJavaRDD();</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Foreach"><a href="#Foreach" class="headerlink" title="Foreach"></a>Foreach</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rdd.foreach(row -&gt; &#123;</span><br><span class="line">  	System.out.println(<span class="string">"elem: "</span> + row.get(<span class="number">1</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="kv-Operation"><a href="#kv-Operation" class="headerlink" title="kv Operation"></a>kv Operation</h3><p>d[key] += 1 &lt;==      dgetOrDefault()</p>
+<p>print(d[‘CA’])</p>
+<h4 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JavaRDD&lt;Row&gt; calPark = rdd.filter(row -&gt;  row.getString(<span class="number">1</span>).equals(<span class="string">"California"</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> count = calPark.count()</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Wide"><a href="#Wide" class="headerlink" title="Wide"></a>Wide</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">JavaPairRDD&lt;String, Integer&gt; parksPerState = rdd.mapToPair(row -&gt; &#123;</span><br><span class="line">  	String state = row.getString(<span class="number">1</span>);</span><br><span class="line">  	<span class="keyword">return</span> <span class="keyword">new</span> Tuple2&lt;&gt;(state, <span class="number">1</span>);		<span class="comment">// (Utah, 1), (Oregon, 1), (Utah, 1)..</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/***↑map 　↓reduce***/</span></span><br><span class="line">JavaPairRDD&lt;String, Integer&gt; stateParks = rdd.reduceByKey((x, y) -&gt; x + y);</span><br><span class="line"></span><br><span class="line">        stateParks.collect().forEach(tuple -&gt; &#123;</span><br><span class="line">            System.out.println(String.format(<span class="string">"%s: %s national parks"</span>, tuple._1, tuple._2));</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        stateParks.foreach((VoidFunction&lt;Tuple2&lt;String, Integer&gt;&gt;) tuple -&gt;</span><br><span class="line">                System.out.println(String.format(<span class="string">"%s: %s national parks"</span>, tuple._1, tuple._2)));</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="DF-amp-Dataset"><a href="#DF-amp-Dataset" class="headerlink" title="DF &amp; Dataset"></a>DF &amp; Dataset</h2><h4 id="GetDF-RDD-VS-DF"><a href="#GetDF-RDD-VS-DF" class="headerlink" title="GetDF,  RDD VS DF"></a>GetDF,  RDD VS DF</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">        Dataset&lt;Row&gt; df = spark</span><br><span class="line">                .read()</span><br><span class="line">                .format(<span class="string">"csv"</span>)</span><br><span class="line">                .option(<span class="string">"inferSchema"</span>, <span class="keyword">true</span>)</span><br><span class="line">                .option(<span class="string">"header"</span>, <span class="keyword">true</span>)</span><br><span class="line">                .csv(path)</span><br><span class="line">                .toDF();</span><br><span class="line">df.printSchema();</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">root</span></span><br><span class="line"><span class="comment"> |-- Number: integer (nullable = true)</span></span><br><span class="line"><span class="comment"> |-- Name: string (nullable = true)</span></span><br><span class="line"><span class="comment"> |-- Type1: string (nullable = true)</span></span><br><span class="line"><span class="comment"> |-- Type2: string (nullable = true)</span></span><br><span class="line"><span class="comment"> |-- Total: integer (nullable = true)</span></span><br><span class="line"><span class="comment"> |-- HP: integer (nullable = true)</span></span><br><span class="line"><span class="comment"> |-- Attack: integer (nullable = true)</span></span><br><span class="line"><span class="comment"> |-- Defense: integer (nullable = true)</span></span><br><span class="line"><span class="comment"> |-- SpecialAtk: integer (nullable = true)</span></span><br><span class="line"><span class="comment"> |-- SpecialDef: integer (nullable = true)</span></span><br><span class="line"><span class="comment"> |-- Speed: integer (nullable = true)</span></span><br><span class="line"><span class="comment"> |-- Generation: integer (nullable = true)</span></span><br><span class="line"><span class="comment"> |-- Legendary: boolean (nullable = true)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* VS rdd */</span></span><br><span class="line">rdd.foreach(row -&gt; &#123;</span><br><span class="line">  	System.out.println(<span class="string">"name: "</span> + row.get(<span class="number">1</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// In Contrast, for DF</span></span><br><span class="line">        <span class="comment">//由于dataframe的column信息已经有了，所以可以直接去访问column的值</span></span><br><span class="line">        dataFrame.select(<span class="string">"name"</span>).foreach(name_value -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"pokemon name: "</span> + name_value.toString());</span><br><span class="line">        &#125;);</span><br><span class="line">        dataFrame.foreach(row -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"df name 2: "</span> + row.getString(<span class="number">1</span>));</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Wut's more, </span></span><br><span class="line">        <span class="comment">//dataframe可以通过spark sql访问，但rdd不可以</span></span><br><span class="line">        dataFrame.createOrReplaceTempView(<span class="string">"pokemon"</span>);</span><br><span class="line">        Dataset&lt;Row&gt; poisonPokemon = spark.sql(<span class="string">"select * from pokemon where Type1='Poison' limit 10"</span>);</span><br><span class="line">        poisonPokemon.show();</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">+------+---------+------+------+-----+---+------+-------+----------+----------+-----+----------+---------+</span></span><br><span class="line"><span class="comment">|Number|     Name| Type1| Type2|Total| HP|Attack|Defense|SpecialAtk|SpecialDef|Speed|Generation|Legendary|</span></span><br><span class="line"><span class="comment">+------+---------+------+------+-----+---+------+-------+----------+----------+-----+----------+---------+</span></span><br><span class="line"><span class="comment">|    23|    Ekans|Poison|    NA|  288| 35|    60|     44|        40|        54|   55|         1|    false|</span></span><br><span class="line"><span class="comment">|    24|    Arbok|Poison|    NA|  438| 60|    85|     69|        65|        79|   80|         1|    false|</span></span><br><span class="line"><span class="comment">|    29|Nidoran ♀|Poison|    NA|  275| 55|    47|     52|        40|        40|   41|         1|    false|</span></span><br><span class="line"><span class="comment">|    30| Nidorina|Poison|    NA|  365| 70|    62|     67|        55|        55|   56|         1|    false|</span></span><br><span class="line"><span class="comment">|    31|Nidoqueen|Poison|Ground|  505| 90|    92|     87|        75|        85|   76|         1|    false|</span></span><br><span class="line"><span class="comment">|    32|Nidoran ♂|Poison|    NA|  273| 46|    57|     40|        40|        40|   50|         1|    false|</span></span><br><span class="line"><span class="comment">|    33| Nidorino|Poison|    NA|  365| 61|    72|     57|        55|        55|   65|         1|    false|</span></span><br><span class="line"><span class="comment">|    34| Nidoking|Poison|Ground|  505| 81|   102|     77|        85|        75|   85|         1|    false|</span></span><br><span class="line"><span class="comment">|    41|    Zubat|Poison|Flying|  245| 40|    45|     35|        30|        40|   55|         1|    false|</span></span><br><span class="line"><span class="comment">|    42|   Golbat|Poison|Flying|  455| 75|    80|     70|        65|        75|   90|         1|    false|</span></span><br><span class="line"><span class="comment">+------+---------+------+------+-----+---+------+-------+----------+----------+-----+----------+---------+</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Dataset&lt;Row&gt; df = spark</span><br><span class="line">        .read()</span><br><span class="line">        .format(<span class="string">"csv"</span>)</span><br><span class="line">        .option(<span class="string">"inferSchema"</span>, <span class="keyword">true</span>)</span><br><span class="line">        .option(<span class="string">"header"</span>, <span class="keyword">true</span>)</span><br><span class="line">        .csv(path)</span><br><span class="line">        .toDF()</span><br><span class="line">        .select(<span class="string">"userId"</span>, <span class="string">"movieId"</span>, <span class="string">"rating"</span>); <span class="comment">// Say, Discard "Timestamp"</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="GetDataset-DF-VS-Dataset"><a href="#GetDataset-DF-VS-Dataset" class="headerlink" title="GetDataset, DF VS Dataset"></a>GetDataset, DF VS Dataset</h4><h6 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h6><h6 id="select"><a href="#select" class="headerlink" title="select"></a>select</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">        Encoder&lt;Pokemon&gt; pokemon_encoder = Encoders.bean(Pokemon<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        Dataset&lt;Pokemon&gt; dataset = spark</span><br><span class="line">                .read()</span><br><span class="line">                .format(<span class="string">"csv"</span>)</span><br><span class="line">                .option(<span class="string">"inferSchema"</span>, <span class="keyword">true</span>)</span><br><span class="line">                .option(<span class="string">"header"</span>, <span class="keyword">true</span>)</span><br><span class="line">                .csv(path)</span><br><span class="line">                .as(pokemon_encoder);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//dataframe 每一行是row，而dataset每一行是一个指定的class</span></span><br><span class="line">        df.foreach(row -&gt; &#123;</span><br><span class="line">            String name_tmp = row.getString(<span class="number">1</span>);</span><br><span class="line">            System.out.println(<span class="string">"name from DF getString: "</span> + name_tmp);</span><br><span class="line">        &#125;);</span><br><span class="line">        df.select(<span class="string">"name"</span>).foreach(name_val -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"name from DF select: "</span> + name_val.toString());</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">/*** ↑ ↑ ↑</span></span><br><span class="line"><span class="comment">        name from DF getString: Zenaora</span></span><br><span class="line"><span class="comment">        name from DF select: [Bulbasaur]</span></span><br><span class="line"><span class="comment">        ***/</span></span><br><span class="line">        </span><br><span class="line">        dataset.foreach(row -&gt; &#123;</span><br><span class="line">            String name = row.getName();</span><br><span class="line"><span class="comment">//            System.out.println("name: " + name);</span></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//dataframe的解析错误只能在runtime时候报错，而dataset解析错误compile时候就会报错</span></span><br><span class="line">        df.foreach(row -&gt; &#123;</span><br><span class="line"><span class="comment">//            System.out.println("getAs: " + row.getAs("type").toString()); // 壓根沒有這個字段，只有type1 &amp; type2</span></span><br><span class="line">        &#125;);</span><br><span class="line">        dataset.foreach((row -&gt; &#123;</span><br><span class="line">            row.getType1(); <span class="comment">// HOW to jump to there?</span></span><br><span class="line"><span class="comment">//            row.getType2();</span></span><br><span class="line">        &#125;));</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="rdd-df-dataset-共同點"><a href="#rdd-df-dataset-共同點" class="headerlink" title="rdd, df, dataset 共同點"></a>rdd, df, dataset 共同點</h2><ul>
+<li>lazy init</li>
+<li>都會根據ram自動cache運算</li>
+<li>都有partition</li>
+</ul>
+<h2 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38abmpmi6j20qh094abb.jpg" alt="image-20210128230633294" style="zoom:50%;" />
+
+
+
+<h3 id="DF-APIs"><a href="#DF-APIs" class="headerlink" title="DF APIs"></a>DF APIs</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//找到water 和 fire pokemon</span></span><br><span class="line">    Dataset&lt;Row&gt; waterPokemon = pokemonType.filter(</span><br><span class="line">            pokemonType.col(<span class="string">"Type1"</span>).equalTo(<span class="string">"Water"</span>)</span><br><span class="line">                    .or(pokemonType.col(<span class="string">"Type2"</span>).equalTo(<span class="string">"Water"</span>))</span><br><span class="line">    );</span><br><span class="line">    pokemonType.createOrReplaceTempView(<span class="string">"pokemon_type"</span>);</span><br><span class="line">    Dataset&lt;Row&gt; firePokemon = spark</span><br><span class="line">            .sql(<span class="string">"select * from pokemon_type where Type1='Fire' or Type2='Fire'"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//找到water and fire Pokemon</span></span><br><span class="line">    Dataset&lt;Row&gt; versertilePokemon = waterPokemon.select(waterPokemon.col(<span class="string">"Name"</span>))</span><br><span class="line">            .intersect(firePokemon.select(firePokemon.col(<span class="string">"Name"</span>)));</span><br><span class="line">    System.out.println(<span class="string">"VERSERTILE: "</span>);</span><br><span class="line">    versertilePokemon.show();</span><br><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment">    VERSERTILE: </span></span><br><span class="line"><span class="comment">    +---------+</span></span><br><span class="line"><span class="comment">    |     Name|</span></span><br><span class="line"><span class="comment">    +---------+</span></span><br><span class="line"><span class="comment">    |Volcanion|</span></span><br><span class="line"><span class="comment">    +---------+</span></span><br><span class="line"><span class="comment">    ***/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Join-–-Left"><a href="#Join-–-Left" class="headerlink" title="Join – Left"></a>Join – Left</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//attack max in water pokemon</span></span><br><span class="line">    Dataset&lt;Row&gt; waterPokemonWithForce = waterPokemon.join(</span><br><span class="line">            pokemonForce,</span><br><span class="line">            waterPokemon.col(<span class="string">"Number"</span>).equalTo(pokemonForce.col(<span class="string">"Number"</span>)),</span><br><span class="line">            <span class="string">"left"</span></span><br><span class="line">    );</span><br><span class="line">    waterPokemonWithForce.sort(waterPokemonWithForce.col(<span class="string">"Attack"</span>).desc());</span><br><span class="line">    Row[] waterPokemonWithMaxForce = (Row[])waterPokemonWithForce.take(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//type1 有哪些类型的pokemon type， -&gt; count</span></span><br><span class="line">    Dataset&lt;Row&gt; pokemonCounts = spark.sql(<span class="string">"select Type1, count(*) as total_count from pokemon_type group by Type1"</span>);</span><br><span class="line">    pokemonCounts.show();</span><br><span class="line">    pokemonCounts.count();</span><br><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment">    +--------+-----------+</span></span><br><span class="line"><span class="comment">    |   Type1|total_count|</span></span><br><span class="line"><span class="comment">    +--------+-----------+</span></span><br><span class="line"><span class="comment">    |   Water|        122|</span></span><br><span class="line"><span class="comment">    |  Poison|         34|</span></span><br><span class="line"><span class="comment">    |   Steel|         29|</span></span><br><span class="line"><span class="comment">    |    Rock|         51|</span></span><br><span class="line"><span class="comment">    |     Ice|         24|</span></span><br><span class="line"><span class="comment">    |   Ghost|         36|</span></span><br><span class="line"><span class="comment">    |   Fairy|         18|</span></span><br><span class="line"><span class="comment">    | Psychic|         67|</span></span><br><span class="line"><span class="comment">    |  Dragon|         35|</span></span><br><span class="line"><span class="comment">    |  Flying|          4|</span></span><br><span class="line"><span class="comment">    |     Bug|         78|</span></span><br><span class="line"><span class="comment">    |Electric|         49|</span></span><br><span class="line"><span class="comment">    |    Fire|         58|</span></span><br><span class="line"><span class="comment">    |  Ground|         34|</span></span><br><span class="line"><span class="comment">    |    Dark|         32|</span></span><br><span class="line"><span class="comment">    |Fighting|         31|</span></span><br><span class="line"><span class="comment">    |   Grass|         82|</span></span><br><span class="line"><span class="comment">    |  Normal|        110|</span></span><br><span class="line"><span class="comment">    +--------+-----------+</span></span><br><span class="line"><span class="comment">    ***/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Join-–-self-join-–-gt-filter-–-gt-map-–-gt-groupie-–-gt-agg"><a href="#Join-–-self-join-–-gt-filter-–-gt-map-–-gt-groupie-–-gt-agg" class="headerlink" title="Join – self-join –&gt; filter –&gt; map –&gt; groupie –&gt; agg"></a>Join – self-join –&gt; filter –&gt; map –&gt; groupie –&gt; agg</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    Dataset&lt;Row&gt; joinedRatings = userRating.as(<span class="string">"a"</span>).join(</span><br><span class="line">            userRating.as(<span class="string">"b"</span>),</span><br><span class="line">            <span class="string">"userId"</span>)</span><br><span class="line">            .selectExpr(<span class="string">"a.userId as userId"</span>, <span class="string">"a.movieId as movie1"</span>,</span><br><span class="line">                    <span class="string">"a.rating as rating1"</span>, <span class="string">"b.movieId as movie2"</span>, <span class="string">"b.rating as rating2"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 在 self-join 後，過濾掉重覆的組合 */</span></span><br><span class="line">    Dataset&lt;Row&gt; uniqueJoinedRatings = joinedRatings.filter(joinedRatings.col(<span class="string">"movie1"</span>)</span><br><span class="line">            .$less(joinedRatings.col(<span class="string">"movie2"</span>)));</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 做成 &lt;movie1:movie2&gt; : &lt;rating1，rating2&gt;的pair */</span></span><br><span class="line">    Dataset&lt;MoviePair&gt; pairs = uniqueRatings</span><br><span class="line">            .map((MapFunction&lt;Row, MoviePair&gt;) row -&gt; &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> MoviePair(</span><br><span class="line">                                row.getAs(<span class="string">"movie1"</span>),</span><br><span class="line">                                row.getAs(<span class="string">"movie2"</span>),</span><br><span class="line">                                row.getAs(<span class="string">"rating1"</span>),</span><br><span class="line">                                row.getAs(<span class="string">"rating2"</span>));</span><br><span class="line">            &#125;, Encoders.bean(MoviePair<span class="class">.<span class="keyword">class</span>))</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* group by (movie1,movie2),每一行都是所有的（rating1， rating2）的组合 */</span></span><br><span class="line">    Dataset&lt;Row&gt; movieRatingPairs = uniqueRatings</span><br><span class="line">            .groupBy(<span class="string">"movie_pair"</span>)</span><br><span class="line">            .agg(functions.collect_list(<span class="string">"rating_pair"</span>).as(<span class="string">"rating_pairs"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/* dump to file */</span></span><br><span class="line">    movieSimilarities.coalesce(<span class="number">10</span>).write().csv(<span class="string">"movie_relationship"</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Map-for-similarity"><a href="#Map-for-similarity" class="headerlink" title="Map : for similarity"></a>Map : for similarity</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Dataset&lt;MovieSimilarity&gt; <span class="title">computeSimilarity</span><span class="params">(Dataset&lt;Row&gt; movieRatingPairs)</span> </span>&#123;</span><br><span class="line">    Dataset&lt;MovieSimilarity&gt; movieSimilarities = movieRatingPairs</span><br><span class="line">            .map((MapFunction&lt;Row, MovieSimilarity&gt;) row-&gt; &#123;</span><br><span class="line">                WrappedArray&lt;Integer&gt; movie_pair = row.getAs(<span class="string">"movie_pair"</span>);</span><br><span class="line">                WrappedArray&lt;WrappedArray&lt;Double&gt;&gt; rating_pairs = row.getAs(<span class="string">"rating_pairs"</span>);</span><br><span class="line">                <span class="keyword">int</span> num_pairs = rating_pairs.size();</span><br><span class="line">                <span class="keyword">double</span> sum_xx = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">double</span> sum_yy =<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">double</span> sum_xy=<span class="number">0</span>;</span><br><span class="line">                Iterator&lt;WrappedArray&lt;Double&gt;&gt; iterator = rating_pairs.iterator();</span><br><span class="line">                <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">                    WrappedArray rating = iterator.next();</span><br><span class="line">                    <span class="keyword">double</span> rating1 = (<span class="keyword">double</span>) rating.head();</span><br><span class="line">                    <span class="keyword">double</span> rating2 = (<span class="keyword">double</span>) rating.last();</span><br><span class="line">                    sum_xx += rating1*rating1;</span><br><span class="line">                    sum_yy += rating2*rating2;</span><br><span class="line">                    sum_xy += rating1*rating2;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">double</span> denominator = Math.sqrt(sum_xx) * Math.sqrt(sum_yy);</span><br><span class="line">                <span class="keyword">double</span> score = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span> (denominator != <span class="number">0</span>) &#123;</span><br><span class="line">                    score = sum_xy/denominator;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MovieSimilarity(movie_pair.head(), movie_pair.last(), score, num_pairs);</span><br><span class="line">    &#125;, Encoders.bean(MovieSimilarity<span class="class">.<span class="keyword">class</span>))</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> movieSimilarities;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Using-Similarity"><a href="#Using-Similarity" class="headerlink" title="Using Similarity"></a>Using Similarity</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">        RecommendMovie main = <span class="keyword">new</span> RecommendMovie();</span><br><span class="line">        Dataset&lt;Row&gt; movieSimilarity = main.getMovieSimilarity(spark);</span><br><span class="line"><span class="comment">//        int targetMovie = Integer.parseInt(args[0]);</span></span><br><span class="line">        <span class="keyword">int</span> targetMovie = <span class="number">6</span>;</span><br><span class="line">        <span class="keyword">double</span> scoreThreshold = Double.parseDouble(args[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">int</span> pairThreshold = Integer.parseInt(args[<span class="number">2</span>]);</span><br><span class="line">        System.out.println(<span class="string">"my args: "</span> + targetMovie);</span><br><span class="line">        main.findMostSimilarMovies(spark, movieSimilarity, targetMovie, scoreThreshold, pairThreshold);</span><br><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment">my args: 6</span></span><br><span class="line"><span class="comment">+--------------------+</span></span><br><span class="line"><span class="comment">|      original_title|</span></span><br><span class="line"><span class="comment">+--------------------+</span></span><br><span class="line"><span class="comment">|Sissi - Die junge...|</span></span><br><span class="line"><span class="comment">|         The Patriot|</span></span><br><span class="line"><span class="comment">|                null|</span></span><br><span class="line"><span class="comment">|         Poltergeist|</span></span><br><span class="line"><span class="comment">|Till det som är v...|</span></span><br><span class="line"><span class="comment">+--------------------+</span></span><br><span class="line"><span class="comment">***/</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3><ul>
+<li>Collect(), take(), count(), first(), foreach()</li>
+</ul>
+<h3 id="Shuffle"><a href="#Shuffle" class="headerlink" title="Shuffle"></a>Shuffle</h3><ul>
+<li>groupByKey</li>
+</ul>
+<p>Work –&gt; survey, algorithm, </p>
+<p>​                Table</p>
+<p>big_data</p>
+<p>大腿们能否请教个Query~</p>
+<p>表A<br>| notification_id    | type                                                 |<br>| uuid                      | AorBorC 反正是categorial的       |</p>
+<p>表B<br>|id.            |       notification_id      | visitor_token         |<br>|uuid         |         就是外键指向A    |   uuid                     |</p>
+<p>我只是想知道<br>表A里不同的 type各自会造成多少的 subscribe_rate  (字段名字已换掉，但关系大致是这样)</p>
+<p>表B里的就是已经订阅了的意思，</p>
+<p>用SELECT id AS _id, type FROM tbl_A GROUP BY tbl_A.type<br>是会有各个type 的东西，如<br>A  300<br>B. 300<br>C. 400</p>
+<p>但为什么我<br>SELECT tbl_a.type, count(<em>)<br>FROM  tbl_a<br>INNER JOIN tbl_b<br>ON tbl_a.notification_id = tbl_b.notification_id<br>GROUP BY tbl_a.type<br>ORDER BY count(</em>) DESC;<br>出来的结果，A, B, C各个数字都还比较大。。　我觉得应该要比较小呀。。这样我才可以把出来的除以对A表单做的GroupBy的Query. .<br>我试着拉个1000 row到本地做实验，但是<br>最后出来的都是空的。。。　＞＜　真的不行了，所以想请教下。。</p>
+<p>abcdefghijklmnopqrstuvwxyz</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/12/19/BigData_java/2020-12-19-LAB3:%20Hadoop%20based%20DFS%20&amp;%20Hive%20on%20EMR%20/">BigData_java/2020-12-19-LAB3: Hadoop based DFS &amp; Hive on EMR </a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-12-19</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BigData-java/">BigData_java</a></span><div class="content"><h1 id="HDFS-Hadoop-based-DFS-amp-Hive-on-EMR"><a href="#HDFS-Hadoop-based-DFS-amp-Hive-on-EMR" class="headerlink" title="HDFS(Hadoop based DFS) &amp; Hive on EMR"></a>HDFS(Hadoop based DFS) &amp; Hive on EMR</h1><h2 id="Access-Remote-EMR-clusters"><a href="#Access-Remote-EMR-clusters" class="headerlink" title="Access Remote EMR clusters"></a>Access Remote EMR clusters</h2><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># joe @ MacBook-Pro-4 in ~/Desktop/mi_BigData/Codes_BD [21:38:47]</span></span><br><span class="line">$ ssh -i onionAWS.pem hadoop@ec2-18-191-169-131.us-east-2.compute.amazonaws.com</span><br><span class="line">The authenticity of host <span class="string">'ec2-18-191-169-131.us-east-2.compute.amazonaws.com (18.191.169.131)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string">ECDSA key fingerprint is SHA256:UdI9VoiJMwSRoJ/SHjNpgger1vgUIxa4MgWtKU9XQaE.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)? yes</span></span><br><span class="line"><span class="string">Warning: Permanently added '</span>ec2-18-191-169-131.us-east-2.compute.amazonaws.com,18.191.169.131<span class="string">' (ECDSA) to the list of known hosts.</span></span><br><span class="line"><span class="string">Last login: Sat Dec 19 14:59:38 2020</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">       __|  __|_  )</span></span><br><span class="line"><span class="string">       _|  (     /   Amazon Linux 2 AMI</span></span><br><span class="line"><span class="string">      ___|\___|___|</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">https://aws.amazon.com/amazon-linux-2/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">EEEEEEEEEEEEEEEEEEEE MMMMMMMM           MMMMMMMM RRRRRRRRRRRRRRR</span></span><br><span class="line"><span class="string">E::::::::::::::::::E M:::::::M         M:::::::M R::::::::::::::R</span></span><br><span class="line"><span class="string">EE:::::EEEEEEEEE:::E M::::::::M       M::::::::M R:::::RRRRRR:::::R</span></span><br><span class="line"><span class="string">  E::::E       EEEEE M:::::::::M     M:::::::::M RR::::R      R::::R</span></span><br><span class="line"><span class="string">  E::::E             M::::::M:::M   M:::M::::::M   R:::R      R::::R</span></span><br><span class="line"><span class="string">  E:::::EEEEEEEEEE   M:::::M M:::M M:::M M:::::M   R:::RRRRRR:::::R</span></span><br><span class="line"><span class="string">  E::::::::::::::E   M:::::M  M:::M:::M  M:::::M   R:::::::::::RR</span></span><br><span class="line"><span class="string">  E:::::EEEEEEEEEE   M:::::M   M:::::M   M:::::M   R:::RRRRRR::::R</span></span><br><span class="line"><span class="string">  E::::E             M:::::M    M:::M    M:::::M   R:::R      R::::R</span></span><br><span class="line"><span class="string">  E::::E       EEEEE M:::::M     MMM     M:::::M   R:::R      R::::R</span></span><br><span class="line"><span class="string">EE:::::EEEEEEEE::::E M:::::M             M:::::M   R:::R      R::::R</span></span><br><span class="line"><span class="string">E::::::::::::::::::E M:::::M             M:::::M RR::::R      R::::R</span></span><br><span class="line"><span class="string">EEEEEEEEEEEEEEEEEEEE MMMMMMM             MMMMMMM RRRRRRR      RRRRRR</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[hadoop@ip-172-31-47-22 ~]$ ls</span></span><br><span class="line"><span class="string">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -ls</span></span><br><span class="line"><span class="string">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs --help</span></span><br><span class="line"><span class="string">--help: Unknown command</span></span><br><span class="line"><span class="string">Usage: hadoop fs [generic options]</span></span><br><span class="line"><span class="string">	[-appendToFile &lt;localsrc&gt; ... &lt;dst&gt;]</span></span><br><span class="line"><span class="string">	[-cat [-ignoreCrc] &lt;src&gt; ...]</span></span><br><span class="line"><span class="string">	[-checksum &lt;src&gt; ...]</span></span><br><span class="line"><span class="string">	[-chgrp [-R] GROUP PATH...]</span></span><br><span class="line"><span class="string">	[-chmod [-R] &lt;MODE[,MODE]... | OCTALMODE&gt; PATH...]</span></span><br><span class="line"><span class="string">	[-chown [-R] [OWNER][:[GROUP]] PATH...]</span></span><br><span class="line"><span class="string">	[-copyFromLocal [-f] [-p] [-l] [-d] &lt;localsrc&gt; ... &lt;dst&gt;]</span></span><br><span class="line"><span class="string">	[-copyToLocal [-f] [-p] [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;]</span></span><br><span class="line"><span class="string">	[-count [-q] [-h] [-v] [-t [&lt;storage type&gt;]] [-u] [-x] &lt;path&gt; ...]</span></span><br><span class="line"><span class="string">	[-cp [-f] [-p | -p[topax]] [-d] &lt;src&gt; ... &lt;dst&gt;]</span></span><br><span class="line"><span class="string">	[-createSnapshot &lt;snapshotDir&gt; [&lt;snapshotName&gt;]]</span></span><br><span class="line"><span class="string">	[-deleteSnapshot &lt;snapshotDir&gt; &lt;snapshotName&gt;]</span></span><br><span class="line"><span class="string">	[-df [-h] [&lt;path&gt; ...]]</span></span><br><span class="line"><span class="string">	[-du [-s] [-h] [-x] &lt;path&gt; ...]</span></span><br><span class="line"><span class="string">	[-expunge]</span></span><br><span class="line"><span class="string">	[-find &lt;path&gt; ... &lt;expression&gt; ...]</span></span><br><span class="line"><span class="string">	[-get [-f] [-p] [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;]</span></span><br><span class="line"><span class="string">	[-getfacl [-R] &lt;path&gt;]</span></span><br><span class="line"><span class="string">	[-getfattr [-R] &#123;-n name | -d&#125; [-e en] &lt;path&gt;]</span></span><br><span class="line"><span class="string">	[-getmerge [-nl] [-skip-empty-file] &lt;src&gt; &lt;localdst&gt;]</span></span><br><span class="line"><span class="string">	[-help [cmd ...]]</span></span><br><span class="line"><span class="string">	[-ls [-C] [-d] [-h] [-q] [-R] [-t] [-S] [-r] [-u] [&lt;path&gt; ...]]</span></span><br><span class="line"><span class="string">	[-mkdir [-p] &lt;path&gt; ...]</span></span><br><span class="line"><span class="string">	[-moveFromLocal &lt;localsrc&gt; ... &lt;dst&gt;]</span></span><br><span class="line"><span class="string">	[-moveToLocal &lt;src&gt; &lt;localdst&gt;]</span></span><br><span class="line"><span class="string">	[-mv &lt;src&gt; ... &lt;dst&gt;]</span></span><br><span class="line"><span class="string">	[-put [-f] [-p] [-l] [-d] &lt;localsrc&gt; ... &lt;dst&gt;]</span></span><br><span class="line"><span class="string">	[-renameSnapshot &lt;snapshotDir&gt; &lt;oldName&gt; &lt;newName&gt;]</span></span><br><span class="line"><span class="string">	[-rm [-f] [-r|-R] [-skipTrash] [-safely] &lt;src&gt; ...]</span></span><br><span class="line"><span class="string">	[-rmdir [--ignore-fail-on-non-empty] &lt;dir&gt; ...]</span></span><br><span class="line"><span class="string">	[-setfacl [-R] [&#123;-b|-k&#125; &#123;-m|-x &lt;acl_spec&gt;&#125; &lt;path&gt;]|[--set &lt;acl_spec&gt; &lt;path&gt;]]</span></span><br><span class="line"><span class="string">	[-setfattr &#123;-n name [-v value] | -x name&#125; &lt;path&gt;]</span></span><br><span class="line"><span class="string">	[-setrep [-R] [-w] &lt;rep&gt; &lt;path&gt; ...]</span></span><br><span class="line"><span class="string">	[-stat [format] &lt;path&gt; ...]</span></span><br><span class="line"><span class="string">	[-tail [-f] &lt;file&gt;]</span></span><br><span class="line"><span class="string">	[-test -[defsz] &lt;path&gt;]</span></span><br><span class="line"><span class="string">	[-text [-ignoreCrc] &lt;src&gt; ...]</span></span><br><span class="line"><span class="string">	[-touchz &lt;path&gt; ...]</span></span><br><span class="line"><span class="string">	[-truncate [-w] &lt;length&gt; &lt;path&gt; ...]</span></span><br><span class="line"><span class="string">	[-usage [cmd ...]]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Generic options supported are:</span></span><br><span class="line"><span class="string">-conf &lt;configuration file&gt;        specify an application configuration file</span></span><br><span class="line"><span class="string">-D &lt;property=value&gt;               define a value for a given property</span></span><br><span class="line"><span class="string">-fs &lt;file:///|hdfs://namenode:port&gt; specify default filesystem URL to use, overrides '</span>fs.defaultFS<span class="string">' property from configurations.</span></span><br><span class="line"><span class="string">-jt &lt;local|resourcemanager:port&gt;  specify a ResourceManager</span></span><br><span class="line"><span class="string">-files &lt;file1,...&gt;                specify a comma-separated list of files to be copied to the map reduce cluster</span></span><br><span class="line"><span class="string">-libjars &lt;jar1,...&gt;               specify a comma-separated list of jar files to be included in the classpath</span></span><br><span class="line"><span class="string">-archives &lt;archive1,...&gt;          specify a comma-separated list of archives to be unarchived on the compute machines</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">The general command line syntax is:</span></span><br><span class="line"><span class="string">command [genericOptions] [commandOptions]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[hadoop@ip-172-31-47-22 ~]$ hive</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j2.properties Async: true</span></span><br><span class="line"><span class="string">hive&gt; show databases;</span></span><br><span class="line"><span class="string">OK</span></span><br><span class="line"><span class="string">default</span></span><br><span class="line"><span class="string">Time taken: 0.722 seconds, Fetched: 1 row(s)</span></span><br><span class="line"><span class="string">hive&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h4><ul>
+<li><p>比如5台機器在hadoop 集群裡，hdfs 或我們的分布式文件存儲系統就存在於這5台機器上，不需要去關心裡面，就是黑箱，所有合、拆、刪在裡面；我只要在hdfs平台去交互，我只要給他data，他要怎麼做是他內部自己操作</p>
+</li>
+<li><p>本質就是文件系統</p>
+</li>
+<li><p>把data存在N台機器上，但client 處理了內部的所有黑箱，所以我只有一個對手! 就如果我在本地</p>
+</li>
+</ul>
+<h2 id="HDFS-commands"><a href="#HDFS-commands" class="headerlink" title="HDFS commands"></a>HDFS commands</h2><h5 id="S3-–-基於AWS的-dfs，HDFS-–-基於Hadoop的-dfs，本質是非常相似的，只不過S3是UI介面"><a href="#S3-–-基於AWS的-dfs，HDFS-–-基於Hadoop的-dfs，本質是非常相似的，只不過S3是UI介面" class="headerlink" title="S3 – 基於AWS的 dfs，HDFS – 基於Hadoop的 dfs，本質是非常相似的，只不過S3是UI介面"></a>S3 – 基於AWS的 dfs，HDFS – 基於Hadoop的 dfs，本質是非常相似的，只不過S3是UI介面</h5><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -ls</span><br><span class="line">Found 1 items</span><br><span class="line">drwxr-xr-x   - hadoop hadoop          0 2020-12-19 15:10 .hiveJars</span><br><span class="line">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -mkdir bigdata</span><br><span class="line">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -ls</span><br><span class="line">Found 2 items</span><br><span class="line">drwxr-xr-x   - hadoop hadoop          0 2020-12-19 15:10 .hiveJars</span><br><span class="line">drwxr-xr-x   - hadoop hadoop          0 2020-12-19 15:23 bigdata</span><br><span class="line">[hadoop@ip-172-31-47-22 ~]$ vim file.csv</span><br><span class="line">[hadoop@ip-172-31-47-22 ~]$ ls</span><br><span class="line">file.csv</span><br><span class="line">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -put file.csv bigdata/</span><br><span class="line">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -ls</span><br><span class="line">Found 2 items</span><br><span class="line">drwxr-xr-x   - hadoop hadoop          0 2020-12-19 15:10 .hiveJars</span><br><span class="line">drwxr-xr-x   - hadoop hadoop          0 2020-12-19 15:28 bigdata</span><br><span class="line">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -ls data/</span><br><span class="line">ls: `data/<span class="string">': No such file or directory</span></span><br><span class="line"><span class="string">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -ls bigdata/</span></span><br><span class="line"><span class="string">Found 1 items</span></span><br><span class="line"><span class="string">-rw-r--r--   1 hadoop hadoop         19 2020-12-19 15:28 bigdata/file.csv</span></span><br><span class="line"><span class="string">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -cat bigdata/file.csv</span></span><br><span class="line"><span class="string">i. love. big. data</span></span><br><span class="line"><span class="string">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -cat bigdata/file1.csv</span></span><br><span class="line"><span class="string">cat: `bigdata/file1.csv'</span>: No such file or directory</span><br><span class="line">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -rm bigdata/file.csv</span><br><span class="line">Deleted bigdata/file.csv</span><br><span class="line">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -rm bigdata</span><br><span class="line">rm: `bigdata<span class="string">': Is a directory</span></span><br><span class="line"><span class="string">[hadoop@ip-172-31-47-22 ~]$ hdfs dfs -rmr bigdata</span></span><br><span class="line"><span class="string">rmr: DEPRECATED: Please use '</span>-rm -r<span class="string">' instead.</span></span><br><span class="line"><span class="string">Deleted bigdata</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Create-Hive-DB-amp-Table"><a href="#Create-Hive-DB-amp-Table" class="headerlink" title="Create Hive DB &amp; Table"></a>Create Hive DB &amp; Table</h2><h4 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h4><ul>
+<li>只是把data映射出來讓大家很好地作query</li>
+<li>仍是存儲在HDFS上，以文件的型式存儲的</li>
+<li>所以該指定的除了 Table Name、Schema, 還該指定最底層的data source的format, 可以是 ORC, Parquet, Avro，由我指定，然後data會被自動存成這個型式，hive會幫我們做這些操作! 不需要操心<ul>
+<li>我需要操心的是寫進去hdfs時，想要以怎樣的一個文件型式寫入!</li>
 </ul>
 </li>
-<li>Wide - 可以對當前的data進行計算。如知道當前每個park, state分別有多少個park?  –&gt; GroupBy, ReduceBy, Union，跳躍於不同的RDD上的加和的動作。會對當前的record作紀錄<ul>
-<li>沒人能保證多條Record在同個RDD, except we use kayhash for partition, otherwise, across RDD</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a5i5o7yj212c084ab0.jpg" alt="image-20201108213059139" style="zoom: 33%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a5krkb9j212q0r4q64.jpg" alt="image-20201108215941456" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gki48xejm4j314y0cywl5.jpg" alt="image-20201108220623119" style="zoom:50%;" />
-
-
-
-
-
-<h1 id="Exercise-Spark-on-AWS"><a href="#Exercise-Spark-on-AWS" class="headerlink" title="Exercise: Spark on AWS"></a>Exercise: Spark on AWS</h1><h5 id="EMR-elasitc-map-reduce"><a href="#EMR-elasitc-map-reduce" class="headerlink" title="EMR - elasitc map reduce"></a>EMR - elasitc map reduce</h5><h2 id="Create-Spark-Cluster-on-AWS"><a href="#Create-Spark-Cluster-on-AWS" class="headerlink" title="Create Spark Cluster on AWS"></a>Create Spark Cluster on AWS</h2><h3 id="1-SW"><a href="#1-SW" class="headerlink" title="1 SW"></a>1 SW</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gknc61jr2qj30w50u0jyw.jpg" alt="image-20201113102815402" style="zoom:50%;" />
-
-
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a8q6u4gj20o607omxk.jpg" alt="image-20201219234856829" style="zoom: 33%;" />
 
 <ul>
-<li>step 是和運行的code緊密相關的，可以code寫完後再設</li>
+<li>所有的指令都和SQL一樣，底層就是antler的解析器</li>
+<li>hive還是要存去底層給hdfs上去的，然後要指定format，這邊指定成了 ORC</li>
 </ul>
-<h3 id="2-HW"><a href="#2-HW" class="headerlink" title="2 HW"></a>2 HW</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a5pm9egj20mp0riwh4.jpg" alt="image-20210305163613883" style="zoom:50%;" />
-
-<p>​        Task 没有 data node在run，相當只是對core的輔助，沒什麼必要，對大理解沒improvement</p>
-<ul>
-<li><p>SPOT </p>
-<ul>
-<li>會去看現在的usage的情況，假設我半夜去開cluster，如果還是launch在US-eash，那時大家都在睡，我去開spot就可以很快；但如果是尖峰時，那現在available 的便宜機器就沒了，就會等待下一個available的機器來給我用；我很可能去等，但那台一直都沒得出現，cluster creation就會被浪費了; 反正我選c4large便宜點</li>
-</ul>
-</li>
-<li><p>core: Data node; num core ↑; concurrency ↑</p>
-<ul>
-<li>Data node的機器</li>
-</ul>
-</li>
-<li><p>task: 沒有 data node 的demo在run</p>
-</li>
-</ul>
-<h3 id="3-General-Cluster-Setting"><a href="#3-General-Cluster-Setting" class="headerlink" title="3 General Cluster Setting"></a>3 General Cluster Setting</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkndakrzqjj31d90u0wit.jpg" alt="image-20201113110702038" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gltgondf2sj30tc0eomyj.jpg" alt="image-20201219205815163" style="zoom:50%;" />
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@ip-172-31-47-22 ~]$ hive</span><br><span class="line"></span><br><span class="line">Logging initialized using configuration <span class="keyword">in</span> file:/etc/hive/conf.dist/hive-log4j2.properties Async: <span class="literal">true</span></span><br><span class="line">hive&gt; show database;</span><br><span class="line">NoViableAltException(78@[846:1: ddlStatement : ( createDatabaseStatement | switchDatabaseStatement | dropDatabaseStatement | createTableStatement | dropTableStatement | truncateTableStatement | alterStatement | descStatement | showStatement | metastoreCheck | createViewStatement | createMaterializedViewStatement | dropViewStatement | dropMaterializedViewStatement | createFunctionStatement | createMacroStatement | createIndexStatement | dropIndexStatement | dropFunctionStatement | reloadFunctionStatement | dropMacroStatement | analyzeStatement | lockStatement | unlockStatement | lockDatabase | unlockDatabase | createRoleStatement | dropRoleStatement | ( grantPrivileges )=&gt; grantPrivileges | ( revokePrivileges )=&gt; revokePrivileges | showGrants | showRoleGrants | showRolePrincipals | showRoles | grantRole | revokeRole | setRole | showCurrentRole | abortTransactionStatement );])</span><br><span class="line">	at org.antlr.runtime.DFA.noViableAlt(DFA.java:158)</span><br><span class="line">	at org.antlr.runtime.DFA.predict(DFA.java:116)</span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.HiveParser.ddlStatement(HiveParser.java:3757)</span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.HiveParser.execStatement(HiveParser.java:2382)</span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1333)</span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:208)</span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:77)</span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:70)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:468)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1317)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1457)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1237)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1227)</span><br><span class="line">	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:233)</span><br><span class="line">	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:184)</span><br><span class="line">	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:403)</span><br><span class="line">	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)</span><br><span class="line">	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)</span><br><span class="line">	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:686)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</span><br><span class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</span><br><span class="line">	at java.lang.reflect.Method.invoke(Method.java:498)</span><br><span class="line">	at org.apache.hadoop.util.RunJar.run(RunJar.java:244)</span><br><span class="line">	at org.apache.hadoop.util.RunJar.main(RunJar.java:158)</span><br><span class="line">FAILED: ParseException line 1:5 cannot recognize input near <span class="string">'show'</span> <span class="string">'database'</span> <span class="string">'&lt;EOF&gt;'</span> <span class="keyword">in</span> ddl statement</span><br><span class="line">hive&gt; show databases;</span><br><span class="line">OK</span><br><span class="line">default</span><br><span class="line">Time taken: 0.263 seconds, Fetched: 1 row(s)</span><br><span class="line">hive&gt; create bigdata;</span><br><span class="line">NoViableAltException(24@[846:1: ddlStatement : ( createDatabaseStatement | switchDatabaseStatement | dropDatabaseStatement | createTableStatement | dropTableStatement | truncateTableStatement | alterStatement | descStatement | showStatement | metastoreCheck | createViewStatement | createMaterializedViewStatement | dropViewStatement | dropMaterializedViewStatement | createFunctionStatement | createMacroStatement | createIndexStatement | dropIndexStatement | dropFunctionStatement | reloadFunctionStatement | dropMacroStatement | analyzeStatement | lockStatement | unlockStatement | lockDatabase | unlockDatabase | createRoleStatement | dropRoleStatement | ( grantPrivileges )=&gt; grantPrivileges | ( revokePrivileges )=&gt; revokePrivileges | showGrants | showRoleGrants | showRolePrincipals | showRoles | grantRole | revokeRole | setRole | showCurrentRole | abortTransactionStatement );])</span><br><span class="line">	at org.antlr.runtime.DFA.noViableAlt(DFA.java:158)</span><br><span class="line">	at org.antlr.runtime.DFA.predict(DFA.java:144)</span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.HiveParser.ddlStatement(HiveParser.java:3757)</span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.HiveParser.execStatement(HiveParser.java:2382)</span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1333)</span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:208)</span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:77)</span><br><span class="line">	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:70)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:468)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1317)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.runInternal(Driver.java:1457)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1237)</span><br><span class="line">	at org.apache.hadoop.hive.ql.Driver.run(Driver.java:1227)</span><br><span class="line">	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:233)</span><br><span class="line">	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:184)</span><br><span class="line">	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:403)</span><br><span class="line">	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)</span><br><span class="line">	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)</span><br><span class="line">	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:686)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</span><br><span class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</span><br><span class="line">	at java.lang.reflect.Method.invoke(Method.java:498)</span><br><span class="line">	at org.apache.hadoop.util.RunJar.run(RunJar.java:244)</span><br><span class="line">	at org.apache.hadoop.util.RunJar.main(RunJar.java:158)</span><br><span class="line">FAILED: ParseException line 1:7 cannot recognize input near <span class="string">'create'</span> <span class="string">'bigdata'</span> <span class="string">'&lt;EOF&gt;'</span> <span class="keyword">in</span> ddl statement</span><br><span class="line">hive&gt; create database bigdata</span><br><span class="line">    &gt; ;</span><br><span class="line">OK</span><br><span class="line">Time taken: 0.301 seconds</span><br><span class="line">hive&gt; show databases;</span><br><span class="line">OK</span><br><span class="line">bigdata</span><br><span class="line">default</span><br><span class="line">Time taken: 0.028 seconds, Fetched: 2 row(s)</span><br><span class="line">hive&gt; use bigdata;</span><br><span class="line">OK</span><br><span class="line">Time taken: 0.105 seconds</span><br><span class="line">hive&gt; CREATE TABLE IF NOT EXISTS bigdata.movie_similarity</span><br><span class="line">    &gt; (</span><br><span class="line">    &gt; movie1          INT,</span><br><span class="line">    &gt; movie2 INT,</span><br><span class="line">    &gt; num_pairs INT,</span><br><span class="line">    &gt; similarity DOUBLE</span><br><span class="line">    &gt; )</span><br><span class="line">    &gt; STORED AS ORC;</span><br><span class="line">OK</span><br><span class="line">Time taken: 0.56 seconds</span><br><span class="line">hive&gt; describe movie_similarity;</span><br><span class="line">OK</span><br><span class="line">movie1              	int</span><br><span class="line">movie2              	int</span><br><span class="line">num_pairs           	int</span><br><span class="line">similarity          	double</span><br><span class="line">Time taken: 0.093 seconds, Fetched: 4 row(s)</span><br><span class="line">hive&gt; describe formatted movie_similarity;</span><br><span class="line">OK</span><br><span class="line"><span class="comment"># col_name            	data_type           	comment</span></span><br><span class="line"></span><br><span class="line">movie1              	int</span><br><span class="line">movie2              	int</span><br><span class="line">num_pairs           	int</span><br><span class="line">similarity          	double</span><br><span class="line"></span><br><span class="line"><span class="comment"># Detailed Table Information</span></span><br><span class="line">Database:           	bigdata</span><br><span class="line">Owner:              	hadoop</span><br><span class="line">CreateTime:         	Sat Dec 19 15:53:27 UTC 2020</span><br><span class="line">LastAccessTime:     	UNKNOWN</span><br><span class="line">Retention:          	0</span><br><span class="line">Location:           	hdfs://ip-172-31-47-22.us-east-2.compute.internal:8020/user/hive/warehouse/bigdata.db/movie_similarity</span><br><span class="line">Table Type:         	MANAGED_TABLE</span><br><span class="line">Table Parameters:</span><br><span class="line">	COLUMN_STATS_ACCURATE	&#123;\"BASIC_STATS\":\"<span class="literal">true</span>\"&#125;</span><br><span class="line">	numFiles            	0</span><br><span class="line">	numRows             	0</span><br><span class="line">	rawDataSize         	0</span><br><span class="line">	totalSize           	0</span><br><span class="line">	transient_lastDdlTime	1608393207</span><br><span class="line"></span><br><span class="line"><span class="comment"># Storage Information</span></span><br><span class="line">SerDe Library:      	org.apache.hadoop.hive.ql.io.orc.OrcSerde</span><br><span class="line">InputFormat:        	org.apache.hadoop.hive.ql.io.orc.OrcInputFormat</span><br><span class="line">OutputFormat:       	org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat</span><br><span class="line">Compressed:         	No</span><br><span class="line">Num Buckets:        	-1</span><br><span class="line">Bucket Columns:     	[]</span><br><span class="line">Sort Columns:       	[]</span><br><span class="line">Storage Desc Params:</span><br><span class="line">	serialization.format	1</span><br><span class="line">Time taken: 0.125 seconds, Fetched: 33 row(s)</span><br><span class="line">hive&gt;</span><br></pre></td></tr></table></figure>
 
 
 
-<h5 id="最後也是需要個認證的-xxx-pem"><a href="#最後也是需要個認證的-xxx-pem" class="headerlink" title="最後也是需要個認證的 xxx.pem"></a>最後也是需要個認證的 xxx.pem</h5><h3 id="4-Security"><a href="#4-Security" class="headerlink" title="4 Security"></a>4 Security</h3><p>just next step</p>
-<h2 id="Tools-for-AWS-Spark"><a href="#Tools-for-AWS-Spark" class="headerlink" title="Tools for AWS Spark"></a>Tools for AWS Spark</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkndfn8bvgj30yn0u0k0l.jpg" alt="image-20201113111204862" style="zoom:50%;" />
-
-
+<h2 id="Write-data-into-Hive-Table-fr-Spark"><a href="#Write-data-into-Hive-Table-fr-Spark" class="headerlink" title="Write data into Hive Table, fr Spark"></a>Write data into Hive Table, fr Spark</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a8slwhcj21e406mq3w.jpg" alt="image-20201220001941568" style="zoom:50%;" />
 
 <ul>
-<li>Hadoop is the environvent base, for Spark and Hive, so not an Application</li>
-<li></li>
+<li><p>得確認我所generate 出來的DataFrame的schema跟我所需要寫進去的Table裡的schema是完全一致的，不然就會報錯</p>
+</li>
+<li><p>run Step 的差别在：現在在EMR上run它的JAR的話，data不是存到S3，而是會存到hive連下去的DFS</p>
+</li>
 </ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a5vbe15j211v0u0wil.jpg" alt="image-20201120202325880" style="zoom:33%;" />
+<h5 id="當需要的是「非static-data」，而是「動態被傳入的-data」，Arguments-上就要被進行一個傳入"><a href="#當需要的是「非static-data」，而是「動態被傳入的-data」，Arguments-上就要被進行一個傳入" class="headerlink" title="當需要的是「非static data」，而是「動態被傳入的 data」，Arguments 上就要被進行一個傳入"></a>當需要的是「非static data」，而是「動態被傳入的 data」，Arguments 上就要被進行一個傳入</h5><ul>
+<li><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gltmtsovq8j317i0owq9d.jpg" alt="image-20201220003046498" style="zoom:50%;" />
 
 
 
-
-
-<h2 id="S3’s-Usage"><a href="#S3’s-Usage" class="headerlink" title="S3’s Usage"></a>S3’s Usage</h2><h4 id="Create-Bucket"><a href="#Create-Bucket" class="headerlink" title="Create Bucket"></a>Create Bucket</h4><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl6honxensj30u00vwq9e.jpg" alt="image-20201130000449672" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a5yk6p0j20u70u00vz.jpg" alt="image-20201120205035722" style="zoom: 50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkvxisc3p5j317c05sjz5.jpg" alt="image-20201120205135528" style="zoom:50%;" />
-
-
-
-<h4 id="IAM"><a href="#IAM" class="headerlink" title="IAM"></a>IAM</h4><h5 id="My-Access-Key"><a href="#My-Access-Key" class="headerlink" title="My Access Key"></a>My Access Key</h5><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkvxlbix3qj319g0u0dr1.jpg" alt="image-20201120205359035"></p>
-<h2 id="Run-Spark-Application"><a href="#Run-Spark-Application" class="headerlink" title="Run Spark Application"></a>Run Spark Application</h2><h3 id="Add-Step"><a href="#Add-Step" class="headerlink" title="Add Step"></a>Add Step</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a6bnr3oj211m0lo765.jpg" alt="image-20201126195711764" style="zoom:50%;" />
-
-<ul>
-<li>Cluster – 可以把Code deploy 到 data node 上 ，也就是slave node上面去執行</li>
-<li><strong>Client – 放在 Master上面去執行。當放到 Master時，它可以把任務分給其他的nodes!</strong></li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a638tshj219q0oin0g.jpg" alt="image-20201126200139523" style="zoom:50%;" />
-
-
-
-<h3 id="Pending…"><a href="#Pending…" class="headerlink" title="Pending…"></a>Pending…</h3><p>需要去蒐集資源，Spark需要在集群去找哪些機器可用，可設哪些參數呀？找到機器後就會進入Starting</p>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl2ttdcyb4j319o0fo785.jpg" alt="image-20201126200220489"></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/11/01/BigData_java/2020-11-1%20Twitter%20on%20AWS/">BigData_java/2020-11-1 Twitter on AWS</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-11-01</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BigData-java/">BigData_java</a></span><div class="content"><h1 id="Twitter-on-AWS"><a href="#Twitter-on-AWS" class="headerlink" title="Twitter on AWS"></a>Twitter on AWS</h1><ul>
-<li><p>Kafka </p>
-</li>
-<li><p>Best: Consumer == Broker amount</p>
-</li>
-<li><p>Broker - 分布式存、topic, partition, offsets給consumer去讀msg的</p>
-</li>
-<li><p>consumer間獨立的</p>
 </li>
 </ul>
 <ul>
-<li>earlist – default是這個，就是說當前的consuer要是還沒有消費過任何一個topic，它是第一次去run, 我默認的是consumer從最早的開始讀起</li>
-<li>Group_id, 作LB的，這個topic有三個partition，告訴kfk我們有三個不同的consumer要來消費你，所以kfk會讓每個partition被一一對應；有多個不同的consumer的組織，如果我們都定義的是同個group_id，那</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a3j0zixj20wi0as3zg.jpg" alt="image-20201101212643942" style="zoom: 67%;" />
+<li><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a87yanmj20sm09u3zs.jpg" alt="image-20201220003235826" style="zoom:50%;" />
 
+
+
+
+
+</li>
+</ul>
+<h2 id="Interact-with-data-in-Hive-Table"><a href="#Interact-with-data-in-Hive-Table" class="headerlink" title="Interact with data in Hive Table"></a>Interact with data in Hive Table</h2><p>Complete後<br><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gltmxlpvqtj319o0l87ok.jpg" alt="image-20201220003427565" style="zoom:50%;" /></p>
 <ul>
-<li><p>Twitter client幫做了很多事</p>
-</li>
-<li><p>hbc-core dependency in pom.xml, to know client APIs</p>
-<ul>
-<li>Twitter hbc client –&gt; 當前的 hbc repo</li>
-<li>功能型的dependency就知道「怎麼用」<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka0e9a4uaj30rg0gaaib.jpg" alt="image-20201101214836345" style="zoom:50%;" />
-
-
-
-</li>
+<li>Limit 1 後才有Trigger，就是aws上的hive還是怪怪的</li>
 </ul>
-</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a3nbjsqj20te0m8acd.jpg" alt="image-20201101214946756" style="zoom: 33%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a3qyfu8j20vk0iu3zp.jpg" alt="image-20201101215206525" style="zoom: 33%;" />
-
-<ul>
-<li><p>BlockingQ - 內存裡的buffer，邊寫邊抓；寫的時候不能寫太多</p>
-<ul>
-<li>Producer受不了</li>
-<li>亂碼呢？－－＞沒data來，要丟出exception嗎</li>
-<li>Throttle 限行它，等producer拿出寫去kfk</li>
-</ul>
-</li>
-<li><p>ACK all – data存在所有的 broker上</p>
-</li>
-<li><p>kfk 1.1 大的改變</p>
-<ul>
-<li><p>retries 由三個組成</p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a3w3kfbj20sa06c0tb.jpg" alt="image-20201101224346503" style="zoom:50%;" />
-
-<p>120秒後就丟了它</p>
-</li>
-<li><p>Backoff</p>
-<ul>
-<li>你現在很忙，我不一直催你，我等個100ms, 回頭再去敲你，讓你error有恢復的時間</li>
-</ul>
-</li>
-<li><p>這些都是producer已經define好的參數</p>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka28kbi1ej30ue0ia112.jpg" alt="image-20201101225220312" style="zoom:50%;" />
-
-<ul>
-<li>當非 idempotent 會有問題</li>
-<li>so, enable.idempotence = true</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka2um85ntj30x80ck79l.jpg" alt="image-20201101231332090" style="zoom:50%;" />
-
-<ul>
-<li><p>linger、batch 就是做了個 Cache裡的概念</p>
-<ul>
-<li>當前的cache不可能無限等待，當我設計等待的時間，當我的數據超超超兇來，我受不了，所以我還會設一個batch_size</li>
-<li>不能等太久，也不能太大還不沖出去</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka2xrc4yuj30ra03k77q.jpg" alt="image-20201101231633429"></p>
-</li>
-<li><p>kfk存的是 compressed後的 data<br><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka2z2l5qwj315s07o79r.jpg" alt="image-20201101231749281"></p>
-</li>
-<li><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a44qtgyj21n00twdop.jpg" alt="image-20201101231825564" style="zoom:67%;" />
-
-<ul>
-<li>RT – ReTweet</li>
-</ul>
-</li>
-<li><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a48d8nzj21mg0kodkg.jpg" alt="image-20201101232022395" style="zoom:67%;" />
-</li>
-<li><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gka328tq0oj316s0a80z7.jpg" alt="image-20201101232052099"></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="Home-Settings"><a href="#Home-Settings" class="headerlink" title="Home Settings"></a>Home Settings</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a4cystij21c80mqgqu.jpg" alt="image-20201105165148390" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a8abfduj21620nen25.jpg" alt="image-20201220003534838" style="zoom:50%;" />
 
 
 
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a4elwupj21ms0u0gup.jpg" alt="image-20201105183429254" style="zoom:67%;" />
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gltmz8c6y9j30n00fstnt.jpg" alt="image-20201220003601410" style="zoom:50%;" />
 
 
 
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkeiftxhk1j319m0u0e82.jpg" alt="image-20201105191508324"></p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a4k2n0xj211q0u0wjn.jpg" alt="image-20201105191524424" style="zoom:50%;" />
-
-
-
-<h2 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgcojtgy9j30zc0ru153.jpg" alt="image-20201107092704795" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgdbvo4njj317q0340y5.jpg" alt="image-20201107094930303" style="zoom:50%;" />
-
-<ul>
-<li>三次握手</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgdeh3easj314y02g40g.jpg" alt="image-20201107095200584" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a8giz5qj216a0fcwka.jpg" alt="image-20201220003929425" style="zoom:50%;" />
 
 
 
 <ul>
-<li>mvn clean; mvn compile; man exec:java </li>
+<li>snappy就是個常見的壓縮方式</li>
 </ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgdkl4fl7j31700aee2f.jpg" alt="image-20201107095752042" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgdm4ak2lj317g046n10.jpg" alt="image-20201107095921677" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a4xka01j216u0nak0p.jpg" alt="image-20201107100122141" style="zoom:50%;" />
-
-
-
-<h2 id="Issues-on-my-current-analysis"><a href="#Issues-on-my-current-analysis" class="headerlink" title="Issues on my current analysis"></a>Issues on my current analysis</h2><p>未五句話全用權重，只用了最長的</p>
-<h2 id="Producer-Elegancys"><a href="#Producer-Elegancys" class="headerlink" title="Producer Elegancys"></a>Producer Elegancys</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkgdvdmjlmj30us0pwk1d.jpg" alt="image-20201107100814465" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a50t6e1j215q03wt9m.jpg" alt="image-20201107100847304" style="zoom:50%;" />
-
+<p>想要找到某一個target 的movie所對應的相關聯的電影中的top 3；我們的方法呢？</p>
+<p>那時還沒有hive，也沒有query engine，就只能建新的java的file叫 recommend_movie.java 去query output 的 ORC的data，然後把這些data load到DataFrame去，然後DataFrame再進行一系列的 JOIN的操作，然後再把結果給print出來</p>
+<p>現在有了Hive，也許就不需要再Spark這種heavy的操作</p>
 <ul>
-<li>存著</li>
-<li>可能還有人沒寫出，所以要shundown hook，先flush(), 再去 close()了</li>
-</ul>
-<h1 id="Twitter-Developers-amp-APIs"><a href="#Twitter-Developers-amp-APIs" class="headerlink" title="Twitter Developers &amp; APIs"></a>Twitter Developers &amp; APIs</h1><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkeapu2012j310z0u0tfs.jpg" alt="image-20201105144800175" style="zoom:50%;" />
-
-<h4 id="1-In-your-words"><a href="#1-In-your-words" class="headerlink" title="1 In your words"></a>1 In your words</h4><p>In English, please describe how you plan to use Twitter data and/or APIs. The more detailed the response, the easier it is to review and approve.</p>
-<h4 id="2-The-specifics"><a href="#2-The-specifics" class="headerlink" title="2 The specifics"></a>2 The specifics</h4><p>Please answer each of the following with as much detail and accuracy as possible. Failure to do so could result in delays to your access to the Twitter developer platform or rejected applications.</p>
-<hr>
-<p>Are you planning to analyze Twitter data?</p>
-<p>Yes</p>
-<p><strong>Please describe how you will analyze Twitter data including any analysis of Tweets or Twitter users.</strong></p>
-<h4 id="3"><a href="#3" class="headerlink" title="3"></a>3</h4><p>Will your app use Tweet, Retweet, like, follow, or Direct Message functionality?</p>
-<p>Yes</p>
-<p><strong>Please describe your planned use of these features.</strong></p>
-<h4 id="4"><a href="#4" class="headerlink" title="4"></a>4</h4><p>Do you plan to display Tweets or aggregate data about Twitter content outside of Twitter?</p>
-<p>No</p>
-<hr>
-<h4 id="5"><a href="#5" class="headerlink" title="5"></a>5</h4><p>Will your product, service or analysis make Twitter content or derived information available to a government entity?</p>
-<p>No</p>
-<p>In general, schools, colleges, and universities <strong>do not</strong> fall under this category.</p>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkebd5r9hxj30om0dyjsj.jpg" alt="image-20201105151024914" style="zoom: 33%;" />
-
-
-
-<h3 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkec3hn4czj30uz0u04a8.jpg" alt="image-20201105153542746" style="zoom:50%;" />
-
-
-
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkec5pulxaj31170u0796.jpg" alt="image-20201105153752201"></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/10/24/BigData_java/2020-10-24%20BigData%20side-projects%20in%20Java/">BigData_java/2020-10-24 BigData side-projects in Java</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-10-24</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BigData-java/">BigData_java</a></span><div class="content"><h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk04dmxpk5j3102032di4.jpg" alt="image-20201024083045739" style="zoom:50%;" /><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk04idtk1hj30zw0480vt.jpg" alt="image-20201024083519950"></p>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk04j5lnuhj30zg0b8k1x.jpg" alt="image-20201024083605168" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk04jvx04vj30zm04wte3.jpg" alt="image-20201024083647240" style="zoom:50%;" />
-
-
-
-<h3 id="Demo-創建一個-Topic"><a href="#Demo-創建一個-Topic" class="headerlink" title="Demo: 創建一個 Topic"></a>Demo: 創建一個 Topic</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a1rd9iij20vm05emyc.jpg" alt="image-20201024085524024" style="zoom: 50%;" />
-
+<li><p>Spark – 需要 </p>
 <ul>
-<li>未發送 key，按默認的 round-robin</li>
-<li>Offset 就是個 id，跟 訊息長短沒關</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk056hkxnkj30vu03gacf.jpg" alt="image-20201024085829960" style="zoom:50%;" />
-
-
-
-<h3 id="Back-door-我可優化的"><a href="#Back-door-我可優化的" class="headerlink" title="Back-door 我可優化的"></a>Back-door 我可優化的</h3><p>Kafka 其中一台掛了怎辦？備份</p>
-<ul>
-<li>兩個放在同個機房(rack) –&gt; latency不會過大</li>
-<li>另一個在不同城市，我要replicate的時候比較慢，但ok</li>
-<li>所以在latency、reliability找了平衡</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk05k9xsnfj30vi0f8wpp.jpg" alt="image-20201024091144456" style="zoom:67%;" />
-
-
-
-<ul>
-<li>TERMs: ack、latency、Throughput</li>
-</ul>
-<h3 id="On-IntelliJ"><a href="#On-IntelliJ" class="headerlink" title="On IntelliJ"></a>On IntelliJ</h3><ul>
-<li>Zookeeper要先在背后起来</li>
-<li>機器之間一定是通過network，network時就只能序列化變一個個地byte，<ul>
-<li>int serializer</li>
-<li>string serializer.  –&gt; 大多數情況都是這傢伙</li>
+<li>寫一個spark application</li>
+<li>要把spark applicateion 上傳去AWS</li>
+<li>要去add step、去執行它<ul>
+<li>再等AWS裡面的Spark job還要去 schedule, 之後還要run，run後生成的結果才能去std.out查到!</li>
 </ul>
 </li>
 </ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk0735ftpqj30xs06c79h.jpg" alt="image-20201024100429381" style="zoom:50%;" />
-
-<ul>
-<li>producer.flush() – 會幫把數據直接沖到kafka queue裡去<ul>
-<li>存在問題! </li>
-<li>只是個blocking call，但不是同步</li>
-<li>就跟你这个info绑定了，要是你没跟我说你成功，我就会有个线程，一是在盯你，我一直浪费</li>
-</ul>
 </li>
-<li>Producer.send(recordNoKey) 一定是 Async的</li>
+<li><p>現在有hive，又可以view了，不如就是用hive直接交互數據</p>
+</li>
 </ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a1unxh2j219e0esjuf.jpg" alt="image-20201024101109235" style="zoom:50%;" />
-
+<h4 id="Case-movie-target-id-1-相關的前-Top3-movie"><a href="#Case-movie-target-id-1-相關的前-Top3-movie" class="headerlink" title="Case: movie target id=1 相關的前 Top3 movie"></a>Case: movie target id=1 相關的前 Top3 movie</h4><ul>
+<li>在 Hive裡 SQL 語句 – query的界面</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gltnmjustxj315s0gyasu.jpg" alt="image-20201220005825999"></p>
 <ul>
-<li>Producer 自己就是個 client之一</li>
-<li>三次握手也不需我們實現不然太蝦</li>
+<li>這個時候未啟動 reducer</li>
 </ul>
 <ul>
-<li>那个是partition id，不是replica 的id</li>
+<li>↓這時候在reducer裡進行了一系列的排序(?!)，是因為有了排序，所以比較慢了點</li>
 </ul>
-<h4 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h4><p>軟體管理工具 – FB、Uber都有用</p>
-<p>項目管理工具</p>
-<h4 id="Producer-Keyhash"><a href="#Producer-Keyhash" class="headerlink" title="Producer Keyhash"></a>Producer Keyhash</h4><ul>
-<li>key如果被detect到是有東西，就會有hash去hash 去決定把這個partition發送到哪個 broker上面去；否則就是 round-robin</li>
-</ul>
-<h4 id="Producer-onCompletion"><a href="#Producer-onCompletion" class="headerlink" title="Producer onCompletion"></a>Producer onCompletion</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a1yw56xj20zs0l840w.jpg" alt="image-20201025230649208" style="zoom: 67%;" />
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gltnn83zk0j316e0h44h3.jpg" alt="image-20201220005905548"></p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a8kox1ij20om0lctcp.jpg" alt="image-20201220005953451" style="zoom:50%;" />
 
 <ul>
-<li>production 不要用! 會變單線程<ul>
-<li>難道因為一個人的login失敗了，我就要stop整個producer嗎？</li>
-<li>我要做的事應該是producer不傻</li>
+<li>偷看一眼用</li>
+<li>這樣工作效率就高很多，就是因為有 Hive! 可以取代了 Spark code in java</li>
+<li>可以簡化了基礎的流程</li>
 </ul>
-</li>
-<li>一般是async時也過陣子來查看</li>
-<li>一般在prod不需要知道發去了哪裡，在roundrobin裡不需要知道<ul>
-<li>如果想知道話，也不是好奇；而是假設consumer的處理性特殊 – groupby key – 要是roundrobin就會分到10台機器，現在的shuffle洗牌才能把它們放到一台機器上去；要是很常，我的處理就意味不高效! 為了高效，我就會不再roundrobin，而是hashbykey!<ul>
-<li>所有的bigdata key 都在一台機器上，就不再要洗牌，雖然是全局的groupby；一旦沒有全局的groupby，我就很快</li>
-<li>即然我指定了我的key，我就可以很有信心知道這條要去哪台機器，因為kafka會去handle</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h4><ul>
-<li>比 producer 的設置裡多了一個 GroupID</li>
-</ul>
-<h3 id="Kafka-再論"><a href="#Kafka-再論" class="headerlink" title="Kafka 再論"></a>Kafka 再論</h3><ul>
-<li><p>Kafka 啟動時會設定這個cluster要幾台機器組成</p>
-</li>
-<li><p>Kafka 是個 Pull 模型，因為</p>
-<ul>
-<li><p>Scalibility : 它是個很好的decouple的作用，把 producer、consumer很好地分開了；各自壞了不會影響到對方。</p>
-<ul>
-<li>如果這個Topic很多下游在訂閱，kafka要是push的話，它會忙死，而且下游搞不好還沒要你這更新</li>
-<li>它忙壞了，根本無法 scale-up</li>
-</ul>
-</li>
-<li><p>Diversity : – LEVERAGE &amp; STALIBILITY</p>
-<ul>
-<li><p>每個consumer都有自己的配置、自己的處理方式和節奏，kafka應該把處理信息的能動性(Leverage) 給 consumer。</p>
-</li>
-<li><p>要是這個組比較窮，或他們的priority低，他們處理數據不來，而且也沒budget；或許可以48hr再生一個結果就好。</p>
-<p>consumer可更穩定 (STALIBILITY)</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>每次我的好友建tweet時，該pull or push？</p>
-</li>
-<li><p>consumer 跟 partition有綁定的關係！只會給一個consumer去讀</p>
-<ul>
-<li>consumer去監聽partition</li>
-<li>平行就一定會有race condition<ol>
-<li>第 0 條該誰去讀？consumer0還是consumer4?</li>
-<li>假設真的通過層層複雜的設計，各自讀一條<ul>
-<li>我讀完時我要是早處理完時？</li>
-<li>我讀0時你讀1，你又不去commit，一方面在race了，一台機器上是idempotency，跨機器時呢？consumer不知道1號partition有沒有被讀成，怎辦？那consumer0跟consumer4還要有一個交流的體系</li>
-<li>交替讀的時候還是會出現問題</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>所以沒必要多台consumer監聽一個partion的必要</li>
-<li>系統裡不是最快就是最好的，當數據小時沒差。要是平行時的overhead大時，開一台就ok啦</li>
-</ul>
-</li>
-<li><p>中轉，一週後刪了；它的作用就不是保持數據的，才能scalible<br>往上強堆機器又要花錢!</p>
-</li>
-<li><p>問題就是: 工程師寫consumer會處理錯</p>
-</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk1yqkmwomj30rq0agwks.jpg" alt="image-20201025224640508" style="zoom: 67%;" />
-
-
-
-<h1 id="AWS"><a href="#AWS" class="headerlink" title="AWS"></a>AWS</h1><h2 id="Charging"><a href="#Charging" class="headerlink" title="Charging"></a>Charging</h2><p>MSK: <a href="https://aws.amazon.com/msk/pricing/" target="_blank" rel="noopener">https://aws.amazon.com/msk/pricing/</a><br> EC2: <a href="https://aws.amazon.com/ec2/pricing/on-demand/" target="_blank" rel="noopener">https://aws.amazon.com/ec2/pricing/on-demand/</a></p>
-<h2 id="AWS-Create-Kafka-Producer"><a href="#AWS-Create-Kafka-Producer" class="headerlink" title="AWS, Create Kafka Producer"></a>AWS, Create Kafka Producer</h2><h3 id="Amazon-MSK"><a href="#Amazon-MSK" class="headerlink" title="Amazon MSK"></a>Amazon MSK</h3><p>service - MSK</p>
-<ul>
-<li>2.2.1 (recommended)</li>
-</ul>
-<h4 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a21llf0j20mw0p6n0d.jpg" alt="image-20201030211156060" style="zoom: 33%;" />
-
-<h4 id="Network"><a href="#Network" class="headerlink" title="Network"></a>Network</h4><ul>
-<li>被建在網路集群中</li>
-<li>VPC – vertual private cloud 虛擬的網路環境<ol>
-<li>一個具有安全性的網路集群，跟外界隔離<ul>
-<li>如果通過amazon別的service或我自己的電腦要去訪問其中的節點是做不到的，因為不屬於 security network的。</li>
-</ul>
-</li>
-<li>cluster裡的所有機器之間可以進行「安全」的相互通信，是有保證的</li>
-</ol>
-</li>
-</ul>
-<ol start="3">
-<li><p>VPC 會有個默認的</p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a23uydbj20bq04l0st.jpg" alt="image-20210303154906134" style="zoom: 50%;" /></li>
-</ol>
-<ul>
-<li><p>Number of Availability Zones</p>
-<ul>
-<li>Seattle, Australia, … </li>
-<li>假設我的機器集群活躍在兩個地方，SF斷電了，Seattle還可以提供服務</li>
-<li>其實<strong>２</strong>就很夠了，AWS不會掛的啦。。人家大公司</li>
-</ul>
-</li>
-<li><p>Zones &amp; Subnet</p>
-<ul>
-<li><p>就直接選吧</p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a25s6ydj20l90iaq40.jpg" alt="image-20210303155659042" style="zoom:50%;" />
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="Brokers"><a href="#Brokers" class="headerlink" title="Brokers"></a>Brokers</h4><ul>
-<li><p>對於 kafka一定是要多台機器來組成多線程的一個機器群體，所以在當前的kafa cluster裡，一定有多台機器。每台都被稱作broker，多台在一起就是brokers。</p>
-</li>
-<li><p>我在cluster裡，這個instance要有多大？如果預測每台都比較累，就是選大的</p>
-</li>
-<li><p>kafka.t3.small，ok了，可做小實驗</p>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7oycisrej30vo09agmw.jpg" alt="image-20201030214136615" style="zoom:50%;" />
-</li>
-<li><p>共四台目前在兩個不同的區域上</p>
-</li>
-</ul>
-<h4 id="Tag"><a href="#Tag" class="headerlink" title="Tag"></a>Tag</h4><p>好區分名而已</p>
-<h4 id="Storage"><a href="#Storage" class="headerlink" title="Storage"></a>Storage</h4><ul>
-<li>1000GB 很很夠了</li>
-</ul>
-<h4 id="Encryption"><a href="#Encryption" class="headerlink" title="Encryption"></a>Encryption</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a291fvrj20ny06edgg.jpg" alt="image-20201030214316835" style="zoom:50%;" />
-
-<ul>
-<li>這次懶得加密也OK啦. 所以選擇了Both</li>
-</ul>
-<h4 id="Encrypt-data-at-rest"><a href="#Encrypt-data-at-rest" class="headerlink" title="Encrypt data at rest"></a>Encrypt data at rest</h4><p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7p0wno8zj313a09k40f.jpg" alt="image-20201030214403963"></p>
-<h4 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h4><p>暫時還不需要</p>
-<h4 id="Monitoring"><a href="#Monitoring" class="headerlink" title="Monitoring"></a>Monitoring</h4><h5 id="CloudWatch"><a href="#CloudWatch" class="headerlink" title="CloudWatch"></a>CloudWatch</h5><ul>
-<li><p>監測系統</p>
-</li>
-<li><p>會把當前在Amazon雲上所run的每一個服務，幫單獨地拽出來，幫分析</p>
-<ul>
-<li><p>traffic</p>
-</li>
-<li><p>throughput</p>
-</li>
-<li><p>input/outputs</p>
-</li>
-<li><p>弄成一張很美美的圖表，知做了什麼事，在哪些時間做了事</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Basic Monitoring</p>
-</li>
-<li><p>Broker 可能有多個 Topic, 各自的Topic有它們自己的partition</p>
-<ul>
-<li>可知道每個Topic都 go through了什麼數據</li>
-</ul>
-</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a2bffr1j20r60aedh6.jpg" alt="image-20201030214910491" style="zoom:50%;" />
-
-
-
-
-
-<h5 id="Broker-log-delivery"><a href="#Broker-log-delivery" class="headerlink" title="Broker log delivery"></a>Broker log delivery</h5><ul>
-<li><p>當我們在run服務時，每個操作都會發個log給我；如發送數據了、發送成功了、consumer去讀了、consumer讀成功了，它話超多的！如果我一天發幾百萬條，一定是存log不能全念給我聽。透過log來分析的，找「10分鐘前發來，我在９分鐘前就該收到，但到了現在都還沒有收到」，這時候，我需要去找log才能分析，需要地方存我的 log</p>
-<ol>
-<li><p>CloudWatch</p>
-<ul>
-<li><p>有自己的 log group</p>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7p99b9w0j31co0oan2e.jpg" alt="image-20201030215205786"></p>
-</li>
-<li><p>好處就是當我的這些log我可以直接搜索，類似grep！</p>
-</li>
-</ul>
-<h5 id="Log-Group"><a href="#Log-Group" class="headerlink" title="Log Group"></a>Log Group</h5><ul>
-<li>足夠強了，一般而言, 我可以去蒐當時的這個log<br><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7pfwi9gsj313o0e8dm5.jpg" alt="image-20201030215829133"></li>
-</ul>
-</li>
-<li><p>S3 -文件系統</p>
-<ul>
-<li>大批量</li>
-<li>好處是S3大，可以dump去離線如本地的大批量處理，去做bulk分析</li>
-</ul>
-</li>
-<li><p>Data Firehouse</p>
-<ul>
-<li>可以對數據轉化，最後再發去 elasticsearch, 讓我作更細化的分析</li>
-<li>太 overkill</li>
-</ul>
-</li>
-</ol>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7pi4vbcvj312k0lo3zz.jpg" alt="image-20201030220038315" style="zoom:33%;" />
-
-</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7pihdpfhj315k0h475n.jpg" alt="image-20201030220058590" style="zoom:33%;" />
-
-<ul>
-<li>data warehouse - 每天數據進來了，如用戶的post進來了，觸發API到FB去。只是個concept都收進到寫到<strong>HDFS</strong>，有些已有結構化了，如手機上的SDK已定義好了schema (這已經比較像 Data Lake了)、<strong>hive</strong> table</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7pk4nilvj31j60lktc7.jpg" alt="image-20201030220232929" style="zoom: 50%;" />
-
-
-
-<h6 id="CloudWatch-Log"><a href="#CloudWatch-Log" class="headerlink" title="CloudWatch Log"></a>CloudWatch Log</h6><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a2dw2vpj20oh0nnacn.jpg" alt="image-20210303165153271" style="zoom:50%;" />
-
-
-
-<h4 id="Create-cluster"><a href="#Create-cluster" class="headerlink" title="Create cluster!"></a>Create cluster!</h4><h2 id="AWS-建EC2-還缺新的機器做P-amp-C-So-create-another-client"><a href="#AWS-建EC2-還缺新的機器做P-amp-C-So-create-another-client" class="headerlink" title="AWS - 建EC2, 還缺新的機器做P &amp; C, So, create another client"></a>AWS - 建EC2, 還缺新的機器做P &amp; C, So, create another client</h2><ul>
-<li>還缺 producer, consumer去做事！需要創建他們！</li>
-</ul>
-<h3 id="EC2-Service"><a href="#EC2-Service" class="headerlink" title="EC2 Service"></a>EC2 Service</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a2gmm8oj210n0u0793.jpg" alt="image-20201030220808970" style="zoom:50%;" />    
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a2jdvjnj20zc0ct76r.jpg" alt="image-20210303172849633" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a2lrp50j21g40tktdp.jpg" alt="image-20201030221432582" style="zoom: 67%;" />
-
-
-
-
-
-<h4 id="Access-遠程的EC2機器"><a href="#Access-遠程的EC2機器" class="headerlink" title="Access 遠程的EC2機器"></a>Access 遠程的EC2機器</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1go6ukkgr91j20wf0u04qp.jpg" alt="image-20201030222232631" style="zoom:50%;" />
-
-<ul>
-<li>通信，得要去找kafka的代理產生的，kafka的client就是這個代理<ul>
-<li>要下載 kafka client代理的包</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[ec2-user@ip-172-31-16-188 ~]$ curl https://downloads.apache.org/kafka/2.3.1/kafka_2.12-2.3.1.tgz -o kafka.tgz</span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100 59.4M  100 59.4M    0     0  11.0M      0  0:00:05  0:00:05 --:--:-- 12.6M</span><br><span class="line">[ec2-user@ip-172-31-16-188 ~]$ targ -xvzf kafka.tgz</span><br><span class="line">-bash: targ: <span class="built_in">command</span> not found</span><br><span class="line">[ec2-user@ip-172-31-16-188 ~]$ tar -xvzf kafka.tgz</span><br></pre></td></tr></table></figure>
-
-<h5 id="bin-sh-都是好練習"><a href="#bin-sh-都是好練習" class="headerlink" title="bin/*.sh, 都是好練習"></a>bin/*.sh, 都是好練習</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[ec2-user@ip-172-31-16-188 bin]$ <span class="built_in">pwd</span></span><br><span class="line">/home/ec2-user/kafka_2.12-2.3.1/bin</span><br><span class="line">[ec2-user@ip-172-31-16-188 bin]$ ls</span><br><span class="line">connect-distributed.sh               kafka-reassign-partitions.sh</span><br><span class="line">connect-standalone.sh                kafka-replica-verification.sh</span><br><span class="line">kafka-acls.sh                        kafka-run-class.sh</span><br><span class="line">kafka-broker-api-versions.sh         kafka-server-start.sh</span><br><span class="line">kafka-configs.sh                     kafka-server-stop.sh</span><br><span class="line">kafka-console-consumer.sh            kafka-streams-application-reset.sh</span><br><span class="line">kafka-console-producer.sh            kafka-topics.sh</span><br><span class="line">kafka-consumer-groups.sh             kafka-verifiable-consumer.sh</span><br><span class="line">kafka-consumer-perf-test.sh          kafka-verifiable-producer.sh</span><br><span class="line">kafka-delegation-tokens.sh           trogdor.sh</span><br><span class="line">kafka-delete-records.sh              windows</span><br><span class="line">kafka-dump-log.sh                    zookeeper-security-migration.sh</span><br><span class="line">kafka-log-dirs.sh                    zookeeper-server-start.sh</span><br><span class="line">kafka-mirror-maker.sh                zookeeper-server-stop.sh</span><br><span class="line">kafka-preferred-replica-election.sh  zookeeper-shell.sh</span><br><span class="line">kafka-producer-perf-test.sh</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>要記得下載dependency</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ec2-user@ip-172-31-16-188 bin]$ sudo yum install java</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="MSK-Go"><a href="#MSK-Go" class="headerlink" title="MSK, Go!"></a>MSK, Go!</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a2rmlolj21fg0tgtd4.jpg" alt="image-20201030223315509" style="zoom:50%;" />
-
-<h4 id="EC2-connects-to-MSK"><a href="#EC2-connects-to-MSK" class="headerlink" title="EC2 connects to MSK"></a>EC2 connects to MSK</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a2v6y0mj20u00u278k.jpg" alt="image-20201030223418415" style="zoom:50%;" />
-
-<ul>
-<li><p>當前這麼多kafka機器的地址、端口分別是多少，有四個ip address</p>
-</li>
-<li><p>我任選一個</p>
-</li>
-<li><p>先簡單跟Kafka cluster talk一下，問他當前機器有幾個topic呢？</p>
-<h6 id="TIMEOUT-ISSUE"><a href="#TIMEOUT-ISSUE" class="headerlink" title="TIMEOUT ISSUE"></a>TIMEOUT ISSUE</h6><ul>
-<li><p>為何超超超慢，卡了？</p>
-<ul>
-<li><p>不是Kafka cluster有問題，也不是client 機器有問題</p>
-</li>
-<li><p>問題在哪？</p>
-<ul>
-<li>vpc 內可以自由通信，但地外的沒資格進行對話！– 在創建 MSK時的事！MSK裡的VPC可以幫完成當前的集群四台機器無阻的要求。</li>
-<li>後來的EC2，是地外的機器，是沒資格作交流的！so, timeout</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[ec2-user@ip-172-31-16-188 bin]$ ./kafka-topics.sh --bootstrap-server b-3.testkafka.dt6pwu.c2.kafka.us-east-2.amazonaws.com:9092 --list</span><br><span class="line">Error <span class="keyword">while</span> executing topic <span class="built_in">command</span> : org.apache.kafka.common.errors.TimeoutException: Timed out waiting <span class="keyword">for</span> a node assignment.</span><br><span class="line">[2020-10-30 14:42:15,234] ERROR java.util.concurrent.ExecutionException: org.apache.kafka.common.errors.TimeoutException: Timed out waiting <span class="keyword">for</span> a node assignment.</span><br><span class="line">	at org.apache.kafka.common.internals.KafkaFutureImpl.wrapAndThrow(KafkaFutureImpl.java:45)</span><br><span class="line">	at org.apache.kafka.common.internals.KafkaFutureImpl.access<span class="variable">$000</span>(KafkaFutureImpl.java:32)</span><br><span class="line">	at org.apache.kafka.common.internals.KafkaFutureImpl<span class="variable">$SingleWaiter</span>.await(KafkaFutureImpl.java:89)</span><br><span class="line">	at org.apache.kafka.common.internals.KafkaFutureImpl.get(KafkaFutureImpl.java:260)</span><br><span class="line">	at kafka.admin.TopicCommand<span class="variable">$AdminClientTopicService</span>.getTopics(TopicCommand.scala:272)</span><br><span class="line">	at kafka.admin.TopicCommand<span class="variable">$AdminClientTopicService</span>.listTopics(TopicCommand.scala:197)</span><br><span class="line">	at kafka.admin.TopicCommand$.main(TopicCommand.scala:64)</span><br><span class="line">	at kafka.admin.TopicCommand.main(TopicCommand.scala)</span><br><span class="line">Caused by: org.apache.kafka.common.errors.TimeoutException: Timed out waiting <span class="keyword">for</span> a node assignment.</span><br><span class="line"> (kafka.admin.TopicCommand$)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>也要允許 EC2 過來！加額外的 permission</p>
-</li>
-</ul>
-</li>
-<li><p>改變 kafka 的 default Security Group 所允許的網路的traffic!<br><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7qu5kgboj31la0gsjuy.jpg" alt="image-20201030224646396"></p>
-<ul>
-<li><strong>加到 inbound, 這樣EC2的request 才能夠進去到 MSK</strong></li>
-<li>outbound: 我想出去</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7qyreomij317g0u0jw3.jpg" alt="image-20201030225110743" style="zoom:67%;" />
-
-
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>重 run 剛剛的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[ec2-user@ip-172-31-16-188 bin]$ ./kafka-topics.sh --bootstrap-server b-3.testkafka.dt6pwu.c2.kafka.us-east-2.amazonaws.com:9092 --list</span><br><span class="line"></span><br><span class="line">[ec2-user@ip-172-31-16-188 bin]$</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>連結上了！！！</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>創建 Topic!</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[ec2-user@ip-172-31-16-188 bin]$ ./kafka-topics.sh --bootstrap-server b-3.testkafka.dt6pwu.c2.kafka.us-east-2.amazonaws.com:9092 --create --topic <span class="built_in">test</span>-kafka --partition 4 --replication-factor 2</span><br><span class="line">Exception <span class="keyword">in</span> thread <span class="string">"main"</span> joptsimple.UnrecognizedOptionException: partition is not a recognized option</span><br><span class="line">	at joptsimple.OptionException.unrecognizedOption(OptionException.java:108)</span><br><span class="line">	at joptsimple.OptionParser.handleLongOptionToken(OptionParser.java:510)</span><br><span class="line">	at joptsimple.OptionParserState<span class="variable">$2</span>.handleArgument(OptionParserState.java:56)</span><br><span class="line">	at joptsimple.OptionParser.parse(OptionParser.java:396)</span><br><span class="line">	at kafka.admin.TopicCommand<span class="variable">$TopicCommandOptions</span>.&lt;init&gt;(TopicCommand.scala:578)</span><br><span class="line">	at kafka.admin.TopicCommand$.main(TopicCommand.scala:49)</span><br><span class="line">	at kafka.admin.TopicCommand.main(TopicCommand.scala)</span><br><span class="line">[ec2-user@ip-172-31-16-188 bin]$ ./kafka-topics.sh --bootstrap-server b-3.testkafka.dt6pwu.c2.kafka.us-east-2.amazonaws.com:9092 --create --topic <span class="built_in">test</span>-kafka --partitions 4 --replication-factor 2</span><br><span class="line">[ec2-user@ip-172-31-16-188 bin]$ ./kafka-topics.sh --bootstrap-server b-3.testkafka.dt6pwu.c2.kafka.us-east-2.amazonaws.com:9092 --list</span><br><span class="line"><span class="built_in">test</span>-kafka</span><br><span class="line">[ec2-user@ip-172-31-16-188 bin]$</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-----</span><br><span class="line">[ec2-user@ip-172-31-37-109 bin]$ ./kafka-topics.sh --bootstrap-server b-1.bigdata-msk-0305.e95lct.c3.kafka.us-east-2.amazonaws.com:9092 --list</span><br><span class="line">__amazon_msk_canary</span><br><span class="line">__consumer_offsets</span><br><span class="line">[ec2-user@ip-172-31-37-109 bin]$ ./kafka-topics.sh --bootstrap-server b-1.bigdata-msk-0305.e95lct.c3.kafka.us-east-2.amazonaws.com:9092 --create --topic <span class="built_in">test</span>-kafka-0305 --partitions 4 --replication-factor 2</span><br><span class="line">[ec2-user@ip-172-31-37-109 bin]$ ./kafka-topics.sh --bootstrap-server b-1.bigdata-msk-0305.e95lct.c3.kafka.us-east-2.amazonaws.com:9092 --list</span><br><span class="line">__amazon_msk_canary</span><br><span class="line">__consumer_offsets</span><br><span class="line"><span class="built_in">test</span>-kafka-0305</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-</li>
-</ul>
-<h2 id="Producer-Send-msg-amp-Consumer-Read-msg"><a href="#Producer-Send-msg-amp-Consumer-Read-msg" class="headerlink" title="Producer Send msg &amp; Consumer Read msg"></a>Producer Send msg &amp; Consumer Read msg</h2><p>如何來模擬 producer &amp; consumer</p>
-<ul>
-<li>先基於腳本作操作就 OK</li>
-<li>–producer-props 指的是 producer的 properties 最重要的就是我得告诉他我要發送data的cluster它的IP或地址，它得知道bootstrap.servers地址、選ack機制</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">[ec2-user@ip-172-31-16-188 bin]$ ./kafka-producer-perf-test.sh --topic <span class="built_in">test</span>-kafka --num-records 10 --throughput 10 --producer-props bootstrap.servers=b-3.testkafka.dt6pwu.c2.kafka.us-east-2.amazonaws.com:9092 acks=all --record-size 128</span><br><span class="line">10 records sent, 10.741139 records/sec (0.00 MB/sec), 163.70 ms avg latency, 483.00 ms max latency, 181 ms 50th, 483 ms 95th, 483 ms 99th, 483 ms 99.9th.</span><br><span class="line">[ec2-user@ip-172-31-16-188 bin]$ ./kafka-consumer-perf-test.sh --broker-list b-3.testkafka.dt6pwu.c2.kafka.us-east-2.amazonaws.com:9092 --messages 10 --<span class="built_in">print</span>-metrics --show-detailed-stats --topic <span class="built_in">test</span>-kafka</span><br><span class="line">time, threadId, data.consumed.in.MB, MB.sec, data.consumed.in.nMsg, nMsg.sec, rebalance.time.ms, fetch.time.ms, fetch.MB.sec, fetch.nMsg.sec</span><br><span class="line"></span><br><span class="line">Metric Name                                                                                             Value</span><br><span class="line">consumer-coordinator-metrics:assigned-partitions:&#123;client-id=consumer-1&#125;                               : 4.000</span><br><span class="line">consumer-coordinator-metrics:commit-latency-avg:&#123;client-id=consumer-1&#125;                                : 31.000</span><br><span class="line">consumer-coordinator-metrics:commit-latency-max:&#123;client-id=consumer-1&#125;                                : 31.000</span><br><span class="line">consumer-coordinator-metrics:commit-rate:&#123;client-id=consumer-1&#125;                                       : 0.033</span><br><span class="line">consumer-coordinator-metrics:commit-total:&#123;client-id=consumer-1&#125;                                      : 1.000</span><br><span class="line">consumer-coordinator-metrics:heartbeat-rate:&#123;client-id=consumer-1&#125;                                    : 0.000</span><br><span class="line">consumer-coordinator-metrics:heartbeat-response-time-max:&#123;client-id=consumer-1&#125;                       : NaN</span><br><span class="line">consumer-coordinator-metrics:heartbeat-total:&#123;client-id=consumer-1&#125;                                   : 0.000</span><br><span class="line">consumer-coordinator-metrics:join-rate:&#123;client-id=consumer-1&#125;                                         : 0.033</span><br><span class="line">consumer-coordinator-metrics:join-time-avg:&#123;client-id=consumer-1&#125;                                     : 3034.000</span><br><span class="line">consumer-coordinator-metrics:join-time-max:&#123;client-id=consumer-1&#125;                                     : 3034.000</span><br><span class="line">consumer-coordinator-metrics:join-total:&#123;client-id=consumer-1&#125;                                        : 1.000</span><br><span class="line">consumer-coordinator-metrics:last-heartbeat-seconds-ago:&#123;client-id=consumer-1&#125;                        : 1604070397.000</span><br><span class="line">consumer-coordinator-metrics:sync-rate:&#123;client-id=consumer-1&#125;                                         : 0.033</span><br><span class="line">consumer-coordinator-metrics:sync-time-avg:&#123;client-id=consumer-1&#125;                                     : 57.000</span><br><span class="line">consumer-coordinator-metrics:sync-time-max:&#123;client-id=consumer-1&#125;                                     : 57.000</span><br><span class="line">consumer-coordinator-metrics:sync-total:&#123;client-id=consumer-1&#125;                                        : 1.000</span><br><span class="line">consumer-fetch-manager-metrics:bytes-consumed-rate:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka&#125;           : 45.415</span><br><span class="line">consumer-fetch-manager-metrics:bytes-consumed-rate:&#123;client-id=consumer-1&#125;                             : 45.412</span><br><span class="line">consumer-fetch-manager-metrics:bytes-consumed-total:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka&#125;          : 1371.000</span><br><span class="line">consumer-fetch-manager-metrics:bytes-consumed-total:&#123;client-id=consumer-1&#125;                            : 1371.000</span><br><span class="line">consumer-fetch-manager-metrics:fetch-latency-avg:&#123;client-id=consumer-1&#125;                               : 21.750</span><br><span class="line">consumer-fetch-manager-metrics:fetch-latency-max:&#123;client-id=consumer-1&#125;                               : 32.000</span><br><span class="line">consumer-fetch-manager-metrics:fetch-rate:&#123;client-id=consumer-1&#125;                                      : 0.132</span><br><span class="line">consumer-fetch-manager-metrics:fetch-size-avg:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka&#125;                : 342.750</span><br><span class="line">consumer-fetch-manager-metrics:fetch-size-avg:&#123;client-id=consumer-1&#125;                                  : 342.750</span><br><span class="line">consumer-fetch-manager-metrics:fetch-size-max:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka&#125;                : 412.000</span><br><span class="line">consumer-fetch-manager-metrics:fetch-size-max:&#123;client-id=consumer-1&#125;                                  : 412.000</span><br><span class="line">consumer-fetch-manager-metrics:fetch-throttle-time-avg:&#123;client-id=consumer-1&#125;                         : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:fetch-throttle-time-max:&#123;client-id=consumer-1&#125;                         : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:fetch-total:&#123;client-id=consumer-1&#125;                                     : 4.000</span><br><span class="line">consumer-fetch-manager-metrics:records-consumed-rate:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka&#125;         : 0.331</span><br><span class="line">consumer-fetch-manager-metrics:records-consumed-rate:&#123;client-id=consumer-1&#125;                           : 0.331</span><br><span class="line">consumer-fetch-manager-metrics:records-consumed-total:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka&#125;        : 10.000</span><br><span class="line">consumer-fetch-manager-metrics:records-consumed-total:&#123;client-id=consumer-1&#125;                          : 10.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag-avg:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=0&#125;  : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag-avg:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=1&#125;  : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag-avg:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=2&#125;  : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag-avg:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=3&#125;  : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag-max:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=0&#125;  : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag-max:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=1&#125;  : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag-max:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=2&#125;  : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag-max:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=3&#125;  : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag-max:&#123;client-id=consumer-1&#125;                                 : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=0&#125;      : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=1&#125;      : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=2&#125;      : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lag:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=3&#125;      : 0.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead-avg:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=0&#125; : 2.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead-avg:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=1&#125; : 3.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead-avg:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=2&#125; : 3.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead-avg:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=3&#125; : 2.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead-min:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=0&#125; : 2.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead-min:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=1&#125; : 3.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead-min:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=2&#125; : 3.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead-min:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=3&#125; : 2.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead-min:&#123;client-id=consumer-1&#125;                                : 2.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=0&#125;     : 2.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=1&#125;     : 3.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=2&#125;     : 3.000</span><br><span class="line">consumer-fetch-manager-metrics:records-lead:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka, partition=3&#125;     : 2.000</span><br><span class="line">consumer-fetch-manager-metrics:records-per-request-avg:&#123;client-id=consumer-1, topic=<span class="built_in">test</span>-kafka&#125;       : 2.500</span><br><span class="line">consumer-fetch-manager-metrics:records-per-request-avg:&#123;client-id=consumer-1&#125;                         : 2.500</span><br><span class="line">kafka-metrics-count:count:&#123;client-id=consumer-1&#125;                                                      : 64.000</span><br><span class="line">[ec2-user@ip-172-31-16-188 bin]$</span><br></pre></td></tr></table></figure>
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a2zlnw2j20z10u0wn6.jpg" alt="image-20201030231046314" style="zoom: 50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a335dbsj21830u0k3a.jpg" alt="image-20201030231059776" style="zoom:67%;" />
-
-
-
-<h2 id="Check-Metrics-amp-Close-machines"><a href="#Check-Metrics-amp-Close-machines" class="headerlink" title="Check Metrics &amp; Close machines"></a>Check Metrics &amp; Close machines</h2><h4 id="CloudWatch-1"><a href="#CloudWatch-1" class="headerlink" title="CloudWatch"></a>CloudWatch</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a36ygn5j213f0u00ye.jpg" alt="image-20201030231615009" style="zoom:67%;" />
-
-
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7rrtvyaoj31c60boq5s.jpg" alt="image-20201030231908873" style="zoom:67%;" />
-
-
-
-<h5 id="Mine"><a href="#Mine" class="headerlink" title="Mine:"></a>Mine:</h5><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glt8qicv2cj314l0u0qd2.jpg" alt="image-20201219162312374" style="zoom:50%;" />
-
-
-
-<h6 id="kafka-–-can-only-be-deleted-and-then-reconfigured-next-time"><a href="#kafka-–-can-only-be-deleted-and-then-reconfigured-next-time" class="headerlink" title="kafka – can only be deleted, and then reconfigured next time"></a>kafka – can only be deleted, and then reconfigured next time</h6><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glt8yk8kuyj31f40fkdlf.jpg" alt="image-20201219163057742" style="zoom:50%;" />
-
-
-
-<h2 id="Qs"><a href="#Qs" class="headerlink" title="Qs"></a>Qs</h2></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/10/23/BigData_java/2020-10-23%20Kafka%20Infrastructure%20&amp;%20Details/">BigData_java/2020-10-23 Kafka Infrastructure &amp; Details</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-10-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BigData-java/">BigData_java</a></span><div class="content"><h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><h3 id="My-Installation"><a href="#My-Installation" class="headerlink" title="My Installation"></a>My Installation</h3><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">10882* brew cask install java</span><br><span class="line">10885* /bin/bash -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)</span>"</span>\n</span><br><span class="line">10886* <span class="built_in">echo</span> <span class="string">'PATH="/usr/local/bin:$PATH"'</span> &gt;&gt; ~/.bash_profile</span><br><span class="line">10896* brew cask install homebrew/cask-versions/adoptopenjdk8</span><br><span class="line">10897* brew install kafka</span><br><span class="line">10904* java -version</span><br><span class="line">10905* vim /usr/<span class="built_in">local</span>/etc/kafka/server.properties		↓ </span><br><span class="line">															uncomment <span class="string">"listeners=PLAINTEXT://:9092"</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Servers-of-Zookeeper-amp-Kafka"><a href="#Servers-of-Zookeeper-amp-Kafka" class="headerlink" title="Servers of Zookeeper &amp; Kafka"></a>Servers of Zookeeper &amp; Kafka</h3><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">10906* zookeeper-server-start /usr/<span class="built_in">local</span>/etc/kafka/zookeeper.properties</span><br><span class="line">10907* kafka-server-start /usr/<span class="built_in">local</span>/etc/kafka/server.properties</span><br></pre></td></tr></table></figure>
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gjzkxdfcs3j31xk0ng7dc.jpg" alt="image-20201023211741754" style="zoom:67%;" />
-
-
-
-<h3 id="Topics"><a href="#Topics" class="headerlink" title="Topics"></a>Topics</h3><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">10909* kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic <span class="built_in">test</span></span><br><span class="line">	&gt;&gt; Created topic <span class="built_in">test</span>.</span><br><span class="line">	</span><br><span class="line">10911* kafka-topics --list --bootstrap-server localhost:9092</span><br><span class="line">	&gt;&gt; <span class="built_in">test</span></span><br><span class="line">	</span><br><span class="line">10913* kafka-topics --describe --topic <span class="built_in">test</span> --bootstrap-server localhost:9092</span><br><span class="line">	&gt;&gt; Topic: <span class="built_in">test</span>	PartitionCount: 1	ReplicationFactor: 1	Configs: segment.bytes=1073741824</span><br><span class="line">					Topic: <span class="built_in">test</span>	Partition: 0	Leader: 0	Replicas: 0	Isr: 0</span><br><span class="line"></span><br><span class="line">10914* kafka-run-class kafka.tools.GetOffsetShell --broker-list localhost:9092 --topic <span class="built_in">test</span></span><br><span class="line">	&gt;&gt; <span class="built_in">test</span>:0:0</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Producer-amp-Consumer"><a href="#Producer-amp-Consumer" class="headerlink" title="Producer &amp; Consumer"></a>Producer &amp; Consumer</h3><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10915* kafka-console-producer --broker-list localhost:9092 --topic <span class="built_in">test</span></span><br><span class="line">10916* kafka-console-consumer --bootstrap-server localhost:9092 --topic <span class="built_in">test</span></span><br><span class="line">10918* kafka-console-consumer --bootstrap-server localhost:9092 --topic <span class="built_in">test</span> --from-beginning</span><br></pre></td></tr></table></figure>
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a1fowkwj220m0n2n1g.jpg" alt="image-20201023212415260" style="zoom:67%;" />
-
-
-
-
-
-<h2 id="Maven-Proj"><a href="#Maven-Proj" class="headerlink" title="Maven Proj"></a>Maven Proj</h2><ul>
-<li>⌘ + N – Generate</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38a1i4boaj21870u0dlv.jpg" alt="image-20201024003840912" style="zoom:50%;" />
-
-
-
-
-
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3></div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/12/19/BigData_java/2020-12-20-Structued%20Streaminng/">BigData_java/2020-12-20-Structued Streaminng</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-12-19</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BigData-java/">BigData_java</a></span><div class="content"><h1 id="Structured-Streaming"><a href="#Structured-Streaming" class="headerlink" title="Structured Streaming"></a>Structured Streaming</h1></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2020/12/06/System-Design/2020-12-06-Our-IG-Service/">System-Design/2020-12-06-Our-IG-Service</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-12-06</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/SystemDesign/">SystemDesign</a></span><div class="content"><p>###</p>
+<p><img src="https://p.ipic.vip/4i2nfa.png" alt="image-20230601111522503"></p>
+<p>Together with : Grace, Guoguo, Wu, Congcong, Sisi</p>
+</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/82/">82</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2024 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')

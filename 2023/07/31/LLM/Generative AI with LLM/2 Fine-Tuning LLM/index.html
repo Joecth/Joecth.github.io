@@ -1,0 +1,482 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="LLM/Generative AI with LLM/2 Fine-Tuning LLM"><meta name="keywords" content=""><meta name="author" content="Joe Huang"><meta name="copyright" content="Joe Huang"><title>LLM/Generative AI with LLM/2 Fine-Tuning LLM | Awaken Desparado</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://www.google-analytics.com"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-180692466-1', 'auto');
+ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Fine-Tuning-LLM-with-Instructions"><span class="toc-number">1.</span> <span class="toc-text">Fine-Tuning LLM with Instructions</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-number">1.1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Instruction-Fine-Tuning"><span class="toc-number">1.2.</span> <span class="toc-text">Instruction Fine-Tuning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prompt-Eng-ICL，-In-context-Learning"><span class="toc-number">1.3.</span> <span class="toc-text">Prompt Eng, ICL，(In-context Learning)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fine-Tuning"><span class="toc-number">1.4.</span> <span class="toc-text">Fine-Tuning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-sample-prompt-instruction-termplates"><span class="toc-number">1.4.1.</span> <span class="toc-text">AWS sample prompt instruction termplates</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#On-a-Single-Task-Multi-Tasks"><span class="toc-number">1.5.</span> <span class="toc-text">On a Single Task &#x2F; Multi-Tasks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Multi-Tasks"><span class="toc-number">1.5.1.</span> <span class="toc-text">Multi-Tasks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#"><span class="toc-number">1.5.2.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Datasets"><span class="toc-number">1.5.3.</span> <span class="toc-text">Datasets</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Model-Evaluation"><span class="toc-number">1.6.</span> <span class="toc-text">Model Evaluation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ROUGE-Recall-Oriented-Understudy-for-Gisting-Evaluation）"><span class="toc-number">1.6.1.</span> <span class="toc-text">ROUGE, (Recall-Oriented Understudy for Gisting Evaluation）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BLEU-Bilingual-Evaluation-Understudy"><span class="toc-number">1.6.2.</span> <span class="toc-text">BLEU, (Bilingual Evaluation Understudy)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Benchmarks"><span class="toc-number">1.7.</span> <span class="toc-text">Benchmarks</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PEFT-Parameter-efficient-fine-tuning"><span class="toc-number">2.</span> <span class="toc-text">PEFT, (Parameter efficient fine-tuning)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PEFT-tech1-LoRA-Low-Rank-Adaption-of-LLMs"><span class="toc-number">2.1.</span> <span class="toc-text">PEFT tech1: LoRA (Low Rank Adaption of LLMs)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PEFT-tech2-Soft-Prompt-also-called-Prompt-Tuning"><span class="toc-number">2.2.</span> <span class="toc-text">PEFT tech2: Soft Prompt, also called Prompt Tuning</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Refs"><span class="toc-number">3.</span> <span class="toc-text">Refs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Multi-task-instruction-fine-tuning"><span class="toc-number">3.1.</span> <span class="toc-text">Multi-task, instruction fine-tuning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Model-Evaluation-Metrics"><span class="toc-number">3.2.</span> <span class="toc-text">Model Evaluation Metrics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Parameter-efficient-fine-tuning-PEFT"><span class="toc-number">3.3.</span> <span class="toc-text">Parameter- efficient fine tuning (PEFT)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LoRA"><span class="toc-number">3.4.</span> <span class="toc-text">LoRA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prompt-tuning-with-soft-prompts"><span class="toc-number">3.5.</span> <span class="toc-text">Prompt tuning with soft prompts</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">406</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">73</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">LLM/Generative AI with LLM/2 Fine-Tuning LLM</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2023-07-31</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/LLM/">LLM</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="Fine-Tuning-LLM-with-Instructions"><a href="#Fine-Tuning-LLM-with-Instructions" class="headerlink" title="Fine-Tuning LLM with Instructions"></a>Fine-Tuning LLM with Instructions</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>通過一種名為「指令微調」的過程來調整基礎語言模型，例如FLAN-T5。在此過程中，使用了特定的提示模板和數據集來進行訓練，並利用了如 ROUGE 和 HELM 等評估指標來衡量微調的成功程度。指令微調證明在廣泛的自然語言任務中非常有效，只需幾百個範例，就能根據特定任務進行精細調整。</p>
+<p>您還學習了兩種參數高效微調（PEFT）方法——LoRA和提示調整，這些方法可以減少微調模型所需的計算量。在實踐中，將LoRA與量化技術結合（稱為QLoRA）可進一步減少內存使用。PEFT策略大量用於最小化計算和內存資源，進而降低微調成本，讓您可以充分利用計算預算，並加快開發流程。</p>
+<ol>
+<li>指令 fine-tuning 是讓模型能夠更有效地回應我們的提示或問題。這種方法從大量的互聯網文本學習，並在更小的數據集上進行微調，以學習跟隨指令。然而，需要注意的是慘慘遺忘 (catastrophic forgetting)，即模型可能忘記之前學到的大部分內容。進行指令 fine-tuning 時，需要涵蓋多種不同的指令類型，以防止模型忘記之前學到的內容。</li>
+<li>參數效率 fine-tuning (PEFT) 允許開發者將模型特化為特定的應用，而無需對模型的每一個參數進行微調。這種方法可以保持原始模型的權重不變，或者在模型之上添加適應性層，這樣就可以減少記憶體使用，而且仍然可以獲得與全模型 fine-tuning 相似的效果。其中，一種受到廣泛使用的技術是 LoRA，它可以使用低秩矩陣來獲得相當好的性能結果，同時也減少了計算和記憶體需求。</li>
+</ol>
+<p>兩種方法都有其優點和使用場景，但是在實際操作中，許多開發者會選擇先從 prompting 開始，如果性能達到滿意的水平，就直接使用；如果效果不佳，則使用 PEFT 或 LoRA 等 fine-tuning 技術來提高性能。但需要注意，使用巨大模型的成本是一個值得討論的問題，有時候为特定应用 fine-tuning 一个较小的模型会更有利。</p>
+<h2 id="Instruction-Fine-Tuning"><a href="#Instruction-Fine-Tuning" class="headerlink" title="Instruction Fine-Tuning"></a>Instruction Fine-Tuning</h2><img src="/Users/joe/Library/Application Support/typora-user-images/image-20230802153201434.png" alt="image-20230802153201434" style="zoom:33%;" />
+
+
+
+<h2 id="Prompt-Eng-ICL，-In-context-Learning"><a href="#Prompt-Eng-ICL，-In-context-Learning" class="headerlink" title="Prompt Eng, ICL，(In-context Learning)"></a>Prompt Eng, ICL，(In-context Learning)</h2><table>
+<thead>
+<tr>
+<th>類型</th>
+<th>描述</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>零次學習（Zero-shot inference）</td>
+<td>模型能識別提示中的指令並正確執行</td>
+<td>對於某些模型（通常是較大的模型）來說，能直接完成指令</td>
+<td>對於較小的模型，可能無法正確完成任務</td>
+</tr>
+<tr>
+<td>單次學習或少次學習（One-shot or Few-shot inference）</td>
+<td>包含一個或多個想要模型完成的示例</td>
+<td>可以幫助模型識別任務並生成良好的完成情況</td>
+<td>1. 對於較小的模型，即使包含五到六個示例，也不一定能正確完成任務 2. 您在提示中包含的任何示例都會占用上下文窗口中的寶貴空間，減少了您可以包含其他有用信息的空間</td>
+</tr>
+</tbody></table>
+<p>However, this strategy has a couple of drawbacks. </p>
+<ol>
+<li>First, for smaller models, it doesn’t always work, even when five or six examples are included. </li>
+<li>Second, any examples you include in your prompt take up valuable space in the context window, reducing the amount of room you have to include other useful information.</li>
+</ol>
+<p>所以可以用Fine-Tuning想辦法解決</p>
+<h2 id="Fine-Tuning"><a href="#Fine-Tuning" class="headerlink" title="Fine-Tuning"></a>Fine-Tuning</h2><ul>
+<li>To improve the performance and adaptability of a pre-trained language model for specific tasks.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>學習方式</th>
+<th>描述</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Prompt-engineering</td>
+<td>透過在提示中包含一個或多個示例，來幫助模型識別任務並產生良好的完成內容（也稱為一擊或少數擊推理）</td>
+<td>可以在不需要進行微調的情況下改善模型的任務性能</td>
+<td>1. 對於較小的模型，即使包含五或六個示例，也不一定總是有效 2. 您在提示中包含的任何示例都會占用寶貴的上下文窗口空間，減少了您包含其他有用信息的空間</td>
+</tr>
+<tr>
+<td>Pre-training</td>
+<td>使用大量非結構化的文本數據進行自監督學習來訓練LLM</td>
+<td>可以讓模型獲得廣泛的語言知識，理解各種語境</td>
+<td>1. 需要大量的數據 2. 對於特定任務，模型的性能可能不佳</td>
+</tr>
+<tr>
+<td><strong>Fine-tuning</strong> (<strong>Instruction Fine-tuning</strong>)</td>
+<td>透過監督學習的方式，使用標記過的數據集（提示和完成對）來更新LLM的權重; 利用指令來訓練模型，讓模型學習如何對特定指令進行回應</td>
+<td>可以改善模型在特定任務上的表現</td>
+<td>需要有標記過的數據集，且這些數據集必須和目標任務相關; 同樣需要有含有特定指令的標記過的數據集</td>
+</tr>
+</tbody></table>
+<p>在「Fine-Tuning」過程中，模型會使用包含特定指令的示例進行訓練。如：若欲改善模型的摘要能力，便需要構建包含 “Summarize the following text” 或類似語句的資料集。</p>
+<h3 id="AWS-sample-prompt-instruction-termplates"><a href="#AWS-sample-prompt-instruction-termplates" class="headerlink" title="AWS sample prompt instruction termplates"></a>AWS sample prompt instruction termplates</h3><img src="https://p.ipic.vip/x3o1gs.png" alt="image-20230802154918259" style="zoom: 25%;" />
+
+
+
+<img src="https://p.ipic.vip/0sj0it.png" alt="image-20230802155435048" style="zoom:25%;" />
+
+
+
+<p>當我們使用LLM，它的輸出是跨令牌的概率分佈。 因此，我可以<u>比較completion的分佈和訓練標籤的分佈</u>，並使<u>用標準交叉熵函數</u><br><u>來計算兩個令牌分佈之間的損失。 然後，我會使用這個計算出的損失來在標準反向傳播過程中更新模型的權重。 我將對許多批次的提示完成對進行這樣的操作，並在幾個時期內更新權重，以提高模型在任務上的性能。</u> 就<u>像標準的監督學習一樣</u>，我可以定義單獨的評估步驟，使用保留的驗證數據集來衡量我們的LLM的性能。 這將為我提供驗證準確性，並且在完成微調後，我可以使用保留的測試數據集進行最終的性能評估。 這將為我提供測試準確性。 微調過程將產生一個新版本的基本模型，通常被稱為指令模型，它更適合我們感興趣的任務。使用指令提示進行微調是當今微調LLM的最常見方法。指的都是「Instruction Fine-Tuning」</p>
+<h2 id="On-a-Single-Task-Multi-Tasks"><a href="#On-a-Single-Task-Multi-Tasks" class="headerlink" title="On a Single Task / Multi-Tasks"></a>On a Single Task / Multi-Tasks</h2><table>
+<thead>
+<tr>
+<th>微調方式</th>
+<th>描述</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>單任務微調</td>
+<td>預訓練模型被微調以改善在特定任務上的性能。例如，使用一個特定任務的範例數據集來進行微調。</td>
+<td>對於特定的任務，性能可以被大幅提升。相對少量的範例（500-1000個）就可以得到良好的效果。</td>
+<td>這種方法可能導致”災難性遺忘”，使得模型在其他任務上的性能下降。</td>
+</tr>
+<tr>
+<td>多任務微調</td>
+<td>在多個任務上同時進行微調，以維持模型的多任務泛化能力。</td>
+<td>保持了模型的多任務泛化能力，可避免災難性遺忘。</td>
+<td>需要更多的範例（可能需要50-100,000個跨多個任務的範例）和更多的計算資源。</td>
+</tr>
+<tr>
+<td>參數高效微調 PEFT</td>
+<td>這是一種只訓練少量任務特定適配層和參數的技術，大部分的預訓練權重都不變。</td>
+<td>對災難性遺忘顯示出更大的抵抗力，因為大部分的預訓練權重都沒有改變。</td>
+<td>這是一個仍在研究中的方法，可能還未完全成熟或有其它未知的挑戰。</td>
+</tr>
+</tbody></table>
+<h3 id="Multi-Tasks"><a href="#Multi-Tasks" class="headerlink" title="Multi-Tasks"></a>Multi-Tasks</h3><blockquote>
+<p>FLAN, which stands for <strong>fine-tuned language net</strong>, is a specific set of instructions used to fine-tune different models. Because they’re FLAN fine-tuning is the last step of the training process the authors of the original paper called it the <strong><em>metaphorical dessert</em></strong> to the main course of pre-training quite a fitting name. </p>
+<ul>
+<li>FLAN-T5, the FLAN instruct version of the T5 foundation model </li>
+<li>FLAN-PALM is the flattening struct version of the palm foundation model. </li>
+</ul>
+</blockquote>
+<h3 id=""><a href="#" class="headerlink" title=""></a><img src="/Users/joe/Library/Application Support/typora-user-images/image-20230802162252721.png" alt="image-20230802162252721" style="zoom:33%;" /></h3><table>
+<thead>
+<tr>
+<th></th>
+<th>FLAN</th>
+<th>FLAN-T5</th>
+<th>FLAN-PALM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定義</td>
+<td>Fine-tuned Language Net，是一個透過多任務指令微調的模型系列。不同的 FLAN 模型依據微調過程中使用的數據集和任務有所不同。</td>
+<td>FLAN-T5 是基於T5基礎模型的 FLAN 模型，它總共在 473 個數據集上進行了微調，涵蓋了 146 種任務類別。</td>
+<td>FLAN-PALM 是基於PALM基礎模型的 FLAN 模型。</td>
+</tr>
+<tr>
+<td>用途</td>
+<td>用於對不同的基礎模型進行微調。</td>
+<td>是一個適合通用的指令模型，展示出在多種任務上的良好性能。</td>
+<td>類似於FLAN-T5，對不同的任務有不同的性能表現。</td>
+</tr>
+<tr>
+<td>需要的範例數量</td>
+<td>取決於微調的任務數量和種類，可能需要大量數據。</td>
+<td>依據不同任務的需求，可能需要大量數據。</td>
+<td>依據不同任務的需求，可能需要大量數據。</td>
+</tr>
+</tbody></table>
+<h3 id="Datasets"><a href="#Datasets" class="headerlink" title="Datasets"></a>Datasets</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>SAMSum</th>
+<th>DialogSum</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定義</td>
+<td>SAMSum 是一個專門用於對話摘要的數據集，包含16,000個類似於即時通訊的對話與摘要。</td>
+<td>DialogSum 是一個用於客服對話摘要的數據集，包含超過13,000個客服聊天對話和摘要。</td>
+</tr>
+<tr>
+<td>用途</td>
+<td>訓練語言模型如何總結對話，特別是友誼或日常生活中的對話。</td>
+<td>訓練語言模型如何總結客服對話，並理解顧客的需求和問題。</td>
+</tr>
+<tr>
+<td>對話內容</td>
+<td>主要是朋友之間的日常對話。</td>
+<td>主要是客戶與客服之間的對話。</td>
+</tr>
+<tr>
+<td>設計目標</td>
+<td>提供語言學家編寫的高品質對話和摘要數據集，以訓練語言模型。</td>
+<td>提供實際的客服對話數據，以便語言模型能學習如何摘要對話並理解顧客的需求。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>SAMSum 是 “A System-Agnostic Method for Dialogue Summarization” 的縮寫。這個名字來自於創建該數據集的相關研究論文的標題。這個名字反映了數據集的設計目標，即為不同的對話摘要系統提供訓練資料，這些系統可以獨立於特定的對話系統進行運作。這意味著，無論對話是通過什麼媒介（例如即時消息，電子郵件等）或在什麼上下文中（例如客服，個人聊天等）進行，SAMSum 都應該能夠提供有用的訓練數據。</p>
+</blockquote>
+<h2 id="Model-Evaluation"><a href="#Model-Evaluation" class="headerlink" title="Model Evaluation"></a>Model Evaluation</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>ROUGE</th>
+<th>BLEU</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>全稱</strong></td>
+<td>Recall-Oriented Understudy for Gisting Evaluation</td>
+<td>Bilingual Evaluation Understudy</td>
+</tr>
+<tr>
+<td><strong>使用情境</strong></td>
+<td>主要用於評估自動生成的摘要的品質</td>
+<td>主要用於評估機器翻譯的品質</td>
+</tr>
+<tr>
+<td><strong>衡量方式</strong></td>
+<td>1. ROUGE-N: 計算預測和參考文本間的 n-gram 重疊數 <br> 2. ROUGE-L: 計算最長共享子序列 (LCS) <br> 3. ROUGE-S: 計算跳躍的二元組（Skip-bigram）的重叠程度</td>
+<td>1. BLEU: 針對多個不同大小的 n-grams 計算精確度 (precision)，並使用特定的平均方式進行整合</td>
+</tr>
+<tr>
+<td><strong>優點</strong></td>
+<td>提供多種衡量方式（如單詞重疊、最長共享子序列等），更適合評估摘要生成的效果</td>
+<td>考慮了多個不同大小的 n-grams 的精確度，更適合評估翻譯的品質</td>
+</tr>
+<tr>
+<td><strong>缺點</strong></td>
+<td>可能會對高頻詞給予過高的權重，並可能無法有效捕捉詞序信息</td>
+<td>無法考慮語句的語義和語境，並可能對詞序變動的語句給予過低的評分</td>
+</tr>
+</tbody></table>
+<h3 id="ROUGE-Recall-Oriented-Understudy-for-Gisting-Evaluation）"><a href="#ROUGE-Recall-Oriented-Understudy-for-Gisting-Evaluation）" class="headerlink" title="ROUGE, (Recall-Oriented Understudy for Gisting Evaluation）"></a>ROUGE, (Recall-Oriented Understudy for Gisting Evaluation）</h3><p>ROUGE 是一種評估文本摘要（如從長篇文章中生成簡短摘要）的質量的方法。</p>
+<p>ROUGE的重要概念包括「召回率」（Recall）、「精確度」（Precision）和「F1分數」（F1 score）。以下是這三種評估方法的基本概念：</p>
+<ol>
+<li>召回率：生成摘要與原文參考摘要中共享的詞語（或n-gram，即n個連續詞語的序列）的數量除以參考摘要中的詞語（或n-gram）的數量。</li>
+<li>精確度：生成摘要與原文參考摘要中共享的詞語（或n-gram）的數量除以生成摘要中的詞語（或n-gram）的數量。</li>
+<li>F1分數：召回率和精確度的調和平均數，它平衡了召回率和精確度的重要性。</li>
+</ol>
+<p>讓我們來看一個例子。假設我們有以下參考摘要（由人類撰寫）：</p>
+<p>參考摘要：”我喜歡喝茶。”</p>
+<p>然後模型生成了以下摘要：</p>
+<p>生成摘要：”我真的很喜歡喝茶。”</p>
+<p>在這種情況下，我們將會看到以下結果：</p>
+<ol>
+<li>召回率：所有的參考摘要中的詞（我，喜歡，喝，茶）都在生成摘要中出現了，因此召回率為 4/4 = 1。</li>
+<li>精確度：生成摘要中的四個詞（我，真的，很喜歡，喝，茶）中，有四個詞出現在參考摘要中，因此精確度為 4/5 = 0.8。</li>
+<li>F1分數：F1分數是召回率和精確度的調和平均數，其公式為 2<em>(Recall * Precision) / (Recall + Precision)。在這個例子中，F1分數為 2</em>(1 * 0.8) / (1 + 0.8) = 0.88。</li>
+</ol>
+<p>以上就是 ROUGE 指標在單詞級別（或稱為unigram）的運作方式，這通常被稱為 ROUGE-1。但是，ROUGE 也可以在更大的文本塊（如二元組，也就是兩個連續的詞，或者更大的n-gram）上運作。在這些情況下，我們將計算生成摘要和參考摘要中共享的n-gram的數量，並相應地計算召回率、精確度和F1分數。這被稱為 ROUGE-N，其中N代表n-gram的大小。例如，對於二元組（bigrams），我們會使用 ROUGE-2。此外，還有一種稱為 ROUGE-L 的評價指標，它計算生成摘要與參考摘要之間的最長公共子序列（LCS）。</p>
+<h3 id="BLEU-Bilingual-Evaluation-Understudy"><a href="#BLEU-Bilingual-Evaluation-Understudy" class="headerlink" title="BLEU, (Bilingual Evaluation Understudy)"></a>BLEU, (Bilingual Evaluation Understudy)</h3><p>BLEU（Bilingual Evaluation Understudy）評分是一種常用來評估機器翻譯系統的效能的方法。BLEU評分的主要思想是：如果機器翻譯的結果越接近人類翻譯的結果，那麼該翻譯的品質就越高。</p>
+<p>BLEU評分主要依賴於n-gram精確度。n-gram是一種語言模型，用於預測句子中的下一個詞。n-gram中的”n”表示我們要考慮的詞的數量。例如，”bigram”（二元組）考慮兩個相鄰的詞，”trigram”（三元組）考慮三個相鄰的詞，以此類推。</p>
+<p>值得注意的是，BLEU評分還包括一個稱為”brevity penalty”（簡短處罰）的因素。如果機器翻譯的結果比參考翻譯短，那麼這個處罰因素會降低BLEU評分，以反映出這種短度差異。</p>
+<p>舉一個例子，假設我們有一句英文 “The cat sat on the mat”，並且有一個參考翻譯為法語的 “Le chat s’est assis sur le tapis”。如果機器翻譯的結果是 “Le chat sur le tapis”，那麼這個翻譯的BLEU評分將會較低，因為它缺少了 “s’est assis”（坐下）這個動作。</p>
+<h2 id="Benchmarks"><a href="#Benchmarks" class="headerlink" title="Benchmarks"></a>Benchmarks</h2><table>
+<thead>
+<tr>
+<th>基準測試 (Benchmark)</th>
+<th>年份</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GLUE (General Language Understanding Evaluation)</td>
+<td>2018</td>
+<td>能夠評估模型在多種任務上的通用能力。</td>
+<td>由於該基準測試涵蓋範疇廣泛，可能無法針對特定領域的任務進行深入評估。</td>
+</tr>
+<tr>
+<td>SuperGLUE</td>
+<td>2019</td>
+<td>包含更具挑戰性的任務，可以評估模型在更複雜情境下的表現。</td>
+<td>雖然難度提高，但可能仍無法完全捕捉到某些具有高度專業知識或創造力要求的任務的表現。</td>
+</tr>
+<tr>
+<td>MMLU (Massive Multitask Language Understanding)</td>
+<td>2021</td>
+<td>能夠評估模型在多個學科領域的知識和問題解決能力。</td>
+<td>由於範圍非常廣泛，可能對某些特定領域的深度評估仍然有限。</td>
+</tr>
+<tr>
+<td>BIG-bench</td>
+<td>2022</td>
+<td>提供極其多樣化的任務，包括語言學、數學、物理學等多個領域。</td>
+<td>由於範疇龐大，可能難以精確定位模型在特定任務上的弱點。此外，進行這種大型基準測試可能需要較高的計算成本。</td>
+</tr>
+<tr>
+<td>HELM (Holistic Evaluation of Language Models)</td>
+<td>N/A</td>
+<td>能夠全面評估模型，並提供了對公平性、偏見和有害行為的評估。</td>
+<td>雖然它全面，但可能仍然無法完全捕捉到模型在特定任務或場景下的特定優點或缺點。</td>
+</tr>
+</tbody></table>
+<h1 id="PEFT-Parameter-efficient-fine-tuning"><a href="#PEFT-Parameter-efficient-fine-tuning" class="headerlink" title="PEFT, (Parameter efficient fine-tuning)"></a>PEFT, (Parameter efficient fine-tuning)</h1><blockquote>
+<p>Full fine-tuning results in a new version of the model for every task you train on. Each of these is the same size as the original model, so it can create an expensive storage problem if you’re fine-tuning for multiple tasks. Let’s see how you can use PEFT to improve the situation. With parameter efficient fine-tuning, you train only a small number of weights, which results in a much smaller footprint overall, as small as megabytes depending on the task. The new parameters are combined with the original LLM weights for inference. The PEFT weights are trained for each task and can be easily swapped out for inference, allowing efficient adaptation of the original model to multiple tasks. There are several methods you can use for parameter efficient fine-tuning, each with trade-offs on parameter efficiency, memory efficiency, training speed, model quality, and inference costs. </p>
+</blockquote>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230802200511131.png" alt="image-20230802200511131" style="zoom: 25%;" />
+
+<p><strong>表格1: 完全微調的挑戰</strong></p>
+<table>
+<thead>
+<tr>
+<th>挑戰</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>計算需求</td>
+<td>完全微調需要大量的計算資源來訓練模型</td>
+</tr>
+<tr>
+<td>記憶體需求</td>
+<td>需要記憶體來儲存模型和其他訓練過程中的參數</td>
+</tr>
+<tr>
+<td>儲存問題</td>
+<td>每個任務的微調都會產生一個新的模型，可能會產生大量的儲存需求</td>
+</tr>
+<tr>
+<td>災難性遺忘</td>
+<td>完全微調可能導致模型遺忘先前訓練的任務</td>
+</tr>
+</tbody></table>
+<p><strong>表格2: PEFT與完全微調的比較</strong></p>
+<table>
+<thead>
+<tr>
+<th>屬性</th>
+<th>完全微調</th>
+<th>PEFT</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>參數更新</td>
+<td>更新所有模型參數</td>
+<td>只更新一部分模型參數</td>
+</tr>
+<tr>
+<td>記憶體需求</td>
+<td>高</td>
+<td>相對較低</td>
+</tr>
+<tr>
+<td>訓練速度</td>
+<td>慢</td>
+<td>相對較快</td>
+</tr>
+<tr>
+<td>多任務適應</td>
+<td>需要對每個任務都訓練一個新的模型</td>
+<td>可以輕易地在推理中替換訓練的權重以適應多種任務</td>
+</tr>
+</tbody></table>
+<p><strong>表格3: PEFT的三大類型</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法類型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>選擇性方法</td>
+<td>只對原始LLM參數的一部分進行微調</td>
+</tr>
+<tr>
+<td>再參數化方法</td>
+<td>使用原始LLM參數，但通過創建原始網絡權重的新的低秩變換，減少了需要訓練的參數數量</td>
+</tr>
+<tr>
+<td>添加法</td>
+<td>保持所有原始LLM權重的凍結並引入新的可訓練組件</td>
+</tr>
+</tbody></table>
+<h2 id="PEFT-tech1-LoRA-Low-Rank-Adaption-of-LLMs"><a href="#PEFT-tech1-LoRA-Low-Rank-Adaption-of-LLMs" class="headerlink" title="PEFT tech1: LoRA (Low Rank Adaption of LLMs)"></a>PEFT tech1: LoRA (Low Rank Adaption of LLMs)</h2><p><strong>LoRA的工作原理</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. 凍結原始模型參數</td>
+<td>LoRA首先將所有的原始模型參數凍結，防止在微調過程中被更新。</td>
+</tr>
+<tr>
+<td>2. 注入秩分解矩陣</td>
+<td>LoRA在原始權重旁注入一對秩分解矩陣，這對較小的矩陣將在後續步驟中進行訓練。</td>
+</tr>
+<tr>
+<td>3. 設定矩陣維度</td>
+<td>這對較小的矩陣的維度被設定為它們的乘積是一個與它們修改的權重相同維度的矩陣。</td>
+</tr>
+<tr>
+<td>4. 訓練小矩陣</td>
+<td>在保持原始LLM（大語言模型）的權重凍結的情況下，使用之前見過的監督式學習過程訓練這些較小的矩陣。</td>
+</tr>
+<tr>
+<td>5. 矩陣相乘</td>
+<td>在推理時，這兩個低秩矩陣被相乘以創建一個與凍結權重相同維度的矩陣。</td>
+</tr>
+<tr>
+<td>6. 更新權重</td>
+<td>然後將這個新創建的矩陣加到原始權重上，並將模型中的這些原始權重替換為這些更新的值。</td>
+</tr>
+</tbody></table>
+<img src="/Users/joe/Library/Application Support/typora-user-images/image-20230802192846899.png" alt="image-20230802192846899" style="zoom: 20%;" />
+
+<table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>輸入處理</td>
+<td>輸入提示轉換為代碼，然後轉換為嵌入向量，並傳遞到Transformer的編碼器和/或解碼器部分。</td>
+</tr>
+<tr>
+<td>Transformer組件</td>
+<td>編碼器和解碼器有兩種類型的神經網路：自我關注和前饋網路。這些網路的權重在預訓練期間學習。</td>
+</tr>
+<tr>
+<td>完全微調</td>
+<td>在完全微調期間，更新這些層的所有參數。</td>
+</tr>
+<tr>
+<td>LoRA策略</td>
+<td>LoRA通過凍結原始模型的所有參數，然後將一對秩分解矩陣注入到原始權重旁邊，減少微調期間需要訓練的參數數量。</td>
+</tr>
+<tr>
+<td>保持原權重</td>
+<td>保持LLM的原始權重凍結，並使用之前看到的相同的監督學習過程訓練較小的矩陣。</td>
+</tr>
+<tr>
+<td>推斷</td>
+<td>在推斷時，將兩個低秩矩陣相乘以創建一個與凍結權重具有相同維度的矩陣。然後將其添加到原始權重並替換模型中的這些更新值。</td>
+</tr>
+<tr>
+<td>LoRA微調模型</td>
+<td>您現在有一個可以執行特定任務的LoRA微調模型。由於該模型的參數數量與原始模型相同，因此對推斷延遲幾乎沒有影響。</td>
+</tr>
+<tr>
+<td>應用LoRA</td>
+<td>研究人員發現，僅將LoRA應用於模型的自我注意層通常就足夠進行任務的微調並實現性能增益。然而，原則上，您也可以在前饋層等其他組件上使用LoRA。但是，由於LLMs的大部分參數都在注意層中，因此通過將LoRA應用於這些權重矩陣，您可以獲得最大的訓練參數節省。</td>
+</tr>
+</tbody></table>
+<h2 id="PEFT-tech2-Soft-Prompt-also-called-Prompt-Tuning"><a href="#PEFT-tech2-Soft-Prompt-also-called-Prompt-Tuning" class="headerlink" title="PEFT tech2: Soft Prompt, also called Prompt Tuning"></a>PEFT tech2: Soft Prompt, also called Prompt Tuning</h2><img src="https://p.ipic.vip/2tgwuh.png" alt="image-20230802195050954" style="zoom: 25%;" />
+
+<img src="https://p.ipic.vip/nhzm0k.png" alt="image-20230802195125915" style="zoom:25%;" />
+
+<img src="https://p.ipic.vip/633jbo.png" alt="image-20230802195351887" style="zoom: 33%;" />
+
+
+
+
+
+
+
+<h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><h2 id="Multi-task-instruction-fine-tuning"><a href="#Multi-task-instruction-fine-tuning" class="headerlink" title="Multi-task, instruction fine-tuning"></a><strong>Multi-task, instruction fine-tuning</strong></h2><ul>
+<li><a href="https://arxiv.org/pdf/2210.11416.pdf" target="_blank" rel="noopener"><strong>Scaling Instruction-Finetuned Language Models</strong></a> - Scaling fine-tuning with a focus on task, model size and chain-of-thought data.</li>
+<li><a href="https://ai.googleblog.com/2021/10/introducing-flan-more-generalizable.html" target="_blank" rel="noopener"><strong>Introducing FLAN: More generalizable Language Models with Instruction Fine-Tuning</strong></a> - This blog (and article) explores instruction fine-tuning, which aims to make language models better at performing NLP tasks with zero-shot inference.</li>
+</ul>
+<h2 id="Model-Evaluation-Metrics"><a href="#Model-Evaluation-Metrics" class="headerlink" title="Model Evaluation Metrics"></a><strong>Model Evaluation Metrics</strong></h2><ul>
+<li><a href="https://crfm.stanford.edu/helm/latest/" target="_blank" rel="noopener"><strong>HELM - Holistic Evaluation of Language Models</strong></a> - HELM is a living benchmark to evaluate Language Models more transparently. </li>
+<li><a href="https://openreview.net/pdf?id=rJ4km2R5t7" target="_blank" rel="noopener"><strong>General Language Understanding Evaluation (GLUE) benchmark</strong></a> - This paper introduces GLUE, a benchmark for evaluating models on diverse natural language understanding (NLU) tasks and emphasizing the importance of improved general NLU systems.</li>
+<li><a href="https://super.gluebenchmark.com/" target="_blank" rel="noopener"><strong>SuperGLUE</strong></a> - This paper introduces SuperGLUE, a benchmark designed to evaluate the performance of various NLP models on a range of challenging language understanding tasks.</li>
+<li><a href="https://aclanthology.org/W04-1013.pdf" target="_blank" rel="noopener"><strong>ROUGE: A Package for Automatic Evaluation of Summaries</strong></a> - This paper introduces and evaluates four different measures (ROUGE-N, ROUGE-L, ROUGE-W, and ROUGE-S) in the ROUGE summarization evaluation package, which assess the quality of summaries by comparing them to ideal human-generated summaries.</li>
+<li><a href="https://arxiv.org/pdf/2009.03300.pdf" target="_blank" rel="noopener"><strong>Measuring Massive Multitask Language Understanding (MMLU)</strong></a> - This paper presents a new test to measure multitask accuracy in text models, highlighting the need for substantial improvements in achieving expert-level accuracy and addressing lopsided performance and low accuracy on socially important subjects.</li>
+<li><a href="https://arxiv.org/pdf/2206.04615.pdf" target="_blank" rel="noopener"><strong>BigBench-Hard - Beyond the Imitation Game: Quantifying and Extrapolating the Capabilities of Language Models</strong></a> - The paper introduces BIG-bench, a benchmark for evaluating language models on challenging tasks, providing insights on scale, calibration, and social bias.</li>
+</ul>
+<h2 id="Parameter-efficient-fine-tuning-PEFT"><a href="#Parameter-efficient-fine-tuning-PEFT" class="headerlink" title="Parameter- efficient fine tuning (PEFT)"></a><strong>Parameter- efficient fine tuning (PEFT)</strong></h2><ul>
+<li><a href="https://arxiv.org/pdf/2303.15647.pdf" target="_blank" rel="noopener"><strong>Scaling Down to Scale Up: A Guide to Parameter-Efficient Fine-Tuning</strong></a> - This paper provides a systematic overview of Parameter-Efficient Fine-tuning (PEFT) Methods in all three categories discussed in the lecture videos.</li>
+<li><a href="https://arxiv.org/pdf/2211.15583.pdf" target="_blank" rel="noopener"><strong>On the Effectiveness of Parameter-Efficient Fine-Tuning</strong></a> - The paper analyzes sparse fine-tuning methods for pre-trained models in NLP.</li>
+</ul>
+<h2 id="LoRA"><a href="#LoRA" class="headerlink" title="LoRA"></a><strong>LoRA</strong></h2><ul>
+<li><a href="https://arxiv.org/pdf/2106.09685.pdf" target="_blank" rel="noopener"><strong>LoRA Low-Rank Adaptation of Large Language Models</strong></a> -  This paper proposes a parameter-efficient fine-tuning method that makes use of low-rank decomposition matrices to reduce the number of trainable parameters needed for fine-tuning language models.</li>
+<li><a href="https://arxiv.org/pdf/2305.14314.pdf" target="_blank" rel="noopener"><strong>QLoRA: Efficient Finetuning of Quantized LLMs</strong></a> - This paper introduces an efficient method for fine-tuning large language models on a single GPU, based on quantization, achieving impressive results on benchmark tests.</li>
+</ul>
+<h2 id="Prompt-tuning-with-soft-prompts"><a href="#Prompt-tuning-with-soft-prompts" class="headerlink" title="Prompt tuning with soft prompts"></a><strong>Prompt tuning with soft prompts</strong></h2><ul>
+<li><a href="https://arxiv.org/pdf/2104.08691.pdf" target="_blank" rel="noopener"><strong>The Power of Scale for Parameter-Efficient Prompt Tuning</strong></a> - The paper explores “prompt tuning,” a method for conditioning language models with learned soft prompts, achieving competitive performance compared to full fine-tuning and enabling model reuse for many tasks.</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe Huang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2023/07/31/LLM/Generative%20AI%20with%20LLM/2%20Fine-Tuning%20LLM/">http://yoursite.com/2023/07/31/LLM/Generative%20AI%20with%20LLM/2%20Fine-Tuning%20LLM/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2023/08/02/LLM/Generative%20AI%20with%20LLM/3%20Reinforcement%20Learning%20from%20Human%20Feedback/"><i class="fa fa-chevron-left">  </i><span>LLM/Generative AI with LLM/3 Reinforcement Learning from Human Feedback</span></a></div><div class="next-post pull-right"><a href="/2023/07/29/LLM/Generative%20AI%20with%20LLM/1%20Generative%20AI%20with%20LLM/"><span>LLM/Generative AI with LLM/1 Generative AI with LLM</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2024 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

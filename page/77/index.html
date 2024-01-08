@@ -13,385 +13,233 @@ ga('send', 'pageview');</script><script>var GLOBAL_CONFIG = {
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">401</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">70</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2018/04/05/AB_Test/Bayesian_ML/Sec3%20-%20Bayes%20Rule%20&amp;%20Prob%20Review/">AB_Test/Bayesian_ML/Sec3 - Bayes Rule &amp; Prob Review</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-05</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BayesianML/">BayesianML</a></span><div class="content"><h1 id="Bayes-Rule"><a href="#Bayes-Rule" class="headerlink" title="Bayes Rule!"></a>Bayes Rule!</h1><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjuthg4w9nj30jw096ac1.jpg" alt="image-20201019182601639" style="zoom: 33%;" />
+} </script><meta name="generator" content="Hexo 4.2.1"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="false"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Joe Huang</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">406</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">26</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">73</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Awaken Desparado</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">Awaken Desparado</div><div id="site-sub-title"></div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2018/06/20/CVs/2018-06-20-ISP(ImageSignalProcessor)_and_3A/">CVs/2018-06-20-ISP(ImageSignalProcessor)_and_3A</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-06-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/CV/">CV</a></span><div class="content"><p> Camera! Let’s go!</p>
+<h1 id="ISP-Architecture-Image-Signal-Processor"><a href="#ISP-Architecture-Image-Signal-Processor" class="headerlink" title="ISP Architecture (Image Signal Processor)"></a>ISP Architecture (Image Signal Processor)</h1><p><strong>Important features in Camera Principle</strong></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a>Notes:</h3><p>isp晶片 會有個sensor 會裝個 len，會有rgb的pixels e.g.1920 1080 的方格，每一個都是一個r、g、b</p>
+<p>接收不同光的是不同的像素格，在光進來後再做處理，進isp，isp再去處理，變成了後制成圖片</p>
+<p>廣角、distortion重，</p>
+<p>影像邊邊是彎彎的，魚眼鏡頭180度(水平最大的視角)，通常會有鏡頭到120、130就算很廣了</p>
+<p>這種鏡頭的邊邊的distortion就很重</p>
+<p>Isp就是可以校正這種畸變</p>
+<p>針對鏡頭就算同型號畸變還是會有差</p>
+<p>生產時會校正</p>
+<p>同組參用在同型號的鏡頭</p>
+<p>Isp的好壞會影響校出來的結果 </p>
+<p>校出來的是另一個</p>
+<p>sensor的光會進isp (pipeline)，</p>
+<p>​    isp做distortion、還有像lens shading 邊邊入光量比較小就比較暗，邊邊的gain就要拉高一點，gain拉高，noise就會也一起高了</p>
+<p>​    isp也要做noise reduction，noice太大，鏡頭光圈小入光就小，得用sensor 的gain拉大，這樣noise也大，就得靠isp去降噪</p>
+<p>​    先mosaiac 還原，各個有各自的功能</p>
+<p>​    3a只是其中的功能 aito white</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3es8d1qs4j20ug0j6abd.jpg" alt="img"></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3es9u7fkhj20ny0cyt9u.jpg" alt="img"></p>
+<p>ref: <a href="https://zhuanlan.zhihu.com/p/98820927" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/98820927</a></p>
+<h1 id="3A-in-Camera"><a href="#3A-in-Camera" class="headerlink" title="3A in Camera"></a>3A in Camera</h1><h3 id="Auto-focus"><a href="#Auto-focus" class="headerlink" title="Auto focus"></a>Auto focus</h3><p>​    isp 會吐個focus value看銳俐度 —&gt; isp有硬體可以偵測影像的銳俐度，在算pixel的微分</p>
+<p>​    </p>
+<p>​    會拿到focus value，會去動鏡頭，即對焦，再得到下一個focus value</p>
+<p>​    很快推到最高點，鏡頭有個焦距，它原理就是看不同鏡頭對焦，</p>
+<p>​    有個壓電效應在做的</p>
+<p>​    <strong>壓電效應 (Piezoelectricity)</strong>，電流愈大，壓力就愈大，裡面有液體，壓力大，鏡頭就被會壓然後被推</p>
+<p>​    就是電流去控焦距</p>
+<p>​    input 就是focus value，output就是我要送多大的電流，也要判斷場景是不是有變</p>
+<p>​    拿手機去對焦也會發現自動對焦會對錯或是不對，是代表演算法沒有很精準</p>
+<h3 id="Auto-White-Balance"><a href="#Auto-White-Balance" class="headerlink" title="Auto White-Balance"></a>Auto White-Balance</h3><p>白平衡難! 色彩學!</p>
+<p>​    假設室內是黃光，我們台灣喜歡白光，黃光的室內的話就會把畫面變白，他會希望你看到的畫面是白的</p>
+<p>​    人眼就是有自動白平衡的功能</p>
+<p>​    假設我們看一個apple，有人打藍光，我還是知道apple是紅色，我人眼還是可以分得出原色，不會被黃光給影響到覺得是黃apple</p>
+<p>​    當他偵測到r比較多，r的gain就得要小一點，b的gain就得要大一點，讓畫面沒有那麼紅!</p>
+<p>​    光源 or 原色造成? 不知道</p>
+<p>​    偶有過白! </p>
+<h3 id="Auto-Exposure"><a href="#Auto-Exposure" class="headerlink" title="Auto Exposure"></a>Auto Exposure</h3><p>​    光源不希望太亮或太暗</p>
+<p>​    eg 行車紀錄器，我要進出tunnel，光會突然變暗，使用者會希望亮度馬上可以調到看得到裡面的東西</p>
+<p>​    所以一sense到變暗，gain就要拉起來，過頭就會太亮，所以「怎麼拉」很重要</p>
+<p>​    不可以給感覺一下子太亮或太暗</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/06/15/Deeplearning.ai/2018-06-15-Deeplearning.ai_Course1/">Deeplearning.ai/2018-06-15-Deeplearning.ai_Course1</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-06-15</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Deep-Learning/">Deep-Learning</a><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Deep-Learning/AI/">AI</a></span><div class="content"><h3 id="Course1"><a href="#Course1" class="headerlink" title="Course1"></a>Course1</h3><h4 id="Week1"><a href="#Week1" class="headerlink" title="Week1"></a>Week1</h4><p>Would structured or unstructured data have features such as pixel values or individual words?</p>
+<p>Ans: Unstructured data</p>
+<h4 id="Week2"><a href="#Week2" class="headerlink" title="Week2"></a>Week2</h4><p>![image-20190906215336217](/Users/joe/Library/Application Support/typora-user-images/image-20190906215336217.png)</p>
+<p>![image-20190906215454393](/Users/joe/Library/Application Support/typora-user-images/image-20190906215454393.png)</p>
+<h5 id="Logistic-Regression’s-Gradient-Descent"><a href="#Logistic-Regression’s-Gradient-Descent" class="headerlink" title="Logistic Regression’s Gradient Descent"></a>Logistic Regression’s Gradient Descent</h5><p>![image-20190906215703253](/Users/joe/Library/Application Support/typora-user-images/image-20190906215703253.png)</p>
+<p><a href="https://ithelp.ithome.com.tw/articles/10193718" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10193718</a></p>
+<h6 id="My-Note"><a href="#My-Note" class="headerlink" title="My Note"></a>My Note</h6><p>![image-20190906215840755](/Users/joe/Library/Application Support/typora-user-images/image-20190906215840755.png)</p>
+<h6 id="Cross-Entropy"><a href="#Cross-Entropy" class="headerlink" title="Cross Entropy"></a>Cross Entropy</h6><p>![image-20190906215928611](/Users/joe/Library/Application Support/typora-user-images/image-20190906215928611.png)</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7hgpf462kj31440u0x6n.jpg" alt="image-20190930130717483"></p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7hgre16lwj318q0u0u0x.jpg" alt="image-20190930130913470"></p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g7hgs6tkroj30yk0nkqpv.jpg" alt="image-20190930131000168"></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/05/08/CVs/2018-05-08-GEMM-how-caffe-implements-CNN/">CVs/2018-05-08-GEMM-how-caffe-implements-CNN</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-05-08</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/CV/">CV</a></span><div class="content"><h1 id="Img2col"><a href="#Img2col" class="headerlink" title="Img2col"></a>Img2col</h1><p>ref: <a href="https://petewarden.com/2015/04/20/why-gemm-is-at-the-heart-of-deep-learning/" target="_blank" rel="noopener">https://petewarden.com/2015/04/20/why-gemm-is-at-the-heart-of-deep-learning/</a></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gejzl2gv8lj30fa07tq5m.jpg" alt="patches"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gejzl4t9kuj30fa070dhu.jpg" alt="im2col_corrected"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gejzl83aijj30fa09776o.jpg" alt="im2colmult_corrected"></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/05/06/Python/2018-05-06-Faster%20than%20O(N)%20--%20SortedContainers/">Python/2018-05-06-Faster than O(N) -- SortedContainers</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-05-06</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span><div class="content"><p>ref: <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">http://www.grantjenks.com/docs/sortedcontainers/</a></p>
+<p>For Map/TreeMap data structure, we may use <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">sortedcontainers</a> library.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sortedcontainers <span class="keyword">import</span> SortedList</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sl = SortedList([<span class="string">'e'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'b'</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sl</span><br><span class="line">SortedList([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sl *= <span class="number">10</span>_000_000</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sl.count(<span class="string">'c'</span>)</span><br><span class="line"><span class="number">10000000</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sl[<span class="number">-3</span>:]</span><br><span class="line">[<span class="string">'e'</span>, <span class="string">'e'</span>, <span class="string">'e'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sortedcontainers <span class="keyword">import</span> SortedDict</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sd = SortedDict(&#123;<span class="string">'c'</span>: <span class="number">3</span>, <span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sd</span><br><span class="line">SortedDict(&#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>, <span class="string">'c'</span>: <span class="number">3</span>&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sd.popitem(index=<span class="number">-1</span>)</span><br><span class="line">(<span class="string">'c'</span>, <span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sortedcontainers <span class="keyword">import</span> SortedSet</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ss = SortedSet(<span class="string">'abracadabra'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ss</span><br><span class="line">SortedSet([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'r'</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ss.bisect_left(<span class="string">'c'</span>)</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Prob-amp-Bayes-Rule"><a href="#Prob-amp-Bayes-Rule" class="headerlink" title="Prob. &amp; Bayes Rule"></a>Prob. &amp; Bayes Rule</h2><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjutlf6i9bj30za0ig404.jpg" alt="image-20201019182858873" style="zoom:50%;" />
-
-
-
-<h3 id="Discrete"><a href="#Discrete" class="headerlink" title="Discrete"></a>Discrete</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjutlaybhrj30xk0ds775.jpg" alt="image-20201019182944310" style="zoom:50%;" />
-
-<h4 id="Conditional-Distribution"><a href="#Conditional-Distribution" class="headerlink" title="Conditional Distribution"></a>Conditional Distribution</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjutmo75ezj30zm0doq6l.jpg" alt="image-20201019183102856" style="zoom:50%;" />
-
-
-
-<h4 id="Conditional-fr-Conditional"><a href="#Conditional-fr-Conditional" class="headerlink" title="Conditional fr Conditional!"></a>Conditional fr Conditional!</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjutpnue79j310e0j2wk1.jpg" alt="image-20201019183355332" style="zoom:50%;" />
-
-
-
-<h3 id="Continuous"><a href="#Continuous" class="headerlink" title="Continuous"></a>Continuous</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjutryhh9gj30zo0gkq7e.jpg" alt="image-20201019183607220" style="zoom:50%;" />
-
-<h4 id="Conditional-Distribution-1"><a href="#Conditional-Distribution-1" class="headerlink" title="Conditional Distribution"></a>Conditional Distribution</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjutu27glcj30vk0isq6r.jpg" alt="image-20201019183809083" style="zoom: 50%;" />
-
-<h3 id="Bayes’-Rule-–-gt-CONTINUOUS"><a href="#Bayes’-Rule-–-gt-CONTINUOUS" class="headerlink" title="Bayes’ Rule !!! –&gt; CONTINUOUS !!!"></a>Bayes’ Rule !!! –&gt; CONTINUOUS !!!</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjutw112d9j31080ia0yf.jpg" alt="image-20201019184002424"></p>
-<h2 id="Calculating-Probabilities-w-Case"><a href="#Calculating-Probabilities-w-Case" class="headerlink" title="Calculating Probabilities w/ Case!"></a>Calculating Probabilities w/ Case!</h2><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvoqv9k8gj310q0j4n2z.jpg" alt="image-20201020122737975" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvosiz527j31140k0n7d.jpg" alt="image-20201020122914649" style="zoom:50%;" />
-
-<h3 id="Condition-Join-divided-by-Marginal"><a href="#Condition-Join-divided-by-Marginal" class="headerlink" title="Condition = Join divided by Marginal"></a>Condition = Join divided by Marginal</h3><h3 id="Alternate-Calculation"><a href="#Alternate-Calculation" class="headerlink" title="Alternate Calculation"></a>Alternate Calculation</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvscjxadvj30zy0k879l.jpg" alt="image-20201020143217030" style="zoom:50%;" />
-
-<h3 id="IDD-Independence"><a href="#IDD-Independence" class="headerlink" title="IDD - Independence"></a>IDD - Independence</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvsdknfhxj30xc0nitci.jpg" alt="image-20201020143316361" style="zoom:50%;" />
-
-
-
-
-
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvsf78jyyj31040isq99.jpg" alt="image-20201020143449798"></p>
-<h4 id="Independence-for-Conditional"><a href="#Independence-for-Conditional" class="headerlink" title="Independence for Conditional"></a>Independence for Conditional</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvsiyhxnzj311e0ow7ah.jpg" alt="image-20201020143826804" style="zoom:50%;" />
-
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvslhssd9j30zk0oin1u.jpg" alt="image-20201020144053289" style="zoom:50%;" /><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvswjxwcdj30vw03ejrz.jpg" alt="image-20201020145130551"></p>
-<ul>
-<li><p><strong><em>This is EQUAL to all of the distributions conditioned on country as per our definition of independence!</em></strong></p>
-<p>∴ for this dataset, <strong>BUY</strong> isindependent of <strong>COUNTRY</strong></p>
+<p>All of the operations shown above run in faster than linear time.</p>
+<p>Ref: <a href="https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages-" target="_blank" rel="noopener">https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages-</a></p>
+<blockquote>
+<h1 id="What-are-the-environments-for-the-programming-languages"><a href="#What-are-the-environments-for-the-programming-languages" class="headerlink" title="What are the environments for the programming languages?"></a>What are the environments for the programming languages?</h1><ul>
+<li><p>1 month ago</p>
+</li>
+<li></li>
+<li><p>Updated</p>
 </li>
 </ul>
-<h2 id="Gambler’s-Fallacy"><a href="#Gambler’s-Fallacy" class="headerlink" title="Gambler’s Fallacy"></a>Gambler’s Fallacy</h2><h3 id="IID-–-independent-amp-identically-distributed"><a href="#IID-–-independent-amp-identically-distributed" class="headerlink" title="IID – independent &amp; identically distributed"></a>IID – independent &amp; identically distributed</h3><ul>
-<li>Each outcome is independent and they all came from the same distribution</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3812w01rgj211k0nggp0.jpg" alt="image-20201020145807892" style="zoom:50%;" />
-
-
-
-<h4 id="Ans-1-amp-2"><a href="#Ans-1-amp-2" class="headerlink" title="Ans 1 &amp; 2"></a>Ans 1 &amp; 2</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvt58y2dcj311o0najyx.jpg" alt="image-20201020145952243" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3815zsvfoj211e0nsmz9.jpg" alt="image-20201020150125934" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3812z9a5lj21160k6mzi.jpg" alt="image-20201020150422562" style="zoom:50%;" />
-
-
-
-<h2 id="Monty-Hall-Problem"><a href="#Monty-Hall-Problem" class="headerlink" title="Monty Hall Problem"></a>Monty Hall Problem</h2><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvtai5bimj30yq0jm45d.jpg" alt="image-20201020150454973" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38133wkrvj20ym0oiq5e.jpg" alt="image-20201020150640460" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvtd1iyq8j311k0jkjyg.jpg" alt="image-20201020150721160" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvtgs19r7j311y0k8dlp.jpg" alt="image-20201020151056561" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvtkqxcd2j31260oe45b.jpg" alt="image-20201020151445468" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3813bdua6j212o0nc76r.jpg" alt="image-20201020151512849" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3813fhc3gj212k0eyt9g.jpg" alt="image-20201020151617547" style="zoom:50%;" />
-
-<h4 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h4><ul>
-<li>Change</li>
-</ul>
-<h2 id="Maximum-Likelihood"><a href="#Maximum-Likelihood" class="headerlink" title="Maximum Likelihood"></a>Maximum Likelihood</h2><p>for stat modeling!</p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvtom8ogbj311s0k0wlr.jpg" alt="image-20201020151829253" style="zoom:50%;" />
-
-
-
-<h3 id="Bernoulli-Distribution"><a href="#Bernoulli-Distribution" class="headerlink" title="Bernoulli Distribution"></a>Bernoulli Distribution</h3><p>e.g. P(head) = 0.6; </p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3813j8s2wj210g0k20tz.jpg" alt="image-20201020152029033" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3816amckoj210607ujs0.jpg" alt="image-20201020152128697" style="zoom: 50%;" />
-
-<h5 id="P-x-–-gt-P-Xi-θ"><a href="#P-x-–-gt-P-Xi-θ" class="headerlink" title="P(x) –&gt; P(Xi|θ)"></a>P(x) –&gt; P(Xi|θ)</h5><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvtw9rslyj310m0o2aey.jpg" alt="image-20201020152550239"></p>
+<p><a href="https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages-/subscription.html" target="_blank" rel="noopener">Follow</a></p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Version</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C++</td>
+<td>clang 9</td>
+<td>Uses the C++17 standard.</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>java 13.0.1</td>
+<td>Includes <code>Pair</code> class, with documentation at <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/util/Pair.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/javafx/api/javafx/util/Pair.html</a></td>
+</tr>
+<tr>
+<td>Python</td>
+<td>python 2.7.12</td>
+<td>For Map/TreeMap data structure, you may use <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">sortedcontainers</a> library.</td>
+</tr>
+<tr>
+<td>Python3</td>
+<td>Python 3.8</td>
+<td>For Map/TreeMap data structure, you may use <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">sortedcontainers</a> library.</td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td>mysql-server 5.7.21</td>
+<td></td>
+</tr>
+<tr>
+<td>MS SQL</td>
+<td>mssql 14.0.3</td>
+<td></td>
+</tr>
+<tr>
+<td>Oracle</td>
+<td>Oracle SQL 11.2</td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td>gcc 8.2</td>
+<td>For hash table operations, you may use <a href="https://troydhanson.github.io/uthash/" target="_blank" rel="noopener">uthash</a>. <code>&quot;uthash.h&quot;</code> is included by default.</td>
+</tr>
+<tr>
+<td>C#</td>
+<td>mono 5.18.0</td>
+<td>Run with <code>/debug</code> flag, with <a href="https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-7" target="_blank" rel="noopener">full support for C# 7</a>.</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>nodejs 10.15.0</td>
+<td>Run with <code>--harmony</code> flag, enabling <a href="http://node.green/" target="_blank" rel="noopener">new ES6 features</a>. <a href="https://lodash.com/" target="_blank" rel="noopener">lodash.js</a> library is included by default.</td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td>ruby 2.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>Bash</td>
+<td>bash 4.3.30</td>
+<td></td>
+</tr>
+<tr>
+<td>Swift</td>
+<td>swift 5.0.1</td>
+<td></td>
+</tr>
+<tr>
+<td>Go</td>
+<td>go 1.13</td>
+<td></td>
+</tr>
+<tr>
+<td>Scala</td>
+<td>Scala 2.13</td>
+<td></td>
+</tr>
+<tr>
+<td>Kotlin</td>
+<td>Kotlin 1.3.10</td>
+<td></td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>1.40.0</td>
+<td>edition = 2018, supports <a href="https://crates.io/crates/rand" target="_blank" rel="noopener">rand</a> from crates.io</td>
+</tr>
+<tr>
+<td>PHP</td>
+<td>PHP 7.2</td>
+<td></td>
+</tr>
+</tbody></table>
+</blockquote>
+<p>ref: <a href="https://leetcode.com/discuss/general-discussion/452863/how-do-you-deal-with-no-treeset-or-treemap-in-python" target="_blank" rel="noopener">https://leetcode.com/discuss/general-discussion/452863/how-do-you-deal-with-no-treeset-or-treemap-in-python</a></p>
+<blockquote>
+<p>There are quite a few problems that can use TreeSet or TreeMap, but it seems python does not have anything? Any tips on how to deal with this. Recently switched over from java to pyhton</p>
+<p><a href="https://leetcode.com/problems/the-skyline-problem/" target="_blank" rel="noopener">https://leetcode.com/problems/the-skyline-problem/</a> -&gt; Needs removal O log(n)<br><a href="https://leetcode.com/problems/k-empty-slots/" target="_blank" rel="noopener">https://leetcode.com/problems/k-empty-slots/</a> -&gt; TreeMap is a accepted solution</p>
+<p>Thanks,<br>Uv</p>
+<p>Comments: 1</p>
+<p>BestMost VotesNewest to OldestOldest to Newest</p>
+<p>Preview</p>
+<p>Post</p>
+<p><a href="https://leetcode.com/leetcode" target="_blank" rel="noopener"><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gejri4cfqej305k05kmx8.jpg" alt="LeetCode&#39;s avatar"></a></p>
+<p><a href="https://leetcode.com/leetcode" target="_blank" rel="noopener">LeetCode</a>Admin3460</p>
+<p>December 17, 2019 9:45 AM</p>
+<p>Read More</p>
+<p><a href="https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages-" target="_blank" rel="noopener">https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages-</a></p>
+<p>Please take a look at the environments for the programming languages above. For Python you may use <a href="http://www.grantjenks.com/docs/sortedcontainers/" target="_blank" rel="noopener">sortedcontainers</a> library for TreeSet/TreeMap data structure.</p>
+</blockquote>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/05/04/DevOps/2018-05-04-tmux/">DevOps/2018-05-04-tmux</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-05-04</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/DevOps/">DevOps</a></span><div class="content"><h3 id="tmux"><a href="#tmux" class="headerlink" title="tmux"></a>tmux</h3><h3 id="Concepts"><a href="#Concepts" class="headerlink" title="Concepts"></a>Concepts</h3><p>前置键: ctrl-b</p>
+<p><code>C-</code> 指的是 Ctrl + 某個鍵一起按 <code>M-</code> 則是 <code>Alt</code> 或 <code>Option</code>和某個鍵一起按。</p>
+<p>水平切割則是 <code>C-b &quot;</code></p>
+<p>移动所在视窗使用 <code>C-b</code> 搭配方向鍵</p>
+<h3 id="Main-Manipulations-within-Session"><a href="#Main-Manipulations-within-Session" class="headerlink" title="Main Manipulations within Session"></a>Main Manipulations within Session</h3><p>關閉視窗區塊只需要使用 <code>C-d</code> (注意，這不是detach，而是直接真的關了)</p>
 <ul>
-<li>Assuming that each coin toss was <strong><em>IID</em></strong></li>
+<li><code>C-b c</code> 建立一個新視窗</li>
+<li><code>C-b p</code> 上一個視窗</li>
+<li><code>C-b n</code> 下一個視窗</li>
+<li><code>C-b &lt;number&gt;</code> 依照編號直接切換（編號顯示於狀態列）</li>
 </ul>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvtynrsllj30x40iqwjs.jpg" alt="image-20201020152808080"></p>
+<h3 id="Detach-amp-Attach"><a href="#Detach-amp-Attach" class="headerlink" title="Detach &amp; Attach"></a>Detach &amp; Attach</h3><p>如果完成工作，要 detach 只需要 <code>C-b d</code>，又或者 <code>C-b D</code> 可以選擇要從那個 <code>session</code> 離開。</p>
 <ul>
-<li><strong><em>want to find which value of theta will maxmize it!</em></strong> –&gt; What theta maxmize the “<strong>Likelihood</strong>“ ?</li>
+<li>tmux attach -t 0</li>
 </ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3813qd057j21100oygof.jpg" alt="image-20201020153036284" style="zoom:50%;" />
+<p>賦予每個 session 一個有意義的名稱</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tmux new -s database</span></span><br></pre></td></tr></table></figure>
+
+<p>修改名稱</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tmux rename-session -t 0 database</span></span><br></pre></td></tr></table></figure>
+
+<p>之後當我們要在重新連回該 session 時，只要使用該名稱即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tmux attach -t database</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="Q-Using-the-likelihood-function-can-we-maximize-it-so-that-we-find-a-value-of-θ-that-make-sense"><a href="#Q-Using-the-likelihood-function-can-we-maximize-it-so-that-we-find-a-value-of-θ-that-make-sense" class="headerlink" title="Q: Using the likelihood function, can we maximize it so that we find a value of θ that make sense?"></a>Q: Using the likelihood function, can we maximize it so that we find a value of θ that make sense?</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvu39wkmcj310w0jywjf.jpg" alt="image-20201020153234485" style="zoom:50%;" />
-
-<h4 id="Log-Likelihood"><a href="#Log-Likelihood" class="headerlink" title="Log-Likelihood"></a>Log-Likelihood</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3813vo1x0j21200k80up.jpg" alt="image-20201020153358064" style="zoom:50%;" />
-
-<h4 id="Mechanical-Work…"><a href="#Mechanical-Work…" class="headerlink" title="Mechanical Work…"></a>Mechanical Work…</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvu5vjqhdj30yg0om78i.jpg" alt="image-20201020153503832"></p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvu77cgtlj311c0jon1o.jpg" alt="image-20201020153620832" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvu7spjnrj30xi0g8whm.jpg" alt="image-20201020153655026" style="zoom:50%;" />
-
-
-
-<h4 id="Common-Mistake-–-w-Binomial-Distribution-in-any-order"><a href="#Common-Mistake-–-w-Binomial-Distribution-in-any-order" class="headerlink" title="Common Mistake ! – w/ Binomial Distribution (in any order)"></a>Common Mistake ! – w/ Binomial Distribution (in any order)</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvv92z2xtj30ze0oqwix.jpg" alt="image-20201020161244820" />
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvvbzrpclj30zg0gqq9f.jpg" alt="image-20201020161532486" style="zoom:50%;" />
-
-
-
-<h2 id="CTR-Click-Through-Rate"><a href="#CTR-Click-Through-Rate" class="headerlink" title="CTR (Click-Through Rate)"></a>CTR (Click-Through Rate)</h2><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvvfh826cj30zs0j67b1.jpg" alt="image-20201020161853475" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvvhk1or3j310u0ogq8q.jpg" alt="image-20201020162053806" style="zoom:50%;" />
-
-
-
-<h2 id="Maximum-Likelihood-Gaussian"><a href="#Maximum-Likelihood-Gaussian" class="headerlink" title="Maximum Likelihood - Gaussian"></a>Maximum Likelihood - Gaussian</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38145angkj20ww0jctad.jpg" alt="image-20201020172125730" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381494025j210y0nyn0d.jpg" alt="image-20201020172214965" style="zoom:50%;" />
-
-
-
-<h4 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvxawbdmkj31160o448n.jpg" alt="image-20201020172341759" style="zoom:50%;" />
-
+<p>優點：</p>
+<p>點出幾個 <code>tmux</code> 的優點：</p>
 <ul>
-<li>But I can choose anything + still use MLE!</li>
+<li>session 的保留：attach 和 detach 協助我們在不同情境和遠端連線的情況下切換。</li>
+<li>跨平台：我們可以在 Mac 底下使用，也可以在 Linux 環境下使用，甚至遠端伺服器或 Raspberry Pi，BeagleBones 等等都可以使用一樣的東西。</li>
+<li>客製化：我們可以去自訂 tmux 的環境設定並且可以和不同平台環境同步</li>
 </ul>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="Likelihood-amp-PDFs-Problem-Setup"><a href="#Likelihood-amp-PDFs-Problem-Setup" class="headerlink" title="Likelihood &amp; PDFs, Problem Setup"></a>Likelihood &amp; PDFs, Problem Setup</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvxfhffnpj31160fq7bh.jpg" alt="image-20201020172805561"></p>
-<h4 id="PDF-of-Gaussian"><a href="#PDF-of-Gaussian" class="headerlink" title="PDF of Gaussian"></a>PDF of Gaussian</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvxhfw3enj31040k0426.jpg" alt="image-20201020172958585"></p>
-<ul>
-<li>normalizing coeff</li>
-<li>symmetric about mu</li>
-<li>bellcurve, same on both sides</li>
-</ul>
-<h4 id="Maximum-Likelihood-Estimation"><a href="#Maximum-Likelihood-Estimation" class="headerlink" title="Maximum Likelihood Estimation"></a>Maximum Likelihood Estimation</h4><ul>
-<li><strong>want to find the parameters that best describe the data</strong></li>
-<li>In other words, what values of MU and Sigma make the most sense given the data that we collected? <ul>
-<li>These values will MAXimize the likelihood</li>
-</ul>
-</li>
-<li>if taking mu=100, BAD!</li>
-<li>The balue that is a greate choice would be the one that maximizes the likelihood</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvxiko4ncj310a0ny7cr.jpg" alt="image-20201020173103845" style="zoom:50%;" />
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新增</span></span><br><span class="line">$ tmux</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">$ tmux new -s &lt;your_session_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># session 列表</span></span><br><span class="line">$ tmux ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新連線 session</span></span><br><span class="line">$ tmux a -t 0</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">$ tmux a -t &lt;session_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 刪除 session</span></span><br><span class="line">$ tmux <span class="built_in">kill</span>-session -t 0</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">$ tmux <span class="built_in">kill</span>-session -t &lt;session_name&gt;</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">$ tmux <span class="built_in">kill</span>-session -a <span class="comment"># 全部</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 刪除 tmux server</span></span><br><span class="line">$ tmux <span class="built_in">kill</span>-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新命名 session</span></span><br><span class="line">$ tmux rename-session -t 0 &lt;new_session_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 快捷鍵/視窗管理</span></span><br><span class="line"><span class="comment"># C-b ? Help</span></span><br><span class="line"><span class="comment"># C-b c 新增視窗</span></span><br><span class="line"><span class="comment"># C-b， 視窗命名</span></span><br><span class="line"><span class="comment"># C-b w 視窗列表</span></span><br><span class="line"><span class="comment"># C-b f 尋找視窗</span></span><br><span class="line"><span class="comment"># C-b &amp; 刪除視窗</span></span><br><span class="line"><span class="comment"># C-b % 垂直分割區塊</span></span><br><span class="line"><span class="comment"># C-b “ 水平分割區塊</span></span><br><span class="line"><span class="comment"># C-b &lt;方向鍵&gt;</span></span><br><span class="line"><span class="comment"># C-b p 上一個視窗</span></span><br><span class="line"><span class="comment"># C-b n 下一個視窗</span></span><br><span class="line"><span class="comment"># C-b &lt;number&gt; 依照編號直接切換（編號顯示於狀態列）</span></span><br><span class="line"><span class="comment"># C-b d 離開 session</span></span><br><span class="line"><span class="comment"># C-b x 關閉 Pane</span></span><br><span class="line"><span class="comment"># C-d   關閉 Pane</span></span><br><span class="line"><span class="comment"># C-b z 讓一個 Pane 變成全螢幕，在輸入一次則回到剛剛的尺寸</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="Calculus-Solution"><a href="#Calculus-Solution" class="headerlink" title="Calculus Solution"></a>Calculus Solution</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvxjvzencj30xw0j80wm.jpg" alt="image-20201020173219504"></p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvxkf1u5rj30wo0jeae3.jpg" alt="image-20201020173250508" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjw2xx8m7lj30y80jsdkm.jpg" alt="image-20201020203848650" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjw2zsdqglj310u0i40wg.jpg" alt="image-20201020204036228" style="zoom:50%;" />
-
-<h4 id="求極值"><a href="#求極值" class="headerlink" title="求極值"></a>求極值</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjw3259alwj310i0oe78g.jpg" alt="image-20201020204250076"></p>
-<h2 id="MLE-Gaussian-Cont"><a href="#MLE-Gaussian-Cont" class="headerlink" title="MLE - Gaussian (Cont.)"></a>MLE - Gaussian (Cont.)</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3814n3hgpj212w0hmq4d.jpg" alt="image-20201103143424629" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbz3vhorbj310s0jotcb.jpg" alt="image-20201103143510302" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbz48ntfmj312q0jkwk0.jpg" alt="image-20201103143532030" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbz4p4jsrj30tw0hejtv.jpg" alt="image-20201103143557818" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbz77cglkj312q0k8gtp.jpg" alt="image-20201103143822568" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbz82u08qj30xo0k078h.jpg" alt="image-20201103143912789" style="zoom:50%;" />
-
-
-
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbz8uvrd8j310q0jg0yd.jpg" alt="image-20201103143957420"></p>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbza9xecyj31220jwq81.jpg" alt="image-20201103144119703" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbzas6cudj311k0ge0xh.jpg" alt="image-20201103144148666" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbzc22tc1j31200okdn5.jpg" alt="image-20201103144302495" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbzd2ztvaj31100jmdkq.jpg" alt="image-20201103144401675" style="zoom:50%;" />
-
-
-
-<h2 id="CDF-amp-Percentile"><a href="#CDF-amp-Percentile" class="headerlink" title="CDF &amp; Percentile"></a>CDF &amp; Percentile</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbzepl1ahj30vs0iyn00.jpg" alt="image-20201103144535442" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3814zs65nj20t00l20uc.jpg" alt="image-20201103144950868" style="zoom:50%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h38152h622j20ry092t9d.jpg" alt="image-20201103145109365" style="zoom: 50%;" />
-
-
-
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbzlb3tggj312g0kgwn3.jpg" alt="image-20201103145155479"></p>
-<p>`</p>
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbzn507t3j311a0k4wks.jpg" alt="image-20201103145341619" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381586efaj21360kwtav.jpg" alt="image-20201103145445509" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkbzoqzptsj30yc0kmn3e.jpg" alt="image-20201103145514197" style="zoom:50%;" />
-
-
-
-
-
-<h2 id="Probability-Review-in-Code"><a href="#Probability-Review-in-Code" class="headerlink" title="Probability Review in Code"></a>Probability Review in Code</h2><p><a href="https://colab.research.google.com/drive/16LTMN0IT2a7YZ2gZpdTq48VB2Cxt0Eim?usp=sharing" target="_blank" rel="noopener">my practice</a></p>
-<h2 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h2><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc1ofqxszj310m0gy110.jpg" alt="image-20201103160407621" style="zoom:50%;" />
-
-
-
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc1ropx0kj310q0jswmk.jpg" alt="image-20201103160715036"></p>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc1u4zi3dj310w0j2dmu.jpg" alt="image-20201103160936663"></p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3815gm04aj210c0nwacw.jpg" alt="image-20201103161401713" style="zoom:50%;" />
-
-
-
-<h2 id="Fix-Stat-VS-ML"><a href="#Fix-Stat-VS-ML" class="headerlink" title="Fix: Stat. VS ML"></a>Fix: Stat. VS ML</h2><h3 id="Misconceptions"><a href="#Misconceptions" class="headerlink" title="Misconceptions!"></a>Misconceptions!</h3><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2082jmkj30zu0jqaiq.jpg" alt="image-20201103161527998" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc219y77jj31160ju7f1.jpg" alt="image-20201103161627484" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc21omb3hj30ya0i00xg.jpg" alt="image-20201103161651349" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc24bntvwj310c09en0r.jpg" alt="image-20201103161924480" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc262rj7rj311o0hewj1.jpg" alt="image-20201103162105450" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc270n12qj31000iy12p.jpg" alt="image-20201103162159015" style="zoom:50%;" />
-
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gkc2b37yzkj31080duguk.jpg" alt="image-20201103162554052"></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/04/05/AB_Test/Bayesian_ML/Sec2%20-%20High%20Level%20Picture!/">AB_Test/Bayesian_ML/Sec2 - High Level Picture!</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-05</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/BayesianML/">BayesianML</a></span><div class="content"><h1 id="Real-World-E-G-of-A-B-Testing"><a href="#Real-World-E-G-of-A-B-Testing" class="headerlink" title="Real-World E.G. of A/B Testing"></a>Real-World E.G. of A/B Testing</h1><h3 id="Drug"><a href="#Drug" class="headerlink" title="Drug"></a>Drug</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3811fwlk6j210i0jo76y.jpg" alt="image-20201022162224014" style="zoom:50%;" />
-
-<h3 id="Website"><a href="#Website" class="headerlink" title="Website"></a>Website</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjus6uqvswj31200najy9.jpg" alt="image-20201019174113739" style="zoom:50%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjus7uutbwj311y0lkqa2.jpg" alt="image-20201019174212598" style="zoom: 50%;" />
-
-
-
-<h3 id="Biz-Flyers"><a href="#Biz-Flyers" class="headerlink" title="Biz Flyers"></a>Biz Flyers</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjus96lyu7j311u0lk4c4.jpg" alt="image-20201019174328806" style="zoom:50%;" />
-
-
-
-<h3 id="Cloud-Storage"><a href="#Cloud-Storage" class="headerlink" title="Cloud Storage"></a>Cloud Storage</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjusa2wqt8j30zw0lkala.jpg" alt="image-20201019174420871" style="zoom:50%;" />
-
-
-
-
-
-<h2 id="Pattern"><a href="#Pattern" class="headerlink" title="Pattern"></a>Pattern</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjuscv6owxj30z60k0wke.jpg" alt="image-20201019174701794"></p>
-<h1 id="Bayesian-ML"><a href="#Bayesian-ML" class="headerlink" title="Bayesian ML"></a>Bayesian ML</h1><ul>
-<li>Bayes rule is not BML per se, but rather just basic probability!</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h381752ai0j21140hutcg.jpg" alt="image-20201019175324972" style="zoom:50%;" />
-
-
-
-<h3 id="In-this-Lecture"><a href="#In-this-Lecture" class="headerlink" title="In this Lecture!"></a>In this Lecture!</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjuslglrm0j30yg0cedlg.jpg" alt="image-20201019175517025" style="zoom:50%;" />
-
-
-
-<h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p><strong><em>Want to model the height of all the students of our class using a Gaussian</em></strong></p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjusms8i5kj30z60jejv9.jpg" alt="image-20201019175633724" style="zoom:50%;" />
-
-
-
-<h4 id="Way-1-–-Freq"><a href="#Way-1-–-Freq" class="headerlink" title="Way 1 – Freq."></a>Way 1 – Freq.</h4><ul>
-<li><p>collect data</p>
-</li>
-<li><p>using maximum likelihood estimation, we would inf the mean and variance to do this!</p>
-</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3817lz9nfj20w80jm0u8.jpg" alt="image-20201019180138139" style="zoom: 50%;" />
-
-
-
-
-
-<h4 id="Way-2-–-Baysian"><a href="#Way-2-–-Baysian" class="headerlink" title="Way 2 – Baysian"></a>Way 2 – Baysian</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjustzb9pjj30rs0bon06.jpg" alt="image-20201019180328594" style="zoom:50%;" />
-
-<h3 id="Sampling"><a href="#Sampling" class="headerlink" title="Sampling"></a>Sampling</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3817oadz7j210g0jyad5.jpg" alt="image-20201019180541609" style="zoom:50%;" />
-
-
-
-<h3 id="ML-Models"><a href="#ML-Models" class="headerlink" title="ML Models"></a>ML Models</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjusxw6u5tj30z20iin1m.jpg" alt="image-20201019180714117" style="zoom:33%;" />
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjusyvky65j30xc0jen11.jpg" alt="image-20201019180810406" style="zoom:50%;" />
-
-<ul>
-<li>Not Interested in findingthe vector W! <strong>BUT the distribution</strong> of the random vector !<ul>
-<li>we want to find P of W given X &amp; Y where X &amp; Y is our training data</li>
-</ul>
-</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjut0z2lrej30xi0kw7aj.jpg" alt="image-20201019181011767" style="zoom:50%;" />
-
-
-
-
-
-<h3 id="Bayesian-Networks"><a href="#Bayesian-Networks" class="headerlink" title="Bayesian Networks"></a>Bayesian Networks</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjut2ojxvaj30zi0iwdkq.jpg" alt="image-20201019181150246" style="zoom:50%;" />
-
-
-
-
-
-<h4 id="Non-Bayesian-Example"><a href="#Non-Bayesian-Example" class="headerlink" title="Non-Bayesian Example"></a>Non-Bayesian Example</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjut3kuk5xj30zs0j8jxv.jpg" alt="image-20201019181241715" style="zoom:50%;" />
-
-
-
-<h4 id="Bayesian-Network"><a href="#Bayesian-Network" class="headerlink" title="Bayesian Network"></a>Bayesian Network</h4><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3817xhrx9j20x80l2jsh.jpg" alt="image-20201019181342225" style="zoom:50%;" />
-
-<ul>
-<li>So! with base that, we can model these dependencies explicitly!<ul>
-<li>Whereas, when using NN, we usually use the same model and let the NN figure out what the weights should be.</li>
-</ul>
-</li>
-</ul>
-<h4 id="LDA"><a href="#LDA" class="headerlink" title="LDA"></a>LDA</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjut7itzkuj30xq0kggr0.jpg" alt="image-20201019181628953" style="zoom:50%;" />
-
-
-
-<h1 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h1><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjutcgncymj30yo0mu10z.jpg" alt="image-20201019182113813" style="zoom: 50%;" />
-
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/03/02/DevOps/2018-03-02%20MT%20Life/">DevOps/2018-03-02 MT Life</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-03-02</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/DevOps/">DevOps</a></span><div class="content"><p>ref: <a href="https://blog.csdn.net/weixin_35813749/article/details/53609014" target="_blank" rel="noopener">https://blog.csdn.net/weixin_35813749/article/details/53609014</a></p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcfplio1rtj30go07y409.jpg" alt="这里写图片描述"></p>
-<h3 id="Sleep-vs-Wait"><a href="#Sleep-vs-Wait" class="headerlink" title="Sleep() vs Wait()"></a>Sleep() vs Wait()</h3><p>接著回到「題目」，問題是這樣的：sleep() 和 wait() 有什麼區別？這題我們可以簡單這樣回答，如下：<br>第一點，「sleep()」是 Thread 的方法，而「wait()」是 Object 的方法。<br>第二點，「sleep()」在釋放「CPU 資源時」不會同時釋放「鎖」，但「wait()」會。<br>第三點，「sleep()」一定要設定「最大時間參數」，而「wait()」不用，但「sleep()」不用經「notify()」或「notifyAll()」喚醒，但「wait()」要。</p>
-<h3 id="Exception-vs-Error"><a href="#Exception-vs-Error" class="headerlink" title="Exception vs Error"></a>Exception vs Error</h3><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcftqaw3whj318g0keq8a.jpg" alt="img"></p>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/02/14/C++/2018-02-14-Dynamic%20vs%20Static%20Binding/">C++/2018-02-14-Dynamic vs Static Binding</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-02-14</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/C/">C++</a></span><div class="content"><p>Ref: <a href="http://notes.maxwi.com/3516/08/19/static-dynamic-binding/" target="_blank" rel="noopener">http://notes.maxwi.com/3516/08/19/static-dynamic-binding/</a></p>
-<ul>
-<li>静态类型：就是对象声明时采用的类型，一旦确定就无法更改，编译期已经确定</li>
-<li>动态类型：通常是指一个指针或引用在调用时所指向的类型，可以理解为赋值号右侧对象的类型（当然采用直接赋值就是括号中的对象的类型），可以在运行时更改，在运行期决定</li>
-<li>静态绑定（static binding）：又名前期绑定（early binding），绑定的是对象的静态类型，发生在编译期，即程序编译完成后就已经确定</li>
-<li>动态绑定（dynamic binding）：又名后期绑定（late binding），绑定的是对象的动态类型，发生在运行期，即在运行期由当前的动态类型决定所需要调用的函数或属性</li>
-</ul>
-<p>可以简单理解为，通常我们定义的非虚函数都是静态绑定，即静态类型与动态类型都指同一种类型，在编译期就已经确定，那么运行时调用的函数也就是相应类型对象的函数。<br>而虚函数可以发生动态绑定，即在运行时，根据指针或引用所指对象的类型来决定调用相应的虚函数。如当定义父类的指针，指向派生类的对象时，该指针的动态类型与静态类型就不一致,<br>动态类型即派生类，静态类型为父类，那么在使用此指针在运行时调用虚函数时会首先调用动态类型对象（即派生类对象）的虚函数，如果动态类型中没有重写（override）该虚函数，<br>则调用的还是基类中的虚函数。<br>举例说明：<br>所有的讲解都是注释中，请认真阅读每一句注释</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">void</span>)</span>  <span class="comment">//普通的非虚函数，只能静态绑定</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"A::func"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">vfunc1</span><span class="params">()</span>   <span class="comment">//虚函数，可以在运行时，根据动态类型不同而发生动态绑定</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"A::vfunc1"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">vfunc2</span><span class="params">(<span class="keyword">int</span> i = <span class="number">2</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"A::vfunc2: "</span> &lt;&lt; i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">public</span> A &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"B::func"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">vfunc1</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"B::vfunc1"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">vfunc2</span><span class="params">(<span class="keyword">int</span> i = <span class="number">5</span>)</span>  <span class="comment">//注意B改变了继承而来的虚函数的默认参数</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"B::vfunc2: "</span> &lt;&lt; i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> :</span> <span class="keyword">public</span> B &#123;  <span class="comment">//注意C继承自B而不是A</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    B* pb = <span class="keyword">new</span> B();  <span class="comment">//pb的静态类型即是它声明的类型B，动态类型是它指向的类型B，即动态类型与静态类型一致</span></span><br><span class="line">    C* pc = <span class="keyword">new</span> C(); <span class="comment">//pc的静态类型与动态类型一致</span></span><br><span class="line">    A* pa = pc;   <span class="comment">//pa的静态类型是A，动态类型是C</span></span><br><span class="line">    pa = pb; <span class="comment">//将pa的动态类型改为B</span></span><br><span class="line">    B *pbnull = <span class="literal">nullptr</span>;  <span class="comment">//定义B指向空指针，它将在编译期发生静态绑定</span></span><br><span class="line">    pa-&gt;func();  <span class="comment">//A::func，虽然pa的静态类型与动态类型不一样，但func是不是虚函数，只有在通过指针或引用调用虚函数时，才会有运行时发生动态绑定，即pa优先调用其动态类型中的虚函数，所以此时pa只能调用它自己的func</span></span><br><span class="line">    pa-&gt;vfunc1(); <span class="comment">//B::vfunc1，此时pa发生了动态绑定，即调用它动态类型B的虚函数vfunc1</span></span><br><span class="line">    pb-&gt;func(); <span class="comment">//B::func，pb的func将隐藏继承自A中的函数func，所有非虚函数的调用都由静态类型决定，即编译期就已经确定了</span></span><br><span class="line">    pb-&gt;vfunc2(); <span class="comment">//B::vfunc2:5，pb正常通过静态绑定调用自己的函数vfunc2</span></span><br><span class="line">    pa-&gt;vfunc2(); <span class="comment">//B::vfunc2:2，发现pa此时动态绑定调用的是类型B的成员函数，但形参去是A自己的形参，因为C++为了执行效率，缺省参数值都是静态绑定的，所以永远不要重新定义一个继承而来的virtual函数的缺省参数值</span></span><br><span class="line">    pc-&gt;func(); <span class="comment">//B::func，pc正常的静态绑定，调用继承自B的函数func</span></span><br><span class="line">    pa = pc;  <span class="comment">//将pa的动态类型改为pc</span></span><br><span class="line">    pa-&gt;vfunc1();  <span class="comment">//B::vfunc1，此时pa实际上发生了动态绑定，被动态绑定到pc，将调用其动态类型C中的虚函数，但由于C中没有重写继承自B的虚函数，所以只能调用其父类B中的虚函数，注意不是A中的</span></span><br><span class="line">    pbnull-&gt;func();  <span class="comment">//B::func，虽然pbnull此时指向的是空指针，但其静态绑定是在编译期确定的，也就是说编译完成之后，pbnull就已经存在pbnull-&gt;func()的调用了。</span></span><br><span class="line">    <span class="comment">// pbnull-&gt;vfunc1(); //编译没有问题，但将发生运行时错误，linux下运行报错为Segmentation fault。因为在运行时发生动态绑定时，pbnull是指向空指针的，显然空指针不属于任何类型，pbnull也就无法正常绑定。之所以编译器无法检查到这类问题应该就是动态导致用户可以随时将pbnull绑定到一个其派生类的对象上</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//释放动态内存</span></span><br><span class="line">    <span class="keyword">delete</span> pb;</span><br><span class="line">    <span class="keyword">delete</span> pc;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面的注释中已经讲解的非常清楚了，最后两句指向空指针的类对象也可以调用其静态绑定的函数需要特别注意，这是一种极不推荐的做法</p>
-<p>注意</p>
-<ul>
-<li>永远不要重新定义继承而来的非虚函数，这样的函数由对象声明时的静太类型确定，没有多态性，将给程序留下不可预知的隐患</li>
-<li>永远不要重新定义一个继承而来的虚函数的缺省参数值，因为缺省参数值都是静态绑定的。</li>
-<li>接口基类不应该有非虚函数，即全部使用纯虚函数</li>
-</ul>
-</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2018/02/13/C++/2018-02-13-LRU/">C++/2018-02-13-LRU</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018-02-13</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Data-Structures/">Data-Structures</a></span><div class="content"><p>Ref: <a href="https://zhuanlan.zhihu.com/p/34133067" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34133067</a></p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8ws3vt2ygj30k00fcdg0.jpg" alt="img"></p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g8ws3t9yfrj30k00agt96.jpg" alt="img"></p>
-</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/76/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/76/">76</a><span class="page-number current">77</span><a class="page-number" href="/page/78/">78</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/78/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2023 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+<h3 id="參考資源"><a href="#參考資源" class="headerlink" title="參考資源:"></a>參考資源:</h3><p><a href="https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/" target="_blank" rel="noopener">A Quick and Easy Guide to tmux</a></p>
+<p><a href="https://andyyou.github.io/2017/11/27/tmux-notes/" target="_blank" rel="noopener">tmux 快速入門筆記</a></p>
+</div><hr></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/76/"><i class="fa fa-chevron-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/76/">76</a><span class="page-number current">77</span><a class="page-number" href="/page/78/">78</a><span class="space">&hellip;</span><a class="page-number" href="/page/82/">82</a><a class="extend next" rel="next" href="/page/78/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2024 By Joe Huang</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
   $('#top-container').addClass('is-mobile')
